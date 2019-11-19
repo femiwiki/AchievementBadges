@@ -1,0 +1,28 @@
+{
+	"name": "AchievementBadges",
+	"version": "1.0.2",
+	"author": [ "Lens" ],
+	"url": "https://github.com/femiwiki/AchievementBadges",
+	"descriptionmsg": "achievementbadges-desc",
+	"license-name": "GPL-2.0-or-later",
+	"type": "specialpage",
+	"requires": {
+		"MediaWiki": ">= 1.33.0"
+	},
+	"AutoloadNamespaces": {
+		"MediaWiki\\Extensions\\AchievementBadges\\": "includes/"
+	},
+	"Hooks": {},
+	"SpecialPages": {
+		"Achievements": "SpacialAchievements",
+		"Badges": "SpacialBadges"
+	},
+	"MessagesDirs": {
+		"AchievementBadges": [ "i18n" ]
+	},
+	"ExtensionMessagesFiles": {
+		"AchievementBadgesAlias": "AchievementBadges.alias.php",
+		"AchievementBadgesMagic": "AchievementBadges.i18n.magic.php"
+	},
+	"manifest_version": 1
+}
