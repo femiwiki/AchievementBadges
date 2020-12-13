@@ -3,5 +3,9 @@
 		"authors": []
 	},
 	"achievementbadges-desc": "작성 예정",
-	"special-achievementbadges": "도전과제 뱃지 목록"
+	"special-achievementbadges": "도전과제 뱃지 목록",
+	"achievementbadges-summary": "이 기능은 아직 베타단계 입니다.\n* [[Special:Preferences#mw-prefsection-betafeatures|활성화]]한 경우에만 도전과제를 이용할 수 있습니다.\n* 도전과제는 예고 없이 삭제되거나 베타 기간 중에 달성한 도전과제가 초기화될 수 있습니다.",
+	"achievementbadges-achievement-enable-message": "도전과제 뱃지",
+	"achievementbadges-achievement-enable-description": "{{SITENAME}} 이용하면서 도전과제를 달성하고 뱃지를 부여받습니다.",
+	"achievementbadges-disabled": "도전과제 뱃지가 비활성화되어 있습니다."
 }

@@ -7,12 +7,17 @@
 	"license-name": "GPL-2.0-or-later",
 	"type": "specialpage",
 	"requires": {
-		"MediaWiki": ">= 1.35.0"
+		"MediaWiki": ">= 1.35.0",
+		"extensions": {
+			"BetaFeatures": "*"
+		}
 	},
 	"AutoloadNamespaces": {
 		"MediaWiki\\Extension\\AchievementBadges\\": "includes/"
 	},
-	"Hooks": {},
+	"Hooks": {
+		"GetBetaFeaturePreferences": "MediaWiki\\Extension\\AchievementBadges\\Hooks::onGetBetaFeaturePreferences"
+	},
 	"SpecialPages": {
 		"AchievementBadges": "MediaWiki\\Extension\\AchievementBadges\\SpecialAchievementBadges"
 	},
