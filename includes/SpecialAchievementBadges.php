@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Extension\AchievementBadges\Specials;
+namespace MediaWiki\Extension\AchievementBadges;
 
 use SpecialPage;
 
@@ -10,7 +10,7 @@ use SpecialPage;
  * @file
  */
 
-class AchievementBadges extends SpecialPage {
+class SpecialAchievementBadges extends SpecialPage {
 
 	public function __construct() {
 		parent::__construct( 'AchievementBadges' );

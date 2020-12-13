@@ -14,7 +14,7 @@
 	},
 	"Hooks": {},
 	"SpecialPages": {
-		"AchievementsBadges": "MediaWiki\\Extension\\AchievementBadges\\Specials\\AchievementBadges"
+		"AchievementBadges": "MediaWiki\\Extension\\AchievementBadges\\SpecialAchievementBadges"
 	},
 	"MessagesDirs": {
 		"AchievementBadges": [ "i18n" ]
