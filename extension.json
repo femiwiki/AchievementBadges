@@ -20,8 +20,7 @@
 		"AchievementBadges": [ "i18n" ]
 	},
 	"ExtensionMessagesFiles": {
-		"AchievementBadgesAlias": "AchievementBadges.alias.php",
-		"AchievementBadgesMagic": "AchievementBadges.i18n.magic.php"
+		"AchievementBadgesAlias": "AchievementBadges.alias.php"
 	},
 	"manifest_version": 1
 }
