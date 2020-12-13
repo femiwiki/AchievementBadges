@@ -7,20 +7,20 @@
 	"license-name": "GPL-2.0-or-later",
 	"type": "specialpage",
 	"requires": {
-		"MediaWiki": ">= 1.33.0"
+		"MediaWiki": ">= 1.35.0"
 	},
 	"AutoloadNamespaces": {
-		"MediaWiki\\Extensions\\AchievementBadges\\": "includes/"
+		"MediaWiki\\Extension\\AchievementBadges\\": "includes/"
 	},
 	"Hooks": {},
 	"SpecialPages": {
-		"AchievementsBadges": "SpacialAchievementBadges"
+		"AchievementsBadges": "MediaWiki\\Extension\\AchievementBadges\\Specials\\AchievementBadges"
 	},
 	"MessagesDirs": {
 		"AchievementBadges": [ "i18n" ]
 	},
 	"ExtensionMessagesFiles": {
-		"AchievementBadgesAlias": "AchievementBadges.alias.php"
+		"AchievementBadgesAlias": "AchievementBadges.i18n.alias.php"
 	},
-	"manifest_version": 1
+	"manifest_version": 2
 }
