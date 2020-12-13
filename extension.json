@@ -14,8 +14,7 @@
 	},
 	"Hooks": {},
 	"SpecialPages": {
-		"Achievements": "SpacialAchievements",
-		"Badges": "SpacialBadges"
+		"AchievementsBadges": "SpacialAchievementBadges"
 	},
 	"MessagesDirs": {
 		"AchievementBadges": [ "i18n" ]

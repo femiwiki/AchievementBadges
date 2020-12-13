@@ -6,14 +6,12 @@ $specialPageAliases = [];
  * English (English)
 */
 $specialPageAliases['en'] = [
-	'Achievements' => [ 'Achievements' ],
-	'Badges' => [ 'Badges' ],
+	'AchievementBadges' => [ 'AchievementBadges' ],
 ];
 
 /**
  * Korean (한국어)
 */
 $specialPageAliases['ko'] = [
-	'Achievements' => [ '도전과제목록' ],
-	'Badges' => [ '뱃지목록' ],
+	'AchievementBadges' => [ '도전과제뱃지목록' ],
 ];
