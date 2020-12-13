@@ -2,5 +2,6 @@
 	"@metadata": {
 		"authors": []
 	},
-	"achievementbadges-desc": "{{desc|name=AchievementBadges|url=https://www.mediawiki.org/wiki/Special:MyLanguage/Extension:AchievementBadges}}"
+	"achievementbadges-desc": "{{desc|name=AchievementBadges|url=https://www.mediawiki.org/wiki/Special:MyLanguage/Extension:AchievementBadges}}",
+	"special-achievementbadges": "Title for the Special Page that lists all achievements."
 }
