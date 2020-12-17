@@ -4,5 +4,8 @@
 	},
 	"achievementbadges-desc": "{{desc|name=AchievementBadges|url=https://www.mediawiki.org/wiki/Special:MyLanguage/Extension:AchievementBadges}}",
 	"special-achievementbadges": "Title for the Special Page that lists all achievements.",
-	"achievementbadges-summary": "TBD"
+	"achievementbadges-summary": "TBD",
+	"achievementbadges-achievement-enable-message": "TBD",
+	"achievementbadges-achievement-enable-description": "TBD",
+	"achievementbadges-disabled": "TBD."
 }

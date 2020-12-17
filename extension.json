@@ -1,31 +1,31 @@
 {
-	"name": "AchievementBadges",
-	"version": "0.0.0",
-	"author": [ "Lens" ],
-	"url": "https://github.com/femiwiki/AchievementBadges",
-	"descriptionmsg": "achievementbadges-desc",
-	"license-name": "GPL-2.0-or-later",
-	"type": "specialpage",
-	"requires": {
-		"MediaWiki": ">= 1.35.0",
-		"extensions": {
-			"BetaFeatures": "*"
-		}
-	},
-	"AutoloadNamespaces": {
-		"MediaWiki\\Extension\\AchievementBadges\\": "includes/"
-	},
-	"Hooks": {
-		"GetBetaFeaturePreferences": "MediaWiki\\Extension\\AchievementBadges\\Hooks::onGetBetaFeaturePreferences"
-	},
-	"SpecialPages": {
-		"AchievementBadges": "MediaWiki\\Extension\\AchievementBadges\\SpecialAchievementBadges"
-	},
-	"MessagesDirs": {
-		"AchievementBadges": [ "i18n" ]
-	},
-	"ExtensionMessagesFiles": {
-		"AchievementBadgesAlias": "AchievementBadges.i18n.alias.php"
-	},
-	"manifest_version": 2
+  "name": "AchievementBadges",
+  "version": "0.0.0",
+  "author": ["Lens"],
+  "url": "https://github.com/femiwiki/AchievementBadges",
+  "descriptionmsg": "achievementbadges-desc",
+  "license-name": "GPL-2.0-or-later",
+  "type": "specialpage",
+  "requires": {
+    "MediaWiki": ">= 1.35.0",
+    "extensions": {
+      "BetaFeatures": "*"
+    }
+  },
+  "AutoloadNamespaces": {
+    "MediaWiki\\Extension\\AchievementBadges\\": "includes/"
+  },
+  "Hooks": {
+    "GetBetaFeaturePreferences": "MediaWiki\\Extension\\AchievementBadges\\Hooks::onGetBetaFeaturePreferences"
+  },
+  "SpecialPages": {
+    "AchievementBadges": "MediaWiki\\Extension\\AchievementBadges\\SpecialAchievementBadges"
+  },
+  "MessagesDirs": {
+    "AchievementBadges": ["i18n"]
+  },
+  "ExtensionMessagesFiles": {
+    "AchievementBadgesAlias": "AchievementBadges.i18n.alias.php"
+  },
+  "manifest_version": 2
 }

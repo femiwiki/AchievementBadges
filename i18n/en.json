@@ -3,5 +3,9 @@
 		"authors": []
 	},
 	"achievementbadges-desc": "TBD",
-	"special-achievementbadges": "Achievement badges"
+	"special-achievementbadges": "Achievement badges",
+	"achievementbadges-summary": "TBD",
+	"achievementbadges-achievement-enable-message": "TBD",
+	"achievementbadges-achievement-enable-description": "TBD",
+	"achievementbadges-disabled": "TBD."
 }
