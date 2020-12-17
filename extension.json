@@ -9,17 +9,41 @@
   "requires": {
     "MediaWiki": ">= 1.35.0",
     "extensions": {
-      "BetaFeatures": "*"
+      "Echo": "*"
     }
   },
   "AutoloadNamespaces": {
     "MediaWiki\\Extension\\AchievementBadges\\": "includes/"
   },
+  "ResourceFileModulePaths": {
+    "localBasePath": "modules",
+    "remoteExtPath": "AchievementBadges/modules"
+  },
+  "ResourceModules": {
+    "ext.achievementbadges.special.achievements.styles": {
+      "styles": ["styles/spacial-achievements.less"]
+    }
+  },
   "Hooks": {
-    "GetBetaFeaturePreferences": "MediaWiki\\Extension\\AchievementBadges\\Hooks::onGetBetaFeaturePreferences"
+    "AddNewAccount": "main",
+    "BeforeCreateAchievement": "MediaWiki\\Extension\\AchievementBadges\\HookHandler::onBeforeCreateAchievement",
+    "BeforeCreateEchoEvent": "MediaWiki\\Extension\\AchievementBadges\\HookHandler::onBeforeCreateEchoEvent",
+    "GetBetaFeaturePreferences": "MediaWiki\\Extension\\AchievementBadges\\HookHandler::onGetBetaFeaturePreferences",
+    "UserSaveSettings": "main"
+  },
+  "HookHandlers": {
+    "main": {
+      "class": "MediaWiki\\Extension\\AchievementBadges\\HookHandler",
+      "services": ["MainConfig"]
+    }
   },
   "SpecialPages": {
-    "AchievementBadges": "MediaWiki\\Extension\\AchievementBadges\\SpecialAchievementBadges"
+    "Achievements": "MediaWiki\\Extension\\AchievementBadges\\SpecialAchievements"
+  },
+  "config": {
+    "AchievementBadgesEnableBetaFeature": {
+      "value": false
+    }
   },
   "MessagesDirs": {
     "AchievementBadges": ["i18n"]

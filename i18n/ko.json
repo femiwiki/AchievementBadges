@@ -3,9 +3,16 @@
 		"authors": []
 	},
 	"achievementbadges-desc": "작성 예정",
-	"special-achievementbadges": "도전과제 뱃지 목록",
-	"achievementbadges-summary": "이 기능은 아직 베타단계 입니다.\n* [[Special:Preferences#mw-prefsection-betafeatures|활성화]]한 경우에만 도전과제를 이용할 수 있습니다.\n* 도전과제는 예고 없이 삭제되거나 베타 기간 중에 달성한 도전과제가 초기화될 수 있습니다.",
+	"special-achievements": "도전과제 뱃지 목록",
+	"achievements-summary": "이 기능은 아직 베타단계 입니다.\n* [[Special:Preferences#mw-prefsection-betafeatures|활성화]]한 경우에만 도전과제를 이용할 수 있습니다.\n* 도전과제는 예고 없이 삭제되거나 베타 기간 중에 달성한 도전과제가 초기화될 수 있습니다.\n다음은 모든 도전과제 목록입니다.",
 	"achievementbadges-achievement-enable-message": "도전과제 뱃지",
 	"achievementbadges-achievement-enable-description": "{{SITENAME}} 이용하면서 도전과제를 달성하고 뱃지를 부여받습니다.",
-	"achievementbadges-disabled": "도전과제 뱃지가 비활성화되어 있습니다."
+	"achievementbadges-disabled": "도전과제 뱃지가 비활성화되어 있습니다.",
+	"echo-category-title-achievement-badges": "도전과제 달성",
+	"achievementbadges-pref-tooltip-achievement-badges": "도전과제를 달성했을 때 내게 알립니다.",
+	"notification-header-achievementbadges-earn": "$3 도전과제를 {{GENDER:$3|달성했습니다}}.",
+	"achievement-name-enable-achievement-badges": "도전과제 활성화하기",
+	"achievement-hint-enable-achievement-badges": "[[특수:환경설정#mw-prefsection-betafeatures|환경 설정의 베타 기능]]에서 도전과제 뱃지를 활성화하세요.",
+	"achievement-name-sign-up": "가입하기",
+	"achievement-hint-sign-up": "[[특수:계정만들기|{{SITENAME}}에 가입]]하세요."
 }

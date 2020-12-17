@@ -2,10 +2,17 @@
 	"@metadata": {
 		"authors": []
 	},
-	"achievementbadges-desc": "TBD",
-	"special-achievementbadges": "Achievement badges",
-	"achievementbadges-summary": "TBD",
-	"achievementbadges-achievement-enable-message": "TBD",
-	"achievementbadges-achievement-enable-description": "TBD",
-	"achievementbadges-disabled": "TBD."
+	"achievementbadges-desc": "message is not offered",
+	"special-achievements": "Achievement badges",
+	"achievements-summary": "message is not offered",
+	"achievementbadges-achievement-enable-message": "message is not offered",
+	"achievementbadges-achievement-enable-description": "message is not offered",
+	"achievementbadges-disabled": "message is not offered.",
+	"echo-category-title-achievement-badges": "message is not offered",
+	"achievementbadges-pref-tooltip-achievement-badges": "message is not offered",
+	"notification-header-achievementbadges-earn": "message is not offered",
+	"achievement-name-enable-achievement-badges": "message is not offered",
+	"achievement-hint-enable-achievement-badges": "message is not offered",
+	"achievement-name-sign-up": "message is not offered",
+	"achievement-hint-sign-up": "message is not offered"
 }
