@@ -15,15 +15,6 @@
   "AutoloadNamespaces": {
     "MediaWiki\\Extension\\AchievementBadges\\": "includes/"
   },
-  "ResourceFileModulePaths": {
-    "localBasePath": "modules",
-    "remoteExtPath": "AchievementBadges/modules"
-  },
-  "ResourceModules": {
-    "ext.achievementbadges.special.achievements.styles": {
-      "styles": ["styles/spacial-achievements.less"]
-    }
-  },
   "Hooks": {
     "AddNewAccount": "main",
     "BeforeCreateAchievement": "MediaWiki\\Extension\\AchievementBadges\\HookHandler::onBeforeCreateAchievement",
@@ -39,6 +30,15 @@
   },
   "SpecialPages": {
     "Achievements": "MediaWiki\\Extension\\AchievementBadges\\SpecialAchievements"
+  },
+  "ResourceFileModulePaths": {
+    "localBasePath": "modules",
+    "remoteExtPath": "AchievementBadges/modules"
+  },
+  "ResourceModules": {
+    "ext.achievementbadges.special.achievements.styles": {
+      "styles": ["styles/spacial-achievements.less"]
+    }
   },
   "config": {
     "AchievementBadgesEnableBetaFeature": {
