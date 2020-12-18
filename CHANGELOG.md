@@ -1,0 +1,11 @@
+# Changelog
+
+Versions and bullets are arranged chronologically from latest to oldest.
+
+# v0.0.1
+
+- Run prettier on Markdown.
+- Provide basic process for registering and firing a achievement.
+- Make the extension could be provided as a beta feature.
+- Add a bare special page `[[Special:Achievements]]`.
+- Add a Github actions workflow to lint PHP, JSON and LESS.
