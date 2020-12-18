@@ -2,7 +2,7 @@
 
 Versions and bullets are arranged chronologically from latest to oldest.
 
-# v0.0.1
+## v0.0.1
 
 - Run prettier on Markdown.
 - Provide basic process for registering and firing a achievement.
