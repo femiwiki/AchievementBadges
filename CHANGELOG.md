@@ -2,6 +2,12 @@
 
 Versions and bullets are arranged chronologically from latest to oldest.
 
+## v0.0.2 (Unreleased)
+
+ENHANCEMENTS:
+
+- Log achievements to Special:Log and show on Special:Achievements.
+
 ## v0.0.1
 
 - Run prettier on Markdown.

@@ -40,6 +40,10 @@
       "styles": ["styles/spacial-achievements.less"]
     }
   },
+  "LogTypes": ["achievementbadges"],
+  "LogActionsHandlers": {
+    "achievementbadges/*": "MediaWiki\\Extension\\AchievementBadges\\LogFormatter"
+  },
   "config": {
     "AchievementBadgesEnableBetaFeature": {
       "value": false

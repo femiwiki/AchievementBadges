@@ -29,6 +29,11 @@ final class Constants {
 	/**
 	 * @var string
 	 */
+	public const LOG_TYPE = 'achievementbadges';
+
+	/**
+	 * @var string
+	 */
 	public const ECHO_EVENT_CATEGORY = 'achievement-badges';
 
 	/**

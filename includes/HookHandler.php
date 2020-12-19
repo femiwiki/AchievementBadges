@@ -45,9 +45,13 @@ class HookHandler implements UserSaveSettingsHook {
 		$config = MediaWikiServices::getInstance()->getMainConfig();
 		if ( $config->get( Constants::CONFIG_KEY_ACHIEVEMENT_BADGES_ENABLE_BETA_FEATURE )
 			&& ExtensionRegistry::getInstance()->isLoaded( 'BetaFeatures' ) ) {
-			$achievements[Constants::ACHV_KEY_ENABLE_ACHIEVEMENT_BADGES] = [];
+			$achievements[Constants::ACHV_KEY_ENABLE_ACHIEVEMENT_BADGES] = [
+				'icon' => '',
+			];
 		} else {
-			$achievements[Constants::ACHV_KEY_SIGN_UP] = [];
+			$achievements[Constants::ACHV_KEY_SIGN_UP] = [
+				'icon' => '',
+			];
 		}
 	}
 

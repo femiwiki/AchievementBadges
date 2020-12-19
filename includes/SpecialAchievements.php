@@ -7,6 +7,7 @@ use ExtensionRegistry;
 use Hooks;
 use SpecialPage;
 use TemplateParser;
+use User;
 
 /**
  * Special page
@@ -27,59 +28,112 @@ class SpecialAchievements extends SpecialPage {
 	}
 
 	/**
-	 * @param string $subPage
+	 * @inheritDoc
 	 */
 	public function execute( $subPage ) {
+		$this->addHelpLink( 'Extension:AchievementBadges' );
+
+		$user = $this->getUser();
+
+		$betaExtensionInstalled = ExtensionRegistry::getInstance()->isLoaded( 'BetaFeatures' );
+		$betaConfigEnabled = $this->getConfig()
+			->get( Constants::CONFIG_KEY_ACHIEVEMENT_BADGES_ENABLE_BETA_FEATURE );
+		$asBeta = $betaExtensionInstalled && $betaConfigEnabled;
+		if ( $asBeta ) {
+			$userBetaEnabled = BetaFeatures::isFeatureEnabled( $user,
+				Constants::PREF_KEY_ACHIEVEMENT_ENABLE );
+			// An anonymous user can't enable beta features
+			$this->requireLogin( 'achievementbadges-anon-text' );
+		}
+
 		parent::execute( $subPage );
 
-		$output = $this->getOutput();
-		$output->addModuleStyles( 'ext.achievementbadges.special.achievements.styles' );
+		$out = $this->getOutput();
+		$out->addModuleStyles( 'ext.achievementbadges.special.achievements.styles' );
 
-		if ( !$this->isAchievementEnabled() ) {
-			$output->addWikiTextAsInterface(
-				$this->msg( 'achievementbadges-disabled' )->text()
-			);
+		if ( $asBeta && !$userBetaEnabled ) {
+			$out->addWikiTextAsInterface( $this->msg( 'achievementbadges-disabled' )->text() );
 			return;
 		}
 
-		$achvs = [];
-		Hooks::run( 'BeforeCreateAchievement', [ &$achvs ] );
+		$allAchvs = [];
+		Hooks::run( 'BeforeCreateAchievement', [ &$allAchvs ] );
 
-		if ( !$achvs ) {
-			$output->addWikiTextAsInterface( '제공되는 도전과제가 아직 없습니다.' );
-			return;
+		$earnedAchvs = $user->isAnon() ? [] : $this->getEarnedAchievements( $user );
+
+		$dataEarnedAchvs = [];
+		$dataNotEarningAchvs = [];
+		foreach ( $allAchvs as $key => $info ) {
+			$isEarned = in_array( $key, $earnedAchvs );
+			$new = [
+				'text-type' => $key,
+				'class' => [
+					'achievement',
+					$isEarned ? 'earned' : 'not-earning',
+				],
+				// @TODO send gender information as param
+				'text-name' => $this->msg( "achievement-name-$key" )->parse(),
+			];
+
+			if ( $isEarned ) {
+				// @TODO send gender information as param
+				$new['html-description'] = $this->msg( "achievement-description-$key" )->parse();
+				$dataEarnedAchvs[] = $new;
+			} else {
+				// @TODO send gender information as param
+				$new['html-hint'] = $this->msg( "achievement-hint-$key" )->parse();
+				$dataNotEarningAchvs[] = $new;
+			}
 		}
 
-		foreach ( $achvs as $key => $info ) {
-			$achvs['hint'] = $this->msg( 'achievement-hint-' . $key )->parse();
-			$achvs['name'] = $this->msg( 'achievement-name-' . $key )->parse();
-		}
-		$output->addHTML( $this->templateParser->processTemplate( 'Achievements', [
-			'data-achievements' => $achvs,
+		$out->addHTML( $this->templateParser->processTemplate( 'SpecialAchievements', [
+			'data-earned-achievements' => $dataEarnedAchvs,
+			'data-not-earning-achievements' => $dataNotEarningAchvs,
+			'msg-header-not-earning-achievements' => $this->msg(
+				'special-achievements-header-not-earning-achievements' ),
 		] ) );
 	}
 
 	/**
-	 * @return bool
+	 * @param User $user
+	 * @return string[]
 	 */
-	public function isAchievementEnabled() {
-		$enabledBeta = $this->getConfig()
-			->get( Constants::CONFIG_KEY_ACHIEVEMENT_BADGES_ENABLE_BETA_FEATURE );
-		if ( !$enabledBeta || !ExtensionRegistry::getInstance()->isLoaded( 'BetaFeatures' ) ) {
-			return true;
+	protected function getEarnedAchievements( User $user ): array {
+		$dbr = wfGetDB( DB_REPLICA );
+
+		/** @var stdClass $rows */
+		$rows = $dbr->select(
+			[ 'logging', 'actor' ],
+			[
+				'log_action',
+			],
+			[
+				'log_type' => Constants::LOG_TYPE,
+				'actor_user' => $user->getId(),
+			],
+			__METHOD__,
+			[],
+			[
+				'actor' => [ 'JOIN', 'actor_id = log_actor' ],
+			]
+		);
+
+		$achvs = [];
+		foreach ( $rows as $row ) {
+			$achvs[] = $row->log_action;
 		}
-		return BetaFeatures::isFeatureEnabled( $this->getUser(), Constants::PREF_KEY_ACHIEVEMENT_ENABLE );
+		return $achvs;
 	}
 
 	/**
-	 * @return string
+	 * @inheritDoc
 	 */
 	public function getDescription() {
 		return $this->msg( 'special-achievements' )->text();
 	}
 
 	/**
-	 * @return string
+	 * @inheritDoc
 	 */
 	protected function getGroupName() {
 		return 'users';

@@ -1,18 +1,25 @@
 {
 	"@metadata": {
-		"authors": []
+		"authors": ["lens0021"]
 	},
-	"achievementbadges-desc": "message is not offered",
-	"special-achievements": "Achievement badges",
-	"achievements-summary": "message is not offered",
-	"achievementbadges-achievement-enable-message": "message is not offered",
-	"achievementbadges-achievement-enable-description": "message is not offered",
-	"achievementbadges-disabled": "message is not offered.",
-	"echo-category-title-achievement-badges": "message is not offered",
-	"achievementbadges-pref-tooltip-achievement-badges": "message is not offered",
-	"notification-header-achievementbadges-earn": "message is not offered",
-	"achievement-name-enable-achievement-badges": "message is not offered",
-	"achievement-hint-enable-achievement-badges": "message is not offered",
-	"achievement-name-sign-up": "message is not offered",
-	"achievement-hint-sign-up": "message is not offered"
+	"achievementbadges-desc": "Provide [[Special:Achievements|achievements]]",
+	"achievementbadges-anon-text": "Please log in to view achievements.",
+	"special-achievements": "All achievements",
+	"special-achievements-header-not-earning-achievements": "Not earing achievements",
+	"achievements-summary": "This feature is still in beta.\n* You can use if [[Special:Preferences#mw-prefsection-betafeatures|enable]] it.\n* Achievements can be deleted without notice.\n* Achievement(s) earned during the beta period can be initialized\nThis is a list of achievements.",
+	"achievementbadges-achievement-enable-message": "Achievement Badges",
+	"achievementbadges-achievement-enable-description": "Earn given achievements to get badges.",
+	"achievementbadges-disabled": "Achievement Badges is disabled.",
+	"echo-category-title-achievement-badges": "Earn Achievement",
+	"achievementbadges-pref-tooltip-achievement-badges": "Notify me when I earn a achievement.",
+	"log-name-achievementbadges": "Achievement log",
+	"log-description-achievementbadges": "This is a log shows a list of achievements a user earned.",
+	"logentry-achievementbadges": "$1 {{GENDER:$2|earned}} achievement $4",
+	"notification-header-achievementbadges-earn": "{{GENDER:$2|you}} earned achievement $3.",
+	"achievement-name-enable-achievement-badges": "Enable Achievement Badges",
+	"achievement-hint-enable-achievement-badges": "Enable Achievement Badges on [[Special:Preferences#mw-prefsection-betafeatures|the Beta features of Preferences]].",
+	"achievement-description-enable-achievement-badges": "You are now a contributor of {{SITENAME}}!",
+	"achievement-name-sign-up": "Sign up",
+	"achievement-hint-sign-up": "[[Special:createaccount|Sign up {{SITENAME}}]].",
+	"achievement-description-sign-up": "You enabled Achievement Badges! Please keep in mind the captions of beta."
 }
