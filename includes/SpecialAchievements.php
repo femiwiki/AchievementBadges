@@ -48,7 +48,7 @@ class SpecialAchievements extends SpecialPage {
 		$out = $this->getOutput();
 		$out->addModuleStyles( 'ext.achievementbadges.special.achievements.styles' );
 
-		if ( !$userBetaEnabled ) {
+		if ( $betaConfigEnabled && !$userBetaEnabled ) {
 			$out->addWikiTextAsInterface( $this->msg( 'achievementbadges-disabled' )->text() );
 			return;
 		}
@@ -56,7 +56,11 @@ class SpecialAchievements extends SpecialPage {
 		$allAchvs = [];
 		Hooks::run( 'BeforeCreateAchievement', [ &$allAchvs ] );
 
-		$earnedAchvs = $user->isAnon() ? [] : $this->getEarnedAchievements( $user );
+		$earnedAchvs = $user->isAnon() ? [] : $this->getEarnedAchievementNames( $user );
+
+		if ( $user->isRegistered() && count( $earnedAchvs ) === 0 ) {
+			self::recheckAchievements( $allAchvs, $user );
+		}
 
 		$dataEarnedAchvs = [];
 		$dataNotEarningAchvs = [];
@@ -95,7 +99,7 @@ class SpecialAchievements extends SpecialPage {
 	 * @param User $user
 	 * @return string[]
 	 */
-	protected function getEarnedAchievements( User $user ): array {
+	protected function getEarnedAchievementNames( User $user ): array {
 		$dbr = wfGetDB( DB_REPLICA );
 
 		/** @var stdClass $rows */
@@ -120,6 +124,20 @@ class SpecialAchievements extends SpecialPage {
 			$achvs[] = $row->log_action;
 		}
 		return $achvs;
+	}
+
+	/**
+	 * @param array $achievements
+	 * @param User $user
+	 */
+	public static function recheckAchievements( array $achievements, User $user ) {
+		foreach ( $achievements as $key => $achv ) {
+			$callable = $achv['achievement-rechecker'];
+			if ( is_callable( $callable ) &&
+				$callable( $user ) ) {
+				Achievement::earn( [ 'key' => $key, 'user' => $user ] );
+			}
+		}
 	}
 
 	/**

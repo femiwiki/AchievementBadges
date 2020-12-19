@@ -6,6 +6,7 @@ Versions and bullets are arranged chronologically from latest to oldest.
 
 ENHANCEMENTS:
 
+- Add new achievements sign-up and enable-achievement-badges.
 - Link to the achievement fragment from notification.
 - Log achievements to Special:Log and show on Special:Achievements.
 

@@ -47,10 +47,14 @@ class HookHandler implements UserSaveSettingsHook {
 			&& ExtensionRegistry::getInstance()->isLoaded( 'BetaFeatures' ) ) {
 			$achievements[Constants::ACHV_KEY_ENABLE_ACHIEVEMENT_BADGES] = [
 				'icon' => '',
+				'achievement-rechecker' =>
+					'MediaWiki\Extension\AchievementBadges\AchievementRechecker::checkAlwaysTrue',
 			];
 		} else {
 			$achievements[Constants::ACHV_KEY_SIGN_UP] = [
 				'icon' => '',
+				'achievement-rechecker' =>
+					'MediaWiki\Extension\AchievementBadges\AchievementRechecker::checkAlwaysTrue',
 			];
 		}
 	}
@@ -92,8 +96,7 @@ class HookHandler implements UserSaveSettingsHook {
 	 * @return bool|void
 	 */
 	public function onUserSaveSettings( $user ) {
-		if ( !ExtensionRegistry::getInstance()->isLoaded( 'BetaFeatures' )
-			|| !$this->config->get( Constants::CONFIG_KEY_ACHIEVEMENT_BADGES_ENABLE_BETA_FEATURE ) ) {
+		if ( !$this->config->get( Constants::CONFIG_KEY_ACHIEVEMENT_BADGES_ENABLE_BETA_FEATURE ) ) {
 			return true;
 		}
 		if ( $user->getOption( Constants::PREF_KEY_ACHIEVEMENT_ENABLE ) ) {
