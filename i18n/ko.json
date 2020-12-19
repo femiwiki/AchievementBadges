@@ -18,8 +18,8 @@
 	"notification-header-achievementbadges-earn": "$3 도전과제를 {{GENDER:$3|달성했습니다}}.",
 	"achievement-name-enable-achievement-badges": "도전과제 활성화하기",
 	"achievement-hint-enable-achievement-badges": "[[특수:환경설정#mw-prefsection-betafeatures|환경 설정의 베타 기능]]에서 도전과제 뱃지를 활성화하세요.",
-	"achievement-description-enable-achievement-badges": "당신은 {{SITENAME}}의 기여자가 되었습니다!",
+	"achievement-description-enable-achievement-badges": "도전과제 뱃지 베타 기능을 활성화했습니다! 베타 기간 동안의 주의사항에 주의하세요.",
 	"achievement-name-sign-up": "가입하기",
 	"achievement-hint-sign-up": "[[특수:계정만들기|{{SITENAME}}에 가입]]하세요.",
-	"achievement-description-sign-up": "도전과제 뱃지 베타 기능을 활성화했습니다! 베타 기간 동안의 주의사항에 주의하세요."
+	"achievement-description-sign-up": "당신은 {{SITENAME}}의 기여자가 되었습니다!"
 }

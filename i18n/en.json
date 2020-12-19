@@ -10,16 +10,16 @@
 	"achievementbadges-achievement-enable-message": "Achievement Badges",
 	"achievementbadges-achievement-enable-description": "Earn given achievements to get badges.",
 	"achievementbadges-disabled": "Achievement Badges is disabled.",
-	"echo-category-title-achievement-badges": "Earn Achievement",
-	"achievementbadges-pref-tooltip-achievement-badges": "Notify me when I earn a achievement.",
+	"echo-category-title-achievement-badges": "Get achievement",
+	"achievementbadges-pref-tooltip-achievement-badges": "Notify me when I get an achievement.",
 	"log-name-achievementbadges": "Achievement log",
 	"log-description-achievementbadges": "This is a log shows a list of achievements a user earned.",
 	"logentry-achievementbadges": "$1 {{GENDER:$2|earned}} achievement $4",
 	"notification-header-achievementbadges-earn": "{{GENDER:$2|you}} earned achievement $3.",
 	"achievement-name-enable-achievement-badges": "Enable Achievement Badges",
 	"achievement-hint-enable-achievement-badges": "Enable Achievement Badges on [[Special:Preferences#mw-prefsection-betafeatures|the Beta features of Preferences]].",
-	"achievement-description-enable-achievement-badges": "You are now a contributor of {{SITENAME}}!",
+	"achievement-description-enable-achievement-badges": "You enabled Achievement Badges! Please keep in mind the captions of beta.",
 	"achievement-name-sign-up": "Sign up",
 	"achievement-hint-sign-up": "[[Special:createaccount|Sign up {{SITENAME}}]].",
-	"achievement-description-sign-up": "You enabled Achievement Badges! Please keep in mind the captions of beta."
+	"achievement-description-sign-up": "You are now a contributor of {{SITENAME}}!"
 }
