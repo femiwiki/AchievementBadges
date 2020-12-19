@@ -88,7 +88,9 @@ class SpecialAchievements extends SpecialPage {
 		}
 
 		$out->addHTML( $this->templateParser->processTemplate( 'SpecialAchievements', [
+			'bool-earned-achievements' => (bool)$dataNotEarningAchvs,
 			'data-earned-achievements' => $dataEarnedAchvs,
+			'bool-not-earning-achievements' => (bool)$dataNotEarningAchvs,
 			'data-not-earning-achievements' => $dataNotEarningAchvs,
 			'msg-header-not-earning-achievements' => $this->msg(
 				'special-achievements-header-not-earning-achievements' ),

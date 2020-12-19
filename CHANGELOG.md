@@ -13,6 +13,7 @@ ENHANCEMENTS:
 
 BUG FIXES:
 
+- Fix duplicated items on Special:Achievements
 - Do not allow user who disables AB to earn achievement
 
 ## v0.0.1
