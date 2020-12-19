@@ -24,7 +24,8 @@ class EarnPresentationModel extends EchoEventPresentationModel {
 	 * @return array
 	 */
 	public function getPrimaryLink() {
-		$title = SpecialPage::getTitleFor( SpecialAchievements::PAGE_NAME );
+		$fragment = 'achievement-' . $this->event->getExtraParam( 'key' );
+		$title = SpecialPage::getTitleFor( SpecialAchievements::PAGE_NAME, false, $fragment ?? '' );
 		$link = $this->getPageLink( $title, '', true );
 		return $link;
 	}

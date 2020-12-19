@@ -6,6 +6,7 @@ Versions and bullets are arranged chronologically from latest to oldest.
 
 ENHANCEMENTS:
 
+- Link to the achievement fragment from notification.
 - Log achievements to Special:Log and show on Special:Achievements.
 
 BUG FIXES:
