@@ -23,8 +23,11 @@ class Achievement {
 			throw new MWException( "'key' parameter is mandatory" );
 		}
 
-		$key = $info['key'];
 		$user = $info['user'];
+		if ( !Utils::isAchievementBadgesAvailable( $user ) ) {
+			return;
+		}
+		$key = $info['key'];
 
 		$dbr = wfGetDB( DB_REPLICA );
 		$query = [];

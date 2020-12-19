@@ -3,7 +3,6 @@
 namespace MediaWiki\Extension\AchievementBadges;
 
 use BetaFeatures;
-use ExtensionRegistry;
 use Hooks;
 use SpecialPage;
 use TemplateParser;
@@ -35,13 +34,11 @@ class SpecialAchievements extends SpecialPage {
 
 		$user = $this->getUser();
 
-		$betaExtensionInstalled = ExtensionRegistry::getInstance()->isLoaded( 'BetaFeatures' );
 		$betaConfigEnabled = $this->getConfig()
 			->get( Constants::CONFIG_KEY_ACHIEVEMENT_BADGES_ENABLE_BETA_FEATURE );
-		$asBeta = $betaExtensionInstalled && $betaConfigEnabled;
-		if ( $asBeta ) {
-			$userBetaEnabled = BetaFeatures::isFeatureEnabled( $user,
+		$userBetaEnabled = $betaConfigEnabled && BetaFeatures::isFeatureEnabled( $user,
 				Constants::PREF_KEY_ACHIEVEMENT_ENABLE );
+		if ( $betaConfigEnabled ) {
 			// An anonymous user can't enable beta features
 			$this->requireLogin( 'achievementbadges-anon-text' );
 		}
@@ -51,7 +48,7 @@ class SpecialAchievements extends SpecialPage {
 		$out = $this->getOutput();
 		$out->addModuleStyles( 'ext.achievementbadges.special.achievements.styles' );
 
-		if ( $asBeta && !$userBetaEnabled ) {
+		if ( !$userBetaEnabled ) {
 			$out->addWikiTextAsInterface( $this->msg( 'achievementbadges-disabled' )->text() );
 			return;
 		}

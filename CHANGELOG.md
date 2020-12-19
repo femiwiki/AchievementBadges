@@ -8,6 +8,10 @@ ENHANCEMENTS:
 
 - Log achievements to Special:Log and show on Special:Achievements.
 
+BUG FIXES:
+
+- Do not allow user who disables AB to earn achievement
+
 ## v0.0.1
 
 - Run prettier on Markdown.
