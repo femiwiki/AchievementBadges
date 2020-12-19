@@ -33,7 +33,7 @@ class HookHandler implements UserSaveSettingsHook {
 		$betaPrefs[Constants::PREF_KEY_ACHIEVEMENT_ENABLE] = [
 			'label-message' => 'achievementbadges-achievement-enable-message',
 			'desc-message' => 'achievementbadges-achievement-enable-description',
-			'info-link' => 'https://github.com/femiwiki/AchievementBadges',
+			'info-link' => 'https://www.mediawiki.org/wiki/Special:MyLanguage/Extension:AchievementBadges',
 			'discussion-link' => 'https://github.com/femiwiki/AchievementBadges/issues',
 		];
 	}
