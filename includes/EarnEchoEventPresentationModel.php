@@ -1,16 +1,15 @@
 <?php
 
-namespace MediaWiki\Extension\AchievementBadges\Notifications;
+namespace MediaWiki\Extension\AchievementBadges;
 
 use EchoEvent;
 use EchoEventPresentationModel;
 use Language;
-use MediaWiki\Extension\AchievementBadges\SpecialAchievements;
 use Message;
 use SpecialPage;
 use User;
 
-class EarnPresentationModel extends EchoEventPresentationModel {
+class EarnEchoEventPresentationModel extends EchoEventPresentationModel {
 	/**
 	 * @var array
 	 */
@@ -28,6 +27,9 @@ class EarnPresentationModel extends EchoEventPresentationModel {
 		$this->achievement_key = $this->event->getExtraParam( 'key' );
 	}
 
+	/**
+	 * @inheritDoc
+	 */
 	public function canRender() {
 		return true;
 	}

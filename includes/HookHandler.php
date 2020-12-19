@@ -77,7 +77,7 @@ class HookHandler implements UserSaveSettingsHook {
 			'group' => 'positive',
 			'section' => 'message',
 			'canNotifyAgent' => true,
-			'presentation-model' => Notifications\EarnPresentationModel::class,
+			'presentation-model' => EarnEchoEventPresentationModel::class,
 			'user-locators' => [ 'EchoUserLocator::locateEventAgent' ],
 		];
 	}
@@ -92,8 +92,7 @@ class HookHandler implements UserSaveSettingsHook {
 	}
 
 	/**
-	 * @param User $user
-	 * @return bool|void
+	 * @inheritDoc
 	 */
 	public function onUserSaveSettings( $user ) {
 		if ( !$this->config->get( Constants::CONFIG_KEY_ACHIEVEMENT_BADGES_ENABLE_BETA_FEATURE ) ) {
