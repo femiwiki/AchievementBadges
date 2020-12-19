@@ -1,18 +1,25 @@
 {
 	"@metadata": {
-		"authors": []
+		"authors": ["lens0021"]
 	},
 	"achievementbadges-desc": "{{desc|name=AchievementBadges|url=https://www.mediawiki.org/wiki/Special:MyLanguage/Extension:AchievementBadges}}",
 	"special-achievements": "Title for the Special Page that lists all achievements.",
+	"achievementbadges-anon-text": "TBD",
+	"special-achievements-header-not-earning-achievements": "TBD",
 	"achievements-summary": "TBD",
 	"achievementbadges-achievement-enable-message": "TBD",
 	"achievementbadges-achievement-enable-description": "TBD",
 	"achievementbadges-disabled": "TBD",
 	"echo-category-title-achievement-badges": "TBD",
 	"achievementbadges-pref-tooltip-achievement-badges": "TBD",
+	"log-name-achievementbadges": "TBD",
+	"log-description-achievementbadges": "TBD",
+	"logentry-achievementbadges": "TBD",
 	"notification-header-achievementbadges-earn": "TBD",
 	"achievement-name-enable-achievement-badges": "TBD",
 	"achievement-hint-enable-achievement-badges": "TBD",
+	"achievement-description-enable-achievement-badges": "TBD",
 	"achievement-name-sign-up": "TBD",
-	"achievement-hint-sign-up": "TBD"
+	"achievement-hint-sign-up": "TBD",
+	"achievement-description-sign-up": "TBD"
 }
