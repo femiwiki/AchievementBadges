@@ -6,8 +6,8 @@ Versions and bullets are arranged chronologically from latest to oldest.
 
 ENHANCEMENTS:
 
-- Suppress Echo's welcome notification which is replaced with the sign-up achievement.
-- Add a fade-in animation on Special:Achievements.
+- Suppress Echo's welcome notification when it is replaced with the sign-up achievement.
+- Add a slide-in animation on Special:Achievements.
 - Use LocalUserCreatedHook instead of AddNewAccountHook
 - Add edit-count achievement and $wgAchievementBadgesReplaceEchoThankYouEdit for enabling it.
 - Introduce the types of achievements. 'instant' and 'stats' is available.
