@@ -28,7 +28,6 @@ class SpecialAchievements extends SpecialPage {
 	}
 
 	/**
-	 * @todo Ship gender information to messages as param.
 	 * @inheritDoc
 	 */
 	public function execute( $subPage ) {
@@ -68,12 +67,9 @@ class SpecialAchievements extends SpecialPage {
 			if ( $info['type'] == 'stats' ) {
 				$max = count( $info['thresholds'] );
 				for ( $i = 0; $i < $max; $i++ ) {
-					$suffixedKey = $key;
-					if ( $i > 0 ) {
-						$suffixedKey .= (string)( $i + 1 );
-					}
+					$suffixedKey = $key . (string)( $i + 1 );
 					$isEarned = in_array( $suffixedKey, $earnedAchvs );
-					$new = $this->getDataAchievement( $suffixedKey, $isEarned );
+					$new = $this->getDataAchievement( $suffixedKey, $user, $isEarned );
 					if ( $isEarned ) {
 						$dataEarnedAchvs[] = $new;
 					} else {
@@ -82,7 +78,7 @@ class SpecialAchievements extends SpecialPage {
 				}
 			} else {
 				$isEarned = in_array( $key, $earnedAchvs );
-				$new = $this->getDataAchievement( $key, $isEarned );
+				$new = $this->getDataAchievement( $key, $user, $isEarned );
 
 				if ( $isEarned ) {
 					$dataEarnedAchvs[] = $new;
@@ -104,22 +100,24 @@ class SpecialAchievements extends SpecialPage {
 
 	/**
 	 * @param array $key
+	 * @param user $user
 	 * @param bool $isEarned
 	 * @return array
 	 */
-	private function getDataAchievement( $key, $isEarned ) {
+	private function getDataAchievement( $key, User $user, $isEarned ) {
 		$data = [
 			'text-type' => $key,
 			'class' => [
 				'achievement',
 				$isEarned ? 'earned' : 'not-earning',
 			],
-			'text-name' => $this->msg( "achievement-name-$key" )->parse(),
+			'text-name' => $this->msg( "achievement-name-$key", $user->getName() )->parse(),
 		];
 		if ( $isEarned ) {
-			$data['html-description'] = $this->msg( "achievement-description-$key" )->parse();
+			$data['html-description'] = $this->msg( "achievement-description-$key", $user->getName() )
+				->parse();
 		} else {
-			$data['html-hint'] = $this->msg( "achievement-hint-$key" )->parse();
+			$data['html-hint'] = $this->msg( "achievement-hint-$key", $user->getName() )->parse();
 		}
 
 		return $data;
@@ -153,7 +151,7 @@ class SpecialAchievements extends SpecialPage {
 		$achvs = [];
 		foreach ( $rows as $row ) {
 			$params = LogEntryBase::extractParams( $row->log_params );
-			if ( isset( $params['index'] ) && $params['index'] > 0 ) {
+			if ( isset( $params['index'] ) ) {
 				$achvs[] = $row->log_action . $params['index'];
 			} else {
 				$achvs[] = $row->log_action;

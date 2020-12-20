@@ -49,8 +49,8 @@ class Main {
 			->getMainConfig()
 			->get( 'ExtensionAssetsPath' );
 		$betaPrefs[Constants::PREF_KEY_ACHIEVEMENT_ENABLE] = [
-			'label-message' => 'achievementbadges-achievement-enable-message',
-			'desc-message' => 'achievementbadges-achievement-enable-description',
+			'label-message' => 'achievementbadges-beta-feature-achievement-enable-message',
+			'desc-message' => 'achievementbadges-beta-feature-achievement-enable-description',
 			'info-link' => 'https://www.mediawiki.org/wiki/Special:MyLanguage/Extension:AchievementBadges',
 			'discussion-link' => 'https://github.com/femiwiki/AchievementBadges/issues',
 		];

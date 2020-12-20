@@ -11,7 +11,7 @@ class LogFormatter extends \LogFormatter {
 		$params = parent::getMessageParameters();
 		$key = $params[3];
 		$msg = 'achievement-name-' . $key;
-		if ( isset( $params['index'] ) && $params['index'] > 0 ) {
+		if ( isset( $params['index'] ) ) {
 			$msg .= (string)( $params['index'] + 1 );
 		}
 		$msg = $this->msg( $msg );

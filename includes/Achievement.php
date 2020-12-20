@@ -109,7 +109,7 @@ class Achievement {
 	 */
 	private static function achieveInternal( $key, User $user, $index = null ) {
 		$suffixedKey = $key;
-		if ( $index && $index > 0 ) {
+		if ( $index ) {
 			$suffixedKey .= (string)( $index + 1 );
 		}
 		$logEntry = new ManualLogEntry( Constants::LOG_TYPE, $key );
