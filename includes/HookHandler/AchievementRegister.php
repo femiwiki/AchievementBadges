@@ -11,7 +11,7 @@ use MediaWiki\MediaWikiServices;
 use User;
 
 class AchievementRegister implements
-				\MediaWiki\Hook\AddNewAccountHook,
+				\MediaWiki\Auth\Hook\LocalUserCreatedHook,
 				\MediaWiki\Storage\Hook\PageSaveCompleteHook,
 				\MediaWiki\User\Hook\UserSaveSettingsHook
 	{
@@ -78,7 +78,10 @@ class AchievementRegister implements
 	/**
 	 * @inheritDoc
 	 */
-	public function onAddNewAccount( $user, $byEmail ) {
+	public function onLocalUserCreated( $user, $autocreated ) {
+		if ( $autocreated ) {
+			return;
+		}
 		$config = $this->config;
 		$registry = $config->get( Constants::ACHIEVEMENT_BADGES_ACHIEVEMENTS );
 		if ( !isset( $registry[Constants::ACHV_KEY_SIGN_UP] ) ) {

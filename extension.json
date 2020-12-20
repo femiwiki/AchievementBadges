@@ -24,7 +24,7 @@
     "BeforeEchoEventInsert": "MediaWiki\\Extension\\AchievementBadges\\HookHandler\\Main::onBeforeEchoEventInsert",
     "GetBetaFeaturePreferences": "MediaWiki\\Extension\\AchievementBadges\\HookHandler\\Main::onGetBetaFeaturePreferences",
     "SpecialAchievementsBeforeGetEarned": "MediaWiki\\Extension\\AchievementBadges\\HookHandler\\AchievementRegister::onSpecialAchievementsBeforeGetEarned",
-    "AddNewAccount": "achievement-register",
+    "LocalUserCreated": "achievement-register",
     "UserSaveSettings": "achievement-register",
     "PageSaveComplete": "achievement-register"
   },
