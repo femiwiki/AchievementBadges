@@ -155,6 +155,9 @@ class Achievement {
 	 * @return bool
 	 */
 	public static function isAchievementBadgesAvailable( User $user ) {
+		if ( $user->isSystemUser() ) {
+			return false;
+		}
 		$config = MediaWikiServices::getInstance()->getMainConfig();
 
 		$configEnabled = $config->get( Constants::CONFIG_KEY_ENABLE_BETA_FEATURE );
