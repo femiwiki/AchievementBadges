@@ -94,7 +94,7 @@ class HookHandler implements UserSaveSettingsHook {
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onAddNewAccount( $user, $byEmail ) {
-		Achievement::earn( [ 'key' => Constants::ACHV_KEY_SIGN_UP, 'user' => $user ] );
+		Achievement::achieve( [ 'key' => Constants::ACHV_KEY_SIGN_UP, 'user' => $user ] );
 	}
 
 	/**
@@ -105,7 +105,7 @@ class HookHandler implements UserSaveSettingsHook {
 			return true;
 		}
 		if ( $user->getOption( Constants::PREF_KEY_ACHIEVEMENT_ENABLE ) ) {
-			Achievement::earn( [
+			Achievement::achieve( [
 				'key' => Constants::ACHV_KEY_ENABLE_ACHIEVEMENT_BADGES,
 				'user' => $user,
 			] );

@@ -132,7 +132,7 @@ class SpecialAchievements extends SpecialPage {
 			$callable = $achv['achievement-rechecker'];
 			if ( is_callable( $callable ) &&
 				$callable( $user ) ) {
-				Achievement::earn( [ 'key' => $key, 'user' => $user ] );
+				Achievement::achieve( [ 'key' => $key, 'user' => $user ] );
 			}
 		}
 	}

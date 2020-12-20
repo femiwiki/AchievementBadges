@@ -21,7 +21,7 @@ class Achievement {
 	 * key:
 	 * user: The user who earned the achievement;
 	 */
-	public static function earn( $info ) {
+	public static function achieve( $info ) {
 		if ( empty( $info['key'] ) ) {
 			throw new MWException( "'key' parameter is mandatory" );
 		}
@@ -53,7 +53,7 @@ class Achievement {
 			return;
 		}
 
-		wfDebug( '[AchievementBadges] ' . $user->getName() . ' earned ' . $key );
+		wfDebug( '[AchievementBadges] ' . $user->getName() . ' obtained ' . $key );
 
 		$logEntry = new ManualLogEntry( Constants::LOG_TYPE, $key );
 		$logEntry->setPerformer( $user );
