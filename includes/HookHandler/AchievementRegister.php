@@ -72,7 +72,7 @@ class AchievementRegister implements
 			return;
 		}
 		$config = MediaWikiServices::getInstance()->getMainConfig();
-		$registry = $config->get( Constants::ACHIEVEMENT_BADGES_ACHIEVEMENTS );
+		$registry = $config->get( Constants::CONFIG_KEY_ACHIEVEMENTS );
 		if ( !isset( $registry[Constants::ACHV_KEY_SIGN_UP] ) ) {
 			return;
 		}
@@ -87,7 +87,7 @@ class AchievementRegister implements
 			return;
 		}
 		$config = $this->config;
-		$registry = $config->get( Constants::ACHIEVEMENT_BADGES_ACHIEVEMENTS );
+		$registry = $config->get( Constants::CONFIG_KEY_ACHIEVEMENTS );
 		if ( !isset( $registry[Constants::ACHV_KEY_SIGN_UP] ) ) {
 			return;
 		}
@@ -99,7 +99,7 @@ class AchievementRegister implements
 	 */
 	public function onUserSaveSettings( $user ) {
 		if ( !$this->config->get( Constants::CONFIG_KEY_ENABLE_BETA_FEATURE ) ) {
-			return true;
+			return;
 		}
 		if ( $user->getOption( Constants::PREF_KEY_ACHIEVEMENT_ENABLE ) ) {
 			Achievement::achieve( [

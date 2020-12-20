@@ -53,7 +53,7 @@ class SpecialAchievements extends SpecialPage {
 			return;
 		}
 
-		$allAchvs = $this->getConfig()->get( Constants::ACHIEVEMENT_BADGES_ACHIEVEMENTS );
+		$allAchvs = $this->getConfig()->get( Constants::CONFIG_KEY_ACHIEVEMENTS );
 		uasort( $allAchvs, function ( $a, $b ) {
 			return $a['priority'] - $b['priority'];
 		} );
@@ -158,20 +158,6 @@ class SpecialAchievements extends SpecialPage {
 			}
 		}
 		return $achvs;
-	}
-
-	/**
-	 * @param array $achievements
-	 * @param User $user
-	 */
-	public static function recheckAchievements( array $achievements, User $user ) {
-		foreach ( $achievements as $key => $achv ) {
-			$callable = $achv['rechecker'];
-			if ( is_callable( $callable ) &&
-				$callable( $user ) ) {
-				Achievement::achieve( [ 'key' => $key, 'user' => $user ] );
-			}
-		}
 	}
 
 	/**

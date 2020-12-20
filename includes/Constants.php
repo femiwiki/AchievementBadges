@@ -13,7 +13,7 @@ final class Constants {
 	/**
 	 * @var string
 	 */
-	public const ACHIEVEMENT_BADGES_ACHIEVEMENTS = 'AchievementBadgesAchievements';
+	public const CONFIG_KEY_ACHIEVEMENTS = 'AchievementBadgesAchievements';
 
 	/**
 	 * @var string
@@ -23,7 +23,22 @@ final class Constants {
 	/**
 	 * @var string
 	 */
-	public const PREF_KEY_ACHIEVEMENT_ENABLE = 'achievementbadges-achievement-enable';
+	public const PREF_KEY_ACHIEVEMENT_ENABLE = 'achievementbadges-beta-feature-achievement-enable';
+
+	/**
+	 * @var string
+	 */
+	public const LOG_TYPE = 'achievementbadges';
+
+	/**
+	 * @var string
+	 */
+	public const ECHO_EVENT_CATEGORY = 'achievement-badges';
+
+	/**
+	 * @var string
+	 */
+	public const EVENT_KEY_EARN = 'achievementbadges-earn';
 
 	/**
 	 * @var string
@@ -44,21 +59,6 @@ final class Constants {
 	 * @var string
 	 */
 	public const ACHV_KEY_LONG_USER_PAGE = 'long-user-page';
-
-	/**
-	 * @var string
-	 */
-	public const LOG_TYPE = 'achievementbadges';
-
-	/**
-	 * @var string
-	 */
-	public const ECHO_EVENT_CATEGORY = 'achievement-badges';
-
-	/**
-	 * @var string
-	 */
-	public const EVENT_KEY_EARN = 'achievementbadges-earn';
 
 	/**
 	 * This class is for namespacing constants only. Forbid construction.

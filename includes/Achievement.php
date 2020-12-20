@@ -33,10 +33,10 @@ class Achievement {
 		}
 		$key = $info['key'];
 		$config = MediaWikiServices::getInstance()->getMainConfig();
-		$registry = $config->get( Constants::ACHIEVEMENT_BADGES_ACHIEVEMENTS );
+		$registry = $config->get( Constants::CONFIG_KEY_ACHIEVEMENTS );
 
 		if ( !isset( $registry[$key] ) ) {
-			throw new MWException( "Achievement key not found: {$key}" );
+			throw new MWException( "Unknown achievement key: {$key}" );
 		}
 		$registry[$key]['type'] = $registry[$key]['type'] ?? 'instant';
 		if ( $registry[$key]['type'] !== 'instant' ) {
@@ -73,9 +73,9 @@ class Achievement {
 		$key = $info['key'];
 		$stats = $info['stats'];
 		$config = MediaWikiServices::getInstance()->getMainConfig();
-		$registry = $config->get( Constants::ACHIEVEMENT_BADGES_ACHIEVEMENTS );
+		$registry = $config->get( Constants::CONFIG_KEY_ACHIEVEMENTS );
 		if ( !isset( $registry[$key] ) ) {
-			throw new MWException( "Achievement key not found: {$key}" );
+			throw new MWException( "Unknown achievement key: {$key}" );
 		}
 		if ( $registry[$key]['type'] !== 'stats' ) {
 			throw new MWException( "Only instant achievement can be called by " . __METHOD__ );
@@ -173,7 +173,7 @@ class Achievement {
 		}
 		if ( $user->isRegistered() && $userOptionEnabled ) {
 			// If AchievementBadges is a beta feature, only a registered user which enables the feature
-			// has access the feature.
+			// can use it.
 			return true;
 		}
 		return false;
