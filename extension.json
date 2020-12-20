@@ -15,14 +15,15 @@
   "AutoloadNamespaces": {
     "MediaWiki\\Extension\\AchievementBadges\\": "includes/"
   },
-	"ExtensionFunctions": [
-		"MediaWiki\\Extension\\AchievementBadges\\HookHandler\\Main::initExtension"
-	],
+  "ExtensionFunctions": [
+    "MediaWiki\\Extension\\AchievementBadges\\HookHandler\\Main::initExtension"
+  ],
   "Hooks": {
     "AddNewAccount": "achievement-register",
     "BeforeCreateAchievement": "MediaWiki\\Extension\\AchievementBadges\\AchievementRegister::onBeforeCreateAchievement",
     "BeforeCreateEchoEvent": "MediaWiki\\Extension\\AchievementBadges\\HookHandler\\Main::onBeforeCreateEchoEvent",
     "GetBetaFeaturePreferences": "MediaWiki\\Extension\\AchievementBadges\\HookHandler\\Main::onGetBetaFeaturePreferences",
+    "SpecialAchievementsBeforeGetEarned": "MediaWiki\\Extension\\AchievementBadges\\AchievementRegister::onSpecialAchievementsBeforeGetEarned",
     "UserSaveSettings": "achievement-register"
   },
   "HookHandlers": {
@@ -57,7 +58,7 @@
     },
     "AchievementBadgesAchievements": {
       "value": {},
-			"merge_strategy": "array_plus_2d"
+      "merge_strategy": "array_plus_2d"
     }
   },
   "MessagesDirs": {

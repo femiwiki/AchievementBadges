@@ -48,6 +48,16 @@ class AchievementRegister implements
 	}
 
 	/**
+	 * @param User $user
+	 */
+	public static function onSpecialAchievementsBeforeGetEarned( User $user ) {
+		if ( $user->isAnon() ) {
+			return;
+		}
+		Achievement::achieve( [ 'key' => Constants::ACHV_KEY_SIGN_UP, 'user' => $user ] );
+	}
+
+	/**
 	 * @param User $user the User object that was created.
 	 * @param bool $byEmail true when account was created "by email"
 	 * @return bool|void True or no return value to continue or false to abort
