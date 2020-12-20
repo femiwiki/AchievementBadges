@@ -11,7 +11,7 @@ ENHANCEMENTS:
 - Introduce the types of achievements. 'instant' and 'stats' is available.
 - Add SpecialAchievementsBeforeGetEarned Hook.
 - Add 'priority' property to achievement.
-- Use $wg* and the ExtensionFunction to register achievements.
+- Use $wg\* and the ExtensionFunction to register achievements.
 - Add body text to notifications.
 - Add new achievements sign-up and enable-achievement-badges.
 - Link to the achievement fragment from notification.
