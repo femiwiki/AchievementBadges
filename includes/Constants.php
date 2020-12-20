@@ -8,8 +8,8 @@ final class Constants {
 	/**
 	 * @var string
 	 */
-	public const CONFIG_KEY_ACHIEVEMENT_BADGES_ENABLE_BETA_FEATURE =
-		'AchievementBadgesEnableBetaFeature';
+	public const CONFIG_KEY_ENABLE_BETA_FEATURE = 'AchievementBadgesEnableBetaFeature';
+
 	/**
 	 * @var string
 	 */

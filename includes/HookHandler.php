@@ -49,7 +49,7 @@ class HookHandler implements UserSaveSettingsHook {
 	 */
 	public static function onBeforeCreateAchievement( &$achievements ) {
 		$config = MediaWikiServices::getInstance()->getMainConfig();
-		if ( $config->get( Constants::CONFIG_KEY_ACHIEVEMENT_BADGES_ENABLE_BETA_FEATURE )
+		if ( $config->get( Constants::CONFIG_KEY_ENABLE_BETA_FEATURE )
 			&& ExtensionRegistry::getInstance()->isLoaded( 'BetaFeatures' ) ) {
 			$achievements[Constants::ACHV_KEY_ENABLE_ACHIEVEMENT_BADGES] = [
 				'icon' => '',

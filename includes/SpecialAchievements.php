@@ -33,8 +33,7 @@ class SpecialAchievements extends SpecialPage {
 
 		$user = $this->getUser();
 
-		$betaConfigEnabled = $this->getConfig()
-			->get( Constants::CONFIG_KEY_ACHIEVEMENT_BADGES_ENABLE_BETA_FEATURE );
+		$betaConfigEnabled = $this->getConfig()->get( Constants::CONFIG_KEY_ENABLE_BETA_FEATURE );
 		$userBetaEnabled = $betaConfigEnabled && BetaFeatures::isFeatureEnabled( $user,
 				Constants::PREF_KEY_ACHIEVEMENT_ENABLE );
 		if ( $betaConfigEnabled ) {

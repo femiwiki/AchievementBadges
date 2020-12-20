@@ -79,7 +79,7 @@ class Achievement {
 	public static function isAchievementBadgesAvailable( User $user ) {
 		$config = MediaWikiServices::getInstance()->getMainConfig();
 
-		$configEnabled = $config->get( Constants::CONFIG_KEY_ACHIEVEMENT_BADGES_ENABLE_BETA_FEATURE );
+		$configEnabled = $config->get( Constants::CONFIG_KEY_ENABLE_BETA_FEATURE );
 		$userOptionEnabled = $configEnabled &&
 			BetaFeatures::isFeatureEnabled( $user, Constants::PREF_KEY_ACHIEVEMENT_ENABLE );
 
