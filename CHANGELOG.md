@@ -6,10 +6,8 @@ Versions and bullets are arranged chronologically from latest to oldest.
 
 ENHANCEMENTS:
 
-- Do not allow system users to achieve achievements.
 - Update hook calling to use new HookContainer.
 - Add a new achievement editing user page.
-- Suppress Echo's welcome notification when it is replaced with the sign-up achievement.
 - Add a slide-in animation on Special:Achievements.
 - Use LocalUserCreatedHook instead of AddNewAccountHook
 - Add edit-count achievements and $wgAchievementBadgesReplaceEchoThankYouEdit for enabling it.
@@ -24,6 +22,8 @@ ENHANCEMENTS:
 
 BUG FIXES:
 
+- Do not allow system users to achieve achievements.
+- Suppress Echo's welcome notification when it is replaced with the sign-up achievement.
 - Fix duplicated items on Special:Achievements
 - Do not allow user who disables AB to earn achievement
 

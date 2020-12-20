@@ -45,9 +45,12 @@ class Main {
 	 * @param array &$betaPrefs
 	 */
 	public static function onGetBetaFeaturePreferences( User $user, array &$betaPrefs ) {
-		$extensionAssetsPath = MediaWikiServices::getInstance()
-			->getMainConfig()
-			->get( 'ExtensionAssetsPath' );
+		$config = MediaWikiServices::getInstance()->getMainConfig();
+		if ( !$config->get( Constants::CONFIG_KEY_ENABLE_BETA_FEATURE ) ) {
+			return;
+		}
+		// @todo Add an image
+		// $extensionAssetsPath = $config->get( 'ExtensionAssetsPath' );
 		$betaPrefs[Constants::PREF_KEY_ACHIEVEMENT_ENABLE] = [
 			'label-message' => 'achievementbadges-beta-feature-achievement-enable-message',
 			'desc-message' => 'achievementbadges-beta-feature-achievement-enable-description',

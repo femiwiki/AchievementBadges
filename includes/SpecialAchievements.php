@@ -152,7 +152,7 @@ class SpecialAchievements extends SpecialPage {
 		foreach ( $rows as $row ) {
 			$params = LogEntryBase::extractParams( $row->log_params );
 			if ( isset( $params['index'] ) ) {
-				$achvs[] = $row->log_action . $params['index'];
+				$achvs[] = $row->log_action . ( $params['index'] + 1 );
 			} else {
 				$achvs[] = $row->log_action;
 			}

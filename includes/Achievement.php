@@ -88,7 +88,7 @@ class Achievement {
 
 		$earned = self::selectLogCount( $key, $user );
 		LoggerFactory::getInstance( 'AchievementBadges' )->debug(
-			$user->getName() . " has $earned achieved achievements" );
+			$user->getName() . " has $earned achieved achievements at $key" );
 		if ( $earned == $numThresholds ) {
 			return;
 		}
@@ -109,16 +109,19 @@ class Achievement {
 	 */
 	private static function achieveInternal( $key, User $user, $index = null ) {
 		$suffixedKey = $key;
-		if ( $index ) {
+		if ( $index !== null ) {
 			$suffixedKey .= (string)( $index + 1 );
 		}
 		$logEntry = new ManualLogEntry( Constants::LOG_TYPE, $key );
 		$logEntry->setPerformer( $user );
 		$logEntry->setTarget( SpecialPage::getTitleFor( SpecialAchievements::PAGE_NAME ) );
-		$logEntry->setParameters( [
+		$params = [
 			'4::key' => $key,
-			'index' => $index,
-		] );
+		];
+		if ( $index !== null ) {
+			$params['index'] = $index;
+		}
+		$logEntry->setParameters( $params );
 		$logEntry->insert();
 
 		EchoEvent::create( [
