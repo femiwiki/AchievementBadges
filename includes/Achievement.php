@@ -31,6 +31,12 @@ class Achievement {
 			return;
 		}
 		$key = $info['key'];
+		$config = MediaWikiServices::getInstance()->getMainConfig();
+
+		$registry = $config->get( Constants::CONFIG_KEY_ACHIEVEMENT_BADGES_ACHIEVEMENTS );
+		if ( !isset( $registry[$key] ) ) {
+			throw new MWException( "Achievement key not found: {$key}" );
+		}
 
 		$dbr = wfGetDB( DB_REPLICA );
 		$query = [];
