@@ -4,7 +4,7 @@ namespace MediaWiki\Extension\AchievementBadges;
 
 use User;
 
-class AchievementRechecker {
+class AchievementChecker {
 	/**
 	 * @param User $user
 	 * @return bool

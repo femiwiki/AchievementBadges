@@ -34,15 +34,15 @@ class AchievementRegister implements
 			$achievements[Constants::ACHV_KEY_ENABLE_ACHIEVEMENT_BADGES] = [
 				'priority' => 0,
 				'icon' => '',
-				'achievement-rechecker' =>
-					'MediaWiki\Extension\AchievementBadges\AchievementRechecker::checkAlwaysTrue',
+				'checker' =>
+					'MediaWiki\Extension\AchievementBadges\AchievementChecker::checkAlwaysTrue',
 			];
 		} else {
 			$achievements[Constants::ACHV_KEY_SIGN_UP] = [
 				'priority' => 0,
 				'icon' => '',
-				'achievement-rechecker' =>
-					'MediaWiki\Extension\AchievementBadges\AchievementRechecker::checkAlwaysTrue',
+				'checker' =>
+					'MediaWiki\Extension\AchievementBadges\AchievementChecker::checkAlwaysTrue',
 			];
 		}
 	}

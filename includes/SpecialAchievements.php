@@ -130,7 +130,7 @@ class SpecialAchievements extends SpecialPage {
 	 */
 	public static function recheckAchievements( array $achievements, User $user ) {
 		foreach ( $achievements as $key => $achv ) {
-			$callable = $achv['achievement-rechecker'];
+			$callable = $achv['rechecker'];
 			if ( is_callable( $callable ) &&
 				$callable( $user ) ) {
 				Achievement::achieve( [ 'key' => $key, 'user' => $user ] );
