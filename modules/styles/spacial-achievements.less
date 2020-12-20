@@ -1,9 +1,13 @@
-@keyframes fade-in {
-  from {
+@long: 10em;
+@keyframes slide-in {
+  0%,
+  50% {
     opacity: 0;
+    max-height: 0;
   }
-  to {
+  100% {
     opacity: inherit;
+    max-height: @long;
   }
 }
 
@@ -18,7 +22,7 @@
       color: gray;
     }
     &:target {
-      animation: fade-in 1s forwards ease;
+      animation: slide-in 3s forwards;
     }
 
     .achievement-name {
