@@ -3,7 +3,6 @@
 namespace MediaWiki\Extension\AchievementBadges;
 
 use BetaFeatures;
-use Hooks;
 use SpecialPage;
 use TemplateParser;
 use User;
@@ -53,8 +52,7 @@ class SpecialAchievements extends SpecialPage {
 			return;
 		}
 
-		$allAchvs = [];
-		Hooks::run( 'BeforeCreateAchievement', [ &$allAchvs ] );
+		$allAchvs = $this->getConfig()->get( Constants::CONFIG_KEY_ACHIEVEMENT_BADGES_ACHIEVEMENTS );
 
 		$earnedAchvs = $user->isAnon() ? [] : $this->getEarnedAchievementNames( $user );
 

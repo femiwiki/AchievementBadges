@@ -4,8 +4,8 @@ namespace MediaWiki\Extension\AchievementBadges;
 
 use Config;
 use ExtensionRegistry;
+use Hooks;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\User\Hook\UserSaveSettingsHook;
 use User;
 
 class HookHandler implements UserSaveSettingsHook {
@@ -20,6 +20,12 @@ class HookHandler implements UserSaveSettingsHook {
 	 */
 	public function __construct( Config $config ) {
 		$this->config = $config;
+	}
+
+	public static function initExtension() {
+		global $wgAchievementBadgesAchievements;
+
+		Hooks::run( 'BeforeCreateAchievement', [ &$wgAchievementBadgesAchievements ] );
 	}
 
 	/**

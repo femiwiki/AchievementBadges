@@ -15,6 +15,9 @@
   "AutoloadNamespaces": {
     "MediaWiki\\Extension\\AchievementBadges\\": "includes/"
   },
+	"ExtensionFunctions": [
+		"MediaWiki\\Extension\\AchievementBadges\\HookHandler::initExtension"
+	],
   "Hooks": {
     "AddNewAccount": "main",
     "BeforeCreateAchievement": "MediaWiki\\Extension\\AchievementBadges\\HookHandler::onBeforeCreateAchievement",
@@ -47,6 +50,10 @@
   "config": {
     "AchievementBadgesEnableBetaFeature": {
       "value": false
+    },
+    "AchievementBadgesAchievements": {
+      "value": {},
+			"merge_strategy": "array_plus_2d"
     }
   },
   "MessagesDirs": {

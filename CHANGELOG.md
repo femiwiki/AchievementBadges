@@ -6,6 +6,7 @@ Versions and bullets are arranged chronologically from latest to oldest.
 
 ENHANCEMENTS:
 
+- Use $wg* and the ExtensionFunction to register achievements.
 - Add body text to notifications.
 - Add new achievements sign-up and enable-achievement-badges.
 - Link to the achievement fragment from notification.

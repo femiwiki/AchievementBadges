@@ -10,6 +10,10 @@ final class Constants {
 	 */
 	public const CONFIG_KEY_ACHIEVEMENT_BADGES_ENABLE_BETA_FEATURE =
 		'AchievementBadgesEnableBetaFeature';
+	/**
+	 * @var string
+	 */
+	public const CONFIG_KEY_ACHIEVEMENT_BADGES_ACHIEVEMENTS = 'AchievementBadgesAchievements';
 
 	/**
 	 * @var string
