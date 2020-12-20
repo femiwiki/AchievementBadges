@@ -52,12 +52,14 @@ class HookHandler implements \MediaWiki\User\Hook\UserSaveSettingsHook {
 		if ( $config->get( Constants::CONFIG_KEY_ENABLE_BETA_FEATURE )
 			&& ExtensionRegistry::getInstance()->isLoaded( 'BetaFeatures' ) ) {
 			$achievements[Constants::ACHV_KEY_ENABLE_ACHIEVEMENT_BADGES] = [
+				'priority' => 0,
 				'icon' => '',
 				'achievement-rechecker' =>
 					'MediaWiki\Extension\AchievementBadges\AchievementRechecker::checkAlwaysTrue',
 			];
 		} else {
 			$achievements[Constants::ACHV_KEY_SIGN_UP] = [
+				'priority' => 0,
 				'icon' => '',
 				'achievement-rechecker' =>
 					'MediaWiki\Extension\AchievementBadges\AchievementRechecker::checkAlwaysTrue',

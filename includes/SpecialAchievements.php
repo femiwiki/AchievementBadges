@@ -53,6 +53,9 @@ class SpecialAchievements extends SpecialPage {
 		}
 
 		$allAchvs = $this->getConfig()->get( Constants::CONFIG_KEY_ACHIEVEMENT_BADGES_ACHIEVEMENTS );
+		uasort( $allAchvs, function ( $a, $b ) {
+			return $a['priority'] - $b['priority'];
+		} );
 
 		$earnedAchvs = $user->isAnon() ? [] : $this->getEarnedAchievementNames( $user );
 
