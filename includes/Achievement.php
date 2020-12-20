@@ -4,6 +4,7 @@ namespace MediaWiki\Extension\AchievementBadges;
 
 use BetaFeatures;
 use EchoEvent;
+use MediaWiki\Logger\LoggerFactory;
 use ManualLogEntry;
 use MediaWiki\MediaWikiServices;
 use MWException;
@@ -65,7 +66,8 @@ class Achievement {
 
 		$user = $info['user'];
 		if ( !self::isAchievementBadgesAvailable( $user ) ) {
-			wfDebug( '[AchievementBadges] user cannot use AchievementBadges' );
+			LoggerFactory::getInstance( 'AchievementBadges' )->debug(
+				'The user cannot use AchievementBadges' );
 			return;
 		}
 		$key = $info['key'];
@@ -79,14 +81,14 @@ class Achievement {
 			throw new MWException( "Only instant achievement can be called by " . __METHOD__ );
 		}
 		$thresholds = $registry[$key]['thresholds'];
-		wfDebug( "[AchievementBadges] Check {$stats} is in thresholds " . implode( $thresholds, ', ' ) );
 		if ( $stats < $thresholds[0] ) {
 			return;
 		}
 		$numThresholds = count( $thresholds );
 
 		$earned = self::selectLogCount( $key, $user );
-		wfDebug( '[AchievementBadges] ' . $user->getName() . " has $earned achieved achievements" );
+		LoggerFactory::getInstance( 'AchievementBadges' )->debug(
+			$user->getName() . " has $earned achieved achievements" );
 		if ( $earned == $numThresholds ) {
 			return;
 		}
@@ -106,9 +108,6 @@ class Achievement {
 	 * @param int|null $index
 	 */
 	private static function achieveInternal( $key, User $user, $index = null ) {
-		wfDebug( '[AchievementBadges] ' . $user->getName() . ' obtained ' . $key .
-			( $index ? " with $index" : '' ) );
-
 		$suffixedKey = $key;
 		if ( $index && $index > 0 ) {
 			$suffixedKey .= (string)( $index + 1 );

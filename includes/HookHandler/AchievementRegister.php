@@ -4,6 +4,7 @@ namespace MediaWiki\Extension\AchievementBadges\HookHandler;
 
 use Config;
 use ExtensionRegistry;
+use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Extension\AchievementBadges\Achievement;
 use MediaWiki\Extension\AchievementBadges\Constants;
 use MediaWiki\MediaWikiServices;
@@ -113,7 +114,7 @@ class AchievementRegister implements
 		$editResult
 	) {
 		if ( $editResult->isNullEdit() ) {
-			wfDebug( '[AchievementBadges] null edit is ignored.' );
+			LoggerFactory::getInstance( 'AchievementBadges' )->debug( 'null edit is ignored.' );
 			return;
 		}
 		$user = User::newFromIdentity( $user );
