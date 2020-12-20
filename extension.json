@@ -16,18 +16,22 @@
     "MediaWiki\\Extension\\AchievementBadges\\": "includes/"
   },
 	"ExtensionFunctions": [
-		"MediaWiki\\Extension\\AchievementBadges\\HookHandler::initExtension"
+		"MediaWiki\\Extension\\AchievementBadges\\HookHandler\\Main::initExtension"
 	],
   "Hooks": {
-    "AddNewAccount": "main",
-    "BeforeCreateAchievement": "MediaWiki\\Extension\\AchievementBadges\\HookHandler::onBeforeCreateAchievement",
-    "BeforeCreateEchoEvent": "MediaWiki\\Extension\\AchievementBadges\\HookHandler::onBeforeCreateEchoEvent",
-    "GetBetaFeaturePreferences": "MediaWiki\\Extension\\AchievementBadges\\HookHandler::onGetBetaFeaturePreferences",
-    "UserSaveSettings": "main"
+    "AddNewAccount": "achievement-register",
+    "BeforeCreateAchievement": "MediaWiki\\Extension\\AchievementBadges\\AchievementRegister::onBeforeCreateAchievement",
+    "BeforeCreateEchoEvent": "MediaWiki\\Extension\\AchievementBadges\\HookHandler\\Main::onBeforeCreateEchoEvent",
+    "GetBetaFeaturePreferences": "MediaWiki\\Extension\\AchievementBadges\\HookHandler\\Main::onGetBetaFeaturePreferences",
+    "UserSaveSettings": "achievement-register"
   },
   "HookHandlers": {
     "main": {
-      "class": "MediaWiki\\Extension\\AchievementBadges\\HookHandler",
+      "class": "MediaWiki\\Extension\\AchievementBadges\\HookHandler\\Main",
+      "services": ["MainConfig"]
+    },
+    "achievement-register": {
+      "class": "MediaWiki\\Extension\\AchievementBadges\\HookHandler\\AchievementRegister",
       "services": ["MainConfig"]
     }
   },
