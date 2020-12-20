@@ -89,11 +89,10 @@ class Achievement {
 		$earned = self::selectLogCount( $key, $user );
 		LoggerFactory::getInstance( 'AchievementBadges' )->debug(
 			$user->getName() . " has $earned achieved achievements at $key" );
-		if ( $earned == $numThresholds ) {
-			return;
-		}
 
-		for ( $i = $earned; $i < $numThresholds; $i++ ) {
+		// $i starts with 0 instead of $earned, because the registered thresholds can be changed by
+		// extension developers who define their own achievements.
+		for ( $i = 0; $i < $numThresholds; $i++ ) {
 			if ( $stats >= $thresholds[$i] ) {
 				self::achieveInternal( $key, $user, $i );
 			} else {
