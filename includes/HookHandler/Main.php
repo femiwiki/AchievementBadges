@@ -3,7 +3,10 @@
 namespace MediaWiki\Extension\AchievementBadges\HookHandler;
 
 use Config;
+use EchoEvent;
 use Hooks;
+use MediaWiki\Extension\AchievementBadges\Constants;
+use MediaWiki\Extension\AchievementBadges\EarnEchoEventPresentationModel;
 use MediaWiki\MediaWikiServices;
 use User;
 
@@ -21,10 +24,20 @@ class Main {
 		$this->config = $config;
 	}
 
+	/**
+	 * @todo hide or disable echo-subscriptions-web-thank-you-edit option when replaced
+	 */
 	public static function initExtension() {
-		global $wgAchievementBadgesAchievements;
+		global $wgAchievementBadgesAchievements, $wgNotifyTypeAvailabilityByCategory;
 
 		Hooks::run( 'BeforeCreateAchievement', [ &$wgAchievementBadgesAchievements ] );
+
+		// Overwrite echo's milestone if configured.
+		$config = MediaWikiServices::getInstance()->getMainConfig();
+		if ( !$config->get( Constants::CONFIG_KEY_ENABLE_BETA_FEATURE ) &&
+			$config->get( Constants::CONFIG_KEY_REPLACE_ECHO_THANK_YOU_EDIT ) ) {
+				$wgNotifyTypeAvailabilityByCategory['thank-you-edit']['web'] = false;
+		}
 	}
 
 	/**
@@ -64,5 +77,21 @@ class Main {
 			'presentation-model' => EarnEchoEventPresentationModel::class,
 			'user-locators' => [ 'EchoUserLocator::locateEventAgent' ],
 		];
+	}
+
+	/**
+	 * @param EchoEvent $event
+	 * @return bool
+	 */
+	public static function onBeforeEchoEventInsert( EchoEvent $event ) {
+		$config = MediaWikiServices::getInstance()->getMainConfig();
+		$agent = $event->getAgent();
+		$type = $event->getType();
+
+		if ( $type == 'thank-you-edit'
+			&& $config->get( Constants::CONFIG_KEY_REPLACE_ECHO_THANK_YOU_EDIT ) ) {
+			return false;
+		}
+		return true;
 	}
 }

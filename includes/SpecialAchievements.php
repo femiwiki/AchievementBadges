@@ -4,6 +4,7 @@ namespace MediaWiki\Extension\AchievementBadges;
 
 use BetaFeatures;
 use Hooks;
+use LogEntryBase;
 use SpecialPage;
 use TemplateParser;
 use User;
@@ -53,7 +54,7 @@ class SpecialAchievements extends SpecialPage {
 			return;
 		}
 
-		$allAchvs = $this->getConfig()->get( Constants::CONFIG_KEY_ACHIEVEMENT_BADGES_ACHIEVEMENTS );
+		$allAchvs = $this->getConfig()->get( Constants::ACHIEVEMENT_BADGES_ACHIEVEMENTS );
 		uasort( $allAchvs, function ( $a, $b ) {
 			return $a['priority'] - $b['priority'];
 		} );
@@ -64,22 +65,30 @@ class SpecialAchievements extends SpecialPage {
 		$dataEarnedAchvs = [];
 		$dataNotEarningAchvs = [];
 		foreach ( $allAchvs as $key => $info ) {
-			$isEarned = in_array( $key, $earnedAchvs );
-			$new = [
-				'text-type' => $key,
-				'class' => [
-					'achievement',
-					$isEarned ? 'earned' : 'not-earning',
-				],
-				'text-name' => $this->msg( "achievement-name-$key" )->parse(),
-			];
-
-			if ( $isEarned ) {
-				$new['html-description'] = $this->msg( "achievement-description-$key" )->parse();
-				$dataEarnedAchvs[] = $new;
+			if ( $info['type'] == 'stats' ) {
+				$max = count( $info['thresholds'] );
+				for ( $i = 0; $i < $max; $i++ ) {
+					$suffixedKey = $key;
+					if ( $i > 0 ) {
+						$suffixedKey .= (string)( $i + 1 );
+					}
+					$isEarned = in_array( $suffixedKey, $earnedAchvs );
+					$new = $this->getDataAchievement( $suffixedKey, $isEarned );
+					if ( $isEarned ) {
+						$dataEarnedAchvs[] = $new;
+					} else {
+						$dataNotEarningAchvs[] = $new;
+					}
+				}
 			} else {
-				$new['html-hint'] = $this->msg( "achievement-hint-$key" )->parse();
-				$dataNotEarningAchvs[] = $new;
+				$isEarned = in_array( $key, $earnedAchvs );
+				$new = $this->getDataAchievement( $key, $isEarned );
+
+				if ( $isEarned ) {
+					$dataEarnedAchvs[] = $new;
+				} else {
+					$dataNotEarningAchvs[] = $new;
+				}
 			}
 		}
 
@@ -94,10 +103,33 @@ class SpecialAchievements extends SpecialPage {
 	}
 
 	/**
+	 * @param array $key
+	 * @param bool $isEarned
+	 * @return array
+	 */
+	private function getDataAchievement( $key, $isEarned ) {
+		$data = [
+			'text-type' => $key,
+			'class' => [
+				'achievement',
+				$isEarned ? 'earned' : 'not-earning',
+			],
+			'text-name' => $this->msg( "achievement-name-$key" )->parse(),
+		];
+		if ( $isEarned ) {
+			$data['html-description'] = $this->msg( "achievement-description-$key" )->parse();
+		} else {
+			$data['html-hint'] = $this->msg( "achievement-hint-$key" )->parse();
+		}
+
+		return $data;
+	}
+
+	/**
 	 * @param User $user
 	 * @return string[]
 	 */
-	protected function getEarnedAchievementNames( User $user ): array {
+	private function getEarnedAchievementNames( User $user ): array {
 		$dbr = wfGetDB( DB_REPLICA );
 
 		/** @var stdClass $rows */
@@ -105,6 +137,7 @@ class SpecialAchievements extends SpecialPage {
 			[ 'logging', 'actor' ],
 			[
 				'log_action',
+				'log_params',
 			],
 			[
 				'log_type' => Constants::LOG_TYPE,
@@ -119,7 +152,12 @@ class SpecialAchievements extends SpecialPage {
 
 		$achvs = [];
 		foreach ( $rows as $row ) {
-			$achvs[] = $row->log_action;
+			$params = LogEntryBase::extractParams( $row->log_params );
+			if ( isset( $params['index'] ) && $params['index'] > 0 ) {
+				$achvs[] = $row->log_action . $params['index'];
+			} else {
+				$achvs[] = $row->log_action;
+			}
 		}
 		return $achvs;
 	}

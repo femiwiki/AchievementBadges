@@ -19,12 +19,14 @@
     "MediaWiki\\Extension\\AchievementBadges\\HookHandler\\Main::initExtension"
   ],
   "Hooks": {
-    "AddNewAccount": "achievement-register",
-    "BeforeCreateAchievement": "MediaWiki\\Extension\\AchievementBadges\\AchievementRegister::onBeforeCreateAchievement",
+    "BeforeCreateAchievement": "MediaWiki\\Extension\\AchievementBadges\\HookHandler\\AchievementRegister::onBeforeCreateAchievement",
     "BeforeCreateEchoEvent": "MediaWiki\\Extension\\AchievementBadges\\HookHandler\\Main::onBeforeCreateEchoEvent",
+    "BeforeEchoEventInsert": "MediaWiki\\Extension\\AchievementBadges\\HookHandler\\Main::onBeforeEchoEventInsert",
     "GetBetaFeaturePreferences": "MediaWiki\\Extension\\AchievementBadges\\HookHandler\\Main::onGetBetaFeaturePreferences",
-    "SpecialAchievementsBeforeGetEarned": "MediaWiki\\Extension\\AchievementBadges\\AchievementRegister::onSpecialAchievementsBeforeGetEarned",
-    "UserSaveSettings": "achievement-register"
+    "SpecialAchievementsBeforeGetEarned": "MediaWiki\\Extension\\AchievementBadges\\HookHandler\\AchievementRegister::onSpecialAchievementsBeforeGetEarned",
+    "AddNewAccount": "achievement-register",
+    "UserSaveSettings": "achievement-register",
+    "PageSaveComplete": "achievement-register"
   },
   "HookHandlers": {
     "main": {
@@ -55,6 +57,9 @@
   "config": {
     "AchievementBadgesEnableBetaFeature": {
       "value": false
+    },
+    "AchievementBadgesReplaceEchoThankYouEdit": {
+      "value": true
     },
     "AchievementBadgesAchievements": {
       "value": {},

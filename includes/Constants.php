@@ -13,7 +13,12 @@ final class Constants {
 	/**
 	 * @var string
 	 */
-	public const CONFIG_KEY_ACHIEVEMENT_BADGES_ACHIEVEMENTS = 'AchievementBadgesAchievements';
+	public const ACHIEVEMENT_BADGES_ACHIEVEMENTS = 'AchievementBadgesAchievements';
+
+	/**
+	 * @var string
+	 */
+	public const CONFIG_KEY_REPLACE_ECHO_THANK_YOU_EDIT = 'AchievementBadgesReplaceEchoThankYouEdit';
 
 	/**
 	 * @var string
@@ -29,6 +34,11 @@ final class Constants {
 	 * @var string
 	 */
 	public const ACHV_KEY_SIGN_UP = 'sign-up';
+
+	/**
+	 * @var string
+	 */
+	public const ACHV_KEY_EDIT_COUNT = 'edit-count';
 
 	/**
 	 * @var string

@@ -6,6 +6,8 @@ Versions and bullets are arranged chronologically from latest to oldest.
 
 ENHANCEMENTS:
 
+- Add edit-count achievement and $wgAchievementBadgesReplaceEchoThankYouEdit for enabling it.
+- Introduce the types of achievements. 'instant' and 'stats' is available.
 - Add SpecialAchievementsBeforeGetEarned Hook.
 - Add 'priority' property to achievement.
 - Use $wg* and the ExtensionFunction to register achievements.

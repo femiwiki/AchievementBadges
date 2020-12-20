@@ -11,9 +11,9 @@ use User;
 
 class EarnEchoEventPresentationModel extends EchoEventPresentationModel {
 	/**
-	 * @var array
+	 * @var string
 	 */
-	private $achievement_key;
+	private $achievementKey;
 	/**
 	 * @inheritDoc
 	 */
@@ -24,7 +24,7 @@ class EarnEchoEventPresentationModel extends EchoEventPresentationModel {
 		$distributionType
 	) {
 		parent::__construct( $event, $language, $user, $distributionType );
-		$this->achievement_key = $this->event->getExtraParam( 'key' );
+		$this->achievementKey = $event->getExtraParam( 'key' );
 	}
 
 	/**
@@ -45,8 +45,8 @@ class EarnEchoEventPresentationModel extends EchoEventPresentationModel {
 	 * @inheritDoc
 	 */
 	public function getPrimaryLink() {
-		$fragment = 'achievement-' . $this->achievement_key;
-		$title = SpecialPage::getTitleFor( SpecialAchievements::PAGE_NAME, false, $fragment ?? '' );
+		$key = 'achievement-' . $this->achievementKey;
+		$title = SpecialPage::getTitleFor( SpecialAchievements::PAGE_NAME, false, $key ?? '' );
 		$link = $this->getPageLink( $title, '', true );
 		return $link;
 	}
@@ -55,10 +55,10 @@ class EarnEchoEventPresentationModel extends EchoEventPresentationModel {
 	 * @inheritDoc
 	 */
 	public function getHeaderMessage() : Message {
-		$achievementKey = $this->achievement_key;
+		$key = $this->achievementKey;
 
 		$msg = $this->getMessageWithAgent( 'notification-header-achievementbadges-earn' );
-		$msg->params( $this->msg( 'achievement-name-' . $achievementKey ) );
+		$msg->params( $this->msg( 'achievement-name-' . $key ) );
 		return $msg;
 	}
 
@@ -66,7 +66,7 @@ class EarnEchoEventPresentationModel extends EchoEventPresentationModel {
 	 * @inheritDoc
 	 */
 	public function getBodyMessage() {
-		$key = $this->achievement_key;
+		$key = $this->achievementKey;
 		$msg = $this->getMessageWithAgent( "achievement-description-$key" );
 
 		return $msg;
