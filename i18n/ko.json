@@ -36,5 +36,8 @@
   "achievement-description-edit-count4": "{{SITENAME}}에서 편집 1000회를 달성했습니다! 당신은 {{SITENAME}} 편집이 취미가 되셨군요.",
   "achievement-name-edit-count5": "편집왕",
   "achievement-hint-edit-count5": "꾸준한 편집을 계속 하세요. 이 업적은 달성하기 매우 어렵습니다.",
-  "achievement-description-edit-count5": "{{SITENAME}}에서 편집 10000회를 달성했습니다! 당신은 따라올 사람이 없는 페미위키의 편집왕입니다."
+  "achievement-description-edit-count5": "{{SITENAME}}에서 편집 10000회를 달성했습니다! 당신은 따라올 사람이 없는 페미위키의 편집왕입니다.",
+	"achievement-name-long-user-page": "자기소개하기",
+	"achievement-hint-long-user-page": "[[User:$1|사용자 문서]]를 정성껏 작성하세요.",
+	"achievement-description-long-user-page": "사용자 문서를 작성해 자신에 대해 소개했습니다!"
 }

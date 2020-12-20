@@ -36,5 +36,8 @@
   "achievement-description-edit-count4": "You achieved editing {{SITENAME}} 1000 times! Your hobby is {{SITENAME}} now.",
   "achievement-name-edit-count5": "Editor-in-chief",
   "achievement-hint-edit-count5": "Keep continue editing. This achievement is very difficult to achieve.",
-  "achievement-description-edit-count5": "You achieved editing {{SITENAME}} 10000 times! You are the editor-in-chief of {{SITENAME}} who no one to follow."
+  "achievement-description-edit-count5": "You achieved editing {{SITENAME}} 10000 times! You are the editor-in-chief of {{SITENAME}} who no one to follow.",
+	"achievement-name-long-user-page": "Profile",
+	"achievement-hint-long-user-page": "Make your [[User:$1|user page]] look nice.",
+	"achievement-description-long-user-page": "You created your user page and introduced yourself!"
 }

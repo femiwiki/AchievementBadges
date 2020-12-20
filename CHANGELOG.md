@@ -6,10 +6,11 @@ Versions and bullets are arranged chronologically from latest to oldest.
 
 ENHANCEMENTS:
 
+- Add a new achievement editing user page.
 - Suppress Echo's welcome notification when it is replaced with the sign-up achievement.
 - Add a slide-in animation on Special:Achievements.
 - Use LocalUserCreatedHook instead of AddNewAccountHook
-- Add edit-count achievement and $wgAchievementBadgesReplaceEchoThankYouEdit for enabling it.
+- Add edit-count achievements and $wgAchievementBadgesReplaceEchoThankYouEdit for enabling it.
 - Introduce the types of achievements. 'instant' and 'stats' is available.
 - Add SpecialAchievementsBeforeGetEarned Hook.
 - Add 'priority' property to achievement.

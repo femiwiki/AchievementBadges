@@ -36,5 +36,8 @@
   "achievement-description-edit-count4": "{{doc-achievementbadges-achievement-description}}",
   "achievement-name-edit-count5": "{{doc-achievementbadges-achievement-name}}",
   "achievement-hint-edit-count5": "{{doc-achievementbadges-achievement-hint}}",
-  "achievement-description-edit-count5": "{{doc-achievementbadges-achievement-description}}"
+  "achievement-description-edit-count5": "{{doc-achievementbadges-achievement-description}}",
+	"achievement-name-long-user-page": "{{doc-achievementbadges-achievement-name}}",
+	"achievement-hint-long-user-page": "{{doc-achievementbadges-achievement-hint}}",
+	"achievement-description-long-user-page": "{{doc-achievementbadges-achievement-description}}"
 }

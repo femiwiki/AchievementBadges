@@ -47,15 +47,19 @@ class AchievementRegister implements
 				'icon' => '',
 			];
 		}
-
 		if ( $config->get( Constants::CONFIG_KEY_REPLACE_ECHO_THANK_YOU_EDIT ) ) {
 			$achievements[Constants::ACHV_KEY_EDIT_COUNT] = [
 				'type' => 'stats',
 				'thresholds' => [ 1, 10, 100, 1000, 10000 ],
-				'priority' => 100,
+				'priority' => 200,
 				'icon' => '',
 			];
 		}
+		$achievements[Constants::ACHV_KEY_LONG_USER_PAGE] = [
+			'type' => 'instant',
+			'priority' => 100,
+			'icon' => '',
+		];
 	}
 
 	/**
@@ -129,5 +133,13 @@ class AchievementRegister implements
 			'user' => $user,
 			'stats' => $editCount,
 		] );
+
+		if ( $wikiPage->getTitle()->equals( $user->getUserPage() ) &&
+			$revisionRecord->getSize() > 500 ) {
+				Achievement::achieve( [
+					'key' => Constants::ACHV_KEY_LONG_USER_PAGE,
+					'user' => $user,
+				] );
+		}
 	}
 }
