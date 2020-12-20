@@ -26,6 +26,7 @@ class SpecialAchievements extends SpecialPage {
 	}
 
 	/**
+	 * @todo Ship gender information to messages as param.
 	 * @inheritDoc
 	 */
 	public function execute( $subPage ) {
@@ -69,16 +70,13 @@ class SpecialAchievements extends SpecialPage {
 					'achievement',
 					$isEarned ? 'earned' : 'not-earning',
 				],
-				// @TODO send gender information as param
 				'text-name' => $this->msg( "achievement-name-$key" )->parse(),
 			];
 
 			if ( $isEarned ) {
-				// @TODO send gender information as param
 				$new['html-description'] = $this->msg( "achievement-description-$key" )->parse();
 				$dataEarnedAchvs[] = $new;
 			} else {
-				// @TODO send gender information as param
 				$new['html-hint'] = $this->msg( "achievement-hint-$key" )->parse();
 				$dataNotEarningAchvs[] = $new;
 			}
