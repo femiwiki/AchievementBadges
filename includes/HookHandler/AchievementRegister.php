@@ -37,14 +37,12 @@ class AchievementRegister implements
 			&& ExtensionRegistry::getInstance()->isLoaded( 'BetaFeatures' ) ) {
 			$achievements[Constants::ACHV_KEY_ENABLE_ACHIEVEMENT_BADGES] = [
 				'type' => 'instant',
-				'checker' => 'MediaWiki\Extension\AchievementBadges\AchievementChecker::checkAlwaysTrue',
 				'priority' => 0,
 				'icon' => '',
 			];
 		} else {
 			$achievements[Constants::ACHV_KEY_SIGN_UP] = [
 				'type' => 'instant',
-				'checker' => 'MediaWiki\Extension\AchievementBadges\AchievementChecker::checkAlwaysTrue',
 				'priority' => 0,
 				'icon' => '',
 			];
