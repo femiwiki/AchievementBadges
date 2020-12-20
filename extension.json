@@ -19,14 +19,14 @@
     "MediaWiki\\Extension\\AchievementBadges\\HookHandler\\Main::initExtension"
   ],
   "Hooks": {
-    "BeforeCreateAchievement": "MediaWiki\\Extension\\AchievementBadges\\HookHandler\\AchievementRegister::onBeforeCreateAchievement",
     "BeforeCreateEchoEvent": "MediaWiki\\Extension\\AchievementBadges\\HookHandler\\Main::onBeforeCreateEchoEvent",
     "BeforeEchoEventInsert": "MediaWiki\\Extension\\AchievementBadges\\HookHandler\\Main::onBeforeEchoEventInsert",
     "GetBetaFeaturePreferences": "MediaWiki\\Extension\\AchievementBadges\\HookHandler\\Main::onGetBetaFeaturePreferences",
-    "SpecialAchievementsBeforeGetEarned": "MediaWiki\\Extension\\AchievementBadges\\HookHandler\\AchievementRegister::onSpecialAchievementsBeforeGetEarned",
+    "BeforeCreateAchievement": "achievement-register",
     "LocalUserCreated": "achievement-register",
-    "UserSaveSettings": "achievement-register",
-    "PageSaveComplete": "achievement-register"
+    "PageSaveComplete": "achievement-register",
+    "SpecialAchievementsBeforeGetEarned": "achievement-register",
+    "UserSaveSettings": "achievement-register"
   },
   "HookHandlers": {
     "main": {

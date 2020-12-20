@@ -12,6 +12,8 @@ use User;
 
 class AchievementRegister implements
 				\MediaWiki\Auth\Hook\LocalUserCreatedHook,
+				\MediaWiki\Extension\AchievementBadges\Hooks\BeforeCreateAchievementHook,
+				\MediaWiki\Extension\AchievementBadges\Hooks\SpecialAchievementsBeforeGetEarnedHook,
 				\MediaWiki\Storage\Hook\PageSaveCompleteHook,
 				\MediaWiki\User\Hook\UserSaveSettingsHook
 	{
@@ -29,9 +31,9 @@ class AchievementRegister implements
 	}
 
 	/**
-	 * @param array &$achievements
+	 * @inheritDoc
 	 */
-	public static function onBeforeCreateAchievement( &$achievements ) {
+	public function onBeforeCreateAchievement( array &$achievements ) {
 		$config = MediaWikiServices::getInstance()->getMainConfig();
 		if ( $config->get( Constants::CONFIG_KEY_ENABLE_BETA_FEATURE )
 			&& ExtensionRegistry::getInstance()->isLoaded( 'BetaFeatures' ) ) {
@@ -65,7 +67,7 @@ class AchievementRegister implements
 	/**
 	 * @param User $user
 	 */
-	public static function onSpecialAchievementsBeforeGetEarned( User $user ) {
+	public function onSpecialAchievementsBeforeGetEarned( User $user ) {
 		if ( $user->isAnon() ) {
 			return;
 		}

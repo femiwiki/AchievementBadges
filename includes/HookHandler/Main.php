@@ -4,9 +4,9 @@ namespace MediaWiki\Extension\AchievementBadges\HookHandler;
 
 use Config;
 use EchoEvent;
-use Hooks;
 use MediaWiki\Extension\AchievementBadges\Constants;
 use MediaWiki\Extension\AchievementBadges\EarnEchoEventPresentationModel;
+use MediaWiki\Extension\AchievementBadges\Hooks\HookRunner;
 use MediaWiki\MediaWikiServices;
 use User;
 
@@ -30,7 +30,7 @@ class Main {
 	public static function initExtension() {
 		global $wgAchievementBadgesAchievements, $wgNotifyTypeAvailabilityByCategory;
 
-		Hooks::run( 'BeforeCreateAchievement', [ &$wgAchievementBadgesAchievements ] );
+		HookRunner::getRunner()->onBeforeCreateAchievement( $wgAchievementBadgesAchievements );
 
 		// Overwrite echo's milestone if configured.
 		$config = MediaWikiServices::getInstance()->getMainConfig();

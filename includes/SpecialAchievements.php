@@ -3,7 +3,7 @@
 namespace MediaWiki\Extension\AchievementBadges;
 
 use BetaFeatures;
-use Hooks;
+use MediaWiki\Extension\AchievementBadges\Hooks\HookRunner;
 use LogEntryBase;
 use SpecialPage;
 use TemplateParser;
@@ -58,7 +58,7 @@ class SpecialAchievements extends SpecialPage {
 			return $a['priority'] - $b['priority'];
 		} );
 
-		Hooks::run( 'SpecialAchievementsBeforeGetEarned', [ $user ] );
+		HookRunner::getRunner()->onSpecialAchievementsBeforeGetEarned( $user );
 		$earnedAchvs = $user->isAnon() ? [] : $this->getEarnedAchievementNames( $user );
 
 		$dataEarnedAchvs = [];

@@ -6,6 +6,7 @@ Versions and bullets are arranged chronologically from latest to oldest.
 
 ENHANCEMENTS:
 
+- Update hook calling to use new HookContainer.
 - Add a new achievement editing user page.
 - Suppress Echo's welcome notification when it is replaced with the sign-up achievement.
 - Add a slide-in animation on Special:Achievements.
