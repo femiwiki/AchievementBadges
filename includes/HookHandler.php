@@ -8,7 +8,7 @@ use Hooks;
 use MediaWiki\MediaWikiServices;
 use User;
 
-class HookHandler implements UserSaveSettingsHook {
+class HookHandler implements \MediaWiki\User\Hook\UserSaveSettingsHook {
 
 	/**
 	 * @var Config
