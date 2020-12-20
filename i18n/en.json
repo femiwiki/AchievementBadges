@@ -15,7 +15,7 @@
 	"log-name-achievementbadges": "Achievement log",
 	"log-description-achievementbadges": "This is a log shows a list of achievements a user earned.",
 	"logentry-achievementbadges": "$1 {{GENDER:$2|earned}} achievement $4",
-	"notification-header-achievementbadges-earn": "{{GENDER:$2|you}} earned achievement $3.",
+	"notification-header-achievementbadges-earn": "{{GENDER:$2|You}} earned achievement $3.",
 	"achievement-name-enable-achievement-badges": "Enable Achievement Badges",
 	"achievement-hint-enable-achievement-badges": "Enable Achievement Badges on [[Special:Preferences#mw-prefsection-betafeatures|the Beta features of Preferences]].",
 	"achievement-description-enable-achievement-badges": "You enabled Achievement Badges! Please keep in mind the captions of beta.",

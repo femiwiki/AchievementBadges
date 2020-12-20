@@ -91,6 +91,10 @@ class Main {
 		if ( $type == 'thank-you-edit'
 			&& $config->get( Constants::CONFIG_KEY_REPLACE_ECHO_THANK_YOU_EDIT ) ) {
 			return false;
+		} elseif ( $type == 'welcome'
+			&& !$config->get( Constants::CONFIG_KEY_ENABLE_BETA_FEATURE ) ) {
+			// the welcome notification is replaced with 'sign-up' achievement.
+			return false;
 		}
 		return true;
 	}
