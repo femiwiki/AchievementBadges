@@ -11,22 +11,38 @@
   }
 }
 
-.achievements {
+.achievement-list {
   list-style-type: none;
   padding-left: 0;
+  margin-left: 0;
 
   .achievement {
-    margin-bottom: 1em;
+    background-color: whitesmoke;
+    display: flex;
+    margin-bottom: 0.5em;
 
     &.not-earning {
-      color: gray;
+      opacity: 40%;
+
+      .achievement-icon {
+        filter: grayscale(1);
+      }
     }
     &:target {
       animation: slide-in 3s forwards;
     }
 
-    .achievement-name {
-      font-weight: bold;
+    .achievement-text {
+      padding: 0.5em 0;
+      .achievement-name {
+        font-weight: bold;
+      }
+    }
+
+    .achievement-icon {
+      width: 3.7em;
+      height: 3.7em;
+      margin: 0.3em 0.6em 0.3em 0.3em;
     }
   }
 }

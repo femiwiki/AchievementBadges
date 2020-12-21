@@ -1,5 +1,8 @@
-<li id="achievement-{{text-type}}" class="{{#class}} {{.}}{{/class}}">
-  <div class="achievement-name">{{text-name}}</div>
-  {{#html-hint}}<div class="achievement-hint">{{{.}}}</div>{{/html-hint}}
-  {{#html-description}}<div class="achievement-description">{{{.}}}</div>{{/html-description}}
+<li id="achievement-{{text-type}}" class="{{text-class}}">
+  <img class="achievement-icon" src="{{text-icon}}" alt="">
+  <div class="achievement-text">
+    <div class="achievement-name">{{text-name}}</div>
+    {{#html-hint}}<div class="achievement-hint">{{{.}}}</div>{{/html-hint}}
+    {{#html-description}}<div class="achievement-description">{{{.}}}</div>{{/html-description}}
+  </div>
 </li>

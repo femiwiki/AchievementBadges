@@ -1,11 +1,11 @@
 {{#bool-earned-achievements}}
-<ul class="achievements">
+<ul class="achievement-list">
 {{#data-earned-achievements}}{{>Achievement}}{{/data-earned-achievements}}
 </ul>
 {{/bool-earned-achievements}}
 {{#bool-not-earning-achievements}}
 {{#bool-earned-achievements}}<h2>{{{msg-header-not-earning-achievements}}}</h2>{{/bool-earned-achievements}}
-<ul class="achievements">
+<ul class="achievement-list">
 {{#data-not-earning-achievements}}{{>Achievement}}{{/data-not-earning-achievements}}
 </ul>
 {{/bool-not-earning-achievements}}

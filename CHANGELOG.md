@@ -6,6 +6,8 @@ Versions and bullets are arranged chronologically from latest to oldest.
 
 ENHANCEMENTS:
 
+- Add a feature that shows icons for achievements and $wgAchievementBadgesAchievementFallbackIcon
+  which is used when the achievement don't have icon property .
 - Add a icon to BetaFeatures preference and Echo notifications.
 - Update hook calling to use new HookContainer.
 - Add a new achievement editing user page.
@@ -33,5 +35,5 @@ BUG FIXES:
 - Run prettier on Markdown.
 - Provide basic process for registering and firing a achievement.
 - Make the extension could be provided as a beta feature.
-- Add a bare special page `[[Special:Achievements]]`.
+- Add a bare special page Special:Achievements.
 - Add a Github actions workflow to lint PHP, JSON and LESS.

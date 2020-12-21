@@ -56,14 +56,28 @@
   },
   "config": {
     "AchievementBadgesEnableBetaFeature": {
-      "value": false
+      "value": false,
+      "description": "Whether to have AchievementBadges available only as a beta feature and only shown to the users who have enabled the beta feature."
     },
     "AchievementBadgesReplaceEchoThankYouEdit": {
-      "value": true
+      "value": true,
+      "description": "Whether to suppress edit milestone notifications sent from Echo."
+    },
+    "AchievementBadgesAchievementFallbackIcon": {
+      "value": false,
+      "description": [
+        "Path to the fallback icon of achievements. The icon can be different for ltr and rtl languages. icons for specific languages can also specified using the language code.",
+        "Example: \"{$wgScriptPath}/static/image/achievement-fallback-icon.svg\"",
+        "Example 2:",
+        "[ 'ko' => \"$wgScriptPath/static/images/achievement-fallback-icon-ko.png\",",
+        "'ltr' => \"$wgScriptPath/static/images/achievement-fallback-icon-ltr.png\",",
+        "'rtl' => \"$wgScriptPath/static/images/achievement-fallback-icon-rtl.png\", ]"
+      ]
     },
     "AchievementBadgesAchievements": {
       "value": {},
-      "merge_strategy": "array_plus_2d"
+      "merge_strategy": "array_plus_2d",
+      "description": "Contains a key-value pair list of achievements."
     }
   },
   "MessagesDirs": {

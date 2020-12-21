@@ -35,7 +35,8 @@ class SpecialAchievements extends SpecialPage {
 
 		$user = $this->getUser();
 
-		$betaConfigEnabled = $this->getConfig()->get( Constants::CONFIG_KEY_ENABLE_BETA_FEATURE );
+		$config = $this->getConfig();
+		$betaConfigEnabled = $config->get( Constants::CONFIG_KEY_ENABLE_BETA_FEATURE );
 		$userBetaEnabled = $betaConfigEnabled && BetaFeatures::isFeatureEnabled( $user,
 				Constants::PREF_KEY_ACHIEVEMENT_ENABLE );
 		if ( $betaConfigEnabled ) {
@@ -53,7 +54,7 @@ class SpecialAchievements extends SpecialPage {
 			return;
 		}
 
-		$allAchvs = $this->getConfig()->get( Constants::CONFIG_KEY_ACHIEVEMENTS );
+		$allAchvs = $config->get( Constants::CONFIG_KEY_ACHIEVEMENTS );
 		uasort( $allAchvs, function ( $a, $b ) {
 			return $a['priority'] - $b['priority'];
 		} );
@@ -63,13 +64,19 @@ class SpecialAchievements extends SpecialPage {
 
 		$dataEarnedAchvs = [];
 		$dataNotEarningAchvs = [];
+		$iconFallback = $config->get( Constants::CONFIG_KEY_ACHIEVEMENT_FALLBACK_ICON );
+		if ( $iconFallback === false ) {
+			$iconFallback = $config->get( 'ExtensionAssetsPath' ) .
+				'/AchievementBadges/images/achievement-icon-fallback.svg';
+		}
 		foreach ( $allAchvs as $key => $info ) {
+			$icon = $this->getAchievementIcon( $info['icon'] ?? $iconFallback );
 			if ( $info['type'] == 'stats' ) {
 				$max = count( $info['thresholds'] );
 				for ( $i = 0; $i < $max; $i++ ) {
 					$suffixedKey = $key . (string)( $i + 1 );
 					$isEarned = in_array( $suffixedKey, $earnedAchvs );
-					$new = $this->getDataAchievement( $suffixedKey, $user, $isEarned );
+					$new = $this->getDataAchievement( $suffixedKey, $icon, $user, $isEarned );
 					if ( $isEarned ) {
 						$dataEarnedAchvs[] = $new;
 					} else {
@@ -78,7 +85,7 @@ class SpecialAchievements extends SpecialPage {
 				}
 			} else {
 				$isEarned = in_array( $key, $earnedAchvs );
-				$new = $this->getDataAchievement( $key, $user, $isEarned );
+				$new = $this->getDataAchievement( $key, $icon, $user, $isEarned );
 
 				if ( $isEarned ) {
 					$dataEarnedAchvs[] = $new;
@@ -99,18 +106,41 @@ class SpecialAchievements extends SpecialPage {
 	}
 
 	/**
+	 * @param string|array $path
+	 */
+	private function getAchievementIcon( $path ) {
+		if ( is_array( $path ) ) {
+			// The screenshot parameter is either a string with a filename
+			// or an array that specifies a screenshot for each language,
+			// and default screenshots for rtl and ltr languages
+			$language = $this->getLanguage();
+			$langCode = $language->getCode();
+
+			if ( array_key_exists( $langCode, $path ) ) {
+				$path = $path[$langCode];
+			} else {
+				$path = $path[$language->getDir()];
+			}
+		}
+
+		return $path;
+	}
+
+	/**
 	 * @param array $key
+	 * @param string $icon
 	 * @param user $user
 	 * @param bool $isEarned
 	 * @return array
 	 */
-	private function getDataAchievement( $key, User $user, $isEarned ) {
+	private function getDataAchievement( $key, $icon, User $user, $isEarned ) {
 		$data = [
 			'text-type' => $key,
-			'class' => [
+			'text-class' => implode( ' ', [
 				'achievement',
 				$isEarned ? 'earned' : 'not-earning',
-			],
+			] ),
+			'text-icon' => $icon,
 			'text-name' => $this->msg( "achievement-name-$key", $user->getName() )->parse(),
 		];
 		if ( $isEarned ) {

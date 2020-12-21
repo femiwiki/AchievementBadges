@@ -23,6 +23,11 @@ final class Constants {
 	/**
 	 * @var string
 	 */
+	public const CONFIG_KEY_ACHIEVEMENT_FALLBACK_ICON = 'AchievementBadgesAchievementFallbackIcon';
+
+	/**
+	 * @var string
+	 */
 	public const PREF_KEY_ACHIEVEMENT_ENABLE = 'achievementbadges-beta-feature-achievement-enable';
 
 	/**

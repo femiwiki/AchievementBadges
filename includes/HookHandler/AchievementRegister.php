@@ -40,13 +40,11 @@ class AchievementRegister implements
 			$achievements[Constants::ACHV_KEY_ENABLE_ACHIEVEMENT_BADGES] = [
 				'type' => 'instant',
 				'priority' => 0,
-				'icon' => '',
 			];
 		} else {
 			$achievements[Constants::ACHV_KEY_SIGN_UP] = [
 				'type' => 'instant',
 				'priority' => 0,
-				'icon' => '',
 			];
 		}
 		if ( $config->get( Constants::CONFIG_KEY_REPLACE_ECHO_THANK_YOU_EDIT ) ) {
@@ -54,13 +52,11 @@ class AchievementRegister implements
 				'type' => 'stats',
 				'thresholds' => [ 1, 10, 100, 1000, 10000 ],
 				'priority' => 200,
-				'icon' => '',
 			];
 		}
 		$achievements[Constants::ACHV_KEY_LONG_USER_PAGE] = [
 			'type' => 'instant',
 			'priority' => 100,
-			'icon' => '',
 		];
 	}
 
