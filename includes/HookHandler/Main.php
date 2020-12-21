@@ -49,11 +49,12 @@ class Main {
 		if ( !$config->get( Constants::CONFIG_KEY_ENABLE_BETA_FEATURE ) ) {
 			return;
 		}
-		// @todo Add an image
-		// $extensionAssetsPath = $config->get( 'ExtensionAssetsPath' );
+		$extensionAssetsPath = $config->get( 'ExtensionAssetsPath' );
 		$betaPrefs[Constants::PREF_KEY_ACHIEVEMENT_ENABLE] = [
 			'label-message' => 'achievementbadges-beta-feature-achievement-enable-message',
 			'desc-message' => 'achievementbadges-beta-feature-achievement-enable-description',
+			'screenshot' =>
+				"$extensionAssetsPath/AchievementBadges/images/betafeatures-icon-AchievementBadges.svg",
 			'info-link' => 'https://www.mediawiki.org/wiki/Special:MyLanguage/Extension:AchievementBadges',
 			'discussion-link' => 'https://github.com/femiwiki/AchievementBadges/issues',
 		];
@@ -67,11 +68,12 @@ class Main {
 	 * @param array &$icons
 	 */
 	public static function onBeforeCreateEchoEvent( &$notifs, &$categories, &$icons ) {
+		$config = MediaWikiServices::getInstance()->getMainConfig();
+		$extensionAssetsPath = $config->get( 'ExtensionAssetsPath' );
 		$categories[Constants::ECHO_EVENT_CATEGORY] = [
 			'priority' => 9,
 			'tooltip' => 'achievementbadges-pref-tooltip-achievement-badges',
 		];
-
 		$notifs[Constants::EVENT_KEY_EARN] = [
 			'category' => Constants::ECHO_EVENT_CATEGORY,
 			'group' => 'positive',
@@ -79,6 +81,9 @@ class Main {
 			'canNotifyAgent' => true,
 			'presentation-model' => EarnEchoEventPresentationModel::class,
 			'user-locators' => [ 'EchoUserLocator::locateEventAgent' ],
+		];
+		$icons[Constants::EVENT_KEY_EARN] = [
+			'path' => "AchievementBadges/images/medal.svg",
 		];
 	}
 

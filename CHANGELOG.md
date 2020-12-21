@@ -6,6 +6,7 @@ Versions and bullets are arranged chronologically from latest to oldest.
 
 ENHANCEMENTS:
 
+- Add a icon to BetaFeatures preference and Echo notifications.
 - Update hook calling to use new HookContainer.
 - Add a new achievement editing user page.
 - Add a slide-in animation on Special:Achievements.

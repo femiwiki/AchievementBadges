@@ -38,7 +38,7 @@ class EarnEchoEventPresentationModel extends EchoEventPresentationModel {
 	 * @inheritDoc
 	 */
 	public function getIconType() {
-		return 'placeholder';
+		return Constants::EVENT_KEY_EARN;
 	}
 
 	/**
