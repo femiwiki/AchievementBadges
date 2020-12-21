@@ -58,7 +58,7 @@ final class Constants {
 	/**
 	 * @var string
 	 */
-	public const ACHV_KEY_EDIT_COUNT = 'edit-count';
+	public const ACHV_KEY_EDIT_PAGE = 'edit-page';
 
 	/**
 	 * @var string

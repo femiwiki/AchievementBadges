@@ -48,7 +48,7 @@ class AchievementRegister implements
 			];
 		}
 		if ( $config->get( Constants::CONFIG_KEY_REPLACE_ECHO_THANK_YOU_EDIT ) ) {
-			$achievements[Constants::ACHV_KEY_EDIT_COUNT] = [
+			$achievements[Constants::ACHV_KEY_EDIT_PAGE] = [
 				'type' => 'stats',
 				'thresholds' => [ 1, 10, 100, 1000, 10000 ],
 				'priority' => 200,
@@ -127,7 +127,7 @@ class AchievementRegister implements
 
 		$editCount = $user->getEditCount() + 1;
 		Achievement::sendStats( [
-			'key' => Constants::ACHV_KEY_EDIT_COUNT,
+			'key' => Constants::ACHV_KEY_EDIT_PAGE,
 			'user' => $user,
 			'stats' => $editCount,
 		] );
