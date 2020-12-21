@@ -6,6 +6,8 @@ Versions and bullets are arranged chronologically from latest to oldest.
 
 ENHANCEMENTS:
 
+- Store loggers in classes as a member variable.
+- Add a new stats type achievement create-page.
 - Add a feature that shows icons for achievements and $wgAchievementBadgesAchievementFallbackIcon
   which is used when the achievement don't have icon property .
 - Add a icon to BetaFeatures preference and Echo notifications.

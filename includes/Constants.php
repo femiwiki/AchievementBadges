@@ -66,6 +66,11 @@ final class Constants {
 	public const ACHV_KEY_LONG_USER_PAGE = 'long-user-page';
 
 	/**
+	 * @var string
+	 */
+	public const ACHV_KEY_CREATE_PAGE = 'create-page';
+
+	/**
 	 * This class is for namespacing constants only. Forbid construction.
 	 * @throws FatalError
 	 */

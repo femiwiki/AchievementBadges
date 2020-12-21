@@ -8,7 +8,10 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Extension\AchievementBadges\Achievement;
 use MediaWiki\Extension\AchievementBadges\Constants;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Revision\RevisionStore;
 use User;
+use Wikimedia\Rdbms\ILoadBalancer;
 
 class AchievementRegister implements
 				\MediaWiki\Auth\Hook\LocalUserCreatedHook,
@@ -18,16 +21,34 @@ class AchievementRegister implements
 				\MediaWiki\User\Hook\UserSaveSettingsHook
 	{
 
-	/**
-	 * @var Config
-	 */
-	private $config;
+		/**
+		 * @var Config
+		 */
+		private $config;
+
+		/**
+		 * @var ILoadBalancer
+		 */
+		private $mDb;
+
+		/**
+		 * @var RevisionStore
+		 */
+		private $revisionStore;
 
 	/**
 	 * @param Config $config
+	 * @param ILoadBalancer $DBLoadBalancer
+	 * @param RevisionStore $revisionStore
 	 */
-	public function __construct( Config $config ) {
+	public function __construct(
+		Config $config,
+		ILoadBalancer $DBLoadBalancer,
+		RevisionStore $revisionStore
+	) {
 		$this->config = $config;
+		$this->mDb = $DBLoadBalancer->getMaintenanceConnectionRef( DB_REPLICA );
+		$this->revisionStore = $revisionStore;
 	}
 
 	/**
@@ -57,6 +78,11 @@ class AchievementRegister implements
 		$achievements[Constants::ACHV_KEY_LONG_USER_PAGE] = [
 			'type' => 'instant',
 			'priority' => 100,
+		];
+		$achievements[Constants::ACHV_KEY_CREATE_PAGE] = [
+			'type' => 'stats',
+			'thresholds' => [ 1, 5, 30, 100, 300, 1000 ],
+			'priority' => 300,
 		];
 	}
 
@@ -138,6 +164,31 @@ class AchievementRegister implements
 					'key' => Constants::ACHV_KEY_LONG_USER_PAGE,
 					'user' => $user,
 				] );
+		}
+
+		if ( $editResult->isNew() ) {
+			$query = $this->revisionStore->getQueryInfo();
+			$newPages = $this->mDb->selectRowCount(
+				$query['tables'],
+				'*',
+				[
+					'actor_user' => $user->getId(),
+					'rev_parent_id' => 0,
+					$this->mDb->bitAnd(
+						'rev_deleted', RevisionRecord::DELETED_USER
+						) . ' != ' . RevisionRecord::DELETED_USER,
+				],
+				__METHOD__,
+				[
+					'LIMIT' => 1000,
+				],
+				$query['joins'],
+			);
+			Achievement::sendStats( [
+				'key' => Constants::ACHV_KEY_CREATE_PAGE,
+				'user' => $user,
+				'stats' => $newPages,
+			] );
 		}
 	}
 }

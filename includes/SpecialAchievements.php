@@ -4,7 +4,10 @@ namespace MediaWiki\Extension\AchievementBadges;
 
 use BetaFeatures;
 use MediaWiki\Extension\AchievementBadges\Hooks\HookRunner;
+use MediaWiki\Logger\LoggerFactory;
 use LogEntryBase;
+use LogPage;
+use Psr\Log\LoggerInterface;
 use SpecialPage;
 use TemplateParser;
 use User;
@@ -22,9 +25,13 @@ class SpecialAchievements extends SpecialPage {
 	/** @var TemplateParser */
 	private $templateParser;
 
+	/** @var LoggerInterface */
+	private $logger;
+
 	public function __construct() {
 		parent::__construct( self::PAGE_NAME );
 		$this->templateParser = new TemplateParser( __DIR__ . '/templates' );
+		$this->logger = LoggerFactory::getInstance( 'AchievementBadges' );
 	}
 
 	/**
@@ -61,6 +68,8 @@ class SpecialAchievements extends SpecialPage {
 
 		HookRunner::getRunner()->onSpecialAchievementsBeforeGetEarned( $user );
 		$earnedAchvs = $user->isAnon() ? [] : $this->getEarnedAchievementNames( $user );
+		$this->logger->debug( "User $user achieved " . count( $earnedAchvs ) . ' (' .
+			implode( ', ', $earnedAchvs ) . ") achievements of " . count( $allAchvs ) );
 
 		$dataEarnedAchvs = [];
 		$dataNotEarningAchvs = [];
@@ -170,6 +179,7 @@ class SpecialAchievements extends SpecialPage {
 			[
 				'log_type' => Constants::LOG_TYPE,
 				'actor_user' => $user->getId(),
+				$dbr->bitAnd( 'log_deleted', LogPage::DELETED_ACTION | LogPage::DELETED_USER ) . ' = 0 ',
 			],
 			__METHOD__,
 			[],
@@ -181,8 +191,10 @@ class SpecialAchievements extends SpecialPage {
 		$achvs = [];
 		foreach ( $rows as $row ) {
 			$params = LogEntryBase::extractParams( $row->log_params );
-			if ( isset( $params['index'] ) ) {
-				$achvs[] = $row->log_action . ( $params['index'] + 1 );
+			// $this->logger->debug( 'A log is founded with param: ' .
+			// str_replace( "\n", ' ', print_r( $params, true ) ) );
+			if ( isset( $params['5::index'] ) ) {
+				$achvs[] = $row->log_action . ( $params['5::index'] + 1 );
 			} else {
 				$achvs[] = $row->log_action;
 			}

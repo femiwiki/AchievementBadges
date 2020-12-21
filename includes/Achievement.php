@@ -8,10 +8,16 @@ use MediaWiki\Logger\LoggerFactory;
 use ManualLogEntry;
 use MediaWiki\MediaWikiServices;
 use MWException;
+use LogPage;
+use Psr\Log\LoggerInterface;
 use SpecialPage;
 use User;
 
 class Achievement {
+	/**
+	 * @var LoggerInterface
+	 */
+	private static $logger = null;
 	/**
 	 * You should not call the constructor.
 	 */
@@ -46,8 +52,12 @@ class Achievement {
 
 		$count = self::selectLogCount( $key, $user );
 		if ( $count > 0 ) {
+			self::getLogger()->debug( "User $user satisfied the condition of achievement $key," .
+				"but ignored because already achieved it." );
 			// The achievement was earned already.
 			return;
+		} else {
+			self::getLogger()->debug( "User $user satisfied the condition of achievement $key" );
 		}
 
 		self::achieveInternal( $key, $user );
@@ -66,8 +76,7 @@ class Achievement {
 
 		$user = $info['user'];
 		if ( !self::isAchievementBadgesAvailable( $user ) ) {
-			LoggerFactory::getInstance( 'AchievementBadges' )->debug(
-				'The user cannot use AchievementBadges' );
+			self::getLogger()->debug( 'The user cannot use AchievementBadges' );
 			return;
 		}
 		$key = $info['key'];
@@ -80,6 +89,7 @@ class Achievement {
 		if ( $registry[$key]['type'] !== 'stats' ) {
 			throw new MWException( "Only instant achievement can be called by " . __METHOD__ );
 		}
+		self::getLogger()->debug( $user->getName() . " has a stats with a value $stats at $key" );
 		$thresholds = $registry[$key]['thresholds'];
 		if ( $stats < $thresholds[0] ) {
 			return;
@@ -87,13 +97,11 @@ class Achievement {
 		$numThresholds = count( $thresholds );
 
 		$earned = self::selectLogCount( $key, $user );
-		LoggerFactory::getInstance( 'AchievementBadges' )->debug(
-			$user->getName() . " has $earned achieved achievements at $key" );
+		self::getLogger()->debug( $user->getName() . " has $earned achieved achievements at $key" );
 
-		// $i starts with 0 instead of $earned, because the registered thresholds can be changed by
-		// extension developers who define their own achievements.
-		for ( $i = 0; $i < $numThresholds; $i++ ) {
+		for ( $i = $earned; $i < $numThresholds; $i++ ) {
 			if ( $stats >= $thresholds[$i] ) {
+				self::getLogger()->debug( $user->getName() . " exceeds {$i}-index threshold of $key" );
 				self::achieveInternal( $key, $user, $i );
 			} else {
 				break;
@@ -107,10 +115,6 @@ class Achievement {
 	 * @param int|null $index
 	 */
 	private static function achieveInternal( $key, User $user, $index = null ) {
-		$suffixedKey = $key;
-		if ( $index !== null ) {
-			$suffixedKey .= (string)( $index + 1 );
-		}
 		$logEntry = new ManualLogEntry( Constants::LOG_TYPE, $key );
 		$logEntry->setPerformer( $user );
 		$logEntry->setTarget( SpecialPage::getTitleFor( SpecialAchievements::PAGE_NAME ) );
@@ -118,16 +122,24 @@ class Achievement {
 			'4::key' => $key,
 		];
 		if ( $index !== null ) {
-			$params['index'] = $index;
+			$params['5::index'] = $index;
 		}
 		$logEntry->setParameters( $params );
-		$logEntry->insert();
 
+		$logEntry->insert();
+		self::getLogger()->debug( 'A log is inserted with param: ' .
+			str_replace( "\n", ' ', print_r( $params, true ) ) );
+
+		$suffixedKey = $key;
+		if ( $index !== null ) {
+			$suffixedKey .= (string)( $index + 1 );
+		}
 		EchoEvent::create( [
 			'type' => Constants::EVENT_KEY_EARN,
 			'agent' => $user,
 			'extra' => [ 'key' => $suffixedKey ],
 		] );
+		self::getLogger()->debug( "A echo event of achievement $suffixedKey is created for $user " );
 	}
 
 	/**
@@ -143,9 +155,10 @@ class Achievement {
 				'log_type' => Constants::LOG_TYPE,
 				'log_action' => $key,
 				'actor_user' => $user->getId(),
+				$dbr->bitAnd( 'log_deleted', LogPage::DELETED_ACTION | LogPage::DELETED_USER ) . ' = 0 ',
 			],
 			__METHOD__,
-			[],
+			[ 'DISTINCT' ],
 			[
 				'actor' => [ 'JOIN', 'actor_id = log_actor' ],
 			]
@@ -176,5 +189,12 @@ class Achievement {
 			return true;
 		}
 		return false;
+	}
+
+	private static function getLogger(): LoggerInterface {
+		if ( !self::$logger ) {
+			self::$logger = LoggerFactory::getInstance( 'AchievementBadges' );
+		}
+		return self::$logger;
 	}
 }

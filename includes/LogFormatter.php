@@ -9,13 +9,13 @@ class LogFormatter extends \LogFormatter {
 	 */
 	protected function getMessageParameters() {
 		$params = parent::getMessageParameters();
-		$key = $params[3];
-		$msg = 'achievement-name-' . $key;
-		if ( isset( $params['index'] ) ) {
-			$msg .= (string)( $params['index'] + 1 );
+		$achievementKey = $params[3];
+		$achievementNameMsgKey = 'achievement-name-' . $achievementKey;
+		if ( isset( $params[4] ) ) {
+			$achievementNameMsgKey .= (string)( $params[4] + 1 );
 		}
-		$msg = $this->msg( $msg );
-		$params[3] = $msg->plain();
+		$achievementNameMsg = $this->msg( $achievementNameMsgKey );
+		$params[3] = $achievementNameMsg->plain();
 		return $params;
 	}
 
