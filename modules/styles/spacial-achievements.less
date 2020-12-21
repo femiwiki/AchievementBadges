@@ -1,13 +1,15 @@
 @long: 10em;
-@keyframes slide-in {
+@keyframes coloring {
   0%,
-  50% {
-    opacity: 0;
-    max-height: 0;
+  10% {
+    opacity: 40%;
+
+    filter: grayscale(1);
   }
   100% {
-    opacity: inherit;
-    max-height: @long;
+    opacity: 100%;
+
+    filter: grayscale(0);
   }
 }
 
@@ -29,7 +31,7 @@
       }
     }
     &:target {
-      animation: slide-in 3s forwards;
+      animation: coloring 2s forwards;
     }
 
     .achievement-text {
