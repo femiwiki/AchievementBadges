@@ -44,7 +44,7 @@ class HookRunner implements
 
 	public function onSpecialAchievementsBeforeGetEarned( User $user ) {
 		return $this->hookContainer->run(
-			'SpecialAchievementsBeforeGetEarnedHook',
+			'SpecialAchievementsBeforeGetEarned',
 			[ $user ]
 		);
 	}

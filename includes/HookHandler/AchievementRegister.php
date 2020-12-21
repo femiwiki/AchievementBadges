@@ -61,7 +61,7 @@ class AchievementRegister implements
 	}
 
 	/**
-	 * @param User $user
+	 * @inheritDoc
 	 */
 	public function onSpecialAchievementsBeforeGetEarned( User $user ) {
 		if ( $user->isAnon() ) {
