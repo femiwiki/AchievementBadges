@@ -1,31 +1,34 @@
 # Changelog
 
-Versions and bullets are arranged chronologically from latest to oldest.
-
 ## v0.0.2 (Unreleased)
 
-ENHANCEMENTS:
+### Configuration changes
 
-- Store loggers in classes as a member variable.
-- Add a new stats type achievement create-page.
-- Add a feature that shows icons for achievements and $wgAchievementBadgesAchievementFallbackIcon
-  which is used when the achievement don't have icon property .
-- Add a icon to BetaFeatures preference and Echo notifications.
-- Update hook calling to use new HookContainer.
-- Add a new achievement editing user page.
-- Add a slide-in animation on Special:Achievements.
-- Use LocalUserCreatedHook instead of AddNewAccountHook
-- Add edit-count achievements and $wgAchievementBadgesReplaceEchoThankYouEdit for enabling it.
-- Introduce the types of achievements. 'instant' and 'stats' is available.
-- Add SpecialAchievementsBeforeGetEarned Hook.
-- Add 'priority' property to achievement.
-- Use $wg\* and the ExtensionFunction to register achievements.
-- Add body text to notifications.
-- Add new achievements sign-up and enable-achievement-badges.
-- Link to the achievement fragment from notification.
+- $wgAchievementBadgesAchievementFallbackIcon - This is the path to the fallback icons that displays in Special:Achievements.
+- $wgAchievementBadgesReplaceEchoThankYouEdit - When this is set to true, the edit milestone notifications offered by Echo will be not sent.
+
+### Enhancements
+
+- Add new achievements: sign-up, enable-achievement-badges, edit-page, create-page, long-user-page.
+- Changes in Special:Achievements:
+  - Add an animation on Special:Achievements.
+  - Add body text to notifications.
 - Log achievements to Special:Log and show on Special:Achievements.
+- Add a icon to BetaFeatures preference and Echo notifications.
+- Link to the achievement fragment from notification.
+- Add SpecialAchievementsBeforeGetEarned Hook.
+- Update hook calling to use new HookContainer.
+- Store loggers in classes as a member variable.
+- Use LocalUserCreatedHook instead of AddNewAccountHook
+- Use a configuration variable and the ExtensionFunction to register achievements.
 
-BUG FIXES:
+### Achievement registering changes:
+
+New properties:
+- `type` - There is now two type: `'instant'` and `'stats'`. Read [extension.json] for details.
+- `priority` - This is used to ordering on Special:Achievements.
+
+### Bug Fixes:
 
 - Do not allow system users to achieve achievements.
 - Suppress Echo's welcome notification when it is replaced with the sign-up achievement.
@@ -39,3 +42,6 @@ BUG FIXES:
 - Make the extension could be provided as a beta feature.
 - Add a bare special page Special:Achievements.
 - Add a Github actions workflow to lint PHP, JSON and LESS.
+
+---
+[extension.json] extension.json
