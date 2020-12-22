@@ -12,7 +12,7 @@ use User;
 /**
  * @group AchievementBadges
  *
- * @covers MediaWiki\Extension\AchievementBadges\Achievement
+ * @covers \MediaWiki\Extension\AchievementBadges\Achievement
  */
 class AchievementTest extends MediaWikiIntegrationTestCase {
 
@@ -23,7 +23,7 @@ class AchievementTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\Extension\AchievementBadges\Achievement::isAchievementBadgesAvailable
+	 * @covers \MediaWiki\Extension\AchievementBadges\Achievement::isAchievementBadgesAvailable
 	 */
 	public function testIsAchievementBadgesAvailable() {
 		$systemUser = User::newSystemUser( __METHOD__ );
