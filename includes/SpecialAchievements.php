@@ -63,7 +63,9 @@ class SpecialAchievements extends SpecialPage {
 
 		$allAchvs = $config->get( Constants::CONFIG_KEY_ACHIEVEMENTS );
 		uasort( $allAchvs, function ( $a, $b ) {
-			return $a['priority'] - $b['priority'];
+			$a = $a['priority'] ?? 1000;
+			$b = $b['priority'] ?? 1000;
+			return $a - $b;
 		} );
 
 		HookRunner::getRunner()->onSpecialAchievementsBeforeGetEarned( $user );

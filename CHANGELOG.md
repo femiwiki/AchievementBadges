@@ -33,7 +33,7 @@ Achievement registering changes:
 
 - New properties:
   - `type` - There is now two type: `'instant'` and `'stats'`. Read [extension.json] for details.
-  - `priority` - This is used to ordering on Special:Achievements.
+  - `priority` - This is used to ordering on Special:Achievements. (default: 1000)
 
 ### Other changes:
 
