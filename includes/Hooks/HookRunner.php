@@ -7,8 +7,8 @@ use MediaWiki\MediaWikiServices;
 use User;
 
 class HookRunner implements
-				BeforeCreateAchievementHook,
-				SpecialAchievementsBeforeGetEarnedHook
+	BeforeCreateAchievementHook,
+	SpecialAchievementsBeforeGetEarnedHook
 {
 
 	/** @var HookContainer */
@@ -48,5 +48,6 @@ class HookRunner implements
 			[ $user ]
 		);
 	}
+
 	// phpcs:enable
 }

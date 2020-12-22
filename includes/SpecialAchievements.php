@@ -3,10 +3,10 @@
 namespace MediaWiki\Extension\AchievementBadges;
 
 use BetaFeatures;
-use MediaWiki\Extension\AchievementBadges\Hooks\HookRunner;
-use MediaWiki\Logger\LoggerFactory;
 use LogEntryBase;
 use LogPage;
+use MediaWiki\Extension\AchievementBadges\Hooks\HookRunner;
+use MediaWiki\Logger\LoggerFactory;
 use Psr\Log\LoggerInterface;
 use SpecialPage;
 use TemplateParser;
@@ -116,6 +116,7 @@ class SpecialAchievements extends SpecialPage {
 
 	/**
 	 * @param string|array $path
+	 * @return string
 	 */
 	private function getAchievementIcon( $path ) {
 		if ( is_array( $path ) ) {

@@ -4,9 +4,9 @@ namespace MediaWiki\Extension\AchievementBadges\HookHandler;
 
 use Config;
 use ExtensionRegistry;
-use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Extension\AchievementBadges\Achievement;
 use MediaWiki\Extension\AchievementBadges\Constants;
+use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
@@ -14,11 +14,11 @@ use User;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 class AchievementRegister implements
-				\MediaWiki\Auth\Hook\LocalUserCreatedHook,
-				\MediaWiki\Extension\AchievementBadges\Hooks\BeforeCreateAchievementHook,
-				\MediaWiki\Extension\AchievementBadges\Hooks\SpecialAchievementsBeforeGetEarnedHook,
-				\MediaWiki\Storage\Hook\PageSaveCompleteHook,
-				\MediaWiki\User\Hook\UserSaveSettingsHook
+	\MediaWiki\Auth\Hook\LocalUserCreatedHook,
+	\MediaWiki\Extension\AchievementBadges\Hooks\BeforeCreateAchievementHook,
+	\MediaWiki\Extension\AchievementBadges\Hooks\SpecialAchievementsBeforeGetEarnedHook,
+	\MediaWiki\Storage\Hook\PageSaveCompleteHook,
+	\MediaWiki\User\Hook\UserSaveSettingsHook
 	{
 
 		/**

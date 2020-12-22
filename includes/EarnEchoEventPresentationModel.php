@@ -14,6 +14,7 @@ class EarnEchoEventPresentationModel extends EchoEventPresentationModel {
 	 * @var string
 	 */
 	private $achievementKey;
+
 	/**
 	 * @inheritDoc
 	 */

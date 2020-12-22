@@ -4,11 +4,11 @@ namespace MediaWiki\Extension\AchievementBadges;
 
 use BetaFeatures;
 use EchoEvent;
-use MediaWiki\Logger\LoggerFactory;
+use LogPage;
 use ManualLogEntry;
+use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MWException;
-use LogPage;
 use Psr\Log\LoggerInterface;
 use SpecialPage;
 use User;
@@ -18,11 +18,13 @@ class Achievement {
 	 * @var LoggerInterface
 	 */
 	private static $logger = null;
+
 	/**
 	 * You should not call the constructor.
 	 */
 	protected function __construct() {
 	}
+
 	/**
 	 * @param array $info arguments:
 	 * key:
@@ -145,6 +147,7 @@ class Achievement {
 	/**
 	 * @param string $key
 	 * @param User $user
+	 * @return int
 	 */
 	private static function selectLogCount( $key, User $user ) {
 		$dbr = wfGetDB( DB_REPLICA );
@@ -191,6 +194,9 @@ class Achievement {
 		return false;
 	}
 
+	/**
+	 * @return LoggerInterface
+	 */
 	private static function getLogger(): LoggerInterface {
 		if ( !self::$logger ) {
 			self::$logger = LoggerFactory::getInstance( 'AchievementBadges' );
