@@ -37,6 +37,7 @@ Achievement registering changes:
 
 ### Other changes:
 
+- Introduce Quibble tests.
 - Store loggers in classes as a member variable.
 - Use LocalUserCreatedHook instead of AddNewAccountHook
 - Use a configuration variable and the ExtensionFunction to register achievements.
