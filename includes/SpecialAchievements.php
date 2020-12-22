@@ -83,7 +83,7 @@ class SpecialAchievements extends SpecialPage {
 			if ( $info['type'] == 'stats' ) {
 				$max = count( $info['thresholds'] );
 				for ( $i = 0; $i < $max; $i++ ) {
-					$suffixedKey = $key . (string)( $i + 1 );
+					$suffixedKey = "$key-$i";
 					$isEarned = in_array( $suffixedKey, $earnedAchvs );
 					$new = $this->getDataAchievement( $suffixedKey, $icon, $user, $isEarned );
 					if ( $isEarned ) {

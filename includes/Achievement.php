@@ -4,6 +4,7 @@ namespace MediaWiki\Extension\AchievementBadges;
 
 use BetaFeatures;
 use EchoEvent;
+use FatalError;
 use LogPage;
 use ManualLogEntry;
 use MediaWiki\Logger\LoggerFactory;
@@ -21,8 +22,10 @@ class Achievement {
 
 	/**
 	 * You should not call the constructor.
+	 * @throws FatalError
 	 */
-	protected function __construct() {
+	public function __construct() {
+		throw new FatalError( "Cannot construct a utility class." );
 	}
 
 	/**
@@ -134,7 +137,7 @@ class Achievement {
 
 		$suffixedKey = $key;
 		if ( $index !== null ) {
-			$suffixedKey .= (string)( $index + 1 );
+			$suffixedKey .= "-$index";
 		}
 		EchoEvent::create( [
 			'type' => Constants::EVENT_KEY_EARN,

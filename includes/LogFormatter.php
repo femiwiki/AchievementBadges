@@ -12,7 +12,7 @@ class LogFormatter extends \LogFormatter {
 		$achievementKey = $params[3];
 		$achievementNameMsgKey = 'achievement-name-' . $achievementKey;
 		if ( isset( $params[4] ) ) {
-			$achievementNameMsgKey .= (string)( $params[4] + 1 );
+			$achievementNameMsgKey .= "-$params[4]";
 		}
 		$achievementNameMsg = $this->msg( $achievementNameMsgKey );
 		$params[3] = $achievementNameMsg->plain();
