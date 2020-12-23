@@ -208,11 +208,11 @@ class Achievement {
 	}
 
 	/**
-	 * @param string $langCode
+	 * @param Language $lang
 	 * @param string|array|null $path
 	 * @return string
 	 */
-	public static function getAchievementIcon( $langCode, $path = null ) {
+	public static function getAchievementIcon( Language $lang, $path = null ) {
 		if ( $path === null ) {
 			$config = MediaWikiServices::getInstance()->getMainConfig();
 			$path = $config->get( Constants::CONFIG_KEY_ACHIEVEMENT_FALLBACK_ICON );
@@ -223,15 +223,10 @@ class Achievement {
 		}
 
 		if ( is_array( $path ) ) {
-			// The screenshot parameter is either a string with a filename
-			// or an array that specifies a screenshot for each language,
-			// and default screenshots for rtl and ltr languages
-			$language = Language::factory( $langCode );
-
-			if ( array_key_exists( $langCode, $path ) ) {
-				$path = $path[$langCode];
+			if ( array_key_exists( $lang->getCode(), $path ) ) {
+				$path = $path[$lang->getCode()];
 			} else {
-				$path = $path[$language->getDir()];
+				$path = $path[$lang->getDir()];
 			}
 		}
 

@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Extension\AchievementBadges\Tests\Integration;
 
+use Language;
 use MediaWiki\Extension\AchievementBadges\Achievement;
 use MediaWiki\Extension\AchievementBadges\Constants;
 use MediaWiki\Extension\AchievementBadges\HookHandler\Main;
@@ -186,11 +187,12 @@ class AchievementTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideIconPaths
 	 * @covers \MediaWiki\Extension\AchievementBadges\Achievement::getAchievementIcon()
 	 *
-	 * @param string $lang
+	 * @param string $langCode
 	 * @param string|array $path
 	 * @param string $fallback
 	 */
-	public function testGetAchievementIcon( $lang, $path, $expected ) {
+	public function testGetAchievementIcon( $langCode, $path, $expected ) {
+		$lang = Language::factory( $langCode );
 		$this->assertEquals( Achievement::getAchievementIcon( $lang, $path ), $expected,
 			"Should be $expected" );
 	}
@@ -199,8 +201,9 @@ class AchievementTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Extension\AchievementBadges\Achievement::getAchievementIcon()
 	 */
 	public function testAchievementIconFallback() {
+		$lang = Language::factory( 'en' );
 		$this->setMwGlobals( 'wg' . Constants::CONFIG_KEY_ACHIEVEMENT_FALLBACK_ICON, 'foo/bar.png' );
-		$this->assertEquals( Achievement::getAchievementIcon( 'en' ), 'foo/bar.png',
+		$this->assertEquals( Achievement::getAchievementIcon( $lang ), 'foo/bar.png',
 			'A call without any parameter falls back' );
 	}
 }
