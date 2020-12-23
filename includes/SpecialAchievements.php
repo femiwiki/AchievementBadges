@@ -4,7 +4,6 @@ namespace MediaWiki\Extension\AchievementBadges;
 
 use BetaFeatures;
 use LogEntryBase;
-use LogPage;
 use MediaWiki\Extension\AchievementBadges\Hooks\HookRunner;
 use MediaWiki\Logger\LoggerFactory;
 use MWTimestamp;
@@ -200,7 +199,7 @@ class SpecialAchievements extends SpecialPage {
 			[
 				'log_type' => Constants::LOG_TYPE,
 				'actor_user' => $user->getId(),
-				$dbr->bitAnd( 'log_deleted', LogPage::DELETED_ACTION | LogPage::DELETED_USER ) . ' = 0 ',
+				'log_deleted = 0',
 			],
 			__METHOD__,
 			[],
@@ -215,7 +214,9 @@ class SpecialAchievements extends SpecialPage {
 			// $this->logger->debug( 'A log is founded with param: ' .
 			// str_replace( "\n", ' ', print_r( $params, true ) ) );
 			if ( isset( $params['5::index'] ) ) {
-				$achvs[$row->log_action . ( $params['5::index'] + 1 )] = $row->log_timestamp;
+				$key = $row->log_action;
+				$index = $params['5::index'];
+				$achvs["$key-$index"] = $row->log_timestamp;
 			} else {
 				$achvs[$row->log_action] = $row->log_timestamp;
 			}

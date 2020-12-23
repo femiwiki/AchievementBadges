@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Extension\AchievementBadges\Tests\Integration;
 
+use MediaWiki\Extension\AchievementBadges\Achievement;
 use MediaWiki\Extension\AchievementBadges\Constants;
 use MediaWiki\Extension\AchievementBadges\SpecialAchievements;
 use SpecialPageTestBase;
@@ -65,6 +66,31 @@ class SpecialAchievementsTest extends SpecialPageTestBase {
 		list( $html, ) = $this->executeSpecialPage( '', null, 'qqx', $user );
 		$this->assertStringContainsString( 'achievement-description-sign-up', $html,
 			'A user can see a description for obtained achievement' );
+	}
+
+	public function testStatsAchievement() {
+		$key = 'special-test';
+		$this->setMwGlobals( 'wg' . Constants::CONFIG_KEY_ACHIEVEMENTS, [
+			$key => [
+				'type' => 'stats',
+				'thresholds' => [ 1, 10, 100 ],
+			],
+		] );
+		$user = $this->getTestUser()->getUser();
+		$info = [ 'key' => $key, 'user' => $user, 'stats' => 1 ];
+
+		Achievement::sendStats( $info );
+		list( $html, ) = $this->executeSpecialPage( '', null, 'qqx', $user );
+		$this->assertStringContainsString( 'achievement-description-special-test-0', $html,
+			'Achieved achievement should be shown on Special:Achievements' );
+
+		$info['stats'] = 15;
+		Achievement::sendStats( $info );
+		list( $html, ) = $this->executeSpecialPage( '', null, 'qqx', $user );
+		$this->assertStringContainsString( 'achievement-description-special-test-0', $html,
+			'Achieved achievement should be shown on Special:Achievements' );
+		$this->assertStringContainsString( 'achievement-description-special-test-1', $html,
+			'Achieved achievement should be shown on Special:Achievements' );
 	}
 
 	/**
