@@ -1,8 +1,7 @@
 {
   "name": "achievement-badges",
-  "version": "0.0.0",
+  "description": "Provides an achievement system",
   "private": true,
-  "description": "TBD",
   "scripts": {
     "test": "npm -s run lint",
     "lint": "npm -s run lint:prettier && npm -s run lint:i18n",

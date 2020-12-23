@@ -2,11 +2,11 @@
 	"@metadata": {
 		"authors": ["lens0021"]
 	},
-	"achievementbadges-desc": "Provide [[Special:Achievements|achievements]]",
+	"achievementbadges-desc": "Provide an [[Special:Achievements|achievement]] system",
 	"achievementbadges-anon-text": "Please log in to view achievements.",
 	"special-achievements": "All achievements",
 	"special-achievements-header-not-earning-achievements": "Not earing achievements",
-	"achievements-summary": "This feature is still in beta.\n* You can use if [[Special:Preferences#mw-prefsection-betafeatures|enable]] it.\n* Achievements can be deleted without notice.\n* Achievement(s) earned during the beta period can be initialized\nThis is a list of achievements.",
+	"achievements-summary": "This is a list of achievements.\n* You can use if [[Special:Preferences#mw-prefsection-betafeatures|enable]] it.\n* Achievements can be deleted without notice.\n* Achievement(s) earned during the beta period can be initialized\nThis feature is still in beta.",
 	"achievementbadges-beta-feature-achievement-enable-message": "Achievement Badges",
 	"achievementbadges-beta-feature-achievement-enable-description": "Earn given achievements to get badges.",
 	"achievementbadges-disabled": "Achievement Badges is disabled.",
