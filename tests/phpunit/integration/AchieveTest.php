@@ -71,11 +71,12 @@ class AchieveTest extends MediaWikiIntegrationTestCase {
 		$this->setMwGlobals( 'wg' . Constants::CONFIG_KEY_ACHIEVEMENTS, [
 			Constants::ACHV_KEY_EDIT_PAGE => [
 				'type' => 'stats',
-				'thresholds' => [ 1, 3 ],
+				'thresholds' => [ 1, 2 ],
 			],
 		] );
 		$this->setMwGlobals( 'wg' . Constants::CONFIG_KEY_DISABLED_ACHIEVEMENTS, [
-			Constants::ACHV_KEY_CREATE_PAGE
+			Constants::ACHV_KEY_CREATE_PAGE,
+			Constants::ACHV_KEY_EDIT_SIZE,
 		] );
 
 		$ct = 1;
@@ -89,14 +90,8 @@ class AchieveTest extends MediaWikiIntegrationTestCase {
 		// Edit another page
 		$this->editPage( 'Edit Test', str_repeat( 'lorem', $ct++ ), '', NS_MAIN, $user );
 		$this->assertSame( $user->getEditCount(), 2 );
-		$this->assertNotificationNumber( $user, Constants::EVENT_KEY_EARN, 1,
-			"Only edit-page-0 should be achieved (edit count: {$user->getEditCount()})" );
-		$this->assertEarnedAchievement( $user, Constants::ACHV_KEY_EDIT_PAGE, 1 );
-
-		// More edit
-		$this->editPage( 'Edit Test', str_repeat( 'lorem', $ct++ ), '', NS_MAIN, $user );
 		$this->assertNotificationNumber( $user, Constants::EVENT_KEY_EARN, 2,
-			"edit-page-1 should be achieved (edit count: {$user->getEditCount()})" );
+			"Only edit-page-0 should be achieved (edit count: {$user->getEditCount()})" );
 		$this->assertEarnedAchievement( $user, Constants::ACHV_KEY_EDIT_PAGE, 2 );
 	}
 
@@ -108,31 +103,75 @@ class AchieveTest extends MediaWikiIntegrationTestCase {
 		$this->setMwGlobals( 'wg' . Constants::CONFIG_KEY_ACHIEVEMENTS, [
 			Constants::ACHV_KEY_CREATE_PAGE => [
 				'type' => 'stats',
-				'thresholds' => [ 1, 3 ],
+				'thresholds' => [ 1, 2 ],
 			],
 		] );
 		$this->setMwGlobals( 'wg' . Constants::CONFIG_KEY_DISABLED_ACHIEVEMENTS, [
-			Constants::ACHV_KEY_EDIT_PAGE
-		] );
+			Constants::ACHV_KEY_EDIT_PAGE,
+			Constants::ACHV_KEY_EDIT_SIZE,
+			] );
 
 		$ct = 1;
-		// create a page
+		// Create a page
 		$this->editPage( 'Creation test' . $ct++, 'ipsum', '', NS_MAIN, $user );
 		$this->assertNotificationNumber( $user, Constants::EVENT_KEY_EARN, 1,
 			"create-page-0 should be achieved" );
 		$this->assertEarnedAchievement( $user, Constants::ACHV_KEY_CREATE_PAGE, 1 );
 
-		// create another page
+		// Create another page
 		$this->editPage( 'Creation test' . $ct++, 'ipsum', '', NS_MAIN, $user );
-		$this->assertNotificationNumber( $user, Constants::EVENT_KEY_EARN, 1,
-			"Only create-page-0 should be achieved" );
-		$this->assertEarnedAchievement( $user, Constants::ACHV_KEY_CREATE_PAGE, 1 );
-
-		// More creation
-		$this->editPage( 'Creation test' . $ct++, 'ipsum-', '', NS_MAIN, $user );
 		$this->assertNotificationNumber( $user, Constants::EVENT_KEY_EARN, 2,
-			"create-page-1 should be achieved" );
+			"Only create-page-0 should be achieved" );
 		$this->assertEarnedAchievement( $user, Constants::ACHV_KEY_CREATE_PAGE, 2 );
+	}
+
+	public function testAchieveEditSize() {
+		$user = new User();
+		$user->setName( 'EditSizePageDummy' );
+		$user->addToDatabase();
+
+		$this->setMwGlobals( 'wg' . Constants::CONFIG_KEY_ACHIEVEMENTS, [
+			Constants::ACHV_KEY_EDIT_SIZE => [
+				'type' => 'stats',
+				'thresholds' => [ 10, 100 ],
+			],
+		] );
+		$this->setMwGlobals( 'wg' . Constants::CONFIG_KEY_DISABLED_ACHIEVEMENTS, [
+			Constants::ACHV_KEY_EDIT_PAGE,
+			Constants::ACHV_KEY_CREATE_PAGE,
+			] );
+
+		$this->editPage( 'Size test', str_repeat( 'ipsum', 10 ), '', NS_MAIN, $user );
+		$this->assertNotificationNumber( $user, Constants::EVENT_KEY_EARN, 1,
+			"edit-size-0 should be achieved" );
+		$this->assertEarnedAchievement( $user, Constants::ACHV_KEY_EDIT_SIZE, 1 );
+
+		$this->editPage( 'Size test', str_repeat( 'ipsum', 30 ), '', NS_MAIN, $user );
+		$this->assertNotificationNumber( $user, Constants::EVENT_KEY_EARN, 2,
+			"Only edit-size-0 should be achieved" );
+		$this->assertEarnedAchievement( $user, Constants::ACHV_KEY_EDIT_SIZE, 2 );
+	}
+
+	public function testAchieveManyEditSize() {
+		$user = new User();
+		$user->setName( __METHOD__ );
+		$user->addToDatabase();
+
+		$this->setMwGlobals( 'wg' . Constants::CONFIG_KEY_ACHIEVEMENTS, [
+			Constants::ACHV_KEY_EDIT_SIZE => [
+				'type' => 'stats',
+				'thresholds' => [ 10, 20, 30, 40, 50 ],
+			],
+		] );
+		$this->setMwGlobals( 'wg' . Constants::CONFIG_KEY_DISABLED_ACHIEVEMENTS, [
+			Constants::ACHV_KEY_EDIT_PAGE,
+			Constants::ACHV_KEY_CREATE_PAGE,
+			] );
+
+		$this->editPage( __METHOD__, str_repeat( 'ipsum', 30 ), '', NS_MAIN, $user );
+		$this->assertNotificationNumber( $user, Constants::EVENT_KEY_EARN, 5,
+			"All edit-size should be achieved" );
+		$this->assertEarnedAchievement( $user, Constants::ACHV_KEY_EDIT_SIZE, 5 );
 	}
 
 	public function testLongUserPage() {

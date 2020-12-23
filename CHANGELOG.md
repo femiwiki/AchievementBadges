@@ -10,7 +10,7 @@ New configuration:
 
 Enhancements:
 
-- Add new achievements: sign-up, enable-achievement-badges, edit-page, create-page, long-user-page.
+- Add new achievements: sign-up, enable-achievement-badges, edit-page, create-page, long-user-page, edit-size.
 - Changes in Special:Achievements:
   - Add an animation on Special:Achievements.
   - Add body text to notifications.

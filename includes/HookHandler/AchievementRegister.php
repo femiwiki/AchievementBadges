@@ -79,6 +79,11 @@ class AchievementRegister implements
 			'type' => 'instant',
 			'priority' => 100,
 		];
+		$achievements[Constants::ACHV_KEY_EDIT_SIZE] = [
+			'type' => 'stats',
+			'thresholds' => [ 1000, 5000, 10000, 50000, 100000 ],
+			'priority' => 300,
+		];
 		$achievements[Constants::ACHV_KEY_CREATE_PAGE] = [
 			'type' => 'stats',
 			'thresholds' => [ 1, 5, 30, 100, 300, 1000 ],
@@ -145,6 +150,9 @@ class AchievementRegister implements
 		if ( $editResult->isNullEdit() ) {
 			LoggerFactory::getInstance( 'AchievementBadges' )->debug( 'null edit is ignored.' );
 			return;
+		} elseif ( $editResult->isRevert() ) {
+			LoggerFactory::getInstance( 'AchievementBadges' )->debug( 'revert is ignored.' );
+			return;
 		}
 		$user = User::newFromIdentity( $user );
 		if ( $user->isAnon() ) {
@@ -156,7 +164,11 @@ class AchievementRegister implements
 			'user' => $user,
 			'stats' => $user->getEditCount(),
 		] );
-
+		Achievement::sendStats( [
+			'key' => Constants::ACHV_KEY_EDIT_SIZE,
+			'user' => $user,
+			'stats' => $revisionRecord->getSize(),
+		] );
 		if ( $wikiPage->getTitle()->equals( $user->getUserPage() ) &&
 			$revisionRecord->getSize() > 500 ) {
 				Achievement::achieve( [
@@ -164,7 +176,6 @@ class AchievementRegister implements
 					'user' => $user,
 				] );
 		}
-
 		if ( $editResult->isNew() ) {
 			$query = $this->revisionStore->getQueryInfo();
 			$newPages = $this->mDb->selectRowCount(

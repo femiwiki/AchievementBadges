@@ -63,12 +63,17 @@ final class Constants {
 	/**
 	 * @var string
 	 */
+	public const ACHV_KEY_LONG_USER_PAGE = 'long-user-page';
+
+	/**
+	 * @var string
+	 */
 	public const ACHV_KEY_EDIT_PAGE = 'edit-page';
 
 	/**
 	 * @var string
 	 */
-	public const ACHV_KEY_LONG_USER_PAGE = 'long-user-page';
+	public const ACHV_KEY_EDIT_SIZE = 'edit-size';
 
 	/**
 	 * @var string
