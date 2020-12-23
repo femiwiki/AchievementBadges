@@ -5,6 +5,7 @@ namespace MediaWiki\Extension\AchievementBadges;
 use EchoEvent;
 use EchoEventPresentationModel;
 use Language;
+use MediaWiki\Extension\AchievementBadges\Special\SpecialAchievements;
 use Message;
 use SpecialPage;
 use User;

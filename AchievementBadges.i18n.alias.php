@@ -7,6 +7,7 @@ $specialPageAliases = [];
  */
 $specialPageAliases['en'] = [
 	'Achievements' => [ 'Achievements' ],
+	'ShareAchievementBadge' => [ 'ShareAchievementBadge' ],
 ];
 
 /**
@@ -14,4 +15,5 @@ $specialPageAliases['en'] = [
  */
 $specialPageAliases['ko'] = [
 	'Achievements' => [ '도전과제목록' ],
+	'ShareAchievementBadge' => [ '도전과제뱃지공유' ],
 ];

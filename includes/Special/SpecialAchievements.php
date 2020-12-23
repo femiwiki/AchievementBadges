@@ -1,12 +1,13 @@
 <?php
 
-namespace MediaWiki\Extension\AchievementBadges;
+namespace MediaWiki\Extension\AchievementBadges\Special;
 
 use BetaFeatures;
 use LogEntryBase;
+use MediaWiki\Extension\AchievementBadges\Achievement;
+use MediaWiki\Extension\AchievementBadges\Constants;
 use MediaWiki\Extension\AchievementBadges\Hooks\HookRunner;
 use MediaWiki\Logger\LoggerFactory;
-use MWTimestamp;
 use Psr\Log\LoggerInterface;
 use SpecialPage;
 use TemplateParser;
@@ -30,7 +31,7 @@ class SpecialAchievements extends SpecialPage {
 
 	public function __construct() {
 		parent::__construct( self::PAGE_NAME );
-		$this->templateParser = new TemplateParser( __DIR__ . '/templates' );
+		$this->templateParser = new TemplateParser( __DIR__ . '/../templates' );
 		$this->logger = LoggerFactory::getInstance( 'AchievementBadges' );
 	}
 
@@ -75,13 +76,10 @@ class SpecialAchievements extends SpecialPage {
 
 		$dataEarnedAchvs = [];
 		$dataNotEarningAchvs = [];
-		$iconFallback = $config->get( Constants::CONFIG_KEY_ACHIEVEMENT_FALLBACK_ICON );
-		if ( $iconFallback === false ) {
-			$iconFallback = $config->get( 'ExtensionAssetsPath' ) .
-				'/AchievementBadges/images/achievement-icon-fallback.svg';
-		}
+		$lang = $this->getLanguage();
+
 		foreach ( $allAchvs as $key => $info ) {
-			$icon = $this->getAchievementIcon( $info['icon'] ?? $iconFallback );
+			$icon = Achievement::getAchievementIcon( $lang, $info['icon'] ?? null );
 			if ( $info['type'] == 'stats' ) {
 				$max = count( $info['thresholds'] );
 				for ( $i = 0; $i < $max; $i++ ) {
@@ -119,28 +117,6 @@ class SpecialAchievements extends SpecialPage {
 	}
 
 	/**
-	 * @param string|array $path
-	 * @return string
-	 */
-	private function getAchievementIcon( $path ) {
-		if ( is_array( $path ) ) {
-			// The screenshot parameter is either a string with a filename
-			// or an array that specifies a screenshot for each language,
-			// and default screenshots for rtl and ltr languages
-			$language = $this->getLanguage();
-			$langCode = $language->getCode();
-
-			if ( array_key_exists( $langCode, $path ) ) {
-				$path = $path[$langCode];
-			} else {
-				$path = $path[$language->getDir()];
-			}
-		}
-
-		return $path;
-	}
-
-	/**
 	 * @param array $key
 	 * @param string $icon
 	 * @param user $user
@@ -161,18 +137,10 @@ class SpecialAchievements extends SpecialPage {
 		if ( $isEarned ) {
 			$data['html-description'] = $this->msg( "achievement-description-$key", $user->getName() )
 				->parse();
-			$timestamp = MWTimestamp::getInstance( $timestamp );
-			$language = $this->getLanguage();
-			$d = $language->userDate( $timestamp, $user );
-			$t = $language->userTime( $timestamp, $user );
-			$s = ' ' . $this->msg( 'achievement-earned-at', $d, $t )->parse();
+			list( $timePeriod, $timestamp ) = Achievement::getHumanTimes( $this->getLanguage(), $user, $timestamp );
 			$data['data-time'] = [
-				'text-time-period' => $this->getLanguage()->getHumanTimestamp(
-					$timestamp,
-					MWTimestamp::getInstance(),
-					$user
-				),
-				'text-timestamp' => $s,
+				'text-timestamp' => $timestamp,
+				'text-time-period' => $timePeriod,
 			];
 		} else {
 			$data['html-hint'] = $this->msg( "achievement-hint-$key", $user->getName() )->parse();

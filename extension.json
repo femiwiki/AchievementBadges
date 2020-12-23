@@ -39,7 +39,8 @@
     }
   },
   "SpecialPages": {
-    "Achievements": "MediaWiki\\Extension\\AchievementBadges\\SpecialAchievements"
+    "Achievements": "MediaWiki\\Extension\\AchievementBadges\\Special\\SpecialAchievements",
+    "ShareAchievementBadge": "MediaWiki\\Extension\\AchievementBadges\\Special\\SpecialShareAchievementBadge"
   },
   "ResourceFileModulePaths": {
     "localBasePath": "modules",
@@ -48,6 +49,9 @@
   "ResourceModules": {
     "ext.achievementbadges.special.achievements.styles": {
       "styles": ["styles/spacial-achievements.less"]
+    },
+    "ext.achievementbadges.special.shareachievementsbadge.styles": {
+      "styles": ["styles/spacial-shareachievementsbadge.less"]
     }
   },
   "LogTypes": ["achievementbadges"],

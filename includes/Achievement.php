@@ -5,11 +5,14 @@ namespace MediaWiki\Extension\AchievementBadges;
 use BetaFeatures;
 use EchoEvent;
 use FatalError;
+use Language;
 use LogPage;
 use ManualLogEntry;
+use MediaWiki\Extension\AchievementBadges\Special\SpecialAchievements;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MWException;
+use MWTimestamp;
 use Psr\Log\LoggerInterface;
 use SpecialPage;
 use User;
@@ -202,6 +205,68 @@ class Achievement {
 			return true;
 		}
 		return false;
+	}
+
+	/**
+	 * @param string $langCode
+	 * @param string|array|null $path
+	 * @return string
+	 */
+	public static function getAchievementIcon( $langCode, $path = null ) {
+		if ( $path === null ) {
+			$config = MediaWikiServices::getInstance()->getMainConfig();
+			$path = $config->get( Constants::CONFIG_KEY_ACHIEVEMENT_FALLBACK_ICON );
+			if ( $path === false ) {
+				return $config->get( 'ExtensionAssetsPath' ) .
+					'/AchievementBadges/images/achievement-icon-fallback.svg';
+			}
+		}
+
+		if ( is_array( $path ) ) {
+			// The screenshot parameter is either a string with a filename
+			// or an array that specifies a screenshot for each language,
+			// and default screenshots for rtl and ltr languages
+			$language = Language::factory( $langCode );
+
+			if ( array_key_exists( $langCode, $path ) ) {
+				$path = $path[$langCode];
+			} else {
+				$path = $path[$language->getDir()];
+			}
+		}
+
+		return $path;
+	}
+
+	/**
+	 * @param Language $lang
+	 * @param User $user
+	 * @param string|null $timestamp
+	 * @return array time text:
+	 * 0: Shorten for display with a message (ex: "Earned at")
+	 * 1: Full timestamp for title attribute of html
+	 */
+	public static function getHumanTimes( Language $lang, $user, $timestamp = null ) {
+		/** @var MWTimestamp */
+		$timestamp = MWTimestamp::getInstance( $timestamp );
+
+		$shortHumanTime = wfMessage( 'achievement-earned-at',
+			$user,
+			$lang->getHumanTimestamp(
+				$timestamp,
+				MWTimestamp::getInstance(),
+				$user
+			)
+		)->parse();
+
+		$date = $lang->userDate( $timestamp, $user );
+		$time = $lang->userTime( $timestamp, $user );
+		$longHumanTime = wfMessage( 'achievement-earned-at-tooltip', $date, $time )->parse();
+
+		return [
+			$shortHumanTime,
+			$longHumanTime
+		];
 	}
 
 	/**

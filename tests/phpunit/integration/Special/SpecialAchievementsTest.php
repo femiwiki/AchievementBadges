@@ -4,16 +4,15 @@ namespace MediaWiki\Extension\AchievementBadges\Tests\Integration;
 
 use MediaWiki\Extension\AchievementBadges\Achievement;
 use MediaWiki\Extension\AchievementBadges\Constants;
-use MediaWiki\Extension\AchievementBadges\SpecialAchievements;
+use MediaWiki\Extension\AchievementBadges\Special\SpecialAchievements;
 use SpecialPageTestBase;
 use User;
 use UserNotLoggedIn;
-use Wikimedia\TestingAccessWrapper;
 
 /**
  * @group AchievementBadges
  *
- * @covers \MediaWiki\Extension\AchievementBadges\SpecialAchievements
+ * @covers \MediaWiki\Extension\AchievementBadges\Special\SpecialAchievements
  */
 class SpecialAchievementsTest extends SpecialPageTestBase {
 
@@ -91,60 +90,6 @@ class SpecialAchievementsTest extends SpecialPageTestBase {
 			'Achieved achievement should be shown on Special:Achievements' );
 		$this->assertStringContainsString( 'achievement-description-special-test-1', $html,
 			'Achieved achievement should be shown on Special:Achievements' );
-	}
-
-	/**
-	 * @todo Add more data
-	 * @return array
-	 */
-	public static function provideIconPaths() {
-		return [
-			[ 'en', '/path/to/icon.svg', '/path/to/icon.svg' ],
-			[
-				'en',
-				[
-					'en' => '/path/to/icon.svg',
-					'ko' => '/path/to/icon-ko.svg',
-					'ru' => '/path/to/icon-ru.svg',
-				],
-				'/path/to/icon.svg'
-			],
-			[
-				'ko',
-				[
-					'en' => '/path/to/icon.svg',
-					'ko' => '/path/to/icon-ko.svg',
-					'ru' => '/path/to/icon-ru.svg',
-				],
-				'/path/to/icon-ko.svg'
-			],
-			[
-				'he',
-				[
-					'en' => '/path/to/icon.svg',
-					'ko' => '/path/to/icon-ko.svg',
-					'rtl' => '/path/to/icon-rtl.svg',
-				],
-				'/path/to/icon-rtl.svg'
-			],
-		];
-	}
-
-	/**
-	 * @dataProvider provideIconPaths
-	 * @covers \MediaWiki\Extension\AchievementBadges\SpecialAchievements::getAchievementIcon()
-	 *
-	 * @param string $lang
-	 * @param string|array $path
-	 * @param string $fallback
-	 */
-	public function testGetAchievementIcon( $lang, $path, $fallback ) {
-		$this->setContentLang( $lang );
-		$page = $this->newSpecialPage();
-		$wrappedPage = TestingAccessWrapper::newFromObject( $page );
-
-		$this->assertEquals( $wrappedPage->getAchievementIcon( $path ), $fallback,
-			'Returns as it is passed' );
 	}
 
 }

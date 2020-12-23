@@ -144,4 +144,63 @@ class AchievementTest extends MediaWikiIntegrationTestCase {
 		Achievement::sendStats( $info );
 		$this->assertLogging( $user, $key, 2 );
 	}
+
+	/**
+	 * @todo Add more data
+	 * @return array
+	 */
+	public static function provideIconPaths() {
+		return [
+			[ 'en', '/path/to/icon.svg', '/path/to/icon.svg' ],
+			[
+				'en',
+				[
+					'en' => '/path/to/icon.svg',
+					'ko' => '/path/to/icon-ko.svg',
+					'ru' => '/path/to/icon-ru.svg',
+				],
+				'/path/to/icon.svg'
+			],
+			[
+				'ko',
+				[
+					'en' => '/path/to/icon.svg',
+					'ko' => '/path/to/icon-ko.svg',
+					'ru' => '/path/to/icon-ru.svg',
+				],
+				'/path/to/icon-ko.svg'
+			],
+			[
+				'he',
+				[
+					'en' => '/path/to/icon.svg',
+					'ko' => '/path/to/icon-ko.svg',
+					'rtl' => '/path/to/icon-rtl.svg',
+				],
+				'/path/to/icon-rtl.svg'
+			],
+		];
+	}
+
+	/**
+	 * @dataProvider provideIconPaths
+	 * @covers \MediaWiki\Extension\AchievementBadges\Achievement::getAchievementIcon()
+	 *
+	 * @param string $lang
+	 * @param string|array $path
+	 * @param string $fallback
+	 */
+	public function testGetAchievementIcon( $lang, $path, $expected ) {
+		$this->assertEquals( Achievement::getAchievementIcon( $lang, $path ), $expected,
+			"Should be $expected" );
+	}
+
+	/**
+	 * @covers \MediaWiki\Extension\AchievementBadges\Achievement::getAchievementIcon()
+	 */
+	public function testAchievementIconFallback() {
+		$this->setMwGlobals( 'wg' . Constants::CONFIG_KEY_ACHIEVEMENT_FALLBACK_ICON, 'foo/bar.png' );
+		$this->assertEquals( Achievement::getAchievementIcon( 'en' ), 'foo/bar.png',
+			'A call without any parameter falls back' );
+	}
 }

@@ -17,6 +17,7 @@ Enhancements:
 - Log achievements to Special:Log and show on Special:Achievements.
 - Add a icon to BetaFeatures preference and Echo notifications.
 - Link to the achievement fragment from notification.
+- Add experimental Special:ShareAchievementBadge.
 
 Bug Fixes:
 
