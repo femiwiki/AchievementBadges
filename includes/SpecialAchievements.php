@@ -7,6 +7,7 @@ use LogEntryBase;
 use LogPage;
 use MediaWiki\Extension\AchievementBadges\Hooks\HookRunner;
 use MediaWiki\Logger\LoggerFactory;
+use MWTimestamp;
 use Psr\Log\LoggerInterface;
 use SpecialPage;
 use TemplateParser;
@@ -69,9 +70,9 @@ class SpecialAchievements extends SpecialPage {
 		} );
 
 		HookRunner::getRunner()->onSpecialAchievementsBeforeGetEarned( $user );
-		$earnedAchvs = $user->isAnon() ? [] : $this->getEarnedAchievementNames( $user );
+		$earnedAchvs = $user->isAnon() ? [] : $this->getEarnedAchievementData( $user );
 		$this->logger->debug( "User $user achieved " . count( $earnedAchvs ) . ' (' .
-			implode( ', ', $earnedAchvs ) . ") achievements of " . count( $allAchvs ) );
+			implode( ', ', array_keys( $earnedAchvs ) ) . ") achievements of " . count( $allAchvs ) );
 
 		$dataEarnedAchvs = [];
 		$dataNotEarningAchvs = [];
@@ -86,8 +87,9 @@ class SpecialAchievements extends SpecialPage {
 				$max = count( $info['thresholds'] );
 				for ( $i = 0; $i < $max; $i++ ) {
 					$suffixedKey = "$key-$i";
-					$isEarned = in_array( $suffixedKey, $earnedAchvs );
-					$new = $this->getDataAchievement( $suffixedKey, $icon, $user, $isEarned );
+					$isEarned = array_key_exists( $suffixedKey, $earnedAchvs );
+					$timestamp = $earnedAchvs[$suffixedKey] ?? null;
+					$new = $this->getDataAchievement( $suffixedKey, $icon, $user, $isEarned, $timestamp );
 					if ( $isEarned ) {
 						$dataEarnedAchvs[] = $new;
 					} else {
@@ -95,8 +97,9 @@ class SpecialAchievements extends SpecialPage {
 					}
 				}
 			} else {
-				$isEarned = in_array( $key, $earnedAchvs );
-				$new = $this->getDataAchievement( $key, $icon, $user, $isEarned );
+				$isEarned = array_key_exists( $key, $earnedAchvs );
+				$timestamp = $earnedAchvs[$key] ?? null;
+				$new = $this->getDataAchievement( $key, $icon, $user, $isEarned, $timestamp );
 
 				if ( $isEarned ) {
 					$dataEarnedAchvs[] = $new;
@@ -143,9 +146,10 @@ class SpecialAchievements extends SpecialPage {
 	 * @param string $icon
 	 * @param user $user
 	 * @param bool $isEarned
+	 * @param string|null $timestamp
 	 * @return array
 	 */
-	private function getDataAchievement( $key, $icon, User $user, $isEarned ) {
+	private function getDataAchievement( $key, $icon, User $user, $isEarned, $timestamp = null ) {
 		$data = [
 			'text-type' => $key,
 			'text-class' => implode( ' ', [
@@ -158,6 +162,19 @@ class SpecialAchievements extends SpecialPage {
 		if ( $isEarned ) {
 			$data['html-description'] = $this->msg( "achievement-description-$key", $user->getName() )
 				->parse();
+			$timestamp = MWTimestamp::getInstance( $timestamp );
+			$language = $this->getLanguage();
+			$d = $language->userDate( $timestamp, $user );
+			$t = $language->userTime( $timestamp, $user );
+			$s = ' ' . $this->msg( 'achievement-earned-at', $d, $t )->parse();
+			$data['data-time'] = [
+				'text-time-period' => $this->getLanguage()->getHumanTimestamp(
+					$timestamp,
+					MWTimestamp::getInstance(),
+					$user
+				),
+				'text-timestamp' => $s,
+			];
 		} else {
 			$data['html-hint'] = $this->msg( "achievement-hint-$key", $user->getName() )->parse();
 		}
@@ -169,7 +186,7 @@ class SpecialAchievements extends SpecialPage {
 	 * @param User $user
 	 * @return string[]
 	 */
-	private function getEarnedAchievementNames( User $user ): array {
+	private function getEarnedAchievementData( User $user ): array {
 		$dbr = wfGetDB( DB_REPLICA );
 
 		/** @var stdClass $rows */
@@ -178,6 +195,7 @@ class SpecialAchievements extends SpecialPage {
 			[
 				'log_action',
 				'log_params',
+				'log_timestamp',
 			],
 			[
 				'log_type' => Constants::LOG_TYPE,
@@ -197,9 +215,9 @@ class SpecialAchievements extends SpecialPage {
 			// $this->logger->debug( 'A log is founded with param: ' .
 			// str_replace( "\n", ' ', print_r( $params, true ) ) );
 			if ( isset( $params['5::index'] ) ) {
-				$achvs[] = $row->log_action . ( $params['5::index'] + 1 );
+				$achvs[$row->log_action . ( $params['5::index'] + 1 )] = $row->log_timestamp;
 			} else {
-				$achvs[] = $row->log_action;
+				$achvs[$row->log_action] = $row->log_timestamp;
 			}
 		}
 		return $achvs;

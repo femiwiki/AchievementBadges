@@ -12,8 +12,8 @@ Enhancements:
 
 - Add new achievements: sign-up, enable-achievement-badges, edit-page, create-page, long-user-page, edit-size.
 - Changes in Special:Achievements:
-  - Add an animation on Special:Achievements.
-  - Add body text to notifications.
+  - Add icon, body text and timestamp to each achievement.
+  - Add an animation.
 - Log achievements to Special:Log and show on Special:Achievements.
 - Add a icon to BetaFeatures preference and Echo notifications.
 - Link to the achievement fragment from notification.

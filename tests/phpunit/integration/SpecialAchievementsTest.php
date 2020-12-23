@@ -5,6 +5,7 @@ namespace MediaWiki\Extension\AchievementBadges\Tests\Integration;
 use MediaWiki\Extension\AchievementBadges\Constants;
 use MediaWiki\Extension\AchievementBadges\SpecialAchievements;
 use SpecialPageTestBase;
+use User;
 use UserNotLoggedIn;
 use Wikimedia\TestingAccessWrapper;
 
@@ -50,6 +51,20 @@ class SpecialAchievementsTest extends SpecialPageTestBase {
 		list( $html, ) = $this->executeSpecialPage( '', null, 'qqx', $user );
 		$this->assertStringContainsString( '(special-achievements-header-not-earning-achievements)', $html,
 			'A user who enables AB can see achievements on Special:Achievements' );
+	}
+
+	public function testDisplayHint() {
+		$user = new User();
+		$user->setName( __METHOD__ );
+		$user->addToDatabase();
+
+		list( $html, ) = $this->executeSpecialPage( '', null, 'qqx', null );
+		$this->assertStringContainsString( 'achievement-hint-sign-up', $html,
+			'A user can see a hint for not earning achievement' );
+
+		list( $html, ) = $this->executeSpecialPage( '', null, 'qqx', $user );
+		$this->assertStringContainsString( 'achievement-description-sign-up', $html,
+			'A user can see a description for obtained achievement' );
 	}
 
 	/**

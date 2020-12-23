@@ -19,6 +19,7 @@
   margin-left: 0;
 
   .achievement {
+    align-items: center;
     background-color: whitesmoke;
     display: flex;
     margin-bottom: 0.5em;
@@ -35,16 +36,20 @@
     }
 
     .achievement-text {
-      padding: 0.5em 0;
+      width: 100%;
+      padding: 0.5em 0.5em 0.5em 0;
       .achievement-name {
         font-weight: bold;
       }
     }
 
     .achievement-icon {
-      width: 3.7em;
-      height: 3.7em;
+      width: 6em;
       margin: 0.3em 0.6em 0.3em 0.3em;
+    }
+
+    .achievement-timestamp {
+      color: gray;
     }
   }
 }
