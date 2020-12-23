@@ -92,10 +92,15 @@ class AchievementTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testSendStats() {
 		$key = 'test-achievements';
+		$key2 = 'test-achievements-2';
 		$this->setMwGlobals( 'wg' . Constants::CONFIG_KEY_ACHIEVEMENTS, [
 			$key => [
 				'type' => 'stats',
 				'thresholds' => [ 1, 10, 100 ],
+			],
+			$key2 => [
+				'type' => 'stats',
+				'thresholds' => [ 1, 3 ],
 			],
 		] );
 		$user = $this->getTestUser()->getUser();
@@ -111,16 +116,31 @@ class AchievementTest extends MediaWikiIntegrationTestCase {
 		$info['stats'] = 1;
 		Achievement::sendStats( $info );
 		$this->assertLogging( $user, $key, 0 );
-
-		$info['stats'] = 5;
+		$info['stats'] = 2;
 		Achievement::sendStats( $info );
 		$this->assertLogging( $user, $key, 0 );
-
+		$info['stats'] = 9;
+		Achievement::sendStats( $info );
+		$this->assertLogging( $user, $key, 0 );
 		$info['stats'] = 10;
 		Achievement::sendStats( $info );
 		$this->assertLogging( $user, $key, 1 );
-
 		$info['stats'] = 100;
+		Achievement::sendStats( $info );
+		$this->assertLogging( $user, $key, 2 );
+
+		# Test 2
+		$info['key'] = $key2;
+		$info['stats'] = 0;
+		Achievement::sendStats( $info );
+		$this->assertLogging( $user, $key, 0 );
+		$info['stats'] = 1;
+		Achievement::sendStats( $info );
+		$this->assertLogging( $user, $key, 1 );
+		$info['stats'] = 2;
+		Achievement::sendStats( $info );
+		$this->assertLogging( $user, $key, 1 );
+		$info['stats'] = 3;
 		Achievement::sendStats( $info );
 		$this->assertLogging( $user, $key, 2 );
 	}

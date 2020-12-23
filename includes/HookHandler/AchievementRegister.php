@@ -151,11 +151,10 @@ class AchievementRegister implements
 			return;
 		}
 
-		$editCount = $user->getEditCount() + 1;
 		Achievement::sendStats( [
 			'key' => Constants::ACHV_KEY_EDIT_PAGE,
 			'user' => $user,
-			'stats' => $editCount,
+			'stats' => $user->getEditCount(),
 		] );
 
 		if ( $wikiPage->getTitle()->equals( $user->getUserPage() ) &&

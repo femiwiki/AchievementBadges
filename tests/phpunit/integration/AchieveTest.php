@@ -32,7 +32,7 @@ class AchieveTest extends MediaWikiIntegrationTestCase {
 		$texts = [];
 		foreach ( $notifs as $noti ) {
 			$event = $noti->getEvent();
-			$texts[] = $event . '(' . print_r( array_values( $event->getExtra() ), true ) . ')';
+			$texts[] = $event . '(' . implode( ', ', array_values( $event->getExtra() ) ) . ')';
 		}
 		$this->assertEquals( count( $notifs ), $num, "$msg (" . implode( ', ', $texts ) . ')' );
 	}
@@ -66,6 +66,7 @@ class AchieveTest extends MediaWikiIntegrationTestCase {
 		$user = new User();
 		$user->setName( 'EditPageDummy' );
 		$user->addToDatabase();
+		$this->assertSame( $user->getEditCount(), 0 );
 
 		$this->setMwGlobals( 'wg' . Constants::CONFIG_KEY_ACHIEVEMENTS, [
 			Constants::ACHV_KEY_EDIT_PAGE => [
@@ -73,27 +74,65 @@ class AchieveTest extends MediaWikiIntegrationTestCase {
 				'thresholds' => [ 1, 3 ],
 			],
 		] );
+		$this->setMwGlobals( 'wg' . Constants::CONFIG_KEY_DISABLED_ACHIEVEMENTS, [
+			Constants::ACHV_KEY_CREATE_PAGE
+		] );
 
+		$ct = 1;
 		// Edit a page
-		$this->editPage( 'Lorem', 'lorem', '', NS_MAIN, $user );
-		$this->assertNotificationNumber( $user, Constants::EVENT_KEY_EARN, 2,
-			'create-page and edit-page should be achieved' );
+		$this->editPage( 'Edit Test', str_repeat( 'lorem', $ct++ ), '', NS_MAIN, $user );
+		$this->assertSame( $user->getEditCount(), 1 );
+		$this->assertNotificationNumber( $user, Constants::EVENT_KEY_EARN, 1,
+			"edit-page-0 should be achieved (edit count: {$user->getEditCount()})" );
 		$this->assertEarnedAchievement( $user, Constants::ACHV_KEY_EDIT_PAGE, 1 );
-		$this->assertEarnedAchievement( $user, Constants::ACHV_KEY_CREATE_PAGE, 1 );
 
 		// Edit another page
-		$this->editPage( 'Ipsum', 'lorem ipsum', '', NS_MAIN, $user );
-		$this->assertNotificationNumber( $user, Constants::EVENT_KEY_EARN, 2,
-			'create-page and edit-page should be achieved' );
+		$this->editPage( 'Edit Test', str_repeat( 'lorem', $ct++ ), '', NS_MAIN, $user );
+		$this->assertSame( $user->getEditCount(), 2 );
+		$this->assertNotificationNumber( $user, Constants::EVENT_KEY_EARN, 1,
+			"Only edit-page-0 should be achieved (edit count: {$user->getEditCount()})" );
 		$this->assertEarnedAchievement( $user, Constants::ACHV_KEY_EDIT_PAGE, 1 );
+
+		// More edit
+		$this->editPage( 'Edit Test', str_repeat( 'lorem', $ct++ ), '', NS_MAIN, $user );
+		$this->assertNotificationNumber( $user, Constants::EVENT_KEY_EARN, 2,
+			"edit-page-1 should be achieved (edit count: {$user->getEditCount()})" );
+		$this->assertEarnedAchievement( $user, Constants::ACHV_KEY_EDIT_PAGE, 2 );
+	}
+
+	public function testAchieveCreatePages() {
+		$user = new User();
+		$user->setName( 'CreatePageDummy' );
+		$user->addToDatabase();
+
+		$this->setMwGlobals( 'wg' . Constants::CONFIG_KEY_ACHIEVEMENTS, [
+			Constants::ACHV_KEY_CREATE_PAGE => [
+				'type' => 'stats',
+				'thresholds' => [ 1, 3 ],
+			],
+		] );
+		$this->setMwGlobals( 'wg' . Constants::CONFIG_KEY_DISABLED_ACHIEVEMENTS, [
+			Constants::ACHV_KEY_EDIT_PAGE
+		] );
+
+		$ct = 1;
+		// create a page
+		$this->editPage( 'Creation test' . $ct++, 'ipsum', '', NS_MAIN, $user );
+		$this->assertNotificationNumber( $user, Constants::EVENT_KEY_EARN, 1,
+			"create-page-0 should be achieved" );
 		$this->assertEarnedAchievement( $user, Constants::ACHV_KEY_CREATE_PAGE, 1 );
 
-		// Edit more pages
-		$this->editPage( 'Lorem', str_repeat( 'lorem', $ct ), '', NS_MAIN, $user );
-		$this->assertNotificationNumber( $user, Constants::EVENT_KEY_EARN, 2,
-			'edit-page-1 should be achieved' );
-		$this->assertEarnedAchievement( $user, Constants::ACHV_KEY_EDIT_PAGE, 1 );
+		// create another page
+		$this->editPage( 'Creation test' . $ct++, 'ipsum', '', NS_MAIN, $user );
+		$this->assertNotificationNumber( $user, Constants::EVENT_KEY_EARN, 1,
+			"Only create-page-0 should be achieved" );
 		$this->assertEarnedAchievement( $user, Constants::ACHV_KEY_CREATE_PAGE, 1 );
+
+		// More creation
+		$this->editPage( 'Creation test' . $ct++, 'ipsum-', '', NS_MAIN, $user );
+		$this->assertNotificationNumber( $user, Constants::EVENT_KEY_EARN, 2,
+			"create-page-1 should be achieved" );
+		$this->assertEarnedAchievement( $user, Constants::ACHV_KEY_CREATE_PAGE, 2 );
 	}
 
 	public function testLongUserPage() {
