@@ -18,6 +18,11 @@ final class Constants {
 	/**
 	 * @var string
 	 */
+	public const CONFIG_KEY_DISABLED_ACHIEVEMENTS = 'AchievementBadgesDisabledAchievements';
+
+	/**
+	 * @var string
+	 */
 	public const CONFIG_KEY_REPLACE_ECHO_THANK_YOU_EDIT = 'AchievementBadgesReplaceEchoThankYouEdit';
 
 	/**

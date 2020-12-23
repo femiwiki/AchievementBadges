@@ -31,6 +31,9 @@ class AchievementTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Extension\AchievementBadges\Achievement::isAchievementBadgesAvailable
 	 */
 	public function testIsAchievementBadgesAvailable() {
+		$this->setMwGlobals( 'wg' . Constants::CONFIG_KEY_DISABLED_ACHIEVEMENTS, [
+			Constants::ACHV_KEY_SIGN_UP, Constants::ACHV_KEY_ENABLE_ACHIEVEMENT_BADGES ] );
+
 		$systemUser = User::newSystemUser( __METHOD__ );
 		$anon = new User;
 		$user = $this->getTestUser()->getUser();
@@ -51,8 +54,6 @@ class AchievementTest extends MediaWikiIntegrationTestCase {
 
 		$user = $this->getMutableTestUser()->getUser();
 		$user->setOption( Constants::PREF_KEY_ACHIEVEMENT_ENABLE, '1' );
-		$this->expectException( MWException::class,
-			'Saving preferences during the test throws exception because the unregistered sign-up achievement' );
 		$user->saveSettings();
 		$this->assertTrue( Achievement::isAchievementBadgesAvailable( $user ),
 			'A user which enables AB can use AB where wiki uses AB as a beta feature' );

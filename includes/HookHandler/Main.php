@@ -25,12 +25,18 @@ class Main {
 	}
 
 	/**
+	 * Invoked via $wgExtensionFunctions.
 	 * @todo hide or disable echo-subscriptions-web-thank-you-edit option when replaced
 	 */
 	public static function initExtension() {
-		global $wgAchievementBadgesAchievements, $wgNotifyTypeAvailabilityByCategory;
+		global $wgAchievementBadgesAchievements, $wgNotifyTypeAvailabilityByCategory,
+			$wgAchievementBadgesDisabledAchievements;
 
 		HookRunner::getRunner()->onBeforeCreateAchievement( $wgAchievementBadgesAchievements );
+
+		foreach ( $wgAchievementBadgesDisabledAchievements as $key ) {
+			unset( $wgAchievementBadgesAchievements[ $key ] );
+		}
 
 		// Below code make Echo tests to fail
 		if ( defined( 'MW_PHPUNIT_TEST' ) ) {

@@ -45,12 +45,15 @@ class Achievement {
 		$key = $info['key'];
 		$config = MediaWikiServices::getInstance()->getMainConfig();
 		$registry = $config->get( Constants::CONFIG_KEY_ACHIEVEMENTS );
+		$unRegistry = $config->get( Constants::CONFIG_KEY_DISABLED_ACHIEVEMENTS );
 
-		if ( !isset( $registry[$key] ) ) {
+		if ( in_array( $key, $unRegistry ) ) {
+			return;
+		} elseif ( !isset( $registry[$key] ) ) {
 			throw new MWException( "Unknown achievement key: {$key}" );
 		}
-		$registry[$key]['type'] = $registry[$key]['type'] ?? 'instant';
-		if ( $registry[$key]['type'] !== 'instant' ) {
+		$type = $registry[$key]['type'] ?? 'instant';
+		if ( $type !== 'instant' ) {
 			throw new MWException(
 				"$__METHOD__ is called with only an instant achievement, but $key is not" );
 		}
@@ -88,7 +91,11 @@ class Achievement {
 		$stats = $info['stats'];
 		$config = MediaWikiServices::getInstance()->getMainConfig();
 		$registry = $config->get( Constants::CONFIG_KEY_ACHIEVEMENTS );
-		if ( !isset( $registry[$key] ) ) {
+		$unRegistry = $config->get( Constants::CONFIG_KEY_DISABLED_ACHIEVEMENTS );
+
+		if ( in_array( $key, $unRegistry ) ) {
+			return;
+		} elseif ( !isset( $registry[$key] ) ) {
 			throw new MWException( "Unknown achievement key: {$key}" );
 		}
 		if ( $registry[$key]['type'] !== 'stats' ) {

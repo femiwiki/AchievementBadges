@@ -6,6 +6,7 @@ New configuration:
 
 - $wgAchievementBadgesAchievementFallbackIcon - This is the path to the fallback icons that displays in Special:Achievements.
 - $wgAchievementBadgesReplaceEchoThankYouEdit - When this is set to true, the edit milestone notifications offered by Echo will be not sent.
+- $wgAchievementBadgesDisabledAchievements - This is a list contains keys of achievements that should be unregistered. Wiki administrators can use this to disable a built-in achievement.
 
 Enhancements:
 

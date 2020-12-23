@@ -78,6 +78,10 @@
       "value": {},
       "merge_strategy": "array_plus_2d",
       "description": "Contains a key-value pair list of achievements. The thresholds should not be changed."
+    },
+    "AchievementBadgesDisabledAchievements": {
+      "value": [],
+      "description": "Keys of achievements should be excluded."
     }
   },
   "MessagesDirs": {
