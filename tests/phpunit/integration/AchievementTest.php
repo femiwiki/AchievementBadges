@@ -3,6 +3,7 @@
 namespace MediaWiki\Extension\AchievementBadges\Tests\Integration;
 
 use Language;
+use LogPage;
 use MediaWiki\Extension\AchievementBadges\Achievement;
 use MediaWiki\Extension\AchievementBadges\Constants;
 use MediaWiki\Extension\AchievementBadges\HookHandler\Main;
@@ -13,6 +14,7 @@ use User;
 
 /**
  * @group AchievementBadges
+ * @group Database
  *
  * @covers \MediaWiki\Extension\AchievementBadges\Achievement
  */
@@ -60,22 +62,29 @@ class AchievementTest extends MediaWikiIntegrationTestCase {
 			'A user which enables AB can use AB where wiki uses AB as a beta feature' );
 	}
 
-	private function assertLogging( $user, $key, $maxIndex = null ) {
+	private function assertLogging( $user, $key, $num = null ) {
 		$logs = [];
-		for ( $i = 0; $i <= $index; $i++ ) {
+		if ( $num !== null ) {
 			$params = [
 				'4::key' => $key,
 			];
-			if ( $index !== null ) {
-				$params['5::index'] = $i;
+			for ( $i = 0; $i < $num; $i++ ) {
+				$logs[] = [
+					Constants::LOG_TYPE,
+					$key,
+					serialize( array_merge( $params,
+						[ '5::index' => $i ] ) )
+				];
 			}
+		} else {
 			$logs[] = [
 				Constants::LOG_TYPE,
 				$key,
-				serialize( $params )
+				serialize( [ '4::key' => $key, ] )
 			];
 		}
 
+		$dbr = wfGetDB( DB_REPLICA );
 		$this->assertSelect(
 			'logging',
 			[ 'log_type', 'log_action', 'log_params' ],
@@ -83,71 +92,91 @@ class AchievementTest extends MediaWikiIntegrationTestCase {
 				'log_type' => Constants::LOG_TYPE,
 				'log_action' => $key,
 				'log_actor' => $user->getActorId(),
+				$dbr->bitAnd( 'log_deleted', LogPage::DELETED_ACTION | LogPage::DELETED_USER ) . ' = 0 ',
 			],
 			$logs
 		);
 	}
 
-	/**
-	 * @covers \MediaWiki\Extension\AchievementBadges\Achievement::sendStats
-	 */
-	public function testSendStats() {
-		$key = 'test-achievements';
-		$key2 = 'test-achievements-2';
-		$this->setMwGlobals( 'wg' . Constants::CONFIG_KEY_ACHIEVEMENTS, [
-			$key => [
-				'type' => 'stats',
-				'thresholds' => [ 1, 10, 100 ],
+	/** @return array */
+	public static function provideStatsAchievements() {
+		return [
+			[
+				// key
+				'test-achievement-first',
+				// thresholds
+				[ 1, 10, 100 ],
+				[
+					// stats, expected earned number
+					[ 1, 1 ],
+					[ 2, 1 ],
+					[ 9, 1 ],
+					[ 10, 2 ],
+					[ 100, 3 ],
+				]
 			],
-			$key2 => [
-				'type' => 'stats',
-				'thresholds' => [ 1, 3 ],
+			[
+				'test-achievement-second',
+				[ 1, 3 ],
+				[
+					[ 0, 0 ],
+					[ 1, 1 ],
+					[ 2, 1 ],
+					[ 3, 2 ],
+				]
 			],
-		] );
-		$user = $this->getTestUser()->getUser();
-
-		$this->expectException( MWException::class );
-		Achievement::sendStats( [ 'user' => $user, 'stats' => 1 ],
-			'Calls to sendStats without key should throw exception' );
-
-		$info = [
-			'key' => $key,
-			'user' => $user,
+			[
+				'test-achievement-third',
+				[ 1, 10, 100 ],
+				[
+					[ 30, 2 ],
+					[ 31, 2 ],
+					[ 32, 2 ],
+				]
+			],
 		];
-		$info['stats'] = 1;
-		Achievement::sendStats( $info );
-		$this->assertLogging( $user, $key, 0 );
-		$info['stats'] = 2;
-		Achievement::sendStats( $info );
-		$this->assertLogging( $user, $key, 0 );
-		$info['stats'] = 9;
-		Achievement::sendStats( $info );
-		$this->assertLogging( $user, $key, 0 );
-		$info['stats'] = 10;
-		Achievement::sendStats( $info );
-		$this->assertLogging( $user, $key, 1 );
-		$info['stats'] = 100;
-		Achievement::sendStats( $info );
-		$this->assertLogging( $user, $key, 2 );
-
-		# Test 2
-		$info['key'] = $key2;
-		$info['stats'] = 0;
-		Achievement::sendStats( $info );
-		$this->assertLogging( $user, $key, 0 );
-		$info['stats'] = 1;
-		Achievement::sendStats( $info );
-		$this->assertLogging( $user, $key, 1 );
-		$info['stats'] = 2;
-		Achievement::sendStats( $info );
-		$this->assertLogging( $user, $key, 1 );
-		$info['stats'] = 3;
-		Achievement::sendStats( $info );
-		$this->assertLogging( $user, $key, 2 );
 	}
 
 	/**
-	 * @todo Add more data
+	 * @dataProvider provideStatsAchievements
+	 * @covers \MediaWiki\Extension\AchievementBadges\Achievement::sendStats
+	 *
+	 * @param string $key
+	 * @param int[] $thresholds
+	 * @param array $testSets
+	 */
+	public function testSendStats( $key, $thresholds, $testSets ) {
+		$this->setMwGlobals( 'wg' . Constants::CONFIG_KEY_ACHIEVEMENTS, [
+			$key => [
+				'type' => 'stats',
+				'thresholds' => $thresholds,
+			]
+		] );
+		$user = $this->getTestUser()->getUser();
+
+		foreach ( $testSets as $set ) {
+			list( $stats, $expected ) = $set;
+			Achievement::sendStats( [
+				'key' => $key,
+				'user' => $user,
+				'stats' => $stats,
+			] );
+			$this->assertLogging( $user, $key, $expected );
+		}
+	}
+
+	/**
+	 * @covers \MediaWiki\Extension\AchievementBadges\Achievement::sendStats
+	 */
+	public function testSendStatsWithKey() {
+		$user = $this->getTestUser()->getUser();
+
+		$this->expectException( MWException::class,
+			'Calls to sendStats without key should throw exception' );
+		Achievement::sendStats( [ 'user' => $user, 'stats' => 1 ] );
+	}
+
+	/**
 	 * @return array
 	 */
 	public static function provideIconPaths() {
