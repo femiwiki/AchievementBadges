@@ -127,10 +127,6 @@ class AchieveTest extends MediaWikiIntegrationTestCase {
 				'thresholds' => [ 10, 100 ],
 			],
 		] );
-		$this->setMwGlobals( 'wg' . Constants::CONFIG_KEY_DISABLED_ACHIEVEMENTS, [
-			Constants::ACHV_KEY_EDIT_PAGE,
-			Constants::ACHV_KEY_CREATE_PAGE,
-			] );
 
 		$this->editPage( 'Size test', str_repeat( 'ipsum', 10 ), '', NS_MAIN, $user );
 		$this->assertNotificationNumber( 1, $user, Constants::EVENT_KEY_EARN,
@@ -141,6 +137,29 @@ class AchieveTest extends MediaWikiIntegrationTestCase {
 		$this->assertNotificationNumber( 2, $user, Constants::EVENT_KEY_EARN,
 			"Only edit-size-0 should be achieved" );
 		$this->assertEarnedAchievement( 2, $user, Constants::ACHV_KEY_EDIT_SIZE );
+	}
+
+	public function testAchieveEditSizeExist() {
+		$this->setMwGlobals( 'wg' . Constants::CONFIG_KEY_ACHIEVEMENTS, [
+			Constants::ACHV_KEY_EDIT_SIZE => [
+				'type' => 'stats',
+				'thresholds' => [ 10, 100 ],
+			],
+		] );
+
+		$sysop = self::getTestSysop()->getUser();
+		$titleText = 'Existing size test';
+		$content = str_repeat( 'lorem ipsum', 10 );
+		$this->editPage( $titleText, $content, '', NS_MAIN, $sysop );
+
+		$user = new User();
+		$user->setName( 'ExistingEditSizePageDummy' );
+		$user->addToDatabase();
+
+		$this->editPage( $titleText, $content . 'dolor', '', NS_MAIN, $user );
+		$this->assertNotificationNumber( 0, $user, Constants::EVENT_KEY_EARN,
+			"edit-size-0 should not be achieved" );
+		$this->assertEarnedAchievement( 0, $user, Constants::ACHV_KEY_EDIT_SIZE );
 	}
 
 	public function testAchieveManyEditSize() {

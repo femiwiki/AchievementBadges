@@ -181,11 +181,6 @@ class AchievementRegister implements
 			'user' => $user,
 			'stats' => $user->getEditCount(),
 		] );
-		Achievement::sendStats( [
-			'key' => Constants::ACHV_KEY_EDIT_SIZE,
-			'user' => $user,
-			'stats' => $revisionRecord->getSize(),
-		] );
 		if ( $wikiPage->getTitle()->equals( $user->getUserPage() ) &&
 			$revisionRecord->getSize() > 500 ) {
 				Achievement::achieve( [
@@ -225,6 +220,22 @@ class AchievementRegister implements
 				'user' => $user,
 				'stats' => $newPages,
 			] );
+			Achievement::sendStats( [
+				'key' => Constants::ACHV_KEY_EDIT_SIZE,
+				'user' => $user,
+				'stats' => $revisionRecord->getSize(),
+			] );
+		} else {
+			$parentRevision = $revisionRecord->getParentId();
+			$parentRevision = $this->revisionStore->getRevisionById( $parentRevision );
+			$diff = $revisionRecord->getSize() - $parentRevision->getSize();
+			if ( $diff > 0 ) {
+				Achievement::sendStats( [
+					'key' => Constants::ACHV_KEY_EDIT_SIZE,
+					'user' => $user,
+					'stats' => $diff,
+				] );
+			}
 		}
 	}
 }
