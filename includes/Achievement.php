@@ -53,7 +53,8 @@ class Achievement {
 		if ( in_array( $key, $unRegistry ) ) {
 			return;
 		} elseif ( !isset( $registry[$key] ) ) {
-			throw new MWException( "Unknown achievement key: {$key}" );
+			self::getLogger()->warning( "Unknown achievement key: {$key}" );
+			return;
 		}
 		$type = $registry[$key]['type'] ?? 'instant';
 		if ( $type !== 'instant' ) {
@@ -99,7 +100,8 @@ class Achievement {
 		if ( in_array( $key, $unRegistry ) ) {
 			return;
 		} elseif ( !isset( $registry[$key] ) ) {
-			throw new MWException( "Unknown achievement key: {$key}" );
+			self::getLogger()->warning( "Unknown achievement key: {$key}" );
+			return;
 		}
 		if ( $registry[$key]['type'] !== 'stats' ) {
 			throw new MWException( "Only instant achievement can be called by " . __METHOD__ );
