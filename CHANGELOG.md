@@ -10,7 +10,14 @@ New configuration:
 
 Enhancements:
 
-- Add new achievements: sign-up, enable-achievement-badges, edit-page, create-page, long-user-page, edit-size.
+- Add new achievements:
+  - sign-up
+  - enable-achievement-badges
+  - edit-page
+  - create-page
+  - long-user-page
+  - edit-size
+  - contribs-{sun,mon,tues,wednes,thurs,fri,satur}day
 - Changes in Special:Achievements:
   - Add icon, body text and timestamp to each achievement.
   - Add an animation.

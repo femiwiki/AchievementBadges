@@ -10,6 +10,7 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
+use MWTimestamp;
 use User;
 use Wikimedia\Rdbms\ILoadBalancer;
 
@@ -51,6 +52,16 @@ class AchievementRegister implements
 		$this->revisionStore = $revisionStore;
 	}
 
+	private const WEEKDAYS = [
+		Constants::ACHV_KEY_CONTRIBS_SUNDAY,
+		Constants::ACHV_KEY_CONTRIBS_MONDAY,
+		Constants::ACHV_KEY_CONTRIBS_TUESDAY,
+		Constants::ACHV_KEY_CONTRIBS_WEDNESDAY,
+		Constants::ACHV_KEY_CONTRIBS_THURSDAY,
+		Constants::ACHV_KEY_CONTRIBS_FRIDAY,
+		Constants::ACHV_KEY_CONTRIBS_SATURDAY,
+	];
+
 	/**
 	 * @inheritDoc
 	 */
@@ -89,6 +100,12 @@ class AchievementRegister implements
 			'thresholds' => [ 1, 5, 30, 100, 300, 1000 ],
 			'priority' => 300,
 		];
+		foreach ( self::WEEKDAYS as $weekday ) {
+			$achievements[$weekday] = [
+				'type' => 'instant',
+				'priority' => 500,
+			];
+		}
 	}
 
 	/**
@@ -176,6 +193,15 @@ class AchievementRegister implements
 					'user' => $user,
 				] );
 		}
+		// Set user's timezone!
+		$userTimestamp = MWTimestamp::getInstance( $revisionRecord->getTimestamp() );
+		$userTimestamp->offsetForUser( $user );
+		$weekday = (int)$userTimestamp->format( 'w' );
+		Achievement::achieve( [
+			'key' => self::WEEKDAYS[$weekday],
+			'user' => $user,
+		] );
+
 		if ( $editResult->isNew() ) {
 			$query = $this->revisionStore->getQueryInfo();
 			$newPages = $this->mDb->selectRowCount(

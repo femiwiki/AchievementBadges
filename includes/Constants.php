@@ -81,6 +81,41 @@ final class Constants {
 	public const ACHV_KEY_CREATE_PAGE = 'create-page';
 
 	/**
+	 * @var string
+	 */
+	public const ACHV_KEY_CONTRIBS_SUNDAY = 'contribs-sunday';
+
+	/**
+	 * @var string
+	 */
+	public const ACHV_KEY_CONTRIBS_MONDAY = 'contribs-monday';
+
+	/**
+	 * @var string
+	 */
+	public const ACHV_KEY_CONTRIBS_TUESDAY = 'contribs-tuesday';
+
+	/**
+	 * @var string
+	 */
+	public const ACHV_KEY_CONTRIBS_WEDNESDAY = 'contribs-wednesday';
+
+	/**
+	 * @var string
+	 */
+	public const ACHV_KEY_CONTRIBS_THURSDAY = 'contribs-thursday';
+
+	/**
+	 * @var string
+	 */
+	public const ACHV_KEY_CONTRIBS_FRIDAY = 'contribs-friday';
+
+	/**
+	 * @var string
+	 */
+	public const ACHV_KEY_CONTRIBS_SATURDAY = 'contribs-saturday';
+
+	/**
 	 * This class is for namespacing constants only. Forbid construction.
 	 * @throws FatalError
 	 */
