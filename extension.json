@@ -26,7 +26,8 @@
     "LocalUserCreated": "achievement-register",
     "PageSaveComplete": "achievement-register",
     "SpecialAchievementsBeforeGetEarned": "achievement-register",
-    "UserSaveSettings": "achievement-register"
+    "UserSaveSettings": "achievement-register",
+    "ChangeTagsAfterUpdateTags": "achievement-register"
   },
   "HookHandlers": {
     "main": {

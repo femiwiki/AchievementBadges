@@ -116,6 +116,11 @@ final class Constants {
 	public const ACHV_KEY_CONTRIBS_SATURDAY = 'contribs-saturday';
 
 	/**
+	 * @var string
+	 */
+	public const ACHV_KEY_VISUAL_EDIT = 'visual-edit';
+
+	/**
 	 * This class is for namespacing constants only. Forbid construction.
 	 * @throws FatalError
 	 */

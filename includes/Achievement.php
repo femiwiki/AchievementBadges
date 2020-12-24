@@ -65,7 +65,7 @@ class Achievement {
 		$count = self::selectLogCount( $key, $user );
 		if ( $count > 0 ) {
 			self::getLogger()->debug( "User $user satisfied the condition of achievement $key," .
-				"but ignored because already achieved it." );
+				' but ignored because already achieved it.' );
 			// The achievement was earned already.
 			return;
 		} else {

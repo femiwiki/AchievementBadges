@@ -15,6 +15,7 @@ use User;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 class AchievementRegister implements
+	\MediaWiki\ChangeTags\Hook\ChangeTagsAfterUpdateTagsHook,
 	\MediaWiki\Auth\Hook\LocalUserCreatedHook,
 	\MediaWiki\Extension\AchievementBadges\Hooks\BeforeCreateAchievementHook,
 	\MediaWiki\Extension\AchievementBadges\Hooks\SpecialAchievementsBeforeGetEarnedHook,
@@ -106,6 +107,20 @@ class AchievementRegister implements
 				'priority' => 500,
 			];
 		}
+		if ( self::isVisualEditorTagUsed() ) {
+			$achievements[Constants::ACHV_KEY_VISUAL_EDIT] = [
+				'type' => 'instant',
+				'priority' => 400,
+			];
+		}
+	}
+
+	/** @return bool */
+	private static function isVisualEditorTagUsed() {
+		$config = MediaWikiServices::getInstance()->getMainConfig();
+
+		return ExtensionRegistry::getInstance()->isLoaded( 'VisualEditor' )
+			&& $config->get( 'VisualEditorUseChangeTagging' );
 	}
 
 	/**
@@ -197,15 +212,17 @@ class AchievementRegister implements
 			'user' => $user,
 		] );
 
+		$dbr = $this->mDb;
+
 		if ( $editResult->isNew() ) {
 			$query = $this->revisionStore->getQueryInfo();
-			$newPages = $this->mDb->selectRowCount(
+			$newPages = $dbr->selectRowCount(
 				$query['tables'],
 				'*',
 				[
 					'actor_user' => $user->getId(),
 					'rev_parent_id' => 0,
-					$this->mDb->bitAnd(
+					$dbr->bitAnd(
 						'rev_deleted', RevisionRecord::DELETED_USER
 						) . ' != ' . RevisionRecord::DELETED_USER,
 				],
@@ -236,6 +253,20 @@ class AchievementRegister implements
 					'stats' => $diff,
 				] );
 			}
+		}
+	}
+
+	/** @inheritDoc */
+	public function onChangeTagsAfterUpdateTags( $addedTags, $removedTags,
+		$prevTags, $rc_id, $rev_id, $log_id, $params, $rc, $user ) {
+		if ( self::isVisualEditorTagUsed() && in_array( 'visualeditor', $addedTags ) ) {
+			// The given $user is empty when visual editing
+			$user = $this->revisionStore->getRevisionById( $rev_id )->getUser();
+			$user = User::newFromIdentity( $user );
+			Achievement::achieve( [
+				'key' => Constants::ACHV_KEY_VISUAL_EDIT,
+				'user' => $user,
+			] );
 		}
 	}
 }
