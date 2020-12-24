@@ -4,6 +4,7 @@ namespace MediaWiki\Extension\AchievementBadges\Special;
 
 use BetaFeatures;
 use LogEntryBase;
+use LogPage;
 use MediaWiki\Extension\AchievementBadges\Achievement;
 use MediaWiki\Extension\AchievementBadges\Constants;
 use MediaWiki\Extension\AchievementBadges\Hooks\HookRunner;
@@ -167,7 +168,7 @@ class SpecialAchievements extends SpecialPage {
 			[
 				'log_type' => Constants::LOG_TYPE,
 				'actor_user' => $user->getId(),
-				'log_deleted = 0',
+				$dbr->bitAnd( 'log_deleted', LogPage::DELETED_ACTION | LogPage::DELETED_USER ) . ' = 0 ',
 			],
 			__METHOD__,
 			[],

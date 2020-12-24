@@ -174,7 +174,7 @@ class Achievement {
 				$dbr->bitAnd( 'log_deleted', LogPage::DELETED_ACTION | LogPage::DELETED_USER ) . ' = 0 ',
 			],
 			__METHOD__,
-			[ 'DISTINCT' ],
+			[],
 			[
 				'actor' => [ 'JOIN', 'actor_id = log_actor' ],
 			]
