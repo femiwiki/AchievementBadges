@@ -222,7 +222,7 @@ class AchievementTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testGetAchievementIcon( $langCode, $path, $expected ) {
 		$lang = Language::factory( $langCode );
-		$this->assertEquals( Achievement::getAchievementIcon( $lang, $path ), $expected,
+		$this->assertEquals( $expected, Achievement::getAchievementIcon( $lang, $path ),
 			"Should be $expected" );
 	}
 
@@ -232,7 +232,7 @@ class AchievementTest extends MediaWikiIntegrationTestCase {
 	public function testAchievementIconFallback() {
 		$lang = Language::factory( 'en' );
 		$this->setMwGlobals( 'wg' . Constants::CONFIG_KEY_ACHIEVEMENT_FALLBACK_ICON, 'foo/bar.png' );
-		$this->assertEquals( Achievement::getAchievementIcon( $lang ), 'foo/bar.png',
+		$this->assertEquals( 'foo/bar.png', Achievement::getAchievementIcon( $lang ),
 			'A call without any parameter falls back' );
 	}
 }
