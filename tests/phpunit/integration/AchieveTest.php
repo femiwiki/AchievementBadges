@@ -39,30 +39,18 @@ class AchieveTest extends MediaWikiIntegrationTestCase {
 	}
 
 	private function assertEarnedAchievement( $num, $user, $key ) {
-		$logs = [];
-		for ( $i = 0; $i < $num; $i++ ) {
-			$logs[] = [
-				Constants::LOG_TYPE,
-				$key,
-				serialize( [
-					'4::key' => $key,
-					'5::index' => $i,
-				] )
-			];
-		}
-
 		$dbr = wfGetDB( DB_REPLICA );
-		$this->assertSelect(
+		$actual = $dbr->selectRowCount(
 			'logging',
-			[ 'log_type', 'log_action', 'log_params' ],
+			'*',
 			[
 				'log_type' => Constants::LOG_TYPE,
 				'log_action' => $key,
 				'log_actor' => $user->getActorId(),
 				$dbr->bitAnd( 'log_deleted', LogPage::DELETED_ACTION | LogPage::DELETED_USER ) . ' = 0 ',
-			],
-			$logs
+			]
 		);
+		$this->assertSame( $num, $actual );
 	}
 
 	public function testAchieveEditPages() {
@@ -178,15 +166,19 @@ class AchieveTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testLongUserPage() {
+		global $wgAchievementBadgesAchievements;
+		$this->setMwGlobals( 'wg' . Constants::CONFIG_KEY_ACHIEVEMENTS, [
+			Constants::ACHV_KEY_LONG_USER_PAGE => $wgAchievementBadgesAchievements[Constants::ACHV_KEY_LONG_USER_PAGE]
+		] );
 		$user = new User();
 		$user->setName( 'UserPageDummy' );
 		$user->addToDatabase();
 		$longText = str_repeat( 'lorem ipsum dolor amat', 40 );
 
 		$this->editPage( $user->getName(), $longText, '', NS_USER, $user );
-		$this->assertNotificationNumber( 3, $user, Constants::EVENT_KEY_EARN,
-			'Should be achieved long-user-page, create-page1, edit-page1' );
-		$this->assertEarnedAchievement( 1, $user, Constants::ACHV_KEY_EDIT_PAGE );
+		$this->assertNotificationNumber( 1, $user, Constants::EVENT_KEY_EARN,
+			'Should be achieved long-user-page' );
+		$this->assertEarnedAchievement( 1, $user, Constants::ACHV_KEY_LONG_USER_PAGE );
 	}
 
 	public function testAchieveSignIn() {

@@ -38,15 +38,15 @@ class SpecialAchievementsTest extends SpecialPageTestBase {
 		$this->assertStringContainsString( '(achievementbadges-disabled)', $html,
 			'A registered user cannot see Special:Achievements if not enabled it' );
 
-		$this->expectException( UserNotLoggedIn::class );
-		$this->executeSpecialPage( '', null, 'qqx', null );
+		try {
+			$this->executeSpecialPage( '', null, 'qqx', null );
+		} catch ( UserNotLoggedIn $e ) {
+		}
 		$this->assertStringContainsString( '(achievementbadges-disabled)', $html,
 			'An anonymous user cannot see Special:Achievements during beta period' );
 
 		$user = $this->getMutableTestUser()->getUser();
 		$user->setOption( Constants::PREF_KEY_ACHIEVEMENT_ENABLE, '1' );
-		$this->expectException( MWException::class,
-			'Saving preferences during the test throws exception because the unregistered sign-up achievement' );
 		$user->saveSettings();
 		list( $html, ) = $this->executeSpecialPage( '', null, 'qqx', $user );
 		$this->assertStringContainsString( '(special-achievements-header-not-earning-achievements)', $html,

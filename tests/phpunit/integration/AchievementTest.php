@@ -168,7 +168,7 @@ class AchievementTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @covers \MediaWiki\Extension\AchievementBadges\Achievement::sendStats
 	 */
-	public function testSendStatsWithKey() {
+	public function testSendStatsWithoutKey() {
 		$user = $this->getTestUser()->getUser();
 
 		$this->expectException( MWException::class,
