@@ -22,19 +22,19 @@
     "BeforeCreateEchoEvent": "MediaWiki\\Extension\\AchievementBadges\\HookHandler\\Main::onBeforeCreateEchoEvent",
     "BeforeEchoEventInsert": "MediaWiki\\Extension\\AchievementBadges\\HookHandler\\Main::onBeforeEchoEventInsert",
     "GetBetaFeaturePreferences": "MediaWiki\\Extension\\AchievementBadges\\HookHandler\\Main::onGetBetaFeaturePreferences",
-    "BeforeCreateAchievement": "achievement-register",
-    "LocalUserCreated": "achievement-register",
-    "PageSaveComplete": "achievement-register",
-    "SpecialAchievementsBeforeGetEarned": "achievement-register",
-    "UserSaveSettings": "achievement-register",
-    "ChangeTagsAfterUpdateTags": "achievement-register"
+    "BeforeCreateAchievement": "AchievementRegister",
+    "LocalUserCreated": "AchievementRegister",
+    "PageSaveComplete": "AchievementRegister",
+    "SpecialAchievementsBeforeGetEarned": "AchievementRegister",
+    "UserSaveSettings": "AchievementRegister",
+    "ChangeTagsAfterUpdateTags": "AchievementRegister"
   },
   "HookHandlers": {
-    "main": {
+    "Main": {
       "class": "MediaWiki\\Extension\\AchievementBadges\\HookHandler\\Main",
       "services": ["MainConfig"]
     },
-    "achievement-register": {
+    "AchievementRegister": {
       "class": "MediaWiki\\Extension\\AchievementBadges\\HookHandler\\AchievementRegister",
       "services": ["MainConfig", "DBLoadBalancer", "RevisionStore"]
     }

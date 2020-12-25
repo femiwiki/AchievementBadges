@@ -13,6 +13,7 @@ use MediaWiki\Revision\RevisionStore;
 use MWTimestamp;
 use User;
 use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\MaintainableDBConnRef;
 
 class AchievementRegister implements
 	\MediaWiki\ChangeTags\Hook\ChangeTagsAfterUpdateTagsHook,
@@ -29,7 +30,7 @@ class AchievementRegister implements
 		private $config;
 
 		/**
-		 * @var ILoadBalancer
+		 * @var MaintainableDBConnRef
 		 */
 		private $mDb;
 
@@ -230,7 +231,7 @@ class AchievementRegister implements
 				[
 					'LIMIT' => 1000,
 				],
-				$query['joins'],
+				$query['joins']
 			);
 			Achievement::sendStats( [
 				'key' => Constants::ACHV_KEY_CREATE_PAGE,

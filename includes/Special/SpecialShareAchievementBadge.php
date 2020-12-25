@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Extension\AchievementBadges\Special;
 
-use Html;
 use LogPage;
 use MediaWiki\Extension\AchievementBadges\Achievement;
 use MediaWiki\Extension\AchievementBadges\Constants;
@@ -55,14 +54,14 @@ class SpecialShareAchievementBadge extends SpecialPage {
 		list( $obtainerText, $suffixedKey ) = $split;
 		preg_match( '/(.+)\-(\d+)/', $suffixedKey, $matches );
 		if ( empty( $matches ) ) {
-			$suffixedKey = null;
+			$key = $suffixedKey;
 		} else {
 			$key = $matches[1];
 			$index = $matches[2];
 		}
 
 		$registry = $config->get( Constants::CONFIG_KEY_ACHIEVEMENTS );
-		if ( !array_key_exists( $key ?? $suffixedKey, $registry ) ) {
+		if ( !array_key_exists( $key, $registry ) ) {
 			$out->addWikiTextAsInterface( $this->msg( 'special-shareachievementsbadge-invalid' )->text() );
 			return;
 		}
@@ -98,7 +97,7 @@ class SpecialShareAchievementBadge extends SpecialPage {
 		list( $timePeriod, $timestamp ) = Achievement::getHumanTimes( $this->getLanguage(), $viewer,
 			$row->log_timestamp );
 
-		$achvName = $this->msg( 'achievement-name-' . ( $suffixedKey ?? $key ), $obtainer->getName() )->parse();
+		$achvName = $this->msg( 'achievement-name-' . ( $suffixedKey ), $obtainer->getName() )->parse();
 		$iconPath = Achievement::getAchievementIcon( $this->getLanguage(), $registry['icon'] ?? null );
 		$out->addHTML( $this->templateParser->processTemplate( 'SpecialShareAchievementBadge', [
 			'text-name' => $achvName,
@@ -117,16 +116,13 @@ class SpecialShareAchievementBadge extends SpecialPage {
 		$meta['og:site_name'] = $sitename;
 		$meta['og:title'] = $achvName;
 		$meta['og:description'] =
-			$this->msg( 'achievement-description-' . ( $suffixedKey ?? $key ), $obtainer->getName() );
+			$this->msg( 'achievement-description-' . ( $suffixedKey ), $obtainer->getName() );
 		$meta['og:image'] = wfExpandUrl( $iconPath );
 
 		foreach ( $meta as $property => $value ) {
-			$out->addHeadItem(
-				"meta:property:$property",
-				Html::element( 'meta', [
-					'property' => $property,
-					'content' => $value
-				] )
+			$out->addMeta(
+				$property,
+				$value
 			);
 		}
 	}

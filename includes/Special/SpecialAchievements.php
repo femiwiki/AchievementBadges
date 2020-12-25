@@ -118,7 +118,7 @@ class SpecialAchievements extends SpecialPage {
 	}
 
 	/**
-	 * @param array $key
+	 * @param string $key
 	 * @param string $icon
 	 * @param user $user
 	 * @param bool $isEarned

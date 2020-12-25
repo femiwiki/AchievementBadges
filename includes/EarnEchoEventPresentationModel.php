@@ -47,8 +47,11 @@ class EarnEchoEventPresentationModel extends EchoEventPresentationModel {
 	 * @inheritDoc
 	 */
 	public function getPrimaryLink() {
+		if ( !$this->achievementKey ) {
+			return false;
+		}
 		$key = 'achievement-' . $this->achievementKey;
-		$title = SpecialPage::getTitleFor( SpecialAchievements::PAGE_NAME, false, $key ?? '' );
+		$title = SpecialPage::getTitleFor( SpecialAchievements::PAGE_NAME, false, $key );
 		$link = $this->getPageLink( $title, '', true );
 		return $link;
 	}

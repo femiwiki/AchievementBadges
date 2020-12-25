@@ -59,7 +59,7 @@ class Achievement {
 		$type = $registry[$key]['type'] ?? 'instant';
 		if ( $type !== 'instant' ) {
 			throw new MWException(
-				"$__METHOD__ is called with only an instant achievement, but $key is not" );
+				__METHOD__ . "is called with only an instant achievement, but $key is not" );
 		}
 
 		$count = self::selectLogCount( $key, $user );

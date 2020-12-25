@@ -105,7 +105,7 @@ class Main {
 	public static function onBeforeEchoEventInsert( EchoEvent $event ) {
 		// Below code make Echo tests to fail
 		if ( defined( 'MW_PHPUNIT_TEST' ) ) {
-			return;
+			return true;
 		}
 
 		$config = MediaWikiServices::getInstance()->getMainConfig();
