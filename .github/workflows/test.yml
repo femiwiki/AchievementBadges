@@ -115,9 +115,8 @@ jobs:
         if: ${{ matrix.stage == 'phan' }}
         run: |
           # @todo Use composer-merge-plugin
+          composer install --prefer-dist --no-progress --no-interaction # $GITHUB_WORKSPACE
           composer install --prefer-dist --no-progress --no-interaction --working-dir /home/runner/src
-          composer install --prefer-dist --no-progress --no-interaction --working-dir \
-            /home/runner/src/extensions/"${{ github.event.repository.name }}"
       - name: Main Test
         run: |
           cd /home/runner
@@ -127,11 +126,11 @@ jobs:
           sudo chown -R nobody:nogroup src cache
           sudo chown $(id -u):$(id -g) src cache
           if [ "${{ matrix.stage }}" == phan ]; then
-          docker run \
-            -e THING_SUBNAME=extensions/"${{ github.event.repository.name }}" \
-            -v "$(pwd)"/src:/mediawiki \
-            "${DOCKER_REGISTRY}/${DOCKER_ORG}/${DOCKER_IMAGE}:${DOCKER_LATEST_TAG}" \
-            --color
+            docker run \
+              -e THING_SUBNAME=extensions/"${{ github.event.repository.name }}" \
+              -v "$(pwd)"/src:/mediawiki \
+              "${DOCKER_REGISTRY}/${DOCKER_ORG}/${DOCKER_IMAGE}:${DOCKER_LATEST_TAG}" \
+              --color
           else
             docker run \
               -e ZUUL_PROJECT=mediawiki/extensions/"${{ github.event.repository.name }}" \
