@@ -1,6 +1,6 @@
 # Changelog
 
-## v0.0.2 (Unreleased)
+## v0.0.2
 
 New configuration:
 
