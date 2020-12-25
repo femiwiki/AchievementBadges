@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.0.3 (Unreleased)
+
+- Run prettier on YAML.
+
 ## v0.0.2
 
 New configuration:

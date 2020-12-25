@@ -5,9 +5,9 @@
   "scripts": {
     "test": "npm -s run lint",
     "lint": "npm -s run lint:prettier && npm -s run lint:i18n",
-    "lint:prettier": "prettier '**/*.{js,json,css,less,md}' --check",
+    "lint:prettier": "prettier '**/*.{js,json,css,less,md,yml}' --check",
     "lint:i18n": "banana-checker --requireLowerCase=0 i18n/",
-    "fix": "prettier '**/*.{js,json,css,less,md}' --write"
+    "fix": "prettier '**/*.{js,json,css,less,md,yml}' --write"
   },
   "devDependencies": {
     "grunt-banana-checker": "0.9.0",
