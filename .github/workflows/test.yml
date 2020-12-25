@@ -2,14 +2,9 @@ name: Quibble and Phan
 
 on:
   push:
-    branches:
-      - '*'
   pull_request:
-    branches:
-      - '*'
 
 env:
-  MEDIAWIKI_VERSION: master
   DOCKER_REGISTRY: docker-registry.wikimedia.org
   DOCKER_ORG: releng
   QUIBBLE_DOCKER_IMAGE: quibble-stretch-php73
@@ -54,6 +49,12 @@ jobs:
       # https://github.community/t/support-for-yaml-anchors/16128
       - name: Set up
         run: |
+          if [ "${GITHUB_EVENT_NAME}" == 'push' ]; then
+            echo "MEDIAWIKI_VERSION=$(echo $GITHUB_REF | cut -d'/' -f3 | cut -d'-' -f1)" >> $GITHUB_ENV
+          else
+            echo MEDIAWIKI_VERSION=master >> $GITHUB_ENV
+          fi
+
           if [ "${{ matrix.stage }}" == phan ]; then
             export DOCKER_IMAGE="${PHAN_DOCKER_IMAGE}"
           else
