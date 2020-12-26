@@ -1,3 +1,9 @@
+# If you see this message on 'femiwiki/.github' repository, please keep in mind all changes of this
+# workflow file is for being copied to other repository.
+# If you see this message on any other repositories, DO NOT edit and commit that file. You should
+# edit https://github.com/femiwiki/.github/blob/master/workflows-template/extension-test.yml Instead
+# of this.
+
 name: Quibble and Phan
 
 on:
