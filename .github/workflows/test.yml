@@ -9,14 +9,6 @@ env:
   DOCKER_ORG: releng
   QUIBBLE_DOCKER_IMAGE: quibble-stretch-php73
   PHAN_DOCKER_IMAGE: mediawiki-phan-php73
-  # includes deps of deps
-  # @todo auto generate below by inspecting https://raw.githubusercontent.com/wikimedia/integration-config/master/zuul/parameter_functions.py
-  DEPENDENCIES: >-
-    mediawiki/extensions/BetaFeatures
-    mediawiki/extensions/Echo
-    mediawiki/extensions/CentralAuth
-    mediawiki/extensions/EventLogging
-    mediawiki/extensions/EventStreamConfig
 
 jobs:
   test:
@@ -49,6 +41,9 @@ jobs:
       # https://github.community/t/support-for-yaml-anchors/16128
       - name: Set up
         run: |
+          source .github/workflows/.test-env
+          echo "DEPENDENCIES=${DEPENDENCIES}" >> $GITHUB_ENV
+
           if [ "${GITHUB_EVENT_NAME}" == 'push' ]; then
             echo "MEDIAWIKI_VERSION=$(echo $GITHUB_REF | cut -d'/' -f3 | cut -d'-' -f1)" >> $GITHUB_ENV
           else
@@ -67,9 +62,6 @@ jobs:
             python3 -c 'import json;print("\n".join(json.loads(input())["tags"]))' |
             grep -v latest | sort -Vr | head -1)" >> $GITHUB_ENV
 
-          # Used by actions/cache
-          echo $DEPENDENCIES > .dependencies
-
       - name: Cache docker image
         uses: actions/cache@v2
         with:
@@ -84,7 +76,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: /home/runner/src
-          key: ${{ env.MEDIAWIKI_VERSION }}-${{ hashFiles('.dependencies') }}
+          key: ${{ env.MEDIAWIKI_VERSION }}-${{ hashFiles('.github/workflows/.test-env') }}
       - name: Download MediaWiki and extensions
         run: |
           cd /home/runner
