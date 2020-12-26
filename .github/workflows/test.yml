@@ -70,11 +70,6 @@ jobs:
           # Used by actions/cache
           echo $DEPENDENCIES > .dependencies
 
-          # Make directories
-          cd /home/runner
-          mkdir -p cache
-          chmod 777 cache
-
       - name: Cache docker image
         uses: actions/cache@v2
         with:
@@ -82,7 +77,7 @@ jobs:
           key: ${{ env.DOCKER_IMAGE }}:${{ env.DOCKER_LATEST_TAG }}
       - name: Load or pull docker image
         run: |
-          docker load -i /home/runner/docker-image/"${DOCKER_IMAGE}" || \
+          docker load -i /home/runner/docker-images/"${DOCKER_IMAGE}" || \
             docker pull "${DOCKER_REGISTRY}/${DOCKER_ORG}/${DOCKER_IMAGE}:${DOCKER_LATEST_TAG}"
 
       - name: Cache MediaWiki installation
@@ -123,7 +118,8 @@ jobs:
           cd /home/runner
           # Move our extension
           sudo cp -r "${GITHUB_WORKSPACE}" src/extensions/
-          chmod 777 src
+          mkdir -p cache
+          chmod 777 src cache
           sudo chown -R nobody:nogroup src cache
           sudo chown $(id -u):$(id -g) src cache
           if [ "${{ matrix.stage }}" == phan ]; then
