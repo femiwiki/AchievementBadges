@@ -235,4 +235,28 @@ class AchievementTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( 'foo/bar.png', Achievement::getAchievementIcon( $lang ),
 			'A call without any parameter falls back' );
 	}
+
+	/** @return array */
+	public static function provideKeys() {
+		return [
+			[ 'foo', 'foo', 'foo', null ],
+			[ 'foo-0', 'foo-0', 'foo', 0 ],
+			[ 'foo-1', 'foo-1', 'foo', 1 ],
+			[ 'foo-bar-1', 'foo-bar-1', 'foo-bar', 1 ],
+		];
+	}
+
+	/**
+	 * @dataProvider provideKeys
+	 * @covers \MediaWiki\Extension\AchievementBadges\Achievement::extractKeySegments()
+	 *
+	 * @param string $key
+	 * @param string $suffixedKey
+	 * @param string $unsuffixedKey
+	 * @param int|null $index
+	 */
+	public function testExtractKeySegments( $key, $suffixedKey, $unsuffixedKey, $index ) {
+		$actual = Achievement::extractKeySegments( $key );
+		$this->assertEquals( [ $suffixedKey, $unsuffixedKey, $index ], $actual );
+	}
 }

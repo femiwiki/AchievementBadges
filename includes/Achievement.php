@@ -267,6 +267,26 @@ class Achievement {
 	}
 
 	/**
+	 * @param string $key An achievement key that could be either key with number for stats achievement
+	 * or key without number for instant achievement.
+	 * @return array|bool
+	 * 0: Suffixed key (ex: 'edit-page-0')
+	 * 1: Unsuffixed key (ex: 'edit-page')
+	 * 2: index (ex: 0)
+	 */
+	public static function extractKeySegments( $key ) {
+		preg_match( '/(.+)\-(\d+)/', $key, $matches );
+		if ( empty( $matches ) ) {
+			return [ $key, $key, null ];
+		} elseif ( count( $matches ) == 3 ) {
+			array_shift( $matches );
+			return [ $key, $matches[0], (int)$matches[1] ];
+		} else {
+			return false;
+		}
+	}
+
+	/**
 	 * @return LoggerInterface
 	 */
 	private static function getLogger(): LoggerInterface {

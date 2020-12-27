@@ -51,17 +51,13 @@ class SpecialShareAchievementBadge extends SpecialPage {
 			$out->addWikiTextAsInterface( $this->msg( 'special-shareachievementsbadge-invalid' )->text() );
 			return;
 		}
-		list( $obtainerText, $suffixedKey ) = $split;
-		preg_match( '/(.+)\-(\d+)/', $suffixedKey, $matches );
-		if ( empty( $matches ) ) {
-			$key = $suffixedKey;
-		} else {
-			$key = $matches[1];
-			$index = $matches[2];
-		}
+
+		list( $obtainerText, $key ) = $split;
+		list( $suffixedKey, $unsuffixedKey, ) = Achievement::extractKeySegments( $key );
+		$type = $suffixedKey == $unsuffixedKey ? 'instant' : 'stats';
 
 		$registry = $config->get( Constants::CONFIG_KEY_ACHIEVEMENTS );
-		if ( !array_key_exists( $key, $registry ) ) {
+		if ( !array_key_exists( $unsuffixedKey, $registry ) ) {
 			$out->addWikiTextAsInterface( $this->msg( 'special-shareachievementsbadge-invalid' )->text() );
 			return;
 		}
@@ -71,7 +67,11 @@ class SpecialShareAchievementBadge extends SpecialPage {
 			return;
 		}
 
-		$registry = $registry[$key];
+		$registry = $registry[$unsuffixedKey];
+		if ( $registry['type'] != $type ) {
+			$out->addWikiTextAsInterface( $this->msg( 'special-shareachievementsbadge-invalid' )->text() );
+			return;
+		}
 		$dbr = wfGetDB( DB_REPLICA );
 		$row = $dbr->selectRow(
 			[ 'logging', 'actor' ],
@@ -80,7 +80,7 @@ class SpecialShareAchievementBadge extends SpecialPage {
 			],
 			[
 				'log_type' => Constants::LOG_TYPE,
-				'log_action' => $key,
+				'log_action' => $unsuffixedKey,
 				'actor_user' => $obtainer->getId(),
 				$dbr->bitAnd( 'log_deleted', LogPage::DELETED_ACTION | LogPage::DELETED_USER ) . ' = 0 ',
 			],
