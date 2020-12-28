@@ -10,7 +10,9 @@ use MediaWiki\Extension\AchievementBadges\Hooks\HookRunner;
 use MediaWiki\MediaWikiServices;
 use User;
 
-class Main {
+class Main implements
+	\MediaWiki\ResourceLoader\Hook\ResourceLoaderGetConfigVarsHook
+	{
 
 	/**
 	 * @var Config
@@ -121,5 +123,14 @@ class Main {
 			return false;
 		}
 		return true;
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function onResourceLoaderGetConfigVars( array &$vars, $skin, Config $config ) : void {
+		$vars['wg' . Constants::CONFIG_KEY_FACEBOOK_APP_ID] = MediaWikiServices::getInstance()
+			->getMainConfig()
+			->get( Constants::CONFIG_KEY_FACEBOOK_APP_ID );
 	}
 }

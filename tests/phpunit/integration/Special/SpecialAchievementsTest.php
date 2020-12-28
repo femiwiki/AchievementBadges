@@ -17,9 +17,7 @@ use UserNotLoggedIn;
 class SpecialAchievementsTest extends SpecialPageTestBase {
 
 	/**
-	 * Returns a new instance of the special page under test.
-	 *
-	 * @return SpecialPage
+	 * @inheritDoc
 	 */
 	protected function newSpecialPage() {
 		return new SpecialAchievements();

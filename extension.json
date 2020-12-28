@@ -22,6 +22,7 @@
     "BeforeCreateEchoEvent": "MediaWiki\\Extension\\AchievementBadges\\HookHandler\\Main::onBeforeCreateEchoEvent",
     "BeforeEchoEventInsert": "MediaWiki\\Extension\\AchievementBadges\\HookHandler\\Main::onBeforeEchoEventInsert",
     "GetBetaFeaturePreferences": "MediaWiki\\Extension\\AchievementBadges\\HookHandler\\Main::onGetBetaFeaturePreferences",
+    "ResourceLoaderGetConfigVars": "Main",
     "BeforeCreateAchievement": "AchievementRegister",
     "LocalUserCreated": "AchievementRegister",
     "PageSaveComplete": "AchievementRegister",
@@ -53,6 +54,15 @@
     },
     "ext.achievementbadges.special.shareachievementsbadge.styles": {
       "styles": ["styles/spacial-shareachievementsbadge.less"]
+    },
+    "ext.achievementbadges.special.shareachievementsbadge": {
+      "targets": ["desktop", "mobile"],
+      "scripts": ["shareachievementsbadge.js"],
+      "dependencies": ["ext.achievementbadges.dm", "mediawiki.page.ready"]
+    },
+    "ext.achievementbadges.dm": {
+      "targets": ["desktop", "mobile"],
+      "scripts": ["mw.achievementbadges.js"]
     }
   },
   "LogTypes": ["achievementbadges"],
@@ -93,6 +103,10 @@
     "AchievementBadgesDisabledAchievements": {
       "value": [],
       "description": "Keys of achievements should be excluded."
+    },
+    "AchievementBadgesFacebookAppId": {
+      "value": false,
+      "description": "Facebook App id for SNS sharing."
     }
   },
   "MessagesDirs": {

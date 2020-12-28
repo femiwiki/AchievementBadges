@@ -1,11 +1,48 @@
-.achievement-icon {
-  display: block;
-  margin: auto;
-  width: 14em;
+@import 'achievement.less';
+
+@keyframes coloring {
+  0%,
+  10% {
+    opacity: 40%;
+    filter: grayscale(1);
+  }
+  100% {
+    opacity: 100%;
+    filter: grayscale(0);
+  }
 }
-.achievement-name,
-.achievement-username,
-.achievement-timestamp {
-  display: block;
+
+.message,
+.sub-message {
   text-align: center;
+  margin: 1.5rem 0;
+}
+
+.message {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.achievement {
+  max-width: 30em;
+}
+
+.share-achievement {
+  text-align: center;
+  margin: 3em 0 1em;
+}
+
+.share-media {
+  list-style-type: none;
+  padding: 0;
+  text-align: center;
+
+  li {
+    display: inline-block;
+    border-radius: 1.5em;
+
+    &:not(:last-child) {
+      margin-right: 0.5em;
+    }
+  }
 }

@@ -11,6 +11,7 @@
 ### New configuration
 
 - $wgAchievementBadgesAchievementFallbackOpenGraphImage - This is the path to the fallback image that displays as an Open Graph image Special:ShareAchievementBadge. This is relative to $wgScriptPath and its MIME type should be one of image/jpeg, image/gif or image/png.
+- $wgAchievementBadgesFacebookAppId - If defined, a link to share to Facebook appears in Special:ShareAchievementBadge
 
 ### Enhancements
 
