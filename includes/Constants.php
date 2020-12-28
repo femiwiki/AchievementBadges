@@ -33,6 +33,11 @@ final class Constants {
 	/**
 	 * @var string
 	 */
+	public const CONFIG_KEY_ACHIEVEMENT_FALLBACK_OG_IMAGE = 'AchievementBadgesAchievementFallbackOpenGraphImage';
+
+	/**
+	 * @var string
+	 */
 	public const PREF_KEY_ACHIEVEMENT_ENABLE = 'achievementbadges-beta-feature-achievement-enable';
 
 	/**

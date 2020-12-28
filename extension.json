@@ -69,14 +69,20 @@
       "description": "Whether to suppress edit milestone notifications sent from Echo."
     },
     "AchievementBadgesAchievementFallbackIcon": {
-      "value": false,
+      "value": "extensions/AchievementBadges/images/achievement-icon-fallback.svg",
       "description": [
-        "Path to the fallback icon of achievements. The icon can be different for ltr and rtl languages. icons for specific languages can also specified using the language code.",
+        "Path to the fallback icon of achievements which is relative to the $wgScriptPath. The icon can be different for ltr and rtl languages. icons for specific languages can also specified using the language code.",
         "Example: \"{$wgScriptPath}/static/image/achievement-fallback-icon.svg\"",
         "Example 2:",
         "[ 'ko' => \"$wgScriptPath/static/images/achievement-fallback-icon-ko.png\",",
         "'ltr' => \"$wgScriptPath/static/images/achievement-fallback-icon-ltr.png\",",
         "'rtl' => \"$wgScriptPath/static/images/achievement-fallback-icon-rtl.png\", ]"
+      ]
+    },
+    "AchievementBadgesAchievementFallbackOpenGraphImage": {
+      "value": "extensions/AchievementBadges/images/achievement-og-image-fallback.png",
+      "description": [
+        "Path to the fallback imago of achievements which is showed as an Open Graph image. Could be an array value, like $wgAchievementBadgesAchievementFallbackIcon"
       ]
     },
     "AchievementBadgesAchievements": {

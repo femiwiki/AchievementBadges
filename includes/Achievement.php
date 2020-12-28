@@ -218,12 +218,30 @@ class Achievement {
 		if ( $path === null ) {
 			$config = MediaWikiServices::getInstance()->getMainConfig();
 			$path = $config->get( Constants::CONFIG_KEY_ACHIEVEMENT_FALLBACK_ICON );
-			if ( $path === false ) {
-				return $config->get( 'ExtensionAssetsPath' ) .
-					'/AchievementBadges/images/achievement-icon-fallback.svg';
-			}
 		}
+		return self::getImageForLanguage( $lang, $path );
+	}
 
+	/**
+	 * @param Language $lang
+	 * @param string|array|null $path
+	 * @return string
+	 */
+	public static function getAchievementOgImage( Language $lang, $path = null ) {
+		if ( $path === null ) {
+			$config = MediaWikiServices::getInstance()->getMainConfig();
+			$path = $config->get( Constants::CONFIG_KEY_ACHIEVEMENT_FALLBACK_OG_IMAGE );
+		}
+		return self::getImageForLanguage( $lang, $path );
+	}
+
+	/**
+	 * @param Language $lang
+	 * @param string|array $path
+	 * @return string
+	 */
+	public static function getImageForLanguage( Language $lang, $path ) {
+		$config = MediaWikiServices::getInstance()->getMainConfig();
 		if ( is_array( $path ) ) {
 			if ( array_key_exists( $lang->getCode(), $path ) ) {
 				$path = $path[$lang->getCode()];
@@ -231,8 +249,7 @@ class Achievement {
 				$path = $path[$lang->getDir()];
 			}
 		}
-
-		return $path;
+		return $config->get( 'ScriptPath' ) . "/$path";
 	}
 
 	/**

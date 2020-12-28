@@ -1,6 +1,27 @@
 # Changelog
 
-## v0.0.3 (Unreleased)
+:warning: There could be breaking changes anywhere during major version zero(v0.x.x).
+
+## v0.1.0 (Unreleased)
+
+### Breaking changes
+
+- $wgAchievementBadgesAchievementFallbackIcon - This setting is now relative to $wgScriptPath.
+
+### New configuration
+
+- $wgAchievementBadgesAchievementFallbackOpenGraphImage - This is the path to the fallback image that displays as an Open Graph image Special:ShareAchievementBadge. This is relative to $wgScriptPath and its MIME type should be one of image/jpeg, image/gif or image/png.
+
+### Enhancements
+
+- Provide `<meta name="description">` and `<meta property="og:image">` for Special:ShareAchievementBadge
+
+### Achievement registering changes
+
+- New properties:
+  - `og-image` - An image URL which should represent the achievement within the graph. This is relative to $wgScriptPath. If it is not specified and `icon` property is present, `icon` is used for this.
+
+### Other changes
 
 - Run prettier on YAML.
 
@@ -49,7 +70,7 @@
   - `type` - There is now two type: `'instant'` and `'stats'`. Read [extension.json](extension.json) for details.
   - `priority` - This is used to ordering on Special:Achievements. (default: 1000)
 
-### Other changes:
+### Other changes
 
 - Introduce Quibble tests.
 - Store loggers in classes as a member variable.

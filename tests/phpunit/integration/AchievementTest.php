@@ -179,48 +179,49 @@ class AchievementTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @return array
 	 */
-	public static function provideIconPaths() {
+	public static function provideImagePaths() {
 		return [
-			[ 'en', '/path/to/icon.svg', '/path/to/icon.svg' ],
+			[ 'en', 'path/to/icon.svg', '/wiki/path/to/icon.svg' ],
 			[
 				'en',
 				[
-					'en' => '/path/to/icon.svg',
-					'ko' => '/path/to/icon-ko.svg',
-					'ru' => '/path/to/icon-ru.svg',
+					'en' => 'path/to/icon.svg',
+					'ko' => 'path/to/icon-ko.svg',
+					'ru' => 'path/to/icon-ru.svg',
 				],
-				'/path/to/icon.svg'
+				'/wiki/path/to/icon.svg'
 			],
 			[
 				'ko',
 				[
-					'en' => '/path/to/icon.svg',
-					'ko' => '/path/to/icon-ko.svg',
-					'ru' => '/path/to/icon-ru.svg',
+					'en' => 'path/to/icon.svg',
+					'ko' => 'path/to/icon-ko.svg',
+					'ru' => 'path/to/icon-ru.svg',
 				],
-				'/path/to/icon-ko.svg'
+				'/wiki/path/to/icon-ko.svg'
 			],
 			[
 				'he',
 				[
-					'en' => '/path/to/icon.svg',
-					'ko' => '/path/to/icon-ko.svg',
-					'rtl' => '/path/to/icon-rtl.svg',
+					'en' => 'path/to/icon.svg',
+					'ko' => 'path/to/icon-ko.svg',
+					'rtl' => 'path/to/icon-rtl.svg',
 				],
-				'/path/to/icon-rtl.svg'
+				'/wiki/path/to/icon-rtl.svg'
 			],
 		];
 	}
 
 	/**
-	 * @dataProvider provideIconPaths
-	 * @covers \MediaWiki\Extension\AchievementBadges\Achievement::getAchievementIcon()
+	 * @dataProvider provideImagePaths
+	 * @covers \MediaWiki\Extension\AchievementBadges\Achievement::getImageForLanguage()
 	 *
 	 * @param string $langCode
 	 * @param string|array $path
 	 * @param string $fallback
 	 */
-	public function testGetAchievementIcon( $langCode, $path, $expected ) {
+	public function testGetImageForLanguage( $langCode, $path, $expected ) {
+		$this->setMwGlobals( 'wgScriptPath', '/wiki' );
 		$lang = Language::factory( $langCode );
 		$this->assertEquals( $expected, Achievement::getAchievementIcon( $lang, $path ),
 			"Should be $expected" );
@@ -229,10 +230,22 @@ class AchievementTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @covers \MediaWiki\Extension\AchievementBadges\Achievement::getAchievementIcon()
 	 */
-	public function testAchievementIconFallback() {
+	public function testGetAchievementIconFallback() {
+		$this->setMwGlobals( 'wgScriptPath', '/wiki' );
 		$lang = Language::factory( 'en' );
-		$this->setMwGlobals( 'wg' . Constants::CONFIG_KEY_ACHIEVEMENT_FALLBACK_ICON, 'foo/bar.png' );
-		$this->assertEquals( 'foo/bar.png', Achievement::getAchievementIcon( $lang ),
+		$this->setMwGlobals( 'wg' . Constants::CONFIG_KEY_ACHIEVEMENT_FALLBACK_ICON, 'foo/bar.svg' );
+		$this->assertEquals( '/wiki/foo/bar.svg', Achievement::getAchievementIcon( $lang ),
+			'A call without any parameter falls back' );
+	}
+
+	/**
+	 * @covers \MediaWiki\Extension\AchievementBadges\Achievement::getAchievementOgImage()
+	 */
+	public function testGetAchievementOgImage() {
+		$this->setMwGlobals( 'wgScriptPath', '/wiki' );
+		$lang = Language::factory( 'en' );
+		$this->setMwGlobals( 'wg' . Constants::CONFIG_KEY_ACHIEVEMENT_FALLBACK_OG_IMAGE, 'foo/bar.png' );
+		$this->assertEquals( '/wiki/foo/bar.png', Achievement::getAchievementOgImage( $lang ),
 			'A call without any parameter falls back' );
 	}
 

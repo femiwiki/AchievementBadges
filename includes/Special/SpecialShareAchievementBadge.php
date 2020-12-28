@@ -98,7 +98,9 @@ class SpecialShareAchievementBadge extends SpecialPage {
 			$row->log_timestamp );
 
 		$achvName = $this->msg( 'achievement-name-' . ( $suffixedKey ), $obtainer->getName() )->parse();
-		$iconPath = Achievement::getAchievementIcon( $this->getLanguage(), $registry['icon'] ?? null );
+		$lang = $this->getLanguage();
+		$iconPath = Achievement::getAchievementIcon( $lang, $registry['icon'] ?? null );
+		$ogImagePath = Achievement::getAchievementOgImage( $lang, $registry['og-image'] ?? $registry['icon'] ?? null );
 		$out->addHTML( $this->templateParser->processTemplate( 'SpecialShareAchievementBadge', [
 			'text-name' => $achvName,
 			'text-obtainer' => $obtainer->getName(),
@@ -117,7 +119,8 @@ class SpecialShareAchievementBadge extends SpecialPage {
 		$meta['og:title'] = $achvName;
 		$meta['og:description'] =
 			$this->msg( 'achievement-description-' . ( $suffixedKey ), $obtainer->getName() );
-		$meta['og:image'] = wfExpandUrl( $iconPath );
+		$meta['description'] = $meta['og:description'];
+		$meta['og:image'] = wfExpandUrl( $ogImagePath );
 
 		foreach ( $meta as $property => $value ) {
 			$out->addMeta(
