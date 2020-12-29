@@ -202,7 +202,7 @@ class Achievement {
 			$query['conds'],
 			__METHOD__,
 			[],
-			$query['joins'],
+			$query['joins']
 		);
 	}
 
