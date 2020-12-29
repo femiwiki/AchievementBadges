@@ -1,7 +1,7 @@
 # AchievementBadges [![Github checks status]][github checks link] [![codecov.io status]][codecov.io link]
 
 AchievementBadges is an extension that provides an [achievement system] for [MediaWiki] wikis.
-See [https://www.mediawiki.org/wiki/Extension:AchievementBadges](https://www.mediawiki.org/wiki/Special:MyLanguage/Extension:AchievementBadges) for more information
+See [https://www.mediawiki.org/wiki/Extension:AchievementBadges](https://www.mediawiki.org/wiki/Special:MyLanguage/Extension:AchievementBadges) for more information.
 
 ## Contributing
 

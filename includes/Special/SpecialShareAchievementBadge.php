@@ -143,23 +143,17 @@ class SpecialShareAchievementBadge extends SpecialPage {
 		if ( !$row ) {
 			return false;
 		}
-		list( $timePeriod, $timestamp ) = Achievement::getHumanTimes( $this->getLanguage(), $this->viewer,
-			$row->log_timestamp );
 		$iconPath = Achievement::getAchievementIcon( $this->obtainerLang, $registry['icon'] ?? null );
-
 		$achvName = $this->achvNameMsg->text();
 		$obtainerText = $this->obtainer->getName();
 		$description = $this->msg( 'achievement-description-' . $this->suffixedKey )
 			->plaintextParams( $obtainerText );
 		return [
 			'text-message' => $this->msg( 'special-shareachievementsbadge-message', $obtainerText )->parse(),
-			'text-sub-message' => $this->msg( 'special-shareachievementsbadge-sub-message', $obtainerText )->parse(),
 			'text-name' => $achvName,
 			'text-description' => $description,
 			'text-obtainer' => $obtainerText,
 			'text-icon' => $iconPath,
-			'text-time-period' => $timePeriod,
-			'text-timestamp' => $timestamp
 		];
 	}
 

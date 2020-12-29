@@ -1,5 +1,3 @@
-@import 'achievement.less';
-
 @keyframes coloring {
   0%,
   10% {
@@ -12,23 +10,36 @@
   }
 }
 
-.message,
-.sub-message {
+.message {
   text-align: center;
+  font-weight: normal;
+  font-size: 1.3em;
   margin: 1.5rem 0;
 }
 
-.message {
-  font-size: 1.5em;
+.achievement-name {
+  text-align: center;
   font-weight: bold;
+  border: none;
+  font-size: 1.6em;
+  margin: 0;
+}
+.achievement-icon {
+  display: block;
+  width: 5.5em;
+  margin: 2em auto;
+  animation: coloring 2s forwards;
 }
 
-.achievement {
-  max-width: 30em;
+.achievement-description {
+  text-align: center;
+  max-width: 20em;
+  margin: auto;
 }
 
 .share-achievement {
   text-align: center;
+  font-weight: normal;
   margin: 3em 0 1em;
 }
 

@@ -11,7 +11,6 @@
   "special-shareachievementsbadge-invalid-username": "Error message which is shown when given username is wrong",
   "special-shareachievementsbadge-invalid-achievement-name": "Error message which is shown when given achievement key is wrong",
   "special-shareachievementsbadge-message": "Message displayed in [[Special:ShareAchievementBadge]].\n\nParameters:\n* $1 - the name of the user who earn the achievement",
-  "special-shareachievementsbadge-sub-message": "Message displayed in [[Special:ShareAchievementBadge]].\n\nParameters:\n* $1 - the name of the user who earn the achievement",
   "special-shareachievementsbadge-title": "This message is shown in [[Special:ShareAchievementBadge]] as a title.\n* $1 - user's name\n* $2 - the name of the obtained achievement",
   "special-shareachievementsbadge-external-description": "This is used as a Open Graph description.",
   "special-shareachievementsbadge-header-share": "This is a label is used as a header in [[Special:ShareAchievementBadge]].\n\nParameters:\n* $1 - the name of the user who earn the achievement",
