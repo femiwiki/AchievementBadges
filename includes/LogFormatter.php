@@ -15,7 +15,7 @@ class LogFormatter extends \LogFormatter {
 			$achievementNameMsgKey .= "-$params[4]";
 		}
 		$achievementNameMsg = $this->msg( $achievementNameMsgKey );
-		$params[3] = $achievementNameMsg->plain();
+		$params[3] = $achievementNameMsg->text();
 		return $params;
 	}
 

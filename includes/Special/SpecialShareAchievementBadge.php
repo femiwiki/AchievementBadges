@@ -97,10 +97,10 @@ class SpecialShareAchievementBadge extends SpecialPage {
 		$obtainerLang = Language::factory( $userOptionsLookup->getOption( $this->obtainer, 'language' ) );
 		$this->obtainerLang = $obtainerLang;
 		$this->achvNameMsg = $this->msg( 'achievement-name-' . ( $this->suffixedKey ), $this->obtainer->getName() );
-		$achvName = $this->achvNameMsg->plain();
+		$achvName = $this->achvNameMsg->text();
 
 		$pageHeader = $this->msg( 'special-shareachievementsbadge-title', $this->obtainer->getName(), $achvName )
-			->text();
+			->parse();
 		$out->setHTMLTitle( $this->msg( 'pagetitle' )->plaintextParams( $pageHeader )->text() );
 
 		$data = $this->getBadgeData();
@@ -150,7 +150,7 @@ class SpecialShareAchievementBadge extends SpecialPage {
 			$row->log_timestamp );
 		$iconPath = Achievement::getAchievementIcon( $this->obtainerLang, $registry['icon'] ?? null );
 
-		$achvName = $this->achvNameMsg->plain();
+		$achvName = $this->achvNameMsg->text();
 		$obtainerText = $this->obtainer->getName();
 		$description = $this->msg( 'achievement-description-' . $this->suffixedKey )
 			->plaintextParams( $obtainerText );
@@ -205,7 +205,7 @@ class SpecialShareAchievementBadge extends SpecialPage {
 		$sitename = $this->getConfig()->get( 'Sitename' );
 		$obtainerLang = $this->obtainerLang;
 		$achvNameMsg = $this->msg( 'achievement-name-' . ( $this->suffixedKey ), $this->obtainer->getName() );
-		$achvName = $achvNameMsg->inLanguage( $obtainerLang )->plain();
+		$achvName = $achvNameMsg->inLanguage( $obtainerLang )->text();
 		$registry = $this->registry;
 		$ogImagePath = $registry['og-image'] ?? $registry['icon'] ?? null;
 		$ogImagePath = Achievement::getAchievementOgImage( $obtainerLang, $ogImagePath );
@@ -233,7 +233,7 @@ class SpecialShareAchievementBadge extends SpecialPage {
 	 * @inheritDoc
 	 */
 	public function getDescription() {
-		return $this->msg( 'special-shareachievementsbadge' )->text();
+		return $this->msg( 'special-shareachievementsbadge' )->escaped();
 	}
 
 	/**

@@ -271,11 +271,11 @@ class Achievement {
 				MWTimestamp::getInstance(),
 				$user
 			)
-		)->parse();
+		)->text();
 
 		$date = $lang->userDate( $timestamp, $user );
 		$time = $lang->userTime( $timestamp, $user );
-		$longHumanTime = wfMessage( 'achievement-earned-at-tooltip', $date, $time )->parse();
+		$longHumanTime = wfMessage( 'achievement-earned-at-tooltip', $date, $time )->text();
 
 		return [
 			$shortHumanTime,

@@ -59,7 +59,7 @@ class SpecialAchievements extends SpecialPage {
 		$out->addModuleStyles( 'ext.achievementbadges.special.achievements.styles' );
 
 		if ( $betaConfigEnabled && !$userBetaEnabled ) {
-			$out->addWikiTextAsInterface( $this->msg( 'achievementbadges-disabled' )->text() );
+			$out->addWikiTextAsInterface( $this->msg( 'achievementbadges-disabled' )->parse() );
 			return;
 		}
 
@@ -133,7 +133,7 @@ class SpecialAchievements extends SpecialPage {
 				$isEarned ? 'earned' : 'not-earning',
 			] ),
 			'text-icon' => $icon,
-			'text-name' => $this->msg( "achievement-name-$key", $user->getName() )->parse(),
+			'text-name' => $this->msg( "achievement-name-$key", $user->getName() )->text(),
 		];
 		if ( $isEarned ) {
 			$data['html-description'] = $this->msg( "achievement-description-$key", $user->getName() )
@@ -197,7 +197,7 @@ class SpecialAchievements extends SpecialPage {
 	 * @inheritDoc
 	 */
 	public function getDescription() {
-		return $this->msg( 'special-achievements' )->text();
+		return $this->msg( 'special-achievements' )->escaped();
 	}
 
 	/**
