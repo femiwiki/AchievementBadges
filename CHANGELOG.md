@@ -15,6 +15,8 @@
 
 ### Enhancements
 
+- Add share buttons in Special:ShareAchievementBadge.
+- Bundle achievement notifications.
 - Provide `<meta name="description">` and `<meta property="og:image">` for Special:ShareAchievementBadge
 
 ### Achievement registering changes
@@ -24,6 +26,7 @@
 
 ### Other changes
 
+- Run Phan.
 - Run prettier on YAML.
 
 ## v0.0.2
