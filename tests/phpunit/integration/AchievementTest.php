@@ -3,7 +3,6 @@
 namespace MediaWiki\Extension\AchievementBadges\Tests\Integration;
 
 use Language;
-use LogPage;
 use MediaWiki\Extension\AchievementBadges\Achievement;
 use MediaWiki\Extension\AchievementBadges\Constants;
 use MediaWiki\Extension\AchievementBadges\HookHandler\Main;
@@ -85,15 +84,15 @@ class AchievementTest extends MediaWikiIntegrationTestCase {
 		}
 
 		$dbr = wfGetDB( DB_REPLICA );
+		$query = Achievement::getQueryInfo( $dbr );
+		$query['conds'] = array_merge( $query['conds'], [
+			'log_action' => $key,
+			'log_actor' => $user->getActorId(),
+		] );
 		$this->assertSelect(
-			'logging',
+			$query['tables'],
 			[ 'log_type', 'log_action', 'log_params' ],
-			[
-				'log_type' => Constants::LOG_TYPE,
-				'log_action' => $key,
-				'log_actor' => $user->getActorId(),
-				$dbr->bitAnd( 'log_deleted', LogPage::DELETED_ACTION | LogPage::DELETED_USER ) . ' = 0 ',
-			],
+			$query['conds'],
 			$logs
 		);
 	}

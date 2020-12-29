@@ -16,6 +16,7 @@ use MWTimestamp;
 use Psr\Log\LoggerInterface;
 use SpecialPage;
 use User;
+use Wikimedia\Rdbms\IDatabase;
 
 class Achievement {
 	/**
@@ -160,26 +161,48 @@ class Achievement {
 	}
 
 	/**
+	 * @param IDatabase $db
+	 * @return array With four keys:
+	 *   - tables: (string[]) to include in the `$table` to `IDatabase->select()`
+	 *   - fields: (string[]) to include in the `$vars` to `IDatabase->select()`
+	 *   - conds: (array) to include in the `$conds` to `IDatabase->select()`
+	 *   - joins: (array) to include in the `$join_conds` to `IDatabase->select()`
+	 */
+	public static function getQueryInfo( IDatabase $db ) {
+		$queryInfo = [
+			'tables' => [
+				'logging',
+			],
+			'fields' => [ '*' ],
+			'conds' => [
+				'log_type' => Constants::LOG_TYPE,
+				$db->bitAnd( 'log_deleted', LogPage::DELETED_ACTION | LogPage::DELETED_USER ) . ' = 0 ',
+			],
+			'joins' => [],
+		];
+		return $queryInfo;
+	}
+
+	/**
 	 * @param string $key
 	 * @param User $user
 	 * @return int
 	 */
 	private static function selectLogCount( $key, User $user ) {
 		$dbr = wfGetDB( DB_REPLICA );
+		$query = self::getQueryInfo( $dbr );
+		$query['fields'] = '*';
+		$query['conds'] = array_merge( $query['conds'], [
+			'log_action' => $key,
+			'log_actor' => $user->getActorId(),
+		] );
 		return $dbr->selectRowCount(
-			[ 'logging', 'actor' ],
-			'*',
-			[
-				'log_type' => Constants::LOG_TYPE,
-				'log_action' => $key,
-				'actor_user' => $user->getId(),
-				$dbr->bitAnd( 'log_deleted', LogPage::DELETED_ACTION | LogPage::DELETED_USER ) . ' = 0 ',
-			],
+			$query['tables'],
+			$query['fields'],
+			$query['conds'],
 			__METHOD__,
 			[],
-			[
-				'actor' => [ 'JOIN', 'actor_id = log_actor' ],
-			]
+			$query['joins'],
 		);
 	}
 

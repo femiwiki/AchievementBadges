@@ -4,7 +4,6 @@ namespace MediaWiki\Extension\AchievementBadges\Special;
 
 use BetaFeatures;
 use LogEntryBase;
-use LogPage;
 use MediaWiki\Extension\AchievementBadges\Achievement;
 use MediaWiki\Extension\AchievementBadges\Constants;
 use MediaWiki\Extension\AchievementBadges\Hooks\HookRunner;
@@ -157,25 +156,22 @@ class SpecialAchievements extends SpecialPage {
 	 */
 	private function getEarnedAchievementData( User $user ): array {
 		$dbr = wfGetDB( DB_REPLICA );
-
+		$query = Achievement::getQueryInfo( $dbr );
+		$query['conds'] = array_merge( $query['conds'], [
+			'log_actor' => $user->getActorId(),
+		] );
 		/** @var stdClass $rows */
 		$rows = $dbr->select(
-			[ 'logging', 'actor' ],
+			$query['tables'],
 			[
 				'log_action',
 				'log_params',
 				'log_timestamp',
 			],
-			[
-				'log_type' => Constants::LOG_TYPE,
-				'actor_user' => $user->getId(),
-				$dbr->bitAnd( 'log_deleted', LogPage::DELETED_ACTION | LogPage::DELETED_USER ) . ' = 0 ',
-			],
+			$query['conds'],
 			__METHOD__,
 			[],
-			[
-				'actor' => [ 'JOIN', 'actor_id = log_actor' ],
-			]
+			$query['joins']
 		);
 
 		$achvs = [];

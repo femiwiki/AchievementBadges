@@ -3,7 +3,6 @@
 namespace MediaWiki\Extension\AchievementBadges\Special;
 
 use Language;
-use LogPage;
 use MediaWiki\Extension\AchievementBadges\Achievement;
 use MediaWiki\Extension\AchievementBadges\Constants;
 use MediaWiki\Logger\LoggerFactory;
@@ -126,22 +125,20 @@ class SpecialShareAchievementBadge extends SpecialPage {
 			return false;
 		}
 		$dbr = wfGetDB( DB_REPLICA );
+		$query = Achievement::getQueryInfo( $dbr );
+		$query['conds'] = array_merge( $query['conds'], [
+			'log_action' => $this->unsuffixedKey,
+			'log_actor' => $this->obtainer->getActorId(),
+		] );
 		$row = $dbr->selectRow(
-			[ 'logging', 'actor' ],
+			$query['tables'],
 			[
 				'log_timestamp',
 			],
-			[
-				'log_type' => Constants::LOG_TYPE,
-				'log_action' => $this->unsuffixedKey,
-				'actor_user' => $this->obtainer->getId(),
-				$dbr->bitAnd( 'log_deleted', LogPage::DELETED_ACTION | LogPage::DELETED_USER ) . ' = 0 ',
-			],
+			$query['conds'],
 			__METHOD__,
 			[],
-			[
-				'actor' => [ 'JOIN', 'actor_id = log_actor' ],
-			]
+			$query['joins']
 		);
 		if ( !$row ) {
 			return false;

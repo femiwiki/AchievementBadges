@@ -20,7 +20,11 @@
 - Bundle achievement notifications.
 - Provide `<meta name="description">` and `<meta property="og:image">` for Special:ShareAchievementBadge
 
-### Achievement registering changes
+### Developer changes
+
+- Add Achievement::getQueryInfo().
+
+#### Achievement registering changes
 
 - New properties:
   - `og-image` - An image URL which should represent the achievement within the graph. This is relative to $wgScriptPath. If it is not specified and `icon` property is present, `icon` is used for this.
