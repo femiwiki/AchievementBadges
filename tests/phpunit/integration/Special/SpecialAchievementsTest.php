@@ -33,21 +33,21 @@ class SpecialAchievementsTest extends SpecialPageTestBase {
 		$this->setMwGlobals( 'wg' . Constants::CONFIG_KEY_ENABLE_BETA_FEATURE, true );
 
 		list( $html, ) = $this->executeSpecialPage( '', null, 'qqx', $user->getUser() );
-		$this->assertStringContainsString( '(achievementbadges-disabled)', $html,
+		$this->assertStringContainsString( 'achievementbadges-disabled', $html,
 			'A registered user cannot see Special:Achievements if not enabled it' );
 
 		try {
 			$this->executeSpecialPage( '', null, 'qqx', null );
 		} catch ( UserNotLoggedIn $e ) {
 		}
-		$this->assertStringContainsString( '(achievementbadges-disabled)', $html,
+		$this->assertStringContainsString( 'achievementbadges-disabled', $html,
 			'An anonymous user cannot see Special:Achievements during beta period' );
 
 		$user = $this->getMutableTestUser()->getUser();
 		$user->setOption( Constants::PREF_KEY_ACHIEVEMENT_ENABLE, '1' );
 		$user->saveSettings();
 		list( $html, ) = $this->executeSpecialPage( '', null, 'qqx', $user );
-		$this->assertStringContainsString( '(special-achievements-header-not-earning-achievements)', $html,
+		$this->assertStringContainsString( 'special-achievements-header-not-earning-achievements', $html,
 			'A user who enables AB can see achievements on Special:Achievements' );
 	}
 
