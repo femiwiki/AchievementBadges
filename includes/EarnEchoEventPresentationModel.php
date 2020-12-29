@@ -6,19 +6,16 @@ use EchoEvent;
 use EchoEventPresentationModel;
 use Language;
 use MediaWiki\Extension\AchievementBadges\Special\SpecialAchievements;
+use MediaWiki\Extension\AchievementBadges\Special\SpecialShareAchievementBadge;
 use Message;
 use SpecialPage;
 use User;
 
 class EarnEchoEventPresentationModel extends EchoEventPresentationModel {
-	/**
-	 * @var string
-	 */
+	/** @var string */
 	private $achievementKey;
 
-	/**
-	 * @inheritDoc
-	 */
+	/** @inheritDoc */
 	protected function __construct(
 		EchoEvent $event,
 		Language $language,
@@ -29,36 +26,55 @@ class EarnEchoEventPresentationModel extends EchoEventPresentationModel {
 		$this->achievementKey = $event->getExtraParam( 'key' );
 	}
 
-	/**
-	 * @inheritDoc
-	 */
+	/** @inheritDoc */
 	public function canRender() {
 		return true;
 	}
 
-	/**
-	 * @inheritDoc
-	 */
+	/** @inheritDoc */
 	public function getIconType() {
 		return Constants::EVENT_KEY_EARN;
 	}
 
-	/**
-	 * @inheritDoc
-	 */
+	/** @inheritDoc */
 	public function getPrimaryLink() {
-		if ( !$this->achievementKey ) {
-			return false;
+		if ( $this->isBundled() ) {
+			return $this->getSpecialAchievementsLink();
+		} else {
+			if ( !$this->achievementKey ) {
+				return false;
+			}
+			$agent = $this->event->getAgent()->getName();
+			$key = $this->achievementKey;
+			$title = SpecialPage::getTitleFor( SpecialShareAchievementBadge::PAGE_NAME, "$agent/$key" );
+			$link = $this->getPageLink( $title, '', true );
+			return $link;
 		}
-		$key = 'achievement-' . $this->achievementKey;
-		$title = SpecialPage::getTitleFor( SpecialAchievements::PAGE_NAME, false, $key );
-		$link = $this->getPageLink( $title, '', true );
-		return $link;
 	}
 
 	/**
-	 * @inheritDoc
+	 * @return array
 	 */
+	private function getSpecialAchievementsLink() {
+		$title = SpecialPage::getTitleFor( SpecialAchievements::PAGE_NAME );
+		return [
+			'url' => $title->getFullURL(),
+			'label' => $this->msg( 'notification-link-text-all-achievements' )->plain(),
+			'tooltip' => $title->getPrefixedText(),
+			'icon' => 'article',
+		];
+	}
+
+	/** @inheritDoc */
+	public function getSecondaryLinks() {
+		if ( $this->isBundled() ) {
+			return [];
+		} else {
+			return [ $this->getSpecialAchievementsLink() ];
+		}
+	}
+
+	/** @inheritDoc */
 	public function getHeaderMessage() : Message {
 		if ( $this->isBundled() ) {
 			$msg = $this->getMessageWithAgent( 'notification-bundle-header-achievementbadges-earn' );
@@ -74,9 +90,7 @@ class EarnEchoEventPresentationModel extends EchoEventPresentationModel {
 		}
 	}
 
-	/**
-	 * @inheritDoc
-	 */
+	/** @inheritDoc */
 	public function getBodyMessage() {
 		if ( $this->isBundled() ) {
 			return false;
@@ -88,9 +102,7 @@ class EarnEchoEventPresentationModel extends EchoEventPresentationModel {
 		}
 	}
 
-	/**
-	 * @inheritDoc
-	 */
+	/** @inheritDoc */
 	public function getCompactHeaderMessage() {
 		$key = $this->achievementKey;
 		$agent = $this->event->getAgent();

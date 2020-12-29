@@ -16,6 +16,7 @@
 ### Enhancements
 
 - Add share buttons in Special:ShareAchievementBadge.
+- Add links to notifications.
 - Bundle achievement notifications.
 - Provide `<meta name="description">` and `<meta property="og:image">` for Special:ShareAchievementBadge
 
