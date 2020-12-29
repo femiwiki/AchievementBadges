@@ -9,7 +9,7 @@
   "special-shareachievementsbadge": "Share achievement badge",
   "special-shareachievementsbadge-invalid": "Invalid access",
   "special-shareachievementsbadge-invalid-username": "Invalid username",
-  "special-shareachievementsbadge-invalid-invalid-achievement-name": "Invalid name of achievement",
+  "special-shareachievementsbadge-invalid-achievement-name": "Invalid name of achievement",
   "special-shareachievementsbadge-message": "Congratulation!",
   "special-shareachievementsbadge-sub-message": "You achieved it!",
   "special-shareachievementsbadge-title": "{{GENDER:$1|Earned}} achievement $2!",

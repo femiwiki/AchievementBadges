@@ -86,12 +86,12 @@ class SpecialShareAchievementBadge extends SpecialPage {
 		list( $this->suffixedKey, $this->unsuffixedKey, ) = Achievement::extractKeySegments( $key );
 		$this->achievementType = $this->suffixedKey == $this->unsuffixedKey ? 'instant' : 'stats';
 		$this->registry = $config->get( Constants::CONFIG_KEY_ACHIEVEMENTS );
-		$registry = $this->registry[$this->unsuffixedKey];
 		if ( !array_key_exists( $this->unsuffixedKey, $this->registry ) ) {
 			$out->addWikiTextAsInterface( $this->msg( 'special-shareachievementsbadge-invalid-achievement-name' )
 				->parse() );
 			return;
 		}
+		$registry = $this->registry[$this->unsuffixedKey];
 
 		$userOptionsLookup = MediaWikiServices::getInstance()->getUserOptionsLookup();
 		$obtainerLang = Language::factory( $userOptionsLookup->getOption( $this->obtainer, 'language' ) );
