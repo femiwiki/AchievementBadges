@@ -21,6 +21,7 @@
   "Hooks": {
     "BeforeCreateEchoEvent": "MediaWiki\\Extension\\AchievementBadges\\HookHandler\\Main::onBeforeCreateEchoEvent",
     "BeforeEchoEventInsert": "MediaWiki\\Extension\\AchievementBadges\\HookHandler\\Main::onBeforeEchoEventInsert",
+    "EchoGetBundleRules": "MediaWiki\\Extension\\AchievementBadges\\HookHandler\\Main::onEchoGetBundleRules",
     "GetBetaFeaturePreferences": "MediaWiki\\Extension\\AchievementBadges\\HookHandler\\Main::onGetBetaFeaturePreferences",
     "ResourceLoaderGetConfigVars": "Main",
     "BeforeCreateAchievement": "AchievementRegister",

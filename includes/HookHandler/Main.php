@@ -93,11 +93,26 @@ class Main implements
 			'section' => 'message',
 			'canNotifyAgent' => true,
 			'presentation-model' => EarnEchoEventPresentationModel::class,
+			'bundle' => [
+				'web' => true,
+				'email' => true,
+				'expandable' => true,
+			],
 			'user-locators' => [ 'EchoUserLocator::locateEventAgent' ],
 		];
 		$icons[Constants::EVENT_KEY_EARN] = [
 			'path' => "AchievementBadges/images/medal.svg",
 		];
+	}
+
+	/**
+	 * @param EchoEvent $event
+	 * @param string &$bundleString
+	 */
+	public static function onEchoGetBundleRules( $event, &$bundleString ) {
+		if ( $event->getType() == Constants::EVENT_KEY_EARN ) {
+			$bundleString = Constants::EVENT_KEY_EARN;
+		}
 	}
 
 	/**

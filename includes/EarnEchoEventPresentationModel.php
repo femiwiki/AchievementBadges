@@ -60,20 +60,37 @@ class EarnEchoEventPresentationModel extends EchoEventPresentationModel {
 	 * @inheritDoc
 	 */
 	public function getHeaderMessage() : Message {
-		$key = $this->achievementKey;
-
-		$msg = $this->getMessageWithAgent( 'notification-header-achievementbadges-earn' );
-		$msg->params( $this->msg( 'achievement-name-' . $key ) );
-		return $msg;
+		if ( $this->isBundled() ) {
+			$msg = $this->getMessageWithAgent( 'notification-bundle-header-achievementbadges-earn' );
+			$count = $this->getNotificationCountForOutput();
+			$msg->numParams( $count );
+			return $msg;
+		} else {
+			$key = $this->achievementKey;
+			$msg = $this->getMessageWithAgent( 'notification-header-achievementbadges-earn' );
+			$msg->params( $this->getMessageWithAgent( "achievement-name-$key" ) );
+			return $msg;
+		}
 	}
 
 	/**
 	 * @inheritDoc
 	 */
 	public function getBodyMessage() {
-		$key = $this->achievementKey;
-		$msg = $this->getMessageWithAgent( "achievement-description-$key" );
+		if ( $this->isBundled() ) {
+			return false;
+		} else {
+			$key = $this->achievementKey;
+			$msg = $this->getMessageWithAgent( "achievement-description-$key" );
+			return $msg;
+		}
+	}
 
-		return $msg;
+	/**
+	 * @inheritDoc
+	 */
+	public function getCompactHeaderMessage() {
+		$key = $this->achievementKey;
+		return $this->getMessageWithAgent( "achievement-name-$key" );
 	}
 }
