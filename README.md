@@ -1,4 +1,4 @@
-# AchievementBadges [![Github checks status]][github checks link]
+# AchievementBadges [![Github checks status]][github checks link] [![codecov.io status]][codecov.io link]
 
 AchievementBadges is an extension that provides an [achievement system] for [MediaWiki] wikis.
 See [https://www.mediawiki.org/wiki/Extension:AchievementBadges](https://www.mediawiki.org/wiki/Special:MyLanguage/Extension:AchievementBadges) for more information
@@ -11,6 +11,8 @@ of the [GNU Affero Public License v2.0] or any later version. See
 
 [github checks status]: https://badgen.net/github/checks/femiwiki/AchievementBadges
 [github checks link]: https://github.com/femiwiki/AchievementBadges/actions
+[codecov.io status]: https://badgen.net/codecov/c/github/femiwiki/AchievementBadges
+[codecov.io link]: https://codecov.io/gh/femiwiki/AchievementBadges
 [mediawiki]: https://www.mediawiki.org/
 [achievement system]: https://en.wikipedia.org/wiki/Achievement_(video_games)
 [gnu affero public license v2.0]: LICENSE
