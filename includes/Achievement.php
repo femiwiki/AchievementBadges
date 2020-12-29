@@ -268,7 +268,7 @@ class Achievement {
 			$user,
 			$lang->getHumanTimestamp(
 				$timestamp,
-				MWTimestamp::getInstance(),
+				null,
 				$user
 			)
 		)->text();

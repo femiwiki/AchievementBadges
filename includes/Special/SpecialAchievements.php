@@ -59,7 +59,8 @@ class SpecialAchievements extends SpecialPage {
 		$out->addModuleStyles( 'ext.achievementbadges.special.achievements.styles' );
 
 		if ( $betaConfigEnabled && !$userBetaEnabled ) {
-			$out->addWikiTextAsInterface( $this->msg( 'achievementbadges-disabled' )->parse() );
+			$msg = $this->msg( 'achievementbadges-disabled', $user->getName() );
+			$out->addWikiTextAsInterface( $msg->parse() );
 			return;
 		}
 
@@ -113,7 +114,7 @@ class SpecialAchievements extends SpecialPage {
 			'bool-not-earning-achievements' => (bool)$dataNotEarningAchvs,
 			'data-not-earning-achievements' => $dataNotEarningAchvs,
 			'msg-header-not-earning-achievements' => $this->msg(
-				'special-achievements-header-not-earning-achievements' ),
+				'special-achievements-header-not-earning-achievements', $user->getName() ),
 		] ) );
 	}
 

@@ -66,9 +66,10 @@ class EarnEchoEventPresentationModel extends EchoEventPresentationModel {
 			$msg->numParams( $count );
 			return $msg;
 		} else {
-			$key = $this->achievementKey;
 			$msg = $this->getMessageWithAgent( 'notification-header-achievementbadges-earn' );
-			$msg->params( $this->getMessageWithAgent( "achievement-name-$key" ) );
+			$key = $this->achievementKey;
+			$agent = $this->event->getAgent();
+			$msg->params( $this->msg( "achievement-name-$key", $agent->getName() ) );
 			return $msg;
 		}
 	}
@@ -81,7 +82,8 @@ class EarnEchoEventPresentationModel extends EchoEventPresentationModel {
 			return false;
 		} else {
 			$key = $this->achievementKey;
-			$msg = $this->getMessageWithAgent( "achievement-description-$key" );
+			$agent = $this->event->getAgent();
+			$msg = $this->msg( "achievement-description-$key", $agent->getName() );
 			return $msg;
 		}
 	}
@@ -91,6 +93,7 @@ class EarnEchoEventPresentationModel extends EchoEventPresentationModel {
 	 */
 	public function getCompactHeaderMessage() {
 		$key = $this->achievementKey;
-		return $this->getMessageWithAgent( "achievement-name-$key" );
+		$agent = $this->event->getAgent();
+		return $this->msg( "achievement-name-$key", $agent->getName() );
 	}
 }
