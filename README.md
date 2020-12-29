@@ -6,7 +6,7 @@ See [https://www.mediawiki.org/wiki/Extension:AchievementBadges](https://www.med
 ---
 
 The source code of _femiwiki/AchievementBadges_ is primarily distributed under the terms
-of the [GNU Affero Public License v2.0] or any later version. See
+of the [GNU Affero General Public License v3.0] or any later version. See
 [COPYRIGHT] for details.
 
 [github checks status]: https://badgen.net/github/checks/femiwiki/AchievementBadges
@@ -15,5 +15,5 @@ of the [GNU Affero Public License v2.0] or any later version. See
 [codecov.io link]: https://codecov.io/gh/femiwiki/AchievementBadges
 [mediawiki]: https://www.mediawiki.org/
 [achievement system]: https://en.wikipedia.org/wiki/Achievement_(video_games)
-[gnu affero public license v2.0]: LICENSE
+[gnu affero general public license v3.0]: LICENSE
 [copyright]: COPYRIGHT

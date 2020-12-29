@@ -6,6 +6,7 @@
 
 ### Breaking changes
 
+- Relicense under AGPL-3.0
 - $wgAchievementBadgesAchievementFallbackIcon - This setting is now relative to $wgScriptPath.
 
 ### New configuration
