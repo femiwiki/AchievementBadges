@@ -1,6 +1,4 @@
 {
-  "name": "achievement-badges",
-  "description": "Provides an achievement system",
   "private": true,
   "scripts": {
     "test": "npm -s run lint",

@@ -45,8 +45,10 @@ jobs:
       # $GITHUB_WORKSPACE/.github/workflows/.test-env  Used by actions/cache
       - name: Set up
         run: |
-          source .github/workflows/.test-env
-          echo "DEPENDENCIES=${DEPENDENCIES}" >> $GITHUB_ENV
+          if [ -e .github/workflows/.test-env ]; then
+            source .github/workflows/.test-env
+            echo "DEPENDENCIES=${DEPENDENCIES}" >> $GITHUB_ENV
+          fi
 
           if [ "${GITHUB_EVENT_NAME}" == 'push' ]; then
             echo "MEDIAWIKI_VERSION=$(echo $GITHUB_REF | cut -d'/' -f3 | cut -d'-' -f1)" >> $GITHUB_ENV
@@ -152,7 +154,7 @@ jobs:
             fi
 
       - name: Upload coverage to Codecov
-        if: ${{ matrix.stage == 'coverage' && env.MEDIAWIKI_VERSION == 'master' }}
+        if: ${{ matrix.stage == 'coverage' }}
         uses: codecov/codecov-action@v1
         with:
           directory: /home/runner/cover
