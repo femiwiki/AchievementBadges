@@ -20,6 +20,7 @@
   - Show additional message to disabled users and anon users
   - Add share buttons.
   - Provide `<meta name="description">` and `<meta property="og:image">`.
+  - Add link for Special:Achievements.
 - Add new achievements: thanks and be-thanked
 - Add links to notifications.
 - Bundle achievement notifications.
