@@ -16,10 +16,12 @@
 
 ### Enhancements
 
-- Add share buttons in Special:ShareAchievementBadge.
+- Special:ShareAchievementBadge
+  - Show additional message to disabled users and anon users
+  - Add share buttons.
+  - Provide `<meta name="description">` and `<meta property="og:image">`.
 - Add links to notifications.
 - Bundle achievement notifications.
-- Provide `<meta name="description">` and `<meta property="og:image">` for Special:ShareAchievementBadge
 
 ### Developer changes
 

@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Extension\AchievementBadges\Special;
 
+use BetaFeatures;
 use Language;
 use MediaWiki\Extension\AchievementBadges\Achievement;
 use MediaWiki\Extension\AchievementBadges\Constants;
@@ -109,6 +110,20 @@ class SpecialShareAchievementBadge extends SpecialPage {
 		}
 		$data = array_merge( $data, $this->getSnsShareData() );
 
+		$viewer = $this->viewer;
+		$betaConfigEnabled = $config->get( Constants::CONFIG_KEY_ENABLE_BETA_FEATURE );
+		$userBetaEnabled = $betaConfigEnabled && BetaFeatures::isFeatureEnabled( $viewer,
+				Constants::PREF_KEY_ACHIEVEMENT_ENABLE );
+		if ( $viewer->isAnon() ) {
+			$data['has-suggestion'] = true;
+			$data['text-suggestion'] = $this->msg( 'special-shareachievementsbadge-suggestion-sign-up',
+				$viewer->getName() )->parse();
+		} elseif ( $betaConfigEnabled && !$userBetaEnabled ) {
+			$data['has-suggestion'] = true;
+			$data['text-suggestion'] = $this->msg( 'special-shareachievementsbadge-suggestion-beta',
+				$viewer->getName() )->parse();
+		}
+
 		$this->getOutput()->addHTML( $this->templateParser->processTemplate( 'SpecialShareAchievementBadge', $data ) );
 		$this->addMeta();
 	}
@@ -148,8 +163,12 @@ class SpecialShareAchievementBadge extends SpecialPage {
 		$obtainerText = $this->obtainer->getName();
 		$description = $this->msg( 'achievement-description-' . $this->suffixedKey )
 			->plaintextParams( $obtainerText );
+		$topMessage = $this->obtainer->equals( $this->viewer ) ? $this->msg( 'special-shareachievementsbadge-message' )
+			: $this->msg( 'special-shareachievementsbadge-message-other' );
+		$topMessage->params( $obtainerText );
+
 		return [
-			'text-message' => $this->msg( 'special-shareachievementsbadge-message', $obtainerText )->parse(),
+			'text-message' => $topMessage->parse(),
 			'text-name' => $achvName,
 			'text-description' => $description,
 			'text-obtainer' => $obtainerText,
