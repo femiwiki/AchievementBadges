@@ -44,9 +44,10 @@ class EarnEchoEventPresentationModel extends EchoEventPresentationModel {
 			if ( !$this->achievementKey ) {
 				return false;
 			}
-			$agent = $this->event->getAgent()->getName();
+			$agent = $this->event->getAgent()->getId();
 			$key = $this->achievementKey;
-			$title = SpecialPage::getTitleFor( SpecialShareAchievementBadge::PAGE_NAME, "$agent/$key" );
+			$title = SpecialPage::getTitleFor( SpecialShareAchievementBadge::PAGE_NAME,
+				base64_encode( "$agent/$key" ) );
 			$link = $this->getPageLink( $title, '', true );
 			return $link;
 		}

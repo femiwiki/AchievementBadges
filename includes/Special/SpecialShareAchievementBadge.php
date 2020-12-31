@@ -72,14 +72,15 @@ class SpecialShareAchievementBadge extends SpecialPage {
 		$out->addModules( [ 'ext.achievementbadges.special.shareachievementsbadge' ] );
 		$config = $this->getConfig();
 
+		$subPage = base64_decode( $subPage );
 		$split = explode( '/', $subPage, 2 );
 		if ( count( $split ) != 2 ) {
 			$out->addWikiTextAsInterface( $this->msg( 'special-shareachievementsbadge-invalid' )->parse() );
 			return;
 		}
 
-		list( $obtainerText, $key ) = $split;
-		$this->obtainer = User::newFromName( $obtainerText );
+		list( $obtainerId, $key ) = $split;
+		$this->obtainer = User::newFromId( $obtainerId );
 		if ( !$this->obtainer ) {
 			$out->addWikiTextAsInterface( $this->msg( 'special-shareachievementsbadge-invalid-username' )->parse() );
 			return;
