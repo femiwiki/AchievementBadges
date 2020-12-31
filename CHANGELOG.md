@@ -21,6 +21,7 @@
   - Add share buttons.
   - Provide `<meta name="description">` and `<meta property="og:image">`.
   - Add link for Special:Achievements.
+  - Encode the subpage with base64
 - Add new achievements: thanks and be-thanked
 - Add links to notifications.
 - Bundle achievement notifications.
