@@ -4,6 +4,7 @@ namespace MediaWiki\Extension\AchievementBadges\Special;
 
 use BetaFeatures;
 use Language;
+use Linker;
 use MediaWiki\Extension\AchievementBadges\Achievement;
 use MediaWiki\Extension\AchievementBadges\Constants;
 use MediaWiki\Logger\LoggerFactory;
@@ -101,6 +102,8 @@ class SpecialShareAchievementBadge extends SpecialPage {
 		$pageHeader = $this->msg( 'special-shareachievementsbadge-title', $this->obtainer->getName(), $achvName )
 			->parse();
 		$out->setHTMLTitle( $this->msg( 'pagetitle' )->plaintextParams( $pageHeader )->text() );
+		$out->setSubTitle( '< ' . Linker::link( SpecialPage::getTitleFor( SpecialAchievements::PAGE_NAME ),
+			$this->msg( 'special-achievements' )->escaped() ) );
 
 		$data = $this->getBadgeData();
 		if ( !$data ) {
