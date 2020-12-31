@@ -24,6 +24,7 @@
     "EchoGetBundleRules": "MediaWiki\\Extension\\AchievementBadges\\HookHandler\\Main::onEchoGetBundleRules",
     "GetBetaFeaturePreferences": "MediaWiki\\Extension\\AchievementBadges\\HookHandler\\Main::onGetBetaFeaturePreferences",
     "ResourceLoaderGetConfigVars": "Main",
+    "APIAfterExecute": "AchievementRegister",
     "BeforeCreateAchievement": "AchievementRegister",
     "LocalUserCreated": "AchievementRegister",
     "PageSaveComplete": "AchievementRegister",

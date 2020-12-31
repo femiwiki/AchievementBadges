@@ -91,7 +91,6 @@ class SpecialShareAchievementBadge extends SpecialPage {
 				->parse() );
 			return;
 		}
-		$registry = $this->registry[$this->unsuffixedKey];
 
 		$userOptionsLookup = MediaWikiServices::getInstance()->getUserOptionsLookup();
 		$obtainerLang = Language::factory( $userOptionsLookup->getOption( $this->obtainer, 'language' ) );

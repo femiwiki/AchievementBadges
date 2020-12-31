@@ -114,5 +114,11 @@
   "achievement-description-contribs-friday": "I contributed on Friday! (Temporary Description)",
   "achievement-name-contribs-saturday": "Contributing on Saturday (temporary title)",
   "achievement-hint-contribs-saturday": "Contributing on Saturday (temporary description)",
-  "achievement-description-contribs-saturday": "I contributed on Saturday! (Temporary Description)"
+  "achievement-description-contribs-saturday": "I contributed on Saturday! (Temporary Description)",
+  "achievement-name-thanks": "Thanks! (temporary title)",
+  "achievement-hint-thanks": "Thanks! (temporary description)",
+  "achievement-description-thanks": "Thanks! (Temporary Description)",
+  "achievement-name-be-thanked": "Thankful day (temporary title)",
+  "achievement-hint-be-thanked": "Thankful day (temporary description)",
+  "achievement-description-be-thanked": "Thankful day (Temporary Description)"
 }

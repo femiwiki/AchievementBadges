@@ -16,8 +16,9 @@ use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\MaintainableDBConnRef;
 
 class AchievementRegister implements
-	\MediaWiki\ChangeTags\Hook\ChangeTagsAfterUpdateTagsHook,
+	\MediaWiki\Api\Hook\APIAfterExecuteHook,
 	\MediaWiki\Auth\Hook\LocalUserCreatedHook,
+	\MediaWiki\ChangeTags\Hook\ChangeTagsAfterUpdateTagsHook,
 	\MediaWiki\Extension\AchievementBadges\Hooks\BeforeCreateAchievementHook,
 	\MediaWiki\Extension\AchievementBadges\Hooks\SpecialAchievementsBeforeGetEarnedHook,
 	\MediaWiki\Storage\Hook\PageSaveCompleteHook,
@@ -114,6 +115,16 @@ class AchievementRegister implements
 				'priority' => 400,
 			];
 		}
+		if ( self::isThanksEnabled() ) {
+			$achievements[Constants::ACHV_KEY_THANKS] = [
+				'type' => 'instant',
+				'priority' => 500,
+			];
+			$achievements[Constants::ACHV_KEY_BE_THANKED] = [
+				'type' => 'instant',
+				'priority' => 500,
+			];
+		}
 	}
 
 	/** @return bool */
@@ -122,6 +133,11 @@ class AchievementRegister implements
 
 		return ExtensionRegistry::getInstance()->isLoaded( 'VisualEditor' )
 			&& $config->get( 'VisualEditorUseChangeTagging' );
+	}
+
+	/** @return bool */
+	private static function isThanksEnabled() {
+		return ExtensionRegistry::getInstance()->isLoaded( 'Thanks' );
 	}
 
 	/**
@@ -269,5 +285,31 @@ class AchievementRegister implements
 				'user' => $user,
 			] );
 		}
+	}
+
+	/** @inheritDoc */
+	public function onAPIAfterExecute( $module ) {
+		if ( $module->getModuleName() != 'thank' ) {
+			return;
+		}
+		$user = $module->getUser();
+		$result = $module->getResult()->getResultData();
+		if ( !isset( $result['result'] ) ) {
+			return;
+		}
+		$result = $result['result'];
+		if ( !isset( $result['recipient'] ) || $result['success'] != 1 ) {
+			return;
+		}
+		$recipient = User::newFromName( $result['recipient'] );
+		LoggerFactory::getInstance( 'AchievementBadges' )->debug( "$user thanks to $recipient" );
+		Achievement::achieve( [
+			'key' => Constants::ACHV_KEY_THANKS,
+			'user' => $user,
+		] );
+		Achievement::achieve( [
+			'key' => Constants::ACHV_KEY_BE_THANKED,
+			'user' => $recipient,
+		] );
 	}
 }

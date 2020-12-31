@@ -114,5 +114,11 @@
   "achievement-description-contribs-friday": "{{doc-achievementbadges-achievement-description}}",
   "achievement-name-contribs-saturday": "{{doc-achievementbadges-achievement-name}}",
   "achievement-hint-contribs-saturday": "{{doc-achievementbadges-achievement-hint}}",
-  "achievement-description-contribs-saturday": "{{doc-achievementbadges-achievement-description}}"
+  "achievement-description-contribs-saturday": "{{doc-achievementbadges-achievement-description}}",
+  "achievement-name-thanks": "{{doc-achievementbadges-achievement-name}}",
+  "achievement-hint-thanks": "{{doc-achievementbadges-achievement-hint}}",
+  "achievement-description-thanks": "{{doc-achievementbadges-achievement-description}}",
+  "achievement-name-be-thanked": "{{doc-achievementbadges-achievement-name}}",
+  "achievement-hint-be-thanked": "{{doc-achievementbadges-achievement-hint}}",
+  "achievement-description-be-thanked": "{{doc-achievementbadges-achievement-description}}"
 }
