@@ -131,6 +131,16 @@ final class Constants {
 	public const ACHV_KEY_VISUAL_EDIT = 'visual-edit';
 
 	/**
+	 * @var string
+	 */
+	public const ACHV_KEY_THANKS = 'thanks';
+
+	/**
+	 * @var string
+	 */
+	public const ACHV_KEY_BE_THANKED = 'be-thanked';
+
+	/**
 	 * This class is for namespacing constants only. Forbid construction.
 	 * @throws FatalError
 	 */
