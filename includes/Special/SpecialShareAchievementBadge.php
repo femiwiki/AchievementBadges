@@ -66,7 +66,7 @@ class SpecialShareAchievementBadge extends SpecialPage {
 	public function execute( $subPage ) {
 		$this->addHelpLink( 'Extension:AchievementBadges' );
 
-		$this->viewer = $this->getUser();
+		$viewer = $this->viewer = $this->getUser();
 		$out = $this->getOutput();
 		$out->addModuleStyles( 'ext.achievementbadges.special.shareachievementsbadge.styles' );
 		$out->addModules( [ 'ext.achievementbadges.special.shareachievementsbadge' ] );
@@ -103,8 +103,10 @@ class SpecialShareAchievementBadge extends SpecialPage {
 		$pageHeader = $this->msg( 'special-shareachievementsbadge-title', $this->obtainer->getName(), $achvName )
 			->parse();
 		$out->setHTMLTitle( $this->msg( 'pagetitle' )->plaintextParams( $pageHeader )->text() );
-		$out->setSubTitle( '< ' . Linker::link( SpecialPage::getTitleFor( SpecialAchievements::PAGE_NAME ),
-			$this->msg( 'special-achievements' )->escaped() ) );
+		if ( !$viewer->isAnon() ) {
+			$out->setSubTitle( '< ' . Linker::link( SpecialPage::getTitleFor( SpecialAchievements::PAGE_NAME ),
+				$this->msg( 'special-achievements' )->escaped() ) );
+		}
 
 		$data = $this->getBadgeData();
 		if ( !$data ) {
@@ -113,7 +115,6 @@ class SpecialShareAchievementBadge extends SpecialPage {
 		}
 		$data = array_merge( $data, $this->getSnsShareData() );
 
-		$viewer = $this->viewer;
 		$betaConfigEnabled = $config->get( Constants::CONFIG_KEY_ENABLE_BETA_FEATURE );
 		$userBetaEnabled = $betaConfigEnabled && BetaFeatures::isFeatureEnabled( $viewer,
 				Constants::PREF_KEY_ACHIEVEMENT_ENABLE );
