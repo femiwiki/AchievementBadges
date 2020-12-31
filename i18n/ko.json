@@ -18,7 +18,7 @@
   "special-shareachievementsbadge-item-facebook": "페이스북",
   "special-shareachievementsbadge-item-twitter": "트위터",
   "special-shareachievementsbadge-tweet": "{{SITENAME}}에서 $2 도전과제를 지금 막 달성했어요! $3",
-  "special-shareachievementsbadge-suggestion-sign-up": "[[Special:Createaccount|도전과제를 달성하려면 지금 가입하세요!]]",
+  "special-shareachievementsbadge-suggestion-sign-up": "도전과제를 달성하려면 지금 [[Special:Createaccount|{{SITENAME}}에 가입]]하세요.\n\n계정이 있으신가요? [[특수:login|로그인]]",
   "special-shareachievementsbadge-suggestion-beta": "[[Special:Preferences#mw-prefsection-betafeatures|지금 도전과제 달성을 시작하세요!]]",
   "achievement-earned-at": "$2 {{GENDER:$1|달성}}",
   "achievement-earned-at-tooltip": "$1 $2",
