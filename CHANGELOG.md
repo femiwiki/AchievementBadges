@@ -2,7 +2,7 @@
 
 :warning: There could be breaking changes anywhere during major version zero(v0.x.x).
 
-## v0.1.1 (Unreleased)
+## v0.1.1
 
 - Fix bad url on sharing to Facebook
 
