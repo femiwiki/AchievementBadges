@@ -4,7 +4,9 @@
 
 ## v0.1.1 (Unreleased)
 
-## v0.1.0 (Unreleased)
+- Fix bad url on sharing to Facebook
+
+## v0.1.0
 
 ### Breaking changes
 

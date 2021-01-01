@@ -27,7 +27,7 @@
     FB.ui(
       {
         method: 'share',
-        href: button.href,
+        href: window.location.href,
       },
       function (response) {}
     );
