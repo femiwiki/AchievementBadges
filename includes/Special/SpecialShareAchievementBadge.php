@@ -80,7 +80,7 @@ class SpecialShareAchievementBadge extends SpecialPage {
 		}
 
 		list( $obtainerId, $key ) = $split;
-		$this->obtainer = User::newFromId( $obtainerId );
+		$this->obtainer = User::newFromId( (int)$obtainerId );
 		if ( !$this->obtainer ) {
 			$out->addWikiTextAsInterface( $this->msg( 'special-shareachievementsbadge-invalid-username' )->parse() );
 			return;
