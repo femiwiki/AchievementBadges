@@ -34,8 +34,9 @@ class SpecialShareAchievementBadgeTest extends SpecialPageTestBase {
 		$user->setName( $name );
 		$user->addToDatabase();
 		Achievement::achieve( [ 'user' => $user, 'key' => $key ] );
+		$id = $user->getId();
 
-		list( $html, ) = $this->executeSpecialPage( "$name/$key", null, 'qqx' );
+		list( $html, ) = $this->executeSpecialPage( base64_encode( "$id/$key" ), null, 'qqx' );
 		$this->assertStringContainsString( 'special-shareachievementsbadge-message', $html );
 	}
 
