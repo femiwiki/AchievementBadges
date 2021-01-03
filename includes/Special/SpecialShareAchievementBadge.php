@@ -9,6 +9,7 @@ use MediaWiki\Extension\AchievementBadges\Achievement;
 use MediaWiki\Extension\AchievementBadges\Constants;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use NamespaceInfo;
 use Psr\Log\LoggerInterface;
 use SpecialPage;
 use TemplateParser;
@@ -29,6 +30,9 @@ class SpecialShareAchievementBadge extends SpecialPage {
 
 	/** @var LoggerInterface */
 	private $logger;
+
+	/** @var string */
+	private $base64subPage;
 
 	/** @var User */
 	private $obtainer;
@@ -72,6 +76,7 @@ class SpecialShareAchievementBadge extends SpecialPage {
 		$out->addModules( [ 'ext.achievementbadges.special.shareachievementsbadge' ] );
 		$config = $this->getConfig();
 
+		$this->base64subPage = $subPage;
 		$subPage = base64_decode( $subPage );
 		$split = explode( '/', $subPage, 2 );
 		if ( count( $split ) != 2 ) {
@@ -182,10 +187,17 @@ class SpecialShareAchievementBadge extends SpecialPage {
 
 	/** @return array */
 	private function getSnsShareData() {
-		$share = [];
-		$facebookAppId = $this->getConfig()->get( Constants::CONFIG_KEY_FACEBOOK_APP_ID );
-		$titleUrl = $this->getFullTitle()->getFullURL();
+		$config = $this->getConfig();
+		$obtainer = $this->obtainer;
 
+		// Use English title to avoid very long url which is build by urlencode()
+		$titleText = NamespaceInfo::CANONICAL_NAMES[NS_SPECIAL] . ':' . self::PAGE_NAME . '/' . $this->base64subPage;
+		$articlePath = $config->get( 'ArticlePath' );
+		$localUrl = str_replace( '$1', $titleText, $articlePath );
+		$titleUrl = wfExpandUrl( $localUrl );
+
+		$share = [];
+		$facebookAppId = $config->get( Constants::CONFIG_KEY_FACEBOOK_APP_ID );
 		if ( $facebookAppId ) {
 			$url = 'https://www.facebook.com/dialog/share?' .
 				"app_id=$facebookAppId" .
@@ -197,8 +209,12 @@ class SpecialShareAchievementBadge extends SpecialPage {
 				'text-url' => $url,
 			];
 		}
-		$tweet = $this->msg( 'special-shareachievementsbadge-tweet' )
-			->plaintextParams( $this->obtainer->getName() )
+		$viewer = $this->viewer;
+		$tweet = ( $obtainer == $viewer ) ? 'special-shareachievementsbadge-tweet'
+			: 'special-shareachievementsbadge-tweet-viewer';
+
+		$tweet = $this->msg( $tweet );
+		$tweet = $tweet->plaintextParams( $this->obtainer->getName() )
 			->plaintextParams( $this->achvNameMsg->text() )
 			->plaintextParams( $titleUrl );
 		$tweetUrl = 'https://twitter.com/intent/tweet?text=' . urlencode( $tweet );

@@ -18,6 +18,7 @@
   "special-shareachievementsbadge-item-facebook": "Facebook",
   "special-shareachievementsbadge-item-twitter": "Twitter",
   "special-shareachievementsbadge-tweet": "I just {{GENDER:$1|earned}} the $2 achievement at {{SITENAME}}! $3",
+  "special-shareachievementsbadge-tweet-viewer": "$1 just {{GENDER:$1|earned}} the $2 achievement at {{SITENAME}}! $3",
   "special-shareachievementsbadge-suggestion-sign-up": "[[Special:Createaccount|{{GENDER:$1|Sign}} up]] now to start getting achievements.\n\nHave an account? [[Special:Login|Sign in]]",
   "special-shareachievementsbadge-suggestion-beta": "[[Special:Preferences#mw-prefsection-betafeatures|{{GENDER:$1|Start}} getting achievements now!]]",
   "achievement-earned-at": "{{GENDER:$1|Earned}} at $2",
