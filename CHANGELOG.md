@@ -4,7 +4,8 @@
 
 ## v0.1.2 (Unreleased)
 
-- Special:ShareAchievementBadge
+- Special:ShareAchievement
+  - Rename from Special:ShareAchievementBadge
   - Use English title to avoid very long url which is build by `urlencode()`
   - Change the message of tweet when the user who sends the tweet is not the obtainer.
   - Add `<meta name="title">`

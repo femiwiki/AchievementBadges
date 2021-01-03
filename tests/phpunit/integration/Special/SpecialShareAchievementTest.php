@@ -4,22 +4,22 @@ namespace MediaWiki\Extension\AchievementBadges\Tests\Integration\Special;
 
 use MediaWiki\Extension\AchievementBadges\Achievement;
 use MediaWiki\Extension\AchievementBadges\Constants;
-use MediaWiki\Extension\AchievementBadges\Special\SpecialShareAchievementBadge;
+use MediaWiki\Extension\AchievementBadges\Special\SpecialShareAchievement;
 use SpecialPageTestBase;
 use User;
 
 /**
  * @group AchievementBadges
  *
- * @covers \MediaWiki\Extension\AchievementBadges\Special\SpecialShareAchievementBadge
+ * @covers \MediaWiki\Extension\AchievementBadges\Special\SpecialShareAchievement
  */
-class SpecialShareAchievementBadgeTest extends SpecialPageTestBase {
+class SpecialShareAchievementTest extends SpecialPageTestBase {
 
 	/**
 	 * @inheritDoc
 	 */
 	protected function newSpecialPage() {
-		return new SpecialShareAchievementBadge();
+		return new SpecialShareAchievement();
 	}
 
 	/**
@@ -47,7 +47,7 @@ class SpecialShareAchievementBadgeTest extends SpecialPageTestBase {
 		$id = $this->getAchievedUserId( $key );
 
 		list( $html, ) = $this->executeSpecialPage( base64_encode( "$id/$key" ), null, 'qqx' );
-		$this->assertStringContainsString( 'special-shareachievementsbadge-message', $html );
+		$this->assertStringContainsString( 'special-shareachievement-message', $html );
 	}
 
 	public function testMetaTags() {
@@ -63,7 +63,7 @@ class SpecialShareAchievementBadgeTest extends SpecialPageTestBase {
 		$this->assertStringContainsString( '<meta name="title"', $head );
 		$this->assertStringContainsString( '<meta property="og:title"', $head );
 		$this->assertStringContainsString( '<meta property="og:description"', $head );
-		$this->assertStringContainsString( 'special-shareachievementsbadge-external-description', $head );
+		$this->assertStringContainsString( 'special-shareachievement-external-description', $head );
 	}
 
 }
