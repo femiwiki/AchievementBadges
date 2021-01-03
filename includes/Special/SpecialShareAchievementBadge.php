@@ -225,10 +225,12 @@ class SpecialShareAchievementBadge extends SpecialPage {
 		$ogImagePath = Achievement::getAchievementOgImage( $obtainerLang, $ogImagePath );
 
 		$meta = [];
+
+		$meta['title'] = $this->msg( 'special-shareachievementsbadge-title',
+			$this->obtainer->getName(), $achvName )->inLanguage( $obtainerLang )->text();
 		$meta['og:type'] = 'article';
 		$meta['og:site_name'] = $sitename;
-		$meta['og:title'] = $this->msg( 'special-shareachievementsbadge-title',
-			$this->obtainer->getName(), $achvName )->inLanguage( $obtainerLang )->text();
+		$meta['og:title'] = $meta['title'];
 		$meta['og:description'] =
 			$this->msg( 'special-shareachievementsbadge-external-description' )
 				->plaintextParams( $this->obtainer->getName() )

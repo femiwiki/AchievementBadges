@@ -22,8 +22,11 @@ class SpecialShareAchievementBadgeTest extends SpecialPageTestBase {
 		return new SpecialShareAchievementBadge();
 	}
 
-	public function testExecute() {
-		$key = 'share-badge-test';
+	/**
+	 * @param string $key
+	 * @return int
+	 */
+	private function getAchievedUserId( $key ) {
 		$this->setMwGlobals( 'wg' . Constants::CONFIG_KEY_ACHIEVEMENTS, [
 			$key => [
 				'type' => 'instant'
@@ -33,11 +36,34 @@ class SpecialShareAchievementBadgeTest extends SpecialPageTestBase {
 		$name = 'ShareAchievementTester';
 		$user->setName( $name );
 		$user->addToDatabase();
+		$user->setOption( 'language', 'qqx' );
+		$user->saveSettings();
 		Achievement::achieve( [ 'user' => $user, 'key' => $key ] );
-		$id = $user->getId();
+		return $user->getId();
+	}
+
+	public function testExecute() {
+		$key = 'share-badge1';
+		$id = $this->getAchievedUserId( $key );
 
 		list( $html, ) = $this->executeSpecialPage( base64_encode( "$id/$key" ), null, 'qqx' );
 		$this->assertStringContainsString( 'special-shareachievementsbadge-message', $html );
+	}
+
+	public function testMetaTags() {
+		$key = 'share-badge2';
+		$id = $this->getAchievedUserId( $key );
+
+		$page = $this->newSpecialPage();
+		$output = $page->getOutput();
+		$output->setTitle( $page->getPageTitle() );
+
+		$page->execute( base64_encode( "$id/$key" ) );
+		$head = $output->headElement( $output->getContext()->getSkin() );
+		$this->assertStringContainsString( '<meta name="title"', $head );
+		$this->assertStringContainsString( '<meta property="og:title"', $head );
+		$this->assertStringContainsString( '<meta property="og:description"', $head );
+		$this->assertStringContainsString( 'special-shareachievementsbadge-external-description', $head );
 	}
 
 }
