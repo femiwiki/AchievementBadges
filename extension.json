@@ -44,7 +44,7 @@
   },
   "SpecialPages": {
     "Achievements": "MediaWiki\\Extension\\AchievementBadges\\Special\\SpecialAchievements",
-    "ShareAchievementBadge": "MediaWiki\\Extension\\AchievementBadges\\Special\\SpecialShareAchievementBadge"
+    "ShareAchievement": "MediaWiki\\Extension\\AchievementBadges\\Special\\SpecialShareAchievement"
   },
   "ResourceFileModulePaths": {
     "localBasePath": "modules",
@@ -54,12 +54,12 @@
     "ext.achievementbadges.special.achievements.styles": {
       "styles": ["styles/spacial-achievements.less"]
     },
-    "ext.achievementbadges.special.shareachievementsbadge.styles": {
-      "styles": ["styles/spacial-shareachievementsbadge.less"]
+    "ext.achievementbadges.special.shareachievement.styles": {
+      "styles": ["styles/spacial-shareachievement.less"]
     },
-    "ext.achievementbadges.special.shareachievementsbadge": {
+    "ext.achievementbadges.special.shareachievement": {
       "targets": ["desktop", "mobile"],
-      "scripts": ["shareachievementsbadge.js"],
+      "scripts": ["shareachievement.js"],
       "dependencies": ["ext.achievementbadges.dm", "mediawiki.page.ready"]
     },
     "ext.achievementbadges.dm": {

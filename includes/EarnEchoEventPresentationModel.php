@@ -6,7 +6,7 @@ use EchoEvent;
 use EchoEventPresentationModel;
 use Language;
 use MediaWiki\Extension\AchievementBadges\Special\SpecialAchievements;
-use MediaWiki\Extension\AchievementBadges\Special\SpecialShareAchievementBadge;
+use MediaWiki\Extension\AchievementBadges\Special\SpecialShareAchievement;
 use Message;
 use SpecialPage;
 use User;
@@ -46,7 +46,7 @@ class EarnEchoEventPresentationModel extends EchoEventPresentationModel {
 			}
 			$agent = $this->event->getAgent()->getId();
 			$key = $this->achievementKey;
-			$title = SpecialPage::getTitleFor( SpecialShareAchievementBadge::PAGE_NAME,
+			$title = SpecialPage::getTitleFor( SpecialShareAchievement::PAGE_NAME,
 				base64_encode( "$agent/$key" ) );
 			$link = $this->getPageLink( $title, '', true );
 			return $link;

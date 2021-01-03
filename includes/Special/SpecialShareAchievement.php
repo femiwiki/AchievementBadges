@@ -21,9 +21,9 @@ use User;
  * @file
  */
 
-class SpecialShareAchievementBadge extends SpecialPage {
+class SpecialShareAchievement extends SpecialPage {
 
-	public const PAGE_NAME = 'ShareAchievementBadge';
+	public const PAGE_NAME = 'ShareAchievement';
 
 	/** @var TemplateParser */
 	private $templateParser;
@@ -72,29 +72,29 @@ class SpecialShareAchievementBadge extends SpecialPage {
 
 		$viewer = $this->viewer = $this->getUser();
 		$out = $this->getOutput();
-		$out->addModuleStyles( 'ext.achievementbadges.special.shareachievementsbadge.styles' );
-		$out->addModules( [ 'ext.achievementbadges.special.shareachievementsbadge' ] );
+		$out->addModuleStyles( 'ext.achievementbadges.special.shareachievement.styles' );
+		$out->addModules( [ 'ext.achievementbadges.special.shareachievement' ] );
 		$config = $this->getConfig();
 
 		$this->base64subPage = $subPage;
 		$subPage = base64_decode( $subPage );
 		$split = explode( '/', $subPage, 2 );
 		if ( count( $split ) != 2 ) {
-			$out->addWikiTextAsInterface( $this->msg( 'special-shareachievementsbadge-invalid' )->parse() );
+			$out->addWikiTextAsInterface( $this->msg( 'special-shareachievement-invalid' )->parse() );
 			return;
 		}
 
 		list( $obtainerId, $key ) = $split;
 		$this->obtainer = User::newFromId( (int)$obtainerId );
 		if ( !$this->obtainer ) {
-			$out->addWikiTextAsInterface( $this->msg( 'special-shareachievementsbadge-invalid-username' )->parse() );
+			$out->addWikiTextAsInterface( $this->msg( 'special-shareachievement-invalid-username' )->parse() );
 			return;
 		}
 		list( $this->suffixedKey, $this->unsuffixedKey, ) = Achievement::extractKeySegments( $key );
 		$this->achievementType = $this->suffixedKey == $this->unsuffixedKey ? 'instant' : 'stats';
 		$this->registry = $config->get( Constants::CONFIG_KEY_ACHIEVEMENTS );
 		if ( !array_key_exists( $this->unsuffixedKey, $this->registry ) ) {
-			$out->addWikiTextAsInterface( $this->msg( 'special-shareachievementsbadge-invalid-achievement-name' )
+			$out->addWikiTextAsInterface( $this->msg( 'special-shareachievement-invalid-achievement-name' )
 				->parse() );
 			return;
 		}
@@ -105,7 +105,7 @@ class SpecialShareAchievementBadge extends SpecialPage {
 		$this->achvNameMsg = $this->msg( 'achievement-name-' . ( $this->suffixedKey ), $this->obtainer->getName() );
 		$achvName = $this->achvNameMsg->text();
 
-		$pageHeader = $this->msg( 'special-shareachievementsbadge-title', $this->obtainer->getName(), $achvName )
+		$pageHeader = $this->msg( 'special-shareachievement-title', $this->obtainer->getName(), $achvName )
 			->parse();
 		$out->setHTMLTitle( $this->msg( 'pagetitle' )->plaintextParams( $pageHeader )->text() );
 		if ( !$viewer->isAnon() ) {
@@ -115,7 +115,7 @@ class SpecialShareAchievementBadge extends SpecialPage {
 
 		$data = $this->getBadgeData();
 		if ( !$data ) {
-			$out->addWikiTextAsInterface( $this->msg( 'special-shareachievementsbadge-invalid' )->parse() );
+			$out->addWikiTextAsInterface( $this->msg( 'special-shareachievement-invalid' )->parse() );
 			return;
 		}
 		$data = array_merge( $data, $this->getSnsShareData() );
@@ -125,15 +125,15 @@ class SpecialShareAchievementBadge extends SpecialPage {
 				Constants::PREF_KEY_ACHIEVEMENT_ENABLE );
 		if ( $viewer->isAnon() ) {
 			$data['has-suggestion'] = true;
-			$data['text-suggestion'] = $this->msg( 'special-shareachievementsbadge-suggestion-sign-up',
+			$data['text-suggestion'] = $this->msg( 'special-shareachievement-suggestion-sign-up',
 				$viewer->getName() )->parse();
 		} elseif ( $betaConfigEnabled && !$userBetaEnabled ) {
 			$data['has-suggestion'] = true;
-			$data['text-suggestion'] = $this->msg( 'special-shareachievementsbadge-suggestion-beta',
+			$data['text-suggestion'] = $this->msg( 'special-shareachievement-suggestion-beta',
 				$viewer->getName() )->parse();
 		}
 
-		$this->getOutput()->addHTML( $this->templateParser->processTemplate( 'SpecialShareAchievementBadge', $data ) );
+		$this->getOutput()->addHTML( $this->templateParser->processTemplate( 'SpecialShareAchievement', $data ) );
 		$this->addMeta();
 	}
 
@@ -172,8 +172,8 @@ class SpecialShareAchievementBadge extends SpecialPage {
 		$obtainerText = $this->obtainer->getName();
 		$description = $this->msg( 'achievement-description-' . $this->suffixedKey )
 			->plaintextParams( $obtainerText );
-		$topMessage = $this->obtainer->equals( $this->viewer ) ? $this->msg( 'special-shareachievementsbadge-message' )
-			: $this->msg( 'special-shareachievementsbadge-message-other' );
+		$topMessage = $this->obtainer->equals( $this->viewer ) ? $this->msg( 'special-shareachievement-message' )
+			: $this->msg( 'special-shareachievement-message-other' );
 		$topMessage->params( $obtainerText );
 
 		return [
@@ -205,13 +205,13 @@ class SpecialShareAchievementBadge extends SpecialPage {
 				'&href=' . urlencode( $titleUrl );
 			$share[] = [
 				'text-id' => 'share-achievement-facebook',
-				'text-text' => $this->msg( 'special-shareachievementsbadge-item-facebook' ),
+				'text-text' => $this->msg( 'special-shareachievement-item-facebook' ),
 				'text-url' => $url,
 			];
 		}
 		$viewer = $this->viewer;
-		$tweet = ( $obtainer == $viewer ) ? 'special-shareachievementsbadge-tweet'
-			: 'special-shareachievementsbadge-tweet-viewer';
+		$tweet = ( $obtainer == $viewer ) ? 'special-shareachievement-tweet'
+			: 'special-shareachievement-tweet-viewer';
 
 		$tweet = $this->msg( $tweet );
 		$tweet = $tweet->plaintextParams( $this->obtainer->getName() )
@@ -220,12 +220,12 @@ class SpecialShareAchievementBadge extends SpecialPage {
 		$tweetUrl = 'https://twitter.com/intent/tweet?text=' . urlencode( $tweet );
 		$share[] = [
 			'text-id' => 'share-achievement-twitter',
-			'text-text' => $this->msg( 'special-shareachievementsbadge-item-twitter' ),
+			'text-text' => $this->msg( 'special-shareachievement-item-twitter' ),
 			'text-url' => $tweetUrl,
 		];
 
 		return [
-			'text-share-header' => $this->msg( 'special-shareachievementsbadge-header-share',
+			'text-share-header' => $this->msg( 'special-shareachievement-header-share',
 				$this->obtainer->getName() ),
 			'data-share' => $share
 		];
@@ -242,13 +242,13 @@ class SpecialShareAchievementBadge extends SpecialPage {
 
 		$meta = [];
 
-		$meta['title'] = $this->msg( 'special-shareachievementsbadge-title',
+		$meta['title'] = $this->msg( 'special-shareachievement-title',
 			$this->obtainer->getName(), $achvName )->inLanguage( $obtainerLang )->text();
 		$meta['og:type'] = 'article';
 		$meta['og:site_name'] = $sitename;
 		$meta['og:title'] = $meta['title'];
 		$meta['og:description'] =
-			$this->msg( 'special-shareachievementsbadge-external-description' )
+			$this->msg( 'special-shareachievement-external-description' )
 				->plaintextParams( $this->obtainer->getName() )
 				->plaintextParams( $achvName )
 				->inLanguage( $obtainerLang )->text();
@@ -265,7 +265,7 @@ class SpecialShareAchievementBadge extends SpecialPage {
 	 * @inheritDoc
 	 */
 	public function getDescription() {
-		return $this->msg( 'special-shareachievementsbadge' )->escaped();
+		return $this->msg( 'special-shareachievement' )->escaped();
 	}
 
 	/**
