@@ -18,6 +18,7 @@
   "special-shareachievementsbadge-item-facebook": "This is a label for a link for sharing.",
   "special-shareachievementsbadge-item-twitter": "This is a label for a link for sharing.",
   "special-shareachievementsbadge-tweet": "This is used to send a new tweet.\n* $1 - user's name\n* $2 - the name of the obtained achievement\n* $3 - URL to the achievement page",
+  "special-shareachievementsbadge-tweet-viewer": "This is used to send a new tweet that is obtained by other than the user who tweets.\n* $1 - user's name\n* $2 - the name of the obtained achievement\n* $3 - URL to the achievement page",
   "special-shareachievementsbadge-suggestion-sign-up": "\n* $1 - user's name",
   "special-shareachievementsbadge-suggestion-beta": "\n* $1 - user's name",
   "achievement-earned-at": "This message is shown with each earned achievements\n\nParameters:\n* $1 - the name of the user who earn the achievement\n$2 - time",
