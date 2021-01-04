@@ -4,6 +4,7 @@
 
 ## v0.1.2 (Unreleased)
 
+- Do not require Extension:Echo. it is just an option now.
 - Special:ShareAchievement
   - Rename from Special:ShareAchievementBadge
   - Use English title to avoid very long url which is build by `urlencode()`

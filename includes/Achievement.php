@@ -4,6 +4,7 @@ namespace MediaWiki\Extension\AchievementBadges;
 
 use BetaFeatures;
 use EchoEvent;
+use ExtensionRegistry;
 use FatalError;
 use Language;
 use LogPage;
@@ -152,12 +153,14 @@ class Achievement {
 		if ( $index !== null ) {
 			$suffixedKey .= "-$index";
 		}
-		EchoEvent::create( [
-			'type' => Constants::EVENT_KEY_EARN,
-			'agent' => $user,
-			'extra' => [ 'key' => $suffixedKey ],
-		] );
-		self::getLogger()->debug( "A echo event of achievement $suffixedKey is created for $user " );
+		if ( ExtensionRegistry::getInstance()->isLoaded( 'Echo' ) ) {
+			EchoEvent::create( [
+				'type' => Constants::EVENT_KEY_EARN,
+				'agent' => $user,
+				'extra' => [ 'key' => $suffixedKey ],
+			] );
+			self::getLogger()->debug( "A echo event of achievement $suffixedKey is created for $user " );
+		}
 	}
 
 	/**
