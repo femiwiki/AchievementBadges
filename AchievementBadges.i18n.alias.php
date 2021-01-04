@@ -15,5 +15,5 @@ $specialPageAliases['en'] = [
  */
 $specialPageAliases['ko'] = [
 	'Achievements' => [ '도전과제목록' ],
-	'ShareAchievement' => [ '도전과제뱃지공유' ],
+	'ShareAchievement' => [ '도전과제공유' ],
 ];
