@@ -65,8 +65,8 @@ class SpecialAchievements extends SpecialPage {
 
 		$allAchvs = $config->get( Constants::CONFIG_KEY_ACHIEVEMENTS );
 		uasort( $allAchvs, function ( $a, $b ) {
-			$a = $a['priority'] ?? 1000;
-			$b = $b['priority'] ?? 1000;
+			$a = $a['priority'] ?? Constants::DEFAULT_ACHIEVEMENT_PRIORITY;
+			$b = $b['priority'] ?? Constants::DEFAULT_ACHIEVEMENT_PRIORITY;
 			return $a - $b;
 		} );
 
