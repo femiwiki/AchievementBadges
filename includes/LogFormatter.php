@@ -10,7 +10,7 @@ class LogFormatter extends \LogFormatter {
 	protected function getMessageParameters() {
 		$params = parent::getMessageParameters();
 		$achievementKey = $params[3];
-		$achievementNameMsgKey = 'achievement-name-' . $achievementKey;
+		$achievementNameMsgKey = 'achievementbadges-achievement-name-' . $achievementKey;
 		if ( isset( $params[4] ) ) {
 			$achievementNameMsgKey .= "-$params[4]";
 		}

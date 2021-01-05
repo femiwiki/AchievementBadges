@@ -133,10 +133,10 @@ class SpecialAchievements extends SpecialPage {
 				$isEarned ? 'earned' : 'not-earning',
 			] ),
 			'text-icon' => $icon,
-			'text-name' => $this->msg( "achievement-name-$key", $user->getName() )->text(),
+			'text-name' => $this->msg( "achievementbadges-achievement-name-$key", $user->getName() )->text(),
 		];
 		if ( $isEarned ) {
-			$data['html-description'] = $this->msg( "achievement-description-$key", $user->getName() )
+			$data['html-description'] = $this->msg( "achievementbadges-achievement-description-$key", $user->getName() )
 				->parse();
 			list( $timePeriod, $timestamp ) = Achievement::getHumanTimes( $this->getLanguage(), $user, $timestamp );
 			$data['data-time'] = [
@@ -144,7 +144,7 @@ class SpecialAchievements extends SpecialPage {
 				'text-time-period' => $timePeriod,
 			];
 		} else {
-			$data['html-hint'] = $this->msg( "achievement-hint-$key", $user->getName() )->parse();
+			$data['html-hint'] = $this->msg( "achievementbadges-achievement-hint-$key", $user->getName() )->parse();
 		}
 
 		return $data;
