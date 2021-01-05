@@ -2,14 +2,26 @@
 
 :warning: There could be breaking changes anywhere during major version zero(v0.x.x).
 
-## v0.1.2 (Unreleased)
+## v0.2.0 (Unreleased)
 
-- Do not require Extension:Echo. it is just an option now.
+### Breaking changes
+
+- Special:ShareAchievementBadge is renamed to Special:ShareAchievement
+- The prefix of the achievement system messages changed.
+  `achievement-name-foo` &rarr; `achievementbadges-achievement-name-foo`
+  `achievement-hint-foo` &rarr; `achievementbadges-achievement-hint-foo`
+  `achievement-description-foo` &rarr; `achievementbadges-achievement-description-foo`
+
+### Enhancements
+
 - Special:ShareAchievement
-  - Rename from Special:ShareAchievementBadge
-  - Use English title to avoid very long url which is build by `urlencode()`
+  - Use English title always to avoid very long url which is built by `urlencode()`
   - Change the message of tweet when the user who sends the tweet is not the obtainer.
   - Add `<meta name="title">`
+
+### Others
+
+- Do not require Extension:Echo. it is just an option now.
 
 ## v0.1.1
 

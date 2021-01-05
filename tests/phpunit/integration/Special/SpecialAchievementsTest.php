@@ -57,11 +57,11 @@ class SpecialAchievementsTest extends SpecialPageTestBase {
 		$user->addToDatabase();
 
 		list( $html, ) = $this->executeSpecialPage( '', null, 'qqx', null );
-		$this->assertStringContainsString( 'achievement-hint-sign-up', $html,
+		$this->assertStringContainsString( 'achievementbadges-achievement-hint-sign-up', $html,
 			'A user can see a hint for not earning achievement' );
 
 		list( $html, ) = $this->executeSpecialPage( '', null, 'qqx', $user );
-		$this->assertStringContainsString( 'achievement-description-sign-up', $html,
+		$this->assertStringContainsString( 'achievementbadges-achievement-description-sign-up', $html,
 			'A user can see a description for obtained achievement' );
 	}
 
@@ -78,15 +78,15 @@ class SpecialAchievementsTest extends SpecialPageTestBase {
 
 		Achievement::sendStats( $info );
 		list( $html, ) = $this->executeSpecialPage( '', null, 'qqx', $user );
-		$this->assertStringContainsString( 'achievement-description-special-test-0', $html,
+		$this->assertStringContainsString( 'achievementbadges-achievement-description-special-test-0', $html,
 			'Achieved achievement should be shown on Special:Achievements' );
 
 		$info['stats'] = 15;
 		Achievement::sendStats( $info );
 		list( $html, ) = $this->executeSpecialPage( '', null, 'qqx', $user );
-		$this->assertStringContainsString( 'achievement-description-special-test-0', $html,
+		$this->assertStringContainsString( 'achievementbadges-achievement-description-special-test-0', $html,
 			'Achieved achievement should be shown on Special:Achievements' );
-		$this->assertStringContainsString( 'achievement-description-special-test-1', $html,
+		$this->assertStringContainsString( 'achievementbadges-achievement-description-special-test-1', $html,
 			'Achieved achievement should be shown on Special:Achievements' );
 	}
 

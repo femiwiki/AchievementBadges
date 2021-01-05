@@ -102,7 +102,8 @@ class SpecialShareAchievement extends SpecialPage {
 		$userOptionsLookup = MediaWikiServices::getInstance()->getUserOptionsLookup();
 		$obtainerLang = Language::factory( $userOptionsLookup->getOption( $this->obtainer, 'language' ) );
 		$this->obtainerLang = $obtainerLang;
-		$this->achvNameMsg = $this->msg( 'achievement-name-' . ( $this->suffixedKey ), $this->obtainer->getName() );
+		$this->achvNameMsg = $this->msg( 'achievementbadges-achievement-name-' . ( $this->suffixedKey ),
+			$this->obtainer->getName() );
 		$achvName = $this->achvNameMsg->text();
 
 		$pageHeader = $this->msg( 'special-shareachievement-title', $this->obtainer->getName(), $achvName )
@@ -170,7 +171,7 @@ class SpecialShareAchievement extends SpecialPage {
 		$iconPath = Achievement::getAchievementIcon( $this->obtainerLang, $registry['icon'] ?? null );
 		$achvName = $this->achvNameMsg->text();
 		$obtainerText = $this->obtainer->getName();
-		$description = $this->msg( 'achievement-description-' . $this->suffixedKey )
+		$description = $this->msg( 'achievementbadges-achievement-description-' . $this->suffixedKey )
 			->plaintextParams( $obtainerText );
 		$topMessage = $this->obtainer->equals( $this->viewer ) ? $this->msg( 'special-shareachievement-message' )
 			: $this->msg( 'special-shareachievement-message-other' );
@@ -234,7 +235,8 @@ class SpecialShareAchievement extends SpecialPage {
 	private function addMeta() {
 		$sitename = $this->getConfig()->get( 'Sitename' );
 		$obtainerLang = $this->obtainerLang;
-		$achvNameMsg = $this->msg( 'achievement-name-' . ( $this->suffixedKey ), $this->obtainer->getName() );
+		$achvNameMsg = $this->msg( 'achievementbadges-achievement-name-' . ( $this->suffixedKey ),
+			$this->obtainer->getName() );
 		$achvName = $achvNameMsg->inLanguage( $obtainerLang )->text();
 		$registry = $this->registry;
 		$ogImagePath = $registry['og-image'] ?? $registry['icon'] ?? null;
