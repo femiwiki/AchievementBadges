@@ -18,6 +18,7 @@
   - Use English title always to avoid very long url which is built by `urlencode()`
   - Change the message of tweet when the user who sends the tweet is not the obtainer.
   - Add `<meta name="title">`
+- `Special:Achievements/<OTHER_USERNAME>` will show the list of the other user's achieved achievements.
 
 ### Others
 
