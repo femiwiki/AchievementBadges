@@ -2,16 +2,20 @@
 
 namespace MediaWiki\Extension\AchievementBadges\HookHandler;
 
+use BetaFeatures;
 use Config;
 use EchoEvent;
 use MediaWiki\Extension\AchievementBadges\Constants;
 use MediaWiki\Extension\AchievementBadges\EarnEchoEventPresentationModel;
 use MediaWiki\Extension\AchievementBadges\Hooks\HookRunner;
+use MediaWiki\Extension\AchievementBadges\Special\SpecialAchievements;
 use MediaWiki\MediaWikiServices;
+use SpecialPage;
 use User;
 
 class Main implements
-	\MediaWiki\ResourceLoader\Hook\ResourceLoaderGetConfigVarsHook
+	\MediaWiki\ResourceLoader\Hook\ResourceLoaderGetConfigVarsHook,
+	\MediaWiki\Hook\ContributionsToolLinksHook
 	{
 
 	/**
@@ -147,5 +151,32 @@ class Main implements
 		$vars['wg' . Constants::CONFIG_KEY_FACEBOOK_APP_ID] = MediaWikiServices::getInstance()
 			->getMainConfig()
 			->get( Constants::CONFIG_KEY_FACEBOOK_APP_ID );
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function onContributionsToolLinks(
+			$id,
+			$title,
+			&$tools,
+			$specialPage
+		) {
+		$target = User::newFromId( $id );
+		if ( $target->isAnon() ) {
+			return;
+		}
+		$linkTarget = SpecialPage::getTitleFor( SpecialAchievements::PAGE_NAME, $target->getName() );
+		$msg = wfMessage( 'achievementbadges-link-on-user-contributes' )->text();
+		$linkRenderer = $specialPage->getLinkRenderer();
+		$betaPeriod = $this->config->get( Constants::CONFIG_KEY_ENABLE_BETA_FEATURE );
+		$userOptionEnabled = $betaPeriod &&
+			BetaFeatures::isFeatureEnabled( $target, Constants::PREF_KEY_ACHIEVEMENT_ENABLE );
+
+		if ( $betaPeriod && !$userOptionEnabled ) {
+			$tools['achievementbadges'] = $linkRenderer->makeBrokenLink( $linkTarget, $msg );
+		} else {
+			$tools['achievementbadges'] = $linkRenderer->makeKnownLink( $linkTarget, $msg );
+		}
 	}
 }

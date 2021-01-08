@@ -20,6 +20,7 @@
     "BeforeEchoEventInsert": "MediaWiki\\Extension\\AchievementBadges\\HookHandler\\Main::onBeforeEchoEventInsert",
     "EchoGetBundleRules": "MediaWiki\\Extension\\AchievementBadges\\HookHandler\\Main::onEchoGetBundleRules",
     "GetBetaFeaturePreferences": "MediaWiki\\Extension\\AchievementBadges\\HookHandler\\Main::onGetBetaFeaturePreferences",
+    "ContributionsToolLinks": "Main",
     "ResourceLoaderGetConfigVars": "Main",
     "APIAfterExecute": "AchievementRegister",
     "BeforeCreateAchievement": "AchievementRegister",
