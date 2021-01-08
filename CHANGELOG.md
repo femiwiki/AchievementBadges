@@ -2,7 +2,7 @@
 
 :warning: There could be breaking changes anywhere during major version zero(v0.x.x).
 
-## v0.2.0 (Unreleased)
+## v0.2.0
 
 ### Breaking changes
 
