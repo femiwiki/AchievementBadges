@@ -40,6 +40,7 @@
 	"notification-header-achievementbadges-earn": "$3 도전과제를 {{GENDER:$2|달성했습니다}}.",
 	"notification-bundle-header-achievementbadges-earn": "새 도전과제를 $3개 {{GENDER:$2|달성했습니다}}.",
 	"notification-link-text-all-achievements": "모든 도전과제",
+	"achievementbadges-link-on-user-contributes": "달성 도전과제",
 	"achievementbadges-achievement-name-enable-achievement-badges": "도전과제 활성화하기",
 	"achievementbadges-achievement-hint-enable-achievement-badges": "[[Special:Preferences#mw-prefsection-betafeatures|환경 설정의 베타 기능]]에서 도전과제 뱃지를 활성화하세요.",
 	"achievementbadges-achievement-description-enable-achievement-badges": "도전과제 뱃지 베타 기능을 {{GENDER:$1|활성화했습니다}}! 베타 기간 동안의 주의사항에 주의하세요.",
