@@ -29,40 +29,42 @@ class SpecialAchievements extends SpecialPage {
 	/** @var LoggerInterface */
 	private $logger;
 
+	/** @var User */
+	private $target;
+
 	public function __construct() {
 		parent::__construct( self::PAGE_NAME );
 		$this->templateParser = new TemplateParser( __DIR__ . '/../templates' );
 		$this->logger = LoggerFactory::getInstance( 'AchievementBadges' );
 	}
 
-	/**
-	 * @inheritDoc
-	 */
+	/** @inheritDoc */
 	public function execute( $subPage ) {
-		$this->addHelpLink( 'Extension:AchievementBadges' );
-
-		$user = $this->getUser();
-
+		// $this->target should be set before output of the header
+		$viewer = $this->getUser();
+		$target = $this->target = $this->getObtainerFromSubPage( $subPage ) ?? $viewer;
+		parent::execute( $subPage );
 		$config = $this->getConfig();
+		$out = $this->getOutput();
 		$betaConfigEnabled = $config->get( Constants::CONFIG_KEY_ENABLE_BETA_FEATURE );
-		$userBetaEnabled = $betaConfigEnabled && BetaFeatures::isFeatureEnabled( $user,
-				Constants::PREF_KEY_ACHIEVEMENT_ENABLE );
-		if ( $betaConfigEnabled ) {
+		$targetEnabledBeta = $betaConfigEnabled && BetaFeatures::isFeatureEnabled( $target,
+			Constants::PREF_KEY_ACHIEVEMENT_ENABLE );
+		if ( $target->equals( $viewer ) && $betaConfigEnabled ) {
 			// An anonymous user can't enable beta features
 			$this->requireLogin( 'achievementbadges-anon-text' );
 		}
-
-		parent::execute( $subPage );
-
-		$out = $this->getOutput();
-		$out->addModuleStyles( 'ext.achievementbadges.special.achievements.styles' );
-
-		if ( $betaConfigEnabled && !$userBetaEnabled ) {
-			$msg = $this->msg( 'achievementbadges-disabled', $user->getName() );
+		if ( $betaConfigEnabled && !$targetEnabledBeta ) {
+			if ( $target->equals( $viewer ) ) {
+				$msg = $this->msg( 'achievementbadges-disabled', $viewer->getName() );
+			} else {
+				$msg = $this->msg( 'achievementbadges-target-not-disabled-ab', $target->getName() );
+			}
 			$out->addWikiTextAsInterface( $msg->parse() );
 			return;
 		}
 
+		$this->addHelpLink( 'Extension:AchievementBadges' );
+		$out->addModuleStyles( 'ext.achievementbadges.special.achievements.styles' );
 		$allAchvs = $config->get( Constants::CONFIG_KEY_ACHIEVEMENTS );
 		uasort( $allAchvs, function ( $a, $b ) {
 			$a = $a['priority'] ?? Constants::DEFAULT_ACHIEVEMENT_PRIORITY;
@@ -70,14 +72,15 @@ class SpecialAchievements extends SpecialPage {
 			return $a - $b;
 		} );
 
-		HookRunner::getRunner()->onSpecialAchievementsBeforeGetEarned( $user );
-		$earnedAchvs = $user->isAnon() ? [] : $this->getEarnedAchievementData( $user );
-		$this->logger->debug( "User $user achieved " . count( $earnedAchvs ) . ' (' .
+		HookRunner::getRunner()->onSpecialAchievementsBeforeGetEarned( $target );
+		$earnedAchvs = $target->isAnon() ? [] : $this->getEarnedAchievementData( $target );
+		$this->logger->debug( "User $target achieved " . count( $earnedAchvs ) . ' (' .
 			implode( ', ', array_keys( $earnedAchvs ) ) . ") achievements of " . count( $allAchvs ) );
 
 		$dataEarnedAchvs = [];
 		$dataNotEarningAchvs = [];
 		$lang = $this->getLanguage();
+		$showNotEarned = $target->equals( $this->getUser() );
 
 		foreach ( $allAchvs as $key => $info ) {
 			$icon = Achievement::getAchievementIcon( $lang, $info['icon'] ?? null );
@@ -87,34 +90,49 @@ class SpecialAchievements extends SpecialPage {
 					$suffixedKey = "$key-$i";
 					$isEarned = array_key_exists( $suffixedKey, $earnedAchvs );
 					$timestamp = $earnedAchvs[$suffixedKey] ?? null;
-					$new = $this->getDataAchievement( $suffixedKey, $icon, $user, $isEarned, $timestamp );
+					$new = $this->getDataAchievement( $suffixedKey, $icon, $target, $isEarned, $timestamp );
 					if ( $isEarned ) {
 						$dataEarnedAchvs[] = $new;
-					} else {
+					} elseif ( $showNotEarned ) {
 						$dataNotEarningAchvs[] = $new;
 					}
 				}
 			} else {
 				$isEarned = array_key_exists( $key, $earnedAchvs );
 				$timestamp = $earnedAchvs[$key] ?? null;
-				$new = $this->getDataAchievement( $key, $icon, $user, $isEarned, $timestamp );
+				$new = $this->getDataAchievement( $key, $icon, $target, $isEarned, $timestamp );
 
 				if ( $isEarned ) {
 					$dataEarnedAchvs[] = $new;
-				} else {
+				} elseif ( $showNotEarned ) {
 					$dataNotEarningAchvs[] = $new;
 				}
 			}
 		}
 
 		$out->addHTML( $this->templateParser->processTemplate( 'SpecialAchievements', [
-			'bool-earned-achievements' => (bool)$dataEarnedAchvs,
+			'has-earned-achievements' => (bool)$dataEarnedAchvs,
 			'data-earned-achievements' => $dataEarnedAchvs,
-			'bool-not-earning-achievements' => (bool)$dataNotEarningAchvs,
+			'has-not-earning-achievements' => (bool)$dataNotEarningAchvs,
 			'data-not-earning-achievements' => $dataNotEarningAchvs,
 			'msg-header-not-earning-achievements' => $this->msg(
-				'special-achievements-header-not-earning-achievements', $user->getName() ),
+				'special-achievements-header-not-earning-achievements', $target->getName() ),
 		] ) );
+	}
+
+	/**
+	 * @param string|null $subPage
+	 * @return User|null
+	 */
+	private function getObtainerFromSubPage( $subPage ) {
+		if ( !$subPage ) {
+			return null;
+		}
+		$user = User::newFromName( $subPage );
+		if ( !$user ) {
+			return null;
+		}
+		return $user;
 	}
 
 	/**
@@ -190,16 +208,15 @@ class SpecialAchievements extends SpecialPage {
 		return $achvs;
 	}
 
-	/**
-	 * @inheritDoc
-	 */
+	/** @inheritDoc */
 	public function getDescription() {
+		if ( isset( $this->target ) && !$this->getUser()->equals( $this->target ) ) {
+			return $this->msg( 'special-achievements-other-user', $this->target->getName() )->escaped();
+		}
 		return $this->msg( 'special-achievements' )->escaped();
 	}
 
-	/**
-	 * @inheritDoc
-	 */
+	/** @inheritDoc */
 	protected function getGroupName() {
 		return 'users';
 	}
