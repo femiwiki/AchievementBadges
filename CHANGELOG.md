@@ -2,6 +2,21 @@
 
 :warning: There could be breaking changes anywhere during major version zero(v0.x.x).
 
+## v0.2.1 (Unreleased)
+
+- Add a new configuration variable `$wgAchievementBadgesAddThisId` for pubid and tool id of [AddThis](https://www.addthis.com/). If it is set, `$wgAchievementBadgesFacebookAppId` will be ignored.
+
+  ```php
+  // Basic usage
+  $wgAchievementBadgesAddThisId = 'xx-xxxxxxxxxxxxxxxx';
+
+  // If you have multiple tools, you must specify the tool id.
+  $wgAchievementBadgesAddThisId = [
+    'pub' => 'xx-xxxxxxxxxxxxxxxx',
+    'tool' => 'xxxx',
+  ];
+  ```
+
 ## v0.2.0
 
 ### Breaking changes
