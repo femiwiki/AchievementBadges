@@ -39,6 +39,7 @@
 	"notification-header-achievementbadges-earn": "$3 {{GENDER:$2|başarınızı}} aldınız.",
 	"notification-bundle-header-achievementbadges-earn": "{{PLURAL:$3|Bir başarı|$3 yeni başarı}} {{GENDER:$2|aldınız}}.",
 	"notification-link-text-all-achievements": "Tüm başarılar",
+	"achievementbadges-link-on-user-contributes": "elde edilen başarılar",
 	"achievementbadges-achievement-name-enable-achievement-badges": "Başarı Rozetlerini Etkinleştir",
 	"achievementbadges-achievement-hint-enable-achievement-badges": "[[Special:Preferences#mw-prefsection-betafeatures|Tercihlerin Beta özellikleri]] üzerinde Başarı Rozetlerini etkinleştirin.",
 	"achievementbadges-achievement-description-enable-achievement-badges": "Başarı Rozetlerini {{GENDER:$1|etkinleştirdiniz}}! Lütfen beta başlıklarını aklınızda bulundurun.",
