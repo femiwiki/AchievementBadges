@@ -107,6 +107,10 @@
     "AchievementBadgesFacebookAppId": {
       "value": false,
       "description": "Facebook App id for SNS sharing."
+    },
+    "AchievementBadgesAddThisId": {
+      "value": false,
+      "description": "AddThis id for SNS sharing. it could include tool id in a form of array has keys 'pub' and 'tool'."
     }
   },
   "MessagesDirs": {

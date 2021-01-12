@@ -3,7 +3,15 @@
 <img class="achievement-icon" src="{{text-icon}}" alt="">
 <div class="achievement-description">{{{text-description}}}</div>
 <h3 class="share-achievement">{{text-share-header}}</h2>
+{{^data-add-this}}
 <ul class="share-media">
-  {{#data-share}}<li><a id="{{text-id}}" href="{{text-url}}" target="_blank"><span>{{text-text}}</span></a></li>{{/data-share}}
+  {{#data-share}}<li>
+    <a id="{{text-id}}" href="{{text-url}}" target="_blank"><span>{{text-text}}</span></a>
+  </li>{{/data-share}}
 </ul>
-{{#has-suggestion}}<div class="achievement-suggestion">{{{text-suggestion}}}</div>{{/has-suggestion}}
+{{/data-add-this}}
+{{#data-add-this}}
+<div class="{{text-class}}" data-url-for-share="{{text-url-for-share}}" data-tweet="{{text-tweet}}"></div>
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid={{text-pub-id}}"></script>
+{{/data-add-this}}
+{{#text-suggestion}}<div class="achievement-suggestion">{{{.}}}</div>{{/text-suggestion}}

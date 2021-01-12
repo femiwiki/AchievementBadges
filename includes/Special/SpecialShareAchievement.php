@@ -119,17 +119,21 @@ class SpecialShareAchievement extends SpecialPage {
 			$out->addWikiTextAsInterface( $this->msg( 'special-shareachievement-invalid' )->parse() );
 			return;
 		}
-		$data = array_merge( $data, $this->getSnsShareData() );
+
+		$data['text-share-header'] = $this->msg( 'special-shareachievement-header-share',
+			$this->obtainer->getName() );
+		$data['data-add-this'] = $this->getAddThisData();
+		if ( !$data['data-add-this'] ) {
+			$data['data-share'] = $this->getSnsShareData();
+		}
 
 		$betaConfigEnabled = $config->get( Constants::CONFIG_KEY_ENABLE_BETA_FEATURE );
 		$userBetaEnabled = $betaConfigEnabled && BetaFeatures::isFeatureEnabled( $viewer,
 				Constants::PREF_KEY_ACHIEVEMENT_ENABLE );
 		if ( $viewer->isAnon() ) {
-			$data['has-suggestion'] = true;
 			$data['text-suggestion'] = $this->msg( 'special-shareachievement-suggestion-sign-up',
 				$viewer->getName() )->parse();
 		} elseif ( $betaConfigEnabled && !$userBetaEnabled ) {
-			$data['has-suggestion'] = true;
 			$data['text-suggestion'] = $this->msg( 'special-shareachievement-suggestion-beta',
 				$viewer->getName() )->parse();
 		}
@@ -186,16 +190,46 @@ class SpecialShareAchievement extends SpecialPage {
 		];
 	}
 
+	/** @return array|null */
+	private function getAddThisData() {
+		$config = $this->getConfig()->get( Constants::CONFIG_KEY_ADD_THIS_ID );
+		if ( !$config ) {
+			return null;
+		}
+
+		$data = [];
+		$classes = [ 'addthis_inline_share_toolbox' ];
+		if ( is_array( $config ) ) {
+			if ( isset( $config['tool'] ) ) {
+				$classes[] = 'addthis_inline_share_toolbox_' . $config['tool'];
+			}
+			$data['text-pub-id'] = $config['pub'];
+		} else {
+			$data['text-pub-id'] = $config;
+		}
+
+		$data['text-class'] = implode( ' ', $classes );
+		$data['text-url-for-share'] = $this->getUrlForShare();
+
+		$obtainer = $this->obtainer;
+		$viewer = $this->viewer;
+		$tweet = ( $obtainer == $viewer ) ? 'special-shareachievement-tweet'
+			: 'special-shareachievement-tweet-viewer';
+		$tweet = $this->msg( $tweet )
+			->plaintextParams( $obtainer->getName() )
+			->plaintextParams( $this->achvNameMsg->text() )
+			->plaintextParams( '' )
+			->parse();
+		$data['text-tweet'] = trim( $tweet );
+		return $data;
+	}
+
 	/** @return array */
 	private function getSnsShareData() {
 		$config = $this->getConfig();
 		$obtainer = $this->obtainer;
 
-		// Use English title to avoid very long url which is build by urlencode()
-		$titleText = NamespaceInfo::CANONICAL_NAMES[NS_SPECIAL] . ':' . self::PAGE_NAME . '/' . $this->base64subPage;
-		$articlePath = $config->get( 'ArticlePath' );
-		$localUrl = str_replace( '$1', $titleText, $articlePath );
-		$titleUrl = wfExpandUrl( $localUrl );
+		$titleUrl = $this->getUrlForShare();
 
 		$share = [];
 		$facebookAppId = $config->get( Constants::CONFIG_KEY_FACEBOOK_APP_ID );
@@ -215,9 +249,10 @@ class SpecialShareAchievement extends SpecialPage {
 			: 'special-shareachievement-tweet-viewer';
 
 		$tweet = $this->msg( $tweet );
-		$tweet = $tweet->plaintextParams( $this->obtainer->getName() )
+		$tweet = $tweet->plaintextParams( $obtainer->getName() )
 			->plaintextParams( $this->achvNameMsg->text() )
-			->plaintextParams( $titleUrl );
+			->plaintextParams( $titleUrl )
+			->parse();
 		$tweetUrl = 'https://twitter.com/intent/tweet?text=' . urlencode( $tweet );
 		$share[] = [
 			'text-id' => 'share-achievement-twitter',
@@ -225,11 +260,18 @@ class SpecialShareAchievement extends SpecialPage {
 			'text-url' => $tweetUrl,
 		];
 
-		return [
-			'text-share-header' => $this->msg( 'special-shareachievement-header-share',
-				$this->obtainer->getName() ),
-			'data-share' => $share
-		];
+		return $share;
+	}
+
+	/**
+	 * Returns english url to avoid very long url which is built by urlencode() with other languages than english.
+	 * @return string
+	 */
+	private function getUrlForShare() {
+		$titleText = NamespaceInfo::CANONICAL_NAMES[NS_SPECIAL] . ':' . self::PAGE_NAME . '/' . $this->base64subPage;
+		$articlePath = $this->getConfig()->get( 'ArticlePath' );
+		$localUrl = str_replace( '$1', $titleText, $articlePath );
+		return wfExpandUrl( $localUrl );
 	}
 
 	private function addMeta() {
