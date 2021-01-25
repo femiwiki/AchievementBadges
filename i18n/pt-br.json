@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Eduardo Addad de Oliveira"
+			"Eduardo Addad de Oliveira",
+			"SaldırganSincap"
 		]
 	},
 	"achievementbadges-desc": "Fornece um sistema de [[Special:Achievements|conquista]]",
@@ -54,7 +55,7 @@
 	"achievementbadges-achievement-description-edit-page-1": "{{GENDER:$1|Você}} conseguiu editar {{SITENAME}} 10 vezes! {{GENDER:$1|Você}} é uma esperança de {{SITENAME}}.",
 	"achievementbadges-achievement-name-edit-page-2": "Maratona de edição",
 	"achievementbadges-achievement-hint-edit-page-2": "Continue editando.",
-	"achievementbadges-achievement-description-edit-page-2": "{{GENDER:$1|Você}} conseguiu editar {{SITE NAME}} 100 vezes! {{GÊNERO:$1|Sua}} velocidade de edição está ficando mais rápida.",
+	"achievementbadges-achievement-description-edit-page-2": "{{GENDER:$1|Você}} conseguiu editar {{SITENAME}} 100 vezes! {{GENDER:$1|Sua}} velocidade de edição está ficando mais rápida.",
 	"achievementbadges-achievement-name-edit-page-3": "Modificações do sprinter",
 	"achievementbadges-achievement-hint-edit-page-3": "Continue editando. É um pouco difícil conseguir essa conquista.",
 	"achievementbadges-achievement-description-edit-page-3": "{{GENDER:$1|Você}} conseguiu editar {{SITENAME}} 1000 vezes! {{GENDER:$1|Seu}} hobby é {{SITENAME}} agora.",
