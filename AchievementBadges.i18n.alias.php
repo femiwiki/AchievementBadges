@@ -15,7 +15,7 @@ $specialPageAliases['en'] = [
  */
 $specialPageAliases['pl'] = [
 	'Achievements' => [ 'Osiągnięcia' ],
-	'ShareAchievement' => [ 'Udostępnij Osiągnięcie' ],
+	'ShareAchievement' => [ 'Udostępnij_Osiągnięcie' ],
 ];
 
 /**
