@@ -11,6 +11,14 @@ $specialPageAliases['en'] = [
 ];
 
 /**
+ * Polish (Polski)
+ */
+$specialPageAliases['pl'] = [
+	'Achievements' => [ 'Osiągnięcia' ],
+	'ShareAchievement' => [ 'Udostępnij Osiągnięcie' ],
+];
+
+/**
  * Korean (한국어)
  */
 $specialPageAliases['ko'] = [
