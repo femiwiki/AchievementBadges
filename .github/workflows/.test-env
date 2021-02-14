@@ -1,3 +1,3 @@
 # includes deps of deps
 # @todo auto generate below by inspecting https://raw.githubusercontent.com/wikimedia/integration-config/master/zuul/parameter_functions.py
-export DEPENDENCIES="mediawiki/extensions/BetaFeatures mediawiki/extensions/Echo mediawiki/extensions/CentralAuth mediawiki/extensions/EventLogging mediawiki/extensions/EventStreamConfig"
+export DEPENDENCIES="mediawiki/extensions/BetaFeatures mediawiki/extensions/Echo mediawiki/extensions/CentralAuth mediawiki/extensions/EventLogging mediawiki/extensions/EventStreamConfig mediawiki/extensions/EventBus"
