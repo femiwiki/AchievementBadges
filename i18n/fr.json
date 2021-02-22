@@ -19,7 +19,7 @@
 	"achievement-earned-at-tooltip": "$2, à $1",
 	"special-shareachievement": "Partager un badge de réussite",
 	"special-shareachievement-invalid": "Accès non valide",
-	"special-shareachievement-invalid-username": "Nom d’utilisateur non valide",
+	"special-shareachievement-invalid-username": "Nom d’utilisateur incorrect",
 	"special-shareachievement-invalid-achievement-name": "Nom de réussite non valide",
 	"special-shareachievement-message": "Félicitations ! Vous avez réussi",
 	"special-shareachievement-message-other": "$1 a réussi",
