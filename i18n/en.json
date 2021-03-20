@@ -9,7 +9,7 @@
   "achievementbadges-anon-text": "Please log in to view achievements.",
   "achievementbadges-disabled": "Achievement Badges beta feature is disabled for {{GENDER:$1|you}}.",
   "achievementbadges-target-not-disabled-ab": "$a {{GENDER:$1|does}} not enabled Achievement Badges beta feature.",
-  "special-achievements-header-not-earning-achievements": "Not {{GENDER:$1|earing}} achievements",
+  "special-achievements-header-not-earning-achievements": "Not {{GENDER:$1|earning}} achievements",
   "achievement-earned-at": "{{GENDER:$1|Earned}} at $2",
   "achievement-earned-at-tooltip": "$2, at $1",
   "special-shareachievement": "Share achievement badge",
