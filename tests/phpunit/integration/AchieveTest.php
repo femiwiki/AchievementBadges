@@ -38,7 +38,7 @@ class AchieveTest extends MediaWikiIntegrationTestCase {
 			$event = $noti->getEvent();
 			$texts[] = $event . '(' . implode( ', ', array_values( $event->getExtra() ) ) . ')';
 		}
-		$this->assertCount( $num, count( $notifs ), "$msg (" . implode( ', ', $texts ) . ')' );
+		$this->assertCount( $num, $notifs, "$msg (" . implode( ', ', $texts ) . ')' );
 	}
 
 	private function assertEarnedAchievement( $num, $user, $key ) {
