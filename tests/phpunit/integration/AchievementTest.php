@@ -19,7 +19,7 @@ use User;
  */
 class AchievementTest extends MediaWikiIntegrationTestCase {
 
-	/** Config $config */
+	/** @var Config */
 	private $config;
 
 	/** @inheritDoc */
@@ -217,7 +217,7 @@ class AchievementTest extends MediaWikiIntegrationTestCase {
 	 *
 	 * @param string $langCode
 	 * @param string|array $path
-	 * @param string $fallback
+	 * @param string $expected
 	 */
 	public function testGetImageForLanguage( $langCode, $path, $expected ) {
 		$this->setMwGlobals( 'wgScriptPath', '/wiki' );

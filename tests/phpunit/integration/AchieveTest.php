@@ -24,9 +24,12 @@ class AchieveTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @param int $num
+	 * @param User $user
+	 * @param string $type
+	 * @param string $msg
 	 * @return int
 	 */
-	private function assertNotificationNumber( $num, $user, $type, $msg = null ) {
+	private function assertNotificationNumber( $num, $user, $type, $msg ) {
 		$notifMapper = new EchoNotificationMapper();
 		$limit = 50;
 		$notifs = $notifMapper->fetchUnreadByUser( $user, $limit, '', [ $type ] );
@@ -35,7 +38,7 @@ class AchieveTest extends MediaWikiIntegrationTestCase {
 			$event = $noti->getEvent();
 			$texts[] = $event . '(' . implode( ', ', array_values( $event->getExtra() ) ) . ')';
 		}
-		$this->assertEquals( $num, count( $notifs ), "$msg (" . implode( ', ', $texts ) . ')' );
+		$this->assertCount( $num, $notifs, "$msg (" . implode( ', ', $texts ) . ')' );
 	}
 
 	private function assertEarnedAchievement( $num, $user, $key ) {
