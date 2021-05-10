@@ -66,7 +66,7 @@ class SpecialAchievements extends SpecialPage {
 		$this->addHelpLink( 'Extension:AchievementBadges' );
 		$out->addModuleStyles( 'ext.achievementbadges.special.achievements.styles' );
 		$allAchvs = $config->get( Constants::CONFIG_KEY_ACHIEVEMENTS );
-		uasort( $allAchvs, function ( $a, $b ) {
+		uasort( $allAchvs, static function ( $a, $b ) {
 			$a = $a['priority'] ?? Constants::DEFAULT_ACHIEVEMENT_PRIORITY;
 			$b = $b['priority'] ?? Constants::DEFAULT_ACHIEVEMENT_PRIORITY;
 			return $a - $b;
