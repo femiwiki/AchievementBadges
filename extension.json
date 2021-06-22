@@ -12,15 +12,13 @@
   "AutoloadNamespaces": {
     "MediaWiki\\Extension\\AchievementBadges\\": "includes/"
   },
-  "ExtensionFunctions": [
-    "MediaWiki\\Extension\\AchievementBadges\\HookHandler\\Main::initExtension"
-  ],
   "Hooks": {
     "BeforeCreateEchoEvent": "MediaWiki\\Extension\\AchievementBadges\\HookHandler\\Main::onBeforeCreateEchoEvent",
     "BeforeEchoEventInsert": "MediaWiki\\Extension\\AchievementBadges\\HookHandler\\Main::onBeforeEchoEventInsert",
     "EchoGetBundleRules": "MediaWiki\\Extension\\AchievementBadges\\HookHandler\\Main::onEchoGetBundleRules",
     "GetBetaFeaturePreferences": "MediaWiki\\Extension\\AchievementBadges\\HookHandler\\Main::onGetBetaFeaturePreferences",
     "ContributionsToolLinks": "Main",
+    "MediaWikiServices": "Main",
     "ResourceLoaderGetConfigVars": "Main",
     "APIAfterExecute": "AchievementRegister",
     "BeforeCreateAchievement": "AchievementRegister",
@@ -33,7 +31,7 @@
   "HookHandlers": {
     "Main": {
       "class": "MediaWiki\\Extension\\AchievementBadges\\HookHandler\\Main",
-      "services": ["MainConfig"]
+      "services": ["MainConfig", "AchievementBadgesHookRunner"]
     },
     "AchievementRegister": {
       "class": "MediaWiki\\Extension\\AchievementBadges\\HookHandler\\AchievementRegister",
@@ -41,7 +39,10 @@
     }
   },
   "SpecialPages": {
-    "Achievements": "MediaWiki\\Extension\\AchievementBadges\\Special\\SpecialAchievements",
+    "Achievements": {
+      "class": "MediaWiki\\Extension\\AchievementBadges\\Special\\SpecialAchievements",
+      "services": ["AchievementBadgesHookRunner"]
+    },
     "ShareAchievement": "MediaWiki\\Extension\\AchievementBadges\\Special\\SpecialShareAchievement"
   },
   "ResourceFileModulePaths": {
@@ -69,6 +70,7 @@
   "LogActionsHandlers": {
     "achievementbadges/*": "MediaWiki\\Extension\\AchievementBadges\\LogFormatter"
   },
+  "ServiceWiringFiles": ["includes/ServiceWiring.php"],
   "config": {
     "AchievementBadgesEnableBetaFeature": {
       "value": false,
@@ -120,7 +122,8 @@
     "AchievementBadgesAlias": "AchievementBadges.i18n.alias.php"
   },
   "TestAutoloadNamespaces": {
-    "MediaWiki\\Extension\\AchievementBadges\\Tests\\Integration\\": "tests/phpunit/integration/"
+    "MediaWiki\\Extension\\AchievementBadges\\Tests\\Integration\\": "tests/phpunit/integration/",
+    "MediaWiki\\Extension\\AchievementBadges\\Tests\\Unit\\": "tests/phpunit/unit/"
   },
   "manifest_version": 2
 }
