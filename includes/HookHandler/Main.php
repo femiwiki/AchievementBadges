@@ -38,8 +38,9 @@ class Main implements
 	/**
 	 * Invoked via $wgExtensionFunctions.
 	 * @todo hide or disable echo-subscriptions-web-thank-you-edit option when replaced
+	 * @inheritDoc
 	 */
-	public function onMediaWikiServices() {
+	public function onMediaWikiServices( $services ) {
 		global $wgAchievementBadgesAchievements, $wgNotifyTypeAvailabilityByCategory,
 			$wgAchievementBadgesDisabledAchievements;
 
