@@ -40,11 +40,9 @@
   },
   "SpecialPages": {
     "Achievements": {
-			"class": "MediaWiki\\Extension\\AchievementBadges\\Special\\SpecialAchievements",
-			"services": [
-				"AchievementBadgesHookRunner"
-			]
-		},
+      "class": "MediaWiki\\Extension\\AchievementBadges\\Special\\SpecialAchievements",
+      "services": ["AchievementBadgesHookRunner"]
+    },
     "ShareAchievement": "MediaWiki\\Extension\\AchievementBadges\\Special\\SpecialShareAchievement"
   },
   "ResourceFileModulePaths": {
