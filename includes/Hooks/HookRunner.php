@@ -3,7 +3,6 @@
 namespace MediaWiki\Extension\AchievementBadges\Hooks;
 
 use MediaWiki\HookContainer\HookContainer;
-use MediaWiki\MediaWikiServices;
 use User;
 
 class HookRunner implements
@@ -19,19 +18,6 @@ class HookRunner implements
 	 */
 	public function __construct( HookContainer $hookContainer ) {
 		$this->hookContainer = $hookContainer;
-	}
-
-	/**
-	 * Convenience getter for static contexts
-	 *
-	 * See also core's Hooks::runner
-	 *
-	 * @return HookRunner
-	 */
-	public static function getRunner() : HookRunner {
-		return new HookRunner(
-			MediaWikiServices::getInstance()->getHookContainer()
-		);
 	}
 
 	// phpcs:disable MediaWiki.Commenting.FunctionComment.MissingDocumentationPublic

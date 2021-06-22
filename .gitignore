@@ -1,5 +1,6 @@
 vendor/
 node_modules/
 .eslintcache
+tests/selenium/log
 # We use yarn instead of npm
 package-lock.json

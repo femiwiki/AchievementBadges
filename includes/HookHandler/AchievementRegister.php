@@ -69,7 +69,7 @@ class AchievementRegister implements
 	 * @inheritDoc
 	 */
 	public function onBeforeCreateAchievement( array &$achievements ) {
-		$config = MediaWikiServices::getInstance()->getMainConfig();
+		$config = $this->config;
 		if ( $config->get( Constants::CONFIG_KEY_ENABLE_BETA_FEATURE )
 			&& ExtensionRegistry::getInstance()->isLoaded( 'BetaFeatures' ) ) {
 			$achievements[Constants::ACHV_KEY_ENABLE_ACHIEVEMENT_BADGES] = [
@@ -147,7 +147,7 @@ class AchievementRegister implements
 		if ( $user->isAnon() ) {
 			return;
 		}
-		$config = MediaWikiServices::getInstance()->getMainConfig();
+		$config = $this->config;
 		$registry = $config->get( Constants::CONFIG_KEY_ACHIEVEMENTS );
 		if ( !isset( $registry[Constants::ACHV_KEY_SIGN_UP] ) ) {
 			return;

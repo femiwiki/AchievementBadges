@@ -23,6 +23,9 @@ class SpecialAchievements extends SpecialPage {
 
 	public const PAGE_NAME = 'Achievements';
 
+	/** @var HookRunner */
+	private $hookRunner;
+
 	/** @var TemplateParser */
 	private $templateParser;
 
@@ -32,8 +35,12 @@ class SpecialAchievements extends SpecialPage {
 	/** @var User */
 	private $target;
 
-	public function __construct() {
+	/**
+	 * @param HookRunner $hookRunner
+	 */
+	public function __construct( HookRunner $hookRunner ) {
 		parent::__construct( self::PAGE_NAME );
+		$this->hookRunner = $hookRunner;
 		$this->templateParser = new TemplateParser( __DIR__ . '/../templates' );
 		$this->logger = LoggerFactory::getInstance( 'AchievementBadges' );
 	}
@@ -72,7 +79,7 @@ class SpecialAchievements extends SpecialPage {
 			return $a - $b;
 		} );
 
-		HookRunner::getRunner()->onSpecialAchievementsBeforeGetEarned( $target );
+		$this->hookRunner->onSpecialAchievementsBeforeGetEarned( $target );
 		$earnedAchvs = $target->isAnon() ? [] : $this->getEarnedAchievementData( $target );
 		$this->logger->debug( "User $target achieved " . count( $earnedAchvs ) . ' (' .
 			implode( ', ', array_keys( $earnedAchvs ) ) . ") achievements of " . count( $allAchvs ) );
