@@ -25,7 +25,6 @@ class AchievementTest extends MediaWikiIntegrationTestCase {
 	/** @inheritDoc */
 	protected function setUp(): void {
 		parent::setUp();
-		Main::initExtension();
 		$this->config = MediaWikiServices::getInstance()->getMainConfig();
 	}
 
