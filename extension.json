@@ -12,13 +12,15 @@
   "AutoloadNamespaces": {
     "MediaWiki\\Extension\\AchievementBadges\\": "includes/"
   },
+  "ExtensionFunctions": [
+    "MediaWiki\\Extension\\AchievementBadges\\HookHandler\\Main::initExtension"
+  ],
   "Hooks": {
     "BeforeCreateEchoEvent": "MediaWiki\\Extension\\AchievementBadges\\HookHandler\\Main::onBeforeCreateEchoEvent",
     "BeforeEchoEventInsert": "MediaWiki\\Extension\\AchievementBadges\\HookHandler\\Main::onBeforeEchoEventInsert",
     "EchoGetBundleRules": "MediaWiki\\Extension\\AchievementBadges\\HookHandler\\Main::onEchoGetBundleRules",
     "GetBetaFeaturePreferences": "MediaWiki\\Extension\\AchievementBadges\\HookHandler\\Main::onGetBetaFeaturePreferences",
     "ContributionsToolLinks": "Main",
-    "MediaWikiServices": "Main",
     "ResourceLoaderGetConfigVars": "Main",
     "APIAfterExecute": "AchievementRegister",
     "BeforeCreateAchievement": "AchievementRegister",
