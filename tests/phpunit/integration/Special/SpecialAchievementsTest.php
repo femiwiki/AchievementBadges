@@ -4,6 +4,7 @@ namespace MediaWiki\Extension\AchievementBadges\Tests\Integration;
 
 use MediaWiki\Extension\AchievementBadges\Achievement;
 use MediaWiki\Extension\AchievementBadges\Constants;
+use MediaWiki\Extension\AchievementBadges\Hooks\HookRunner;
 use MediaWiki\Extension\AchievementBadges\Special\SpecialAchievements;
 use MWException;
 use SpecialPageTestBase;
@@ -21,7 +22,9 @@ class SpecialAchievementsTest extends SpecialPageTestBase {
 	 * @inheritDoc
 	 */
 	protected function newSpecialPage() {
-		return new SpecialAchievements();
+		return new SpecialAchievements(
+			$this->createMock( HookRunner::class ),
+		);
 	}
 
 	/** @return array */
@@ -142,10 +145,6 @@ class SpecialAchievementsTest extends SpecialPageTestBase {
 		list( $html, ) = $this->executeSpecialPage( '', null, 'qqx', null );
 		$this->assertStringContainsString( 'achievementbadges-achievement-hint-sign-up', $html,
 			'A user can see a hint for not earning achievement' );
-
-		list( $html, ) = $this->executeSpecialPage( '', null, 'qqx', $user );
-		$this->assertStringContainsString( 'achievementbadges-achievement-description-sign-up', $html,
-			'A user can see a description for obtained achievement' );
 	}
 
 	public function testStatsAchievement() {
