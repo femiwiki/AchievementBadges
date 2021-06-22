@@ -70,9 +70,7 @@
   "LogActionsHandlers": {
     "achievementbadges/*": "MediaWiki\\Extension\\AchievementBadges\\LogFormatter"
   },
-  "ServiceWiringFiles": [
-		"includes/ServiceWiring.php"
-	],
+  "ServiceWiringFiles": ["includes/ServiceWiring.php"],
   "config": {
     "AchievementBadgesEnableBetaFeature": {
       "value": false,
