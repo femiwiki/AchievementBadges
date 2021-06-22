@@ -5,7 +5,6 @@ namespace MediaWiki\Extension\AchievementBadges\Tests\Integration;
 use Language;
 use MediaWiki\Extension\AchievementBadges\Achievement;
 use MediaWiki\Extension\AchievementBadges\Constants;
-use MediaWiki\Extension\AchievementBadges\HookHandler\Main;
 use MediaWiki\MediaWikiServices;
 use MediaWikiIntegrationTestCase;
 use MWException;
