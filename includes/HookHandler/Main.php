@@ -16,30 +16,34 @@ use User;
 
 class Main implements
 	\MediaWiki\ResourceLoader\Hook\ResourceLoaderGetConfigVarsHook,
-	\MediaWiki\Hook\ContributionsToolLinksHook
+	\MediaWiki\Hook\ContributionsToolLinksHook,
+	\MediaWiki\Hook\MediaWikiServicesHook
 	{
 
-	/**
-	 * @var Config
-	 */
+	/** @var Config */
 	private $config;
+
+	/** @var HookRunner */
+	private $hookRunner;
 
 	/**
 	 * @param Config $config
+	 * @param HookRunner $hookRunner
 	 */
-	public function __construct( Config $config ) {
+	public function __construct( Config $config, HookRunner $hookRunner ) {
 		$this->config = $config;
+		$this->hookRunner = $hookRunner;
 	}
 
 	/**
 	 * Invoked via $wgExtensionFunctions.
 	 * @todo hide or disable echo-subscriptions-web-thank-you-edit option when replaced
 	 */
-	public static function initExtension() {
+	public function onMediaWikiServices() {
 		global $wgAchievementBadgesAchievements, $wgNotifyTypeAvailabilityByCategory,
 			$wgAchievementBadgesDisabledAchievements;
 
-		HookRunner::getRunner()->onBeforeCreateAchievement( $wgAchievementBadgesAchievements );
+		$this->hookRunner->onBeforeCreateAchievement( $wgAchievementBadgesAchievements );
 
 		foreach ( $wgAchievementBadgesDisabledAchievements as $key ) {
 			unset( $wgAchievementBadgesAchievements[ $key ] );
