@@ -34,6 +34,14 @@
     "@types/yargs" "^15.0.0"
     chalk "^4.0.0"
 
+"@prettier/plugin-xml@^0.13.1":
+  version "0.13.1"
+  resolved "https://registry.yarnpkg.com/@prettier/plugin-xml/-/plugin-xml-0.13.1.tgz#fb1c265fb8256c509da187b5a530c3eb2bf80091"
+  integrity sha512-jJbjvFEsxOT2Jhv2yydOvJbnSREJy+OECwHyZaYr05jLXlJeBrzy5YY1fDYpwTfKk1B2YqNExXI+x3Zm5yGfeA==
+  dependencies:
+    "@xml-tools/parser" "^1.0.2"
+    prettier ">=1.10"
+
 "@sindresorhus/is@^4.0.0":
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/@sindresorhus/is/-/is-4.0.1.tgz#d26729db850fa327b7cacc5522252194404226f5"
@@ -242,6 +250,13 @@
   integrity sha512-qzvD8qCPpIpDrZ0HNOx1hTlfKY26p8WByUXgr52ll6DXxtAYXZLIJ8GAYFJUi87NVfwtv6+O7owQGSM/jtr8AQ==
   dependencies:
     "@wdio/logger" "6.0.16"
+
+"@xml-tools/parser@^1.0.2":
+  version "1.0.11"
+  resolved "https://registry.yarnpkg.com/@xml-tools/parser/-/parser-1.0.11.tgz#a118a14099ea5c3c537e4781fad2fc195b57f8ff"
+  integrity sha512-aKqQ077XnR+oQtHJlrAflaZaL7qZsulWc/i/ZEooar5JiWj1eLt0+Wg28cpa+XLney107wXqneC+oG1IZvxkTA==
+  dependencies:
+    chevrotain "7.1.1"
 
 agent-base@5:
   version "5.1.1"
@@ -568,6 +583,13 @@ chardet@^0.7.0:
   version "0.7.0"
   resolved "https://registry.yarnpkg.com/chardet/-/chardet-0.7.0.tgz#90094849f0937f2eedc2425d0d28a9e5f0cbad9e"
   integrity sha512-mT8iDcrh03qDGRRmoA2hmBJnxpllMR+0/0qlzjqZES6NdiWDcZkCNAk4rPFZ9Q85r27unkiNNg8ZOiwZXBHwcA==
+
+chevrotain@7.1.1:
+  version "7.1.1"
+  resolved "https://registry.yarnpkg.com/chevrotain/-/chevrotain-7.1.1.tgz#5122814eafd1585a9601f9180a7be9c42d5699c6"
+  integrity sha512-wy3mC1x4ye+O+QkEinVJkPf5u2vsrDIYW9G7ZuwFl6v/Yu0LwUuT2POsb+NUWApebyxfkQq6+yDfRExbnI5rcw==
+  dependencies:
+    regexp-to-ast "0.5.0"
 
 chokidar@3.3.0:
   version "3.3.0"
@@ -2111,7 +2133,7 @@ pinkie@^2.0.0:
   resolved "https://registry.yarnpkg.com/pinkie/-/pinkie-2.0.4.tgz#72556b80cfa0d48a974e80e77248e80ed4f7f870"
   integrity sha1-clVrgM+g1IqXToDnckjoDtT3+HA=
 
-prettier@^2.3.0:
+prettier@>=1.10, prettier@^2.3.0:
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.3.1.tgz#76903c3f8c4449bc9ac597acefa24dc5ad4cbea6"
   integrity sha512-p+vNbgpLjif/+D+DwAZAbndtRrR0md0MwfmOVN9N+2RgyACMT+7tfaRnT+WDPkqnuVwleyuBIG2XBxKDme3hPA==
@@ -2262,6 +2284,11 @@ readdirp@~3.6.0:
   integrity sha512-hOS089on8RduqdbhvQ5Z37A0ESjsqz6qnRcffsMU3495FuTdqSm+7bhJ29JvIOsBDEEnan5DPu9t3To9VRlMzA==
   dependencies:
     picomatch "^2.2.1"
+
+regexp-to-ast@0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/regexp-to-ast/-/regexp-to-ast-0.5.0.tgz#56c73856bee5e1fef7f73a00f1473452ab712a24"
+  integrity sha512-tlbJqcMHnPKI9zSrystikWKwHkBqu2a/Sgw01h3zFjvYrMxEDYHzzoMZnUrbIfpTFEsoRnnviOXNCzFiSc54Qw==
 
 request@^2.75.0:
   version "2.88.2"
