@@ -191,6 +191,11 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-14.17.3.tgz#6d327abaa4be34a74e421ed6409a0ae2f47f4c3d"
   integrity sha512-e6ZowgGJmTuXa3GyaPbTGxX17tnThl2aSSizrFthQ7m9uLGZBXiGhgE55cjRZTF5kjZvYn9EOPOMljdjwbflxw==
 
+"@types/node@^15.12.5":
+  version "15.14.2"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-15.14.2.tgz#7af8ab20156586f076f4760bc1b3c5ddfffd1ff2"
+  integrity sha512-dvMUE/m2LbXPwlvVuzCyslTEtQ2ZwuuFClDrOQ6mp2CenCg971719PTILZ4I6bTP27xfFFc+o7x2TkLuun/MPw==
+
 "@types/puppeteer@^5.4.0":
   version "5.4.3"
   resolved "https://registry.yarnpkg.com/@types/puppeteer/-/puppeteer-5.4.3.tgz#cdca84aa7751d77448d8a477dbfa0af1f11485f2"
@@ -307,13 +312,13 @@
     deepmerge "^4.0.0"
     glob "^7.1.2"
 
-"@wdio/dot-reporter@7.7.3":
-  version "7.7.3"
-  resolved "https://registry.yarnpkg.com/@wdio/dot-reporter/-/dot-reporter-7.7.3.tgz#bd1477f21ed287baa721f4896b2d0bc25e11cefa"
-  integrity sha512-g+zMYGZFU8usYtAEmCyuVgOCCs/Vk1z7k03ncVrhYC8eoDNvqbB6xxzZn0lKSggP7B9amKgQYfwC+d7FRyHeYA==
+"@wdio/dot-reporter@7.7.5":
+  version "7.7.5"
+  resolved "https://registry.yarnpkg.com/@wdio/dot-reporter/-/dot-reporter-7.7.5.tgz#be422e36686269bf79ec6273be21e7b09bc49081"
+  integrity sha512-JUYrBUoE6vfCP+xtkJPh2vYm02ssxHTb16O6DUWQbTxpMJUYjDTOtwTIIk4Fgd1xP7yMmZtLvkY9Rc4sNtSdow==
   dependencies:
-    "@wdio/reporter" "7.7.3"
-    "@wdio/types" "7.7.3"
+    "@wdio/reporter" "7.7.5"
+    "@wdio/types" "7.7.5"
     chalk "^4.0.0"
 
 "@wdio/junit-reporter@7.7.3":
@@ -386,6 +391,15 @@
     "@wdio/types" "7.7.3"
     fs-extra "^10.0.0"
 
+"@wdio/reporter@7.7.5":
+  version "7.7.5"
+  resolved "https://registry.yarnpkg.com/@wdio/reporter/-/reporter-7.7.5.tgz#ede2757c540b490c2d4bd6a4fd073708b2ac96a3"
+  integrity sha512-Et3LZjG/yVow+3HtCIttswjqzn31IR3fGHGdJQ6OtrEFN/NcEvkP5zln/LFLTfaM0IhxjxeerrXSaRJgmkZLfg==
+  dependencies:
+    "@types/node" "^15.12.5"
+    "@wdio/types" "7.7.5"
+    fs-extra "^10.0.0"
+
 "@wdio/runner@7.7.4":
   version "7.7.4"
   resolved "https://registry.yarnpkg.com/@wdio/runner/-/runner-7.7.4.tgz#8ac96b517a1b05a6c0f3e4d869bad939e7b413c1"
@@ -418,6 +432,14 @@
   integrity sha512-ZZBQHCXKjZSQj9pf4df/QhfgQQj0vzm9hkK7YyNM+S+qnW0LExL8qQKLxTlGHDaYxk/+Jrd9pcZrJXRCoSnUaA==
   dependencies:
     "@types/node" "^14.14.31"
+    got "^11.8.1"
+
+"@wdio/types@7.7.5":
+  version "7.7.5"
+  resolved "https://registry.yarnpkg.com/@wdio/types/-/types-7.7.5.tgz#74122c03a3b5d8a14e437b644f26982c9b418412"
+  integrity sha512-1LwlF/O9ohpnR9k1aVfdDSJ44UqpC6Lk6vk5lXNddlTvFzUV6a+fT6odm22LfMrazBxD2+rtKU43CIDX6kdxCw==
+  dependencies:
+    "@types/node" "^15.12.5"
     got "^11.8.1"
 
 "@wdio/utils@7.7.3":
