@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Crowley666",
 			"Yfdyh000",
 			"列维劳德"
 		]
@@ -38,9 +39,11 @@
 	"log-description-achievementbadges": "此日志列出了用户获得的成就。",
 	"logentry-achievementbadges": "$1{{GENDER:$2|达成了}}成就$4",
 	"notification-header-achievementbadges-earn": "{{GENDER:$2|您}}{{GENDER:$2|达成了}}成就$3。",
+	"notification-bundle-header-achievementbadges-earn": "{{GENDER:$2|您}}{{GENDER:$2|获得了}}{{PLURAL:$3|新成就|$3个新成就}}。",
 	"notification-link-text-all-achievements": "所有成就",
 	"achievementbadges-link-on-user-contributes": "达成成就",
 	"achievementbadges-achievement-name-enable-achievement-badges": "启用成就徽章",
+	"achievementbadges-achievement-hint-enable-achievement-badges": "在[[Special:Preferences#mw-prefsection-betafeatures|首选项的Beta功能]]中启用成就徽章。",
 	"achievementbadges-achievement-description-enable-achievement-badges": "{{GENDER:$1|您}}已启用成就徽章！还请注意，此功能仍处在测试阶段。",
 	"achievementbadges-achievement-name-sign-up": "注册",
 	"achievementbadges-achievement-hint-sign-up": "[[Special:Createaccount|注册{{SITENAME}}]]。",
@@ -91,7 +94,9 @@
 	"achievementbadges-achievement-hint-create-page-3": "继续创建新页面。这个成就有一定的难度。",
 	"achievementbadges-achievement-description-create-page-3": "{{GENDER:$1|您}}已在{{SITENAME}}上创建了100个新页面。{{SITENAME}}留下了你的印记。",
 	"achievementbadges-achievement-name-create-page-4": "树林",
+	"achievementbadges-achievement-hint-create-page-4": "继续创建新页面。这个成就稍微有点难。",
 	"achievementbadges-achievement-name-create-page-5": "树海",
+	"achievementbadges-achievement-hint-create-page-5": "继续制作新页面。这是一项非常具有挑战性的成就，需要很长时间才能实现。",
 	"achievementbadges-achievement-name-long-user-page": "个人资料",
 	"achievementbadges-achievement-hint-long-user-page": "装扮你的[[User:$1|用户页]]。",
 	"achievementbadges-achievement-description-long-user-page": "{{GENDER:$1|你}}创建了介绍自己的用户页！",
