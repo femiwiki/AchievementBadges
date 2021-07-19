@@ -18,7 +18,7 @@
     "EchoGetBundleRules": "MediaWiki\\Extension\\AchievementBadges\\HookHandler\\Main::onEchoGetBundleRules",
     "GetBetaFeaturePreferences": "MediaWiki\\Extension\\AchievementBadges\\HookHandler\\Main::onGetBetaFeaturePreferences",
     "ContributionsToolLinks": "Main",
-    "MediaWikiServices": "Main",
+    "MediaWikiServices": "MediaWikiServices",
     "ResourceLoaderGetConfigVars": "Main",
     "APIAfterExecute": "AchievementRegister",
     "BeforeCreateAchievement": "AchievementRegister",
@@ -32,6 +32,9 @@
     "Main": {
       "class": "MediaWiki\\Extension\\AchievementBadges\\HookHandler\\Main",
       "services": ["MainConfig", "AchievementBadgesHookRunner"]
+    },
+    "MediaWikiServices": {
+      "class": "MediaWiki\\Extension\\AchievementBadges\\HookHandler\\MediaWikiServices"
     },
     "AchievementRegister": {
       "class": "MediaWiki\\Extension\\AchievementBadges\\HookHandler\\AchievementRegister",

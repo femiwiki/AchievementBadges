@@ -16,8 +16,7 @@ use User;
 
 class Main implements
 	\MediaWiki\ResourceLoader\Hook\ResourceLoaderGetConfigVarsHook,
-	\MediaWiki\Hook\ContributionsToolLinksHook,
-	\MediaWiki\Hook\MediaWikiServicesHook
+	\MediaWiki\Hook\ContributionsToolLinksHook
 	{
 
 	/** @var Config */
@@ -33,34 +32,6 @@ class Main implements
 	public function __construct( Config $config, HookRunner $hookRunner ) {
 		$this->config = $config;
 		$this->hookRunner = $hookRunner;
-	}
-
-	/**
-	 * Invoked via $wgExtensionFunctions.
-	 * @todo hide or disable echo-subscriptions-web-thank-you-edit option when replaced
-	 * @inheritDoc
-	 */
-	public function onMediaWikiServices( $services ) {
-		global $wgAchievementBadgesAchievements, $wgNotifyTypeAvailabilityByCategory,
-			$wgAchievementBadgesDisabledAchievements;
-
-		$this->hookRunner->onBeforeCreateAchievement( $wgAchievementBadgesAchievements );
-
-		foreach ( $wgAchievementBadgesDisabledAchievements as $key ) {
-			unset( $wgAchievementBadgesAchievements[ $key ] );
-		}
-
-		// Below code make Echo tests to fail
-		if ( defined( 'MW_PHPUNIT_TEST' ) ) {
-			return;
-		}
-
-		// Overwrite echo's milestone if configured.
-		$config = MediaWikiServices::getInstance()->getMainConfig();
-		if ( !$config->get( Constants::CONFIG_KEY_ENABLE_BETA_FEATURE ) &&
-			$config->get( Constants::CONFIG_KEY_REPLACE_ECHO_THANK_YOU_EDIT ) ) {
-				$wgNotifyTypeAvailabilityByCategory['thank-you-edit']['web'] = false;
-		}
 	}
 
 	/**
