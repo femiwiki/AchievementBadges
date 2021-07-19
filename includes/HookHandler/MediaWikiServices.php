@@ -3,6 +3,7 @@
 namespace MediaWiki\Extension\AchievementBadges\HookHandler;
 
 use MediaWiki\Extension\AchievementBadges\Constants;
+use MediaWiki\MediaWikiServices as MediaWikiMediaWikiServices;
 
 class MediaWikiServices implements \MediaWiki\Hook\MediaWikiServicesHook {
 
@@ -14,6 +15,7 @@ class MediaWikiServices implements \MediaWiki\Hook\MediaWikiServicesHook {
 		global $wgAchievementBadgesAchievements, $wgNotifyTypeAvailabilityByCategory,
 			$wgAchievementBadgesDisabledAchievements;
 
+		$services = MediaWikiMediaWikiServices::getInstance();
 		$hookRunner = $services->get( 'AchievementBadgesHookRunner' );
 		$hookRunner->onBeforeCreateAchievement( $wgAchievementBadgesAchievements );
 
