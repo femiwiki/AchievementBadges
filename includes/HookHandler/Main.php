@@ -133,19 +133,15 @@ class Main implements
 	 * @return bool
 	 */
 	public static function onBeforeEchoEventInsert( EchoEvent $event ) {
-		// Below code make Echo tests to fail
-		if ( defined( 'MW_PHPUNIT_TEST' ) ) {
-			return true;
-		}
-
 		$config = MediaWikiServices::getInstance()->getMainConfig();
-		$agent = $event->getAgent();
 		$type = $event->getType();
 
 		if ( $type == 'thank-you-edit'
 			&& $config->get( Constants::CONFIG_KEY_REPLACE_ECHO_THANK_YOU_EDIT ) ) {
 			return false;
-		} elseif ( $type == 'welcome'
+		}
+		if ( $type == 'welcome'
+			&& $config->get( Constants::CONFIG_KEY_REPLACE_ECHO_WELCOME )
 			&& !$config->get( Constants::CONFIG_KEY_ENABLE_BETA_FEATURE ) ) {
 			// the welcome notification is replaced with 'sign-up' achievement.
 			return false;
