@@ -6,6 +6,9 @@ class AchievementsPage extends Page {
   get signUpDescription() {
     return $('#achievement-sign-up .achievement-description');
   }
+  get longUserPageDescription() {
+    return $('#achievement-long-user-page .achievement-description');
+  }
   open() {
     super.openTitle('Special:Achievements');
   }
