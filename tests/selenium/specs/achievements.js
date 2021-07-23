@@ -5,10 +5,10 @@ const assert = require('assert'),
   UserLoginPage = require('wdio-mediawiki/LoginPage');
 
 describe('Special:Achievements', function () {
-  it('shows a logged-in user description of long-user-page', function () {
+  it('shows a logged-in user hint of long-user-page', function () {
     UserLoginPage.login(browser.config.mwUser, browser.config.mwPwd);
     AchievementsPage.open();
 
-    assert(AchievementsPage.longUserPageDescription.isExisting());
+    assert(AchievementsPage.longUserPageHint.isExisting());
   });
 });
