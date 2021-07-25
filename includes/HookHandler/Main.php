@@ -124,7 +124,7 @@ class Main implements
 	/**
 	 * @inheritDoc
 	 */
-	public function onResourceLoaderGetConfigVars( array &$vars, $skin, Config $config ) : void {
+	public function onResourceLoaderGetConfigVars( array &$vars, $skin, Config $config ): void {
 		$config = MediaWikiServices::getInstance()->getMainConfig();
 		$addThisId = $config->get( Constants::CONFIG_KEY_ADD_THIS_ID );
 		if ( $addThisId ) {

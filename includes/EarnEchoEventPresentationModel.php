@@ -76,7 +76,7 @@ class EarnEchoEventPresentationModel extends EchoEventPresentationModel {
 	}
 
 	/** @inheritDoc */
-	public function getHeaderMessage() : Message {
+	public function getHeaderMessage(): Message {
 		if ( $this->isBundled() ) {
 			$msg = $this->getMessageWithAgent( 'notification-bundle-header-achievementbadges-earn' );
 			$count = $this->getNotificationCountForOutput();
