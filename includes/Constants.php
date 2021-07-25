@@ -18,6 +18,9 @@ final class Constants {
 	public const CONFIG_KEY_REPLACE_ECHO_THANK_YOU_EDIT = 'AchievementBadgesReplaceEchoThankYouEdit';
 
 	/** @var string */
+	public const CONFIG_KEY_REPLACE_ECHO_WELCOME = 'AchievementBadgesReplaceEchoWelcome';
+
+	/** @var string */
 	public const CONFIG_KEY_ACHIEVEMENT_FALLBACK_ICON = 'AchievementBadgesAchievementFallbackIcon';
 
 	/** @var string */
