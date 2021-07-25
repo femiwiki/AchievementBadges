@@ -4,7 +4,9 @@ namespace MediaWiki\Extension\AchievementBadges\HookHandler;
 
 use BetaFeatures;
 use Config;
+use EchoAttributeManager;
 use EchoEvent;
+use EchoUserLocator;
 use MediaWiki\Extension\AchievementBadges\Constants;
 use MediaWiki\Extension\AchievementBadges\EarnEchoEventPresentationModel;
 use MediaWiki\Extension\AchievementBadges\Hooks\HookRunner;
@@ -62,8 +64,6 @@ class Main implements
 	 * @param array &$icons
 	 */
 	public static function onBeforeCreateEchoEvent( &$notifs, &$categories, &$icons ) {
-		$config = MediaWikiServices::getInstance()->getMainConfig();
-		$extensionAssetsPath = $config->get( 'ExtensionAssetsPath' );
 		$categories[Constants::ECHO_EVENT_CATEGORY] = [
 			'priority' => 9,
 			'tooltip' => 'achievementbadges-pref-tooltip-achievement-badges',
@@ -79,10 +79,12 @@ class Main implements
 				'email' => true,
 				'expandable' => true,
 			],
-			'user-locators' => [ 'EchoUserLocator::locateEventAgent' ],
+			EchoAttributeManager::ATTR_LOCATORS => [
+				EchoUserLocator::class . '::locateEventAgent',
+			],
 		];
 		$icons[Constants::EVENT_KEY_EARN] = [
-			'path' => "AchievementBadges/images/medal.svg",
+			'path' => 'AchievementBadges/images/medal.svg',
 		];
 	}
 
@@ -101,19 +103,15 @@ class Main implements
 	 * @return bool
 	 */
 	public static function onBeforeEchoEventInsert( EchoEvent $event ) {
-		// Below code make Echo tests to fail
-		if ( defined( 'MW_PHPUNIT_TEST' ) ) {
-			return true;
-		}
-
 		$config = MediaWikiServices::getInstance()->getMainConfig();
-		$agent = $event->getAgent();
 		$type = $event->getType();
 
 		if ( $type == 'thank-you-edit'
 			&& $config->get( Constants::CONFIG_KEY_REPLACE_ECHO_THANK_YOU_EDIT ) ) {
 			return false;
-		} elseif ( $type == 'welcome'
+		}
+		if ( $type == 'welcome'
+			&& $config->get( Constants::CONFIG_KEY_REPLACE_ECHO_WELCOME )
 			&& !$config->get( Constants::CONFIG_KEY_ENABLE_BETA_FEATURE ) ) {
 			// the welcome notification is replaced with 'sign-up' achievement.
 			return false;

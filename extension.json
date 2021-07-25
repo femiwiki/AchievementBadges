@@ -80,8 +80,12 @@
       "description": "Whether to have AchievementBadges available only as a beta feature and only shown to the users who have enabled the beta feature."
     },
     "AchievementBadgesReplaceEchoThankYouEdit": {
-      "value": true,
+      "value": false,
       "description": "Whether to suppress edit milestone notifications sent from Echo."
+    },
+    "AchievementBadgesReplaceEchoWelcome": {
+      "value": false,
+      "description": "Whether to suppress the welcome notification sent from Echo."
     },
     "AchievementBadgesAchievementFallbackIcon": {
       "value": "extensions/AchievementBadges/images/achievement-icon-fallback.svg",

@@ -76,7 +76,7 @@ class AchievementRegister implements
 				'type' => 'instant',
 				'priority' => 0,
 			];
-		} else {
+		} elseif ( $config->get( Constants::CONFIG_KEY_REPLACE_ECHO_WELCOME ) ) {
 			$achievements[Constants::ACHV_KEY_SIGN_UP] = [
 				'type' => 'instant',
 				'priority' => 0,

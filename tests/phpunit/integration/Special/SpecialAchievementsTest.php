@@ -143,7 +143,7 @@ class SpecialAchievementsTest extends SpecialPageTestBase {
 		$user->addToDatabase();
 
 		list( $html, ) = $this->executeSpecialPage( '', null, 'qqx', null );
-		$this->assertStringContainsString( 'achievementbadges-achievement-hint-sign-up', $html,
+		$this->assertStringContainsString( 'achievementbadges-achievement-hint-long-user-page', $html,
 			'A user can see a hint for not earning achievement' );
 	}
 
