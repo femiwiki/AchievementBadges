@@ -49,13 +49,13 @@
     "@types/yargs" "^16.0.0"
     chalk "^4.0.0"
 
-"@prettier/plugin-xml@^0.13.1":
-  version "0.13.1"
-  resolved "https://registry.yarnpkg.com/@prettier/plugin-xml/-/plugin-xml-0.13.1.tgz#fb1c265fb8256c509da187b5a530c3eb2bf80091"
-  integrity sha512-jJbjvFEsxOT2Jhv2yydOvJbnSREJy+OECwHyZaYr05jLXlJeBrzy5YY1fDYpwTfKk1B2YqNExXI+x3Zm5yGfeA==
+"@prettier/plugin-xml@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@prettier/plugin-xml/-/plugin-xml-1.0.2.tgz#d1c4dc5f13398cd17d1de313c2f49338b07e0c90"
+  integrity sha512-QNqKaa56/7trSqVuGDUzS9xw6Hx0qOklAwA7A2Mn89FPnPywyrK/GNCO71XK0AfoRNrmY0vETVpR2pWpBwfzow==
   dependencies:
-    "@xml-tools/parser" "^1.0.2"
-    prettier ">=1.10"
+    "@xml-tools/parser" "^1.0.11"
+    prettier ">=2.3"
 
 "@sindresorhus/is@^4.0.0":
   version "4.0.1"
@@ -487,7 +487,7 @@
     "@wdio/logger" "7.7.0"
     "@wdio/types" "7.8.0"
 
-"@xml-tools/parser@^1.0.2":
+"@xml-tools/parser@^1.0.11":
   version "1.0.11"
   resolved "https://registry.yarnpkg.com/@xml-tools/parser/-/parser-1.0.11.tgz#a118a14099ea5c3c537e4781fad2fc195b57f8ff"
   integrity sha512-aKqQ077XnR+oQtHJlrAflaZaL7qZsulWc/i/ZEooar5JiWj1eLt0+Wg28cpa+XLney107wXqneC+oG1IZvxkTA==
@@ -2358,7 +2358,7 @@ pkg-dir@^4.2.0:
   dependencies:
     find-up "^4.0.0"
 
-prettier@>=1.10, prettier@^2.3.2:
+prettier@>=2.3, prettier@^2.3.2:
   version "2.3.2"
   resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.3.2.tgz#ef280a05ec253712e486233db5c6f23441e7342d"
   integrity sha512-lnJzDfJ66zkMy58OL5/NY5zp70S7Nz6KqcKkXYzn2tMVrNxvbqaBpg7H3qHaLxCJ5lNMsGuM8+ohS7cZrthdLQ==
