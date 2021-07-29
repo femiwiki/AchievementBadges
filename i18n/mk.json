@@ -11,7 +11,7 @@
 	"achievementbadges-anon-text": "Најавете се за да ги видите достигнувањата.",
 	"achievementbadges-disabled": "Значките за достигнувања се оневозможени за {{GENDER:$1|вас}}.",
 	"achievementbadges-target-not-disabled-ab": "$a ја {{GENDER:$1|нема}} овозможено бета-можноста „Значки за достигнувања“.",
-	"special-achievements-header-not-earning-achievements": "Нема {{GENDER:$1|стекнати}} достигнувања",
+	"special-achievements-header-not-earning-achievements": "Не {{GENDER:$1|стекнува}} достигнувања",
 	"achievement-earned-at": "{{GENDER:$1|Стекнато}} во $2 ч.",
 	"achievement-earned-at-tooltip": "$2 ч., на $1 г.",
 	"special-shareachievement": "Сподели значка за достигнување",
