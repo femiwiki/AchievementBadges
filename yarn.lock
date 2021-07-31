@@ -332,12 +332,12 @@
     deepmerge "^4.0.0"
     glob "^7.1.2"
 
-"@wdio/dot-reporter@7.8.0":
-  version "7.8.0"
-  resolved "https://registry.yarnpkg.com/@wdio/dot-reporter/-/dot-reporter-7.8.0.tgz#423e7c6ebcabcc5c754624d760c45e7aecfae148"
-  integrity sha512-q/UtUxNjNVMZV6HG2EIIPOGW3Oq2Qu3p6isNHt3E2o8BfKqdN8YQn5NUyVKz6eg7zcgCsJzyiw36bxvd7psMSQ==
+"@wdio/dot-reporter@7.9.0":
+  version "7.9.0"
+  resolved "https://registry.yarnpkg.com/@wdio/dot-reporter/-/dot-reporter-7.9.0.tgz#9f0d047e31f3ea8cf679d12e3a32394dcbbd4801"
+  integrity sha512-HYCn/Sev3nNQ0jDpUE4e6tXgOSRxQVwKbwQqCH/4aSZvqSyuXmgolXobkU9RTdEFNvgH8noTBpV4Qh8Biy9yAA==
   dependencies:
-    "@wdio/reporter" "7.8.0"
+    "@wdio/reporter" "7.9.0"
     "@wdio/types" "7.8.0"
     chalk "^4.0.0"
 
@@ -427,6 +427,21 @@
   version "7.8.0"
   resolved "https://registry.yarnpkg.com/@wdio/reporter/-/reporter-7.8.0.tgz#02ea0dd224f39f51ff9f46aa7cf7ed258ae25f62"
   integrity sha512-mKfKq8yDq1fiVpbP6gXtaPS0DiIJAFeEW3Em4zXMR3YcGAHOB/B5PXCYXwpz9kdylureRTMTisrauMf2ey6/4w==
+  dependencies:
+    "@types/diff" "^5.0.0"
+    "@types/node" "^15.12.5"
+    "@types/object-inspect" "^1.8.0"
+    "@types/supports-color" "^8.1.0"
+    "@wdio/types" "7.8.0"
+    diff "^5.0.0"
+    fs-extra "^10.0.0"
+    object-inspect "^1.10.3"
+    supports-color "8.1.1"
+
+"@wdio/reporter@7.9.0":
+  version "7.9.0"
+  resolved "https://registry.yarnpkg.com/@wdio/reporter/-/reporter-7.9.0.tgz#e6cbfa442d5536782446b0c20cde35aee6f2844b"
+  integrity sha512-UhulgnAJKhAY8rPbbHwoo2JFOFC1Q2uYl3+vuV5VlSP5kwo1mswRhMNk3aDpB7xuMhVx1U3LlRD5k/uns46unw==
   dependencies:
     "@types/diff" "^5.0.0"
     "@types/node" "^15.12.5"
