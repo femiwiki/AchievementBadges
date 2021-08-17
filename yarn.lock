@@ -341,14 +341,14 @@
     "@wdio/types" "7.8.0"
     chalk "^4.0.0"
 
-"@wdio/junit-reporter@7.9.0":
-  version "7.9.0"
-  resolved "https://registry.yarnpkg.com/@wdio/junit-reporter/-/junit-reporter-7.9.0.tgz#fb903903be42529357e80172d36821a42b642748"
-  integrity sha512-4JwkwTmteiS9l//Sr6QHQBJmXz+TA49UhR9u5aVSBnm+MdvJE1qnqQiVKw9yiwjntGCQ+p47qrA4/4TUVP/XhQ==
+"@wdio/junit-reporter@7.10.0":
+  version "7.10.0"
+  resolved "https://registry.yarnpkg.com/@wdio/junit-reporter/-/junit-reporter-7.10.0.tgz#44455fe149125ece8f16ffa092b0638464e1412c"
+  integrity sha512-dN0RxnY1b4vgzRMh0McbmPrfWVG5QdwuDw3w4Kpvj8UpDi2mCp0+wx3UEw6H19pJdJw9bC0JCQzld3S1oGuQfw==
   dependencies:
     "@types/json-stringify-safe" "^5.0.0"
     "@types/validator" "^13.1.3"
-    "@wdio/reporter" "7.9.0"
+    "@wdio/reporter" "7.10.0"
     "@wdio/types" "7.8.0"
     json-stringify-safe "^5.0.1"
     junit-report-builder "^3.0.0"
@@ -422,6 +422,21 @@
   integrity sha512-XUx7d1uIH5kfpCFbdiwMbchcf8zI2a3BGoFBUBGD0r9qaEIpYTgdu2cMhuyrbYP2ufIWuwEr1NCP5OX/hynGKw==
   dependencies:
     "@wdio/utils" "7.9.1"
+
+"@wdio/reporter@7.10.0":
+  version "7.10.0"
+  resolved "https://registry.yarnpkg.com/@wdio/reporter/-/reporter-7.10.0.tgz#c45a11579b52a1a3ee33466591ff2d9170b56a24"
+  integrity sha512-70gDn8lKmLIY84Hy9OSr9fzcRWAhuO5Q9dVRQ0uYhknS2J9O05MNZ0sIPZl6zGB7A9pNPyUl2nd/ElA2f0kR3g==
+  dependencies:
+    "@types/diff" "^5.0.0"
+    "@types/node" "^15.12.5"
+    "@types/object-inspect" "^1.8.0"
+    "@types/supports-color" "^8.1.0"
+    "@wdio/types" "7.8.0"
+    diff "^5.0.0"
+    fs-extra "^10.0.0"
+    object-inspect "^1.10.3"
+    supports-color "8.1.1"
 
 "@wdio/reporter@7.9.0":
   version "7.9.0"
