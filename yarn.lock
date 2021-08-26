@@ -354,17 +354,18 @@
     junit-report-builder "^3.0.0"
     validator "^13.0.0"
 
-"@wdio/local-runner@7.4.6":
-  version "7.4.6"
-  resolved "https://registry.yarnpkg.com/@wdio/local-runner/-/local-runner-7.4.6.tgz#3923fb8ff474178060f226207d5b5781a748af00"
-  integrity sha512-jd7kpGgytTx1iLHagT6o+avoTSC4CPYD895faSBZyl1F5GxdM0UJdq61dSNh9dXVbLGTARCsCap9MFpgIKENvQ==
+"@wdio/local-runner@7.10.1":
+  version "7.10.1"
+  resolved "https://registry.yarnpkg.com/@wdio/local-runner/-/local-runner-7.10.1.tgz#4084f5d0604e6130f5cf4e68f61d8d65a2a1bdb6"
+  integrity sha512-evq5ax7Vq/rYs7n/vfc/cgtstZI3sFnZyfKL4KQVXIZDTe93/iChLa6T0GSsIZU8b1qVCWZUSz3DAX+o8Ni+ow==
   dependencies:
     "@types/stream-buffers" "^3.0.3"
-    "@wdio/logger" "7.4.2"
-    "@wdio/repl" "7.4.6"
-    "@wdio/runner" "7.4.6"
-    "@wdio/types" "7.4.2"
+    "@wdio/logger" "7.7.0"
+    "@wdio/repl" "7.10.1"
+    "@wdio/runner" "7.10.1"
+    "@wdio/types" "7.10.1"
     async-exit-hook "^2.0.1"
+    split2 "^3.2.2"
     stream-buffers "^3.0.2"
 
 "@wdio/logger@7.4.2":
@@ -438,19 +439,19 @@
     object-inspect "^1.10.3"
     supports-color "8.1.1"
 
-"@wdio/runner@7.4.6":
-  version "7.4.6"
-  resolved "https://registry.yarnpkg.com/@wdio/runner/-/runner-7.4.6.tgz#e7a99ad47553141c0ee982718d481f9ca2e2fd29"
-  integrity sha512-GquDnQsOwry+HWIpcEgUnlQv83LmYSJ5EI6oiyQQ4+SBannAke4dDhvhO4RMEfjRld5AeuGrP4l/SDScfc1wzw==
+"@wdio/runner@7.10.1":
+  version "7.10.1"
+  resolved "https://registry.yarnpkg.com/@wdio/runner/-/runner-7.10.1.tgz#ccbb6d99d0a7dda8cfbb02d7938ad59c8b56d077"
+  integrity sha512-V2uzUg0d7ufwCXhbb9TYMB97THAVqSOL1pt6B74lyeOa4VPz0uCKwf5UsBVCrRBd3FAJqZck+4luDKSVauZ3LQ==
   dependencies:
-    "@wdio/config" "7.4.2"
-    "@wdio/logger" "7.4.2"
-    "@wdio/types" "7.4.2"
-    "@wdio/utils" "7.4.6"
+    "@wdio/config" "7.10.1"
+    "@wdio/logger" "7.7.0"
+    "@wdio/types" "7.10.1"
+    "@wdio/utils" "7.10.1"
     deepmerge "^4.0.0"
     gaze "^1.1.2"
-    webdriver "7.4.6"
-    webdriverio "7.4.6"
+    webdriver "7.10.1"
+    webdriverio "7.10.1"
 
 "@wdio/sync@7.10.1":
   version "7.10.1"
@@ -2584,7 +2585,7 @@ readable-stream@^2.0.0, readable-stream@^2.0.5:
     string_decoder "~1.1.1"
     util-deprecate "~1.0.1"
 
-readable-stream@^3.1.1, readable-stream@^3.4.0, readable-stream@^3.6.0:
+readable-stream@^3.0.0, readable-stream@^3.1.1, readable-stream@^3.4.0, readable-stream@^3.6.0:
   version "3.6.0"
   resolved "https://registry.yarnpkg.com/readable-stream/-/readable-stream-3.6.0.tgz#337bbda3adc0706bd3e024426a286d4b4b2c9198"
   integrity sha512-BViHy7LKeTz4oNnkcLJ+lVSL6vpiFeX6/d3oSH8zCW7UxP2onchk+vTGB143xuFjHS3deTgkKoXXymXqymiIdA==
@@ -2808,6 +2809,13 @@ spdx-license-ids@^3.0.0:
   version "3.0.9"
   resolved "https://registry.yarnpkg.com/spdx-license-ids/-/spdx-license-ids-3.0.9.tgz#8a595135def9592bda69709474f1cbeea7c2467f"
   integrity sha512-Ki212dKK4ogX+xDo4CtOZBVIwhsKBEfsEEcwmJfLQzirgc2jIWdzg40Unxz/HzEUqM1WFzVlQSMF9kZZ2HboLQ==
+
+split2@^3.2.2:
+  version "3.2.2"
+  resolved "https://registry.yarnpkg.com/split2/-/split2-3.2.2.tgz#bf2cf2a37d838312c249c89206fd7a17dd12365f"
+  integrity sha512-9NThjpgZnifTkJpzTZ7Eue85S49QwpNhZTq6GRJwObb6jnLFNGB7Qm73V5HewTROPyxD0C29xqmaI68bQtV+hg==
+  dependencies:
+    readable-stream "^3.0.0"
 
 sshpk@^1.7.0:
   version "1.16.1"
