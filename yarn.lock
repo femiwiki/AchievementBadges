@@ -341,10 +341,10 @@
     "@wdio/types" "7.10.1"
     chalk "^4.0.0"
 
-"@wdio/junit-reporter@7.10.1":
-  version "7.10.1"
-  resolved "https://registry.yarnpkg.com/@wdio/junit-reporter/-/junit-reporter-7.10.1.tgz#1c949c57f9218c94e865d58c77625da3ad448142"
-  integrity sha512-v9x7Zz0tVcB4qHXasPK1qwtWP0+pbkS3IMS/Sq3hGU5KyJo6ex0JihlK4QdQVEVWqES4lq7L8DLgVWN6kU+Vmw==
+"@wdio/junit-reporter@7.12.1":
+  version "7.12.1"
+  resolved "https://registry.yarnpkg.com/@wdio/junit-reporter/-/junit-reporter-7.12.1.tgz#2854dae069b53466cb552e949eee490a9e5a7566"
+  integrity sha512-mFXWvDjWjRQbaNNjQXgHzuGeH7+gdGbBZPWrKhnI+cpNcddNOPC/mPrTuv5S6D9uMJ75v4ChXQL9Nj+shq4ZIg==
   dependencies:
     "@types/json-stringify-safe" "^5.0.0"
     "@types/validator" "^13.1.3"
