@@ -27,6 +27,7 @@ class Achievement {
 
 	/**
 	 * You should not call the constructor.
+	 * @return void
 	 * @throws FatalError
 	 */
 	public function __construct() {

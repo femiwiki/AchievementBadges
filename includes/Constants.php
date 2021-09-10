@@ -95,7 +95,9 @@ final class Constants {
 	/** @var string */
 	public const ACHV_KEY_BE_THANKED = 'be-thanked';
 
-	/** This class is for namespacing constants only. Forbid construction. * @throws FatalError
+	/** This class is for namespacing constants only. Forbid construction.
+	 * @return void
+	 * @throws FatalError
 	 */
 	private function __construct() {
 		throw new FatalError( "Cannot construct a utility class." );
