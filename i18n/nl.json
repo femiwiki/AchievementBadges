@@ -1,0 +1,40 @@
+{
+	"@metadata": {
+		"authors": [
+			"McDutchie",
+			"Romaine"
+		]
+	},
+	"special-shareachievement-invalid": "Ongeldige toegang",
+	"special-shareachievement-invalid-username": "Ongeldige gebruikersnaam",
+	"special-shareachievement-item-facebook": "Facebook",
+	"special-shareachievement-item-twitter": "Twitter",
+	"achievementbadges-achievement-name-visual-edit": "Visueel tekstverwerker",
+	"achievementbadges-achievement-name-edit-size-4": "Een boom vol bladeren",
+	"achievementbadges-achievement-name-long-user-page": "Profiel",
+	"achievementbadges-achievement-hint-long-user-page": "Laat uw [[User:$1|gebruikerspagina]] er goed uitzien.",
+	"achievementbadges-achievement-description-long-user-page": "{{GENDER:$1|U}} hebt uw gebruikerspagina aangemaakt en uzelf geïntroduceerd!",
+	"achievementbadges-achievement-name-contribs-sunday": "Het is zondag!",
+	"achievementbadges-achievement-hint-contribs-sunday": "Draag bij op zondag",
+	"achievementbadges-achievement-description-contribs-sunday": "{{GENDER:$1|U}} hebt bijgedragen op zondag!",
+	"achievementbadges-achievement-name-contribs-monday": "Het is maandag!",
+	"achievementbadges-achievement-hint-contribs-monday": "Draag bij op maandag",
+	"achievementbadges-achievement-description-contribs-monday": "{{GENDER:$1|U}} hebt bijgedragen op maandag!",
+	"achievementbadges-achievement-name-contribs-tuesday": "Het is dinsdag!",
+	"achievementbadges-achievement-hint-contribs-tuesday": "Draag bij op dinsdag",
+	"achievementbadges-achievement-description-contribs-tuesday": "{{GENDER:$1|U}} hebt bijgedragen op dinsdag!",
+	"achievementbadges-achievement-name-contribs-wednesday": "Het is woensdag!",
+	"achievementbadges-achievement-hint-contribs-wednesday": "Draag bij op woensdag",
+	"achievementbadges-achievement-description-contribs-wednesday": "{{GENDER:$1|U}} hebt bijgedragen op woensdag!",
+	"achievementbadges-achievement-name-contribs-thursday": "Het is donderdag!",
+	"achievementbadges-achievement-hint-contribs-thursday": "Draag bij op donderdag",
+	"achievementbadges-achievement-description-contribs-thursday": "{{GENDER:$1|U}} hebt bijgedragen op donderdag!",
+	"achievementbadges-achievement-name-contribs-friday": "Het is vrijdag!",
+	"achievementbadges-achievement-hint-contribs-friday": "Draag bij op vrijdag",
+	"achievementbadges-achievement-description-contribs-friday": "{{GENDER:$1|U}} hebt bijgedragen op vrijdag!",
+	"achievementbadges-achievement-name-contribs-saturday": "Het is zaterdag!",
+	"achievementbadges-achievement-hint-contribs-saturday": "Draag bij op zaterdag",
+	"achievementbadges-achievement-description-contribs-saturday": "{{GENDER:$1|U}} hebt bijgedragen op zaterdag!",
+	"achievementbadges-achievement-name-thanks": "Bedankt!",
+	"achievementbadges-achievement-hint-thanks": "Er is altijd wel iets om dankbaar voor te zijn."
+}
