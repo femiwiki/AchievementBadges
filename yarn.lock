@@ -69,10 +69,10 @@
   dependencies:
     defer-to-connect "^2.0.0"
 
-"@trysound/sax@0.1.1":
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/@trysound/sax/-/sax-0.1.1.tgz#3348564048e7a2d7398c935d466c0414ebb6a669"
-  integrity sha512-Z6DoceYb/1xSg5+e+ZlPZ9v0N16ZvZ+wYMraFue4HYrE4ttONKtsvruIRf6t9TBR0YvSOfi1hUU0fJfBLCDYow==
+"@trysound/sax@0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@trysound/sax/-/sax-0.2.0.tgz#cccaab758af56761eb7bf37af6f03f326dd798ad"
+  integrity sha512-L7z9BgrNEcYyUYtF+HaEfiS5ebkh9jXqbszz7pC0hRBPaatV0XjSD3+eHrpqFemQfgwiFF0QPIarnIihIDn7OA==
 
 "@types/aria-query@^4.2.1":
   version "4.2.1"
@@ -332,24 +332,24 @@
     deepmerge "^4.0.0"
     glob "^7.1.2"
 
-"@wdio/dot-reporter@7.10.1":
-  version "7.10.1"
-  resolved "https://registry.yarnpkg.com/@wdio/dot-reporter/-/dot-reporter-7.10.1.tgz#17379a330eec8f6eef1c0385ac363b561b948644"
-  integrity sha512-FDUFKSjXIdwTznP3yhduiCnW4rZQdLSFI66b/pL3c0hnvn2uB8HTxVEu5qs5s4yvNRP8btqc5O8a3bI3LcGZ9Q==
+"@wdio/dot-reporter@7.12.5":
+  version "7.12.5"
+  resolved "https://registry.yarnpkg.com/@wdio/dot-reporter/-/dot-reporter-7.12.5.tgz#dc7f9e6f0bf5899810834213b2db5523498fbaa7"
+  integrity sha512-hqb0n8VkMCtdaG7ce4/4zgd+friQq9wwYreUYdl4dGQeQfnwEl81Kc2X+MztzyN0WfdImdIp5uDcX70tWm4nTg==
   dependencies:
-    "@wdio/reporter" "7.10.1"
-    "@wdio/types" "7.10.1"
+    "@wdio/reporter" "7.12.5"
+    "@wdio/types" "7.12.5"
     chalk "^4.0.0"
 
-"@wdio/junit-reporter@7.12.1":
-  version "7.12.1"
-  resolved "https://registry.yarnpkg.com/@wdio/junit-reporter/-/junit-reporter-7.12.1.tgz#2854dae069b53466cb552e949eee490a9e5a7566"
-  integrity sha512-mFXWvDjWjRQbaNNjQXgHzuGeH7+gdGbBZPWrKhnI+cpNcddNOPC/mPrTuv5S6D9uMJ75v4ChXQL9Nj+shq4ZIg==
+"@wdio/junit-reporter@7.12.5":
+  version "7.12.5"
+  resolved "https://registry.yarnpkg.com/@wdio/junit-reporter/-/junit-reporter-7.12.5.tgz#6ac0843cb4ad008c5210e74dd0add09ff1b82767"
+  integrity sha512-oz922s/I0nbPs2SReabc/tTp0KfeWEPI6xc0q3i4GKZf+NX3zqk98OuHD77R7pyFeD2s2FqvIROw/M1s+l651A==
   dependencies:
     "@types/json-stringify-safe" "^5.0.0"
     "@types/validator" "^13.1.3"
-    "@wdio/reporter" "7.10.1"
-    "@wdio/types" "7.10.1"
+    "@wdio/reporter" "7.12.5"
+    "@wdio/types" "7.12.5"
     json-stringify-safe "^5.0.1"
     junit-report-builder "^3.0.0"
     validator "^13.0.0"
@@ -423,16 +423,16 @@
   dependencies:
     "@wdio/utils" "7.4.6"
 
-"@wdio/reporter@7.10.1":
-  version "7.10.1"
-  resolved "https://registry.yarnpkg.com/@wdio/reporter/-/reporter-7.10.1.tgz#ad679d9fc4760293da6263d7aa0291c95c65081e"
-  integrity sha512-zgyHQc6j+GzlOnwlu3yhCQ8yAaTfo0MpNQG1GCiqtSKJ2c50J2HR5d9LYWrM7L8v13X4YWMxhW+3oYT+f35Gjw==
+"@wdio/reporter@7.12.5":
+  version "7.12.5"
+  resolved "https://registry.yarnpkg.com/@wdio/reporter/-/reporter-7.12.5.tgz#71fd4a32f5ea9864eb2e5dda59c07ef7b592eb19"
+  integrity sha512-Ax3PfQ/JXGXTYhyaKbOz1wWjjZCxkOF+yTAiBobcqGovqzJdLFV41A+guKpiKnRSxj7DctXYFmskT/FDERI5qA==
   dependencies:
     "@types/diff" "^5.0.0"
     "@types/node" "^15.12.5"
     "@types/object-inspect" "^1.8.0"
     "@types/supports-color" "^8.1.0"
-    "@wdio/types" "7.10.1"
+    "@wdio/types" "7.12.5"
     diff "^5.0.0"
     fs-extra "^10.0.0"
     object-inspect "^1.10.3"
@@ -463,14 +463,6 @@
     "@wdio/types" "7.12.5"
     fibers "^5.0.0"
     webdriverio "7.12.5"
-
-"@wdio/types@7.10.1":
-  version "7.10.1"
-  resolved "https://registry.yarnpkg.com/@wdio/types/-/types-7.10.1.tgz#063d43c807cc27cd912b6aa70b241dce285fd1e5"
-  integrity sha512-wEDmdux2VCGO4wWVj7v9UbVRqQG7liHnDVPYJuQURPj3hJMiQQTIHwRi7EmwYfbJ9/mRoHBOGeZt7nSvtcjeaQ==
-  dependencies:
-    "@types/node" "^15.12.5"
-    got "^11.8.1"
 
 "@wdio/types@7.12.5":
   version "7.12.5"
@@ -953,10 +945,10 @@ color-name@~1.1.4:
   resolved "https://registry.yarnpkg.com/color-name/-/color-name-1.1.4.tgz#c2a09a87acbde69543de6f63fa3995c826c536a2"
   integrity sha512-dOy+3AuW3a2wNbZHIuMZpTcgjGuLU/uBL/ubcZF9OXbDo8ff4O8yVp5Bf0efS8uEoYo5q4Fx7dY9OgQGXgAsQA==
 
-colorette@^1.3.0:
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/colorette/-/colorette-1.3.0.tgz#ff45d2f0edb244069d3b772adeb04fed38d0a0af"
-  integrity sha512-ecORCqbSFP7Wm8Y6lyqMJjexBQqXSF7SSeaTyGGphogUjBlFP9m9o08wy86HL2uB7fMTxtOUzLMk7ogKcxMg1w==
+colorette@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/colorette/-/colorette-1.4.0.tgz#5190fbb87276259a86ad700bff2c6d6faa3fca40"
+  integrity sha512-Y2oEozpomLn7Q3HFP7dpww7AtMJplbM9lGZP6RDfHqmbeRjiwRg4n6VM6j4KLmRke85uWEI7JqF17f3pqdRA0g==
 
 colors@^1.1.2:
   version "1.4.0"
@@ -2949,13 +2941,13 @@ supports-color@^7.1.0:
   dependencies:
     has-flag "^4.0.0"
 
-svgo@^2.5.0:
-  version "2.5.0"
-  resolved "https://registry.yarnpkg.com/svgo/-/svgo-2.5.0.tgz#3c9051b606d85a02fcb59f459b19970d2cc2c9bf"
-  integrity sha512-FSdBOOo271VyF/qZnOn1PgwCdt1v4Dx0Sey+U1jgqm1vqRYjPGdip0RGrFW6ItwtkBB8rHgHk26dlVr0uCs82Q==
+svgo@2.6.1:
+  version "2.6.1"
+  resolved "https://registry.yarnpkg.com/svgo/-/svgo-2.6.1.tgz#60b613937e0081028cffc2369090e366b08f1f0e"
+  integrity sha512-SDo274ymyG1jJ3HtCr3hkfwS8NqWdF0fMr6xPlrJ5y2QMofsQxIEFWgR1epwb197teKGgnZbzozxvJyIeJpE2Q==
   dependencies:
-    "@trysound/sax" "0.1.1"
-    colorette "^1.3.0"
+    "@trysound/sax" "0.2.0"
+    colorette "^1.4.0"
     commander "^7.2.0"
     css-select "^4.1.3"
     css-tree "^1.1.3"
