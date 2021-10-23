@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Extension\AchievementBadges\HookHandler;
 
-use MediaWiki\Extension\AchievementBadges\Constants;
 use MediaWiki\MediaWikiServices as MediaWikiMediaWikiServices;
 
 class MediaWikiServices implements \MediaWiki\Hook\MediaWikiServicesHook {
@@ -12,12 +11,11 @@ class MediaWikiServices implements \MediaWiki\Hook\MediaWikiServicesHook {
 	 * @inheritDoc
 	 */
 	public function onMediaWikiServices( $services ) {
-		global $wgAchievementBadgesAchievements, $wgNotifyTypeAvailabilityByCategory,
-			$wgAchievementBadgesDisabledAchievements;
-
-		$services = MediaWikiMediaWikiServices::getInstance();
-		$hookRunner = $services->get( 'AchievementBadgesHookRunner' );
-		$hookRunner->onBeforeCreateAchievement( $wgAchievementBadgesAchievements );
+		global $wgAchievementBadgesAchievements,
+			$wgNotifyTypeAvailabilityByCategory,
+			$wgAchievementBadgesDisabledAchievements,
+			$wgAchievementBadgesEnableBetaFeature,
+			$wgAchievementBadgesReplaceEchoThankYouEdit;
 
 		foreach ( $wgAchievementBadgesDisabledAchievements as $key ) {
 			unset( $wgAchievementBadgesAchievements[ $key ] );
@@ -29,10 +27,16 @@ class MediaWikiServices implements \MediaWiki\Hook\MediaWikiServicesHook {
 		}
 
 		// Overwrite echo's milestone if configured.
-		$config = $services->getMainConfig();
-		if ( !$config->get( Constants::CONFIG_KEY_ENABLE_BETA_FEATURE ) &&
-			$config->get( Constants::CONFIG_KEY_REPLACE_ECHO_THANK_YOU_EDIT ) ) {
-				$wgNotifyTypeAvailabilityByCategory['thank-you-edit']['web'] = false;
+		if ( !$wgAchievementBadgesEnableBetaFeature && $wgAchievementBadgesReplaceEchoThankYouEdit ) {
+			$wgNotifyTypeAvailabilityByCategory['thank-you-edit']['web'] = false;
 		}
+	}
+
+	public static function onExtensionFunction() {
+		global $wgAchievementBadgesAchievements;
+
+		$services = MediaWikiMediaWikiServices::getInstance();
+		$hookRunner = $services->get( 'AchievementBadgesHookRunner' );
+		$hookRunner->onBeforeCreateAchievement( $wgAchievementBadgesAchievements );
 	}
 }

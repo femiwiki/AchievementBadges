@@ -28,6 +28,9 @@
     "UserSaveSettings": "AchievementRegister",
     "ChangeTagsAfterUpdateTags": "AchievementRegister"
   },
+  "ExtensionFunctions": [
+    "MediaWiki\\Extension\\AchievementBadges\\HookHandler\\MediaWikiServices::onExtensionFunction"
+  ],
   "HookHandlers": {
     "Main": {
       "class": "MediaWiki\\Extension\\AchievementBadges\\HookHandler\\Main",
