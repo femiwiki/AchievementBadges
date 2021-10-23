@@ -15,10 +15,6 @@ class MediaWikiServices implements \MediaWiki\Hook\MediaWikiServicesHook {
 		global $wgAchievementBadgesAchievements, $wgNotifyTypeAvailabilityByCategory,
 			$wgAchievementBadgesDisabledAchievements;
 
-		$services = MediaWikiMediaWikiServices::getInstance();
-		$hookRunner = $services->get( 'AchievementBadgesHookRunner' );
-		$hookRunner->onBeforeCreateAchievement( $wgAchievementBadgesAchievements );
-
 		foreach ( $wgAchievementBadgesDisabledAchievements as $key ) {
 			unset( $wgAchievementBadgesAchievements[ $key ] );
 		}
@@ -34,5 +30,13 @@ class MediaWikiServices implements \MediaWiki\Hook\MediaWikiServicesHook {
 			$config->get( Constants::CONFIG_KEY_REPLACE_ECHO_THANK_YOU_EDIT ) ) {
 				$wgNotifyTypeAvailabilityByCategory['thank-you-edit']['web'] = false;
 		}
+	}
+
+	public static function onExtensionFunction() {
+		global $wgAchievementBadgesAchievements;
+
+		$services = MediaWikiMediaWikiServices::getInstance();
+		$hookRunner = $services->get( 'AchievementBadgesHookRunner' );
+		$hookRunner->onBeforeCreateAchievement( $wgAchievementBadgesAchievements );
 	}
 }
