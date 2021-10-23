@@ -29,6 +29,7 @@ class SpecialAchievementsTest extends SpecialPageTestBase {
 
 	/** @return array */
 	public function provideExecutionVariables() {
+		$optionManager = $this->getServiceContainer()->getUserOptionsManager();
 		$anon = null;
 		$loggedInUser = new User();
 		$loggedInUser->setName( 'loggedInUser' );
@@ -36,7 +37,7 @@ class SpecialAchievementsTest extends SpecialPageTestBase {
 		$betaEnabledUser = new User();
 		$betaEnabledUser->setName( 'betaEnabledUser' );
 		$betaEnabledUser->addToDatabase();
-		$betaEnabledUser->setOption( Constants::PREF_KEY_ACHIEVEMENT_ENABLE, '1' );
+		$optionManager->setOption( $betaEnabledUser, Constants::PREF_KEY_ACHIEVEMENT_ENABLE, '1' );
 		$betaEnabledUser->saveSettings();
 		$duringBeta = true;
 		$notDuringBeta = false;
@@ -49,7 +50,7 @@ class SpecialAchievementsTest extends SpecialPageTestBase {
 		$otherEnabledUserName = 'otherEnabledUser';
 		$otherEnabledUser = new User();
 		$otherEnabledUser->setName( $otherEnabledUserName );
-		$otherEnabledUser->setOption( Constants::PREF_KEY_ACHIEVEMENT_ENABLE, '1' );
+		$optionManager->setOption( $otherEnabledUser, Constants::PREF_KEY_ACHIEVEMENT_ENABLE, '1' );
 		$otherEnabledUser->saveSettings();
 		$otherUserName = $otherDisabledUserName;
 		$ok = 'achievements-summary';
