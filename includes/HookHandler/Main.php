@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Extension\AchievementBadges\HookHandler;
 
-use BetaFeatures;
 use Config;
 use EchoAttributeManager;
 use EchoEvent;
@@ -11,6 +10,7 @@ use MediaWiki\Extension\AchievementBadges\Constants;
 use MediaWiki\Extension\AchievementBadges\EarnEchoEventPresentationModel;
 use MediaWiki\Extension\AchievementBadges\Hooks\HookRunner;
 use MediaWiki\Extension\AchievementBadges\Special\SpecialAchievements;
+use MediaWiki\Extension\BetaFeatures\BetaFeatures;
 use MediaWiki\MediaWikiServices;
 use SpecialPage;
 use Title;

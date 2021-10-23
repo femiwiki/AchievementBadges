@@ -2,11 +2,11 @@
 
 namespace MediaWiki\Extension\AchievementBadges\Special;
 
-use BetaFeatures;
 use LogEntryBase;
 use MediaWiki\Extension\AchievementBadges\Achievement;
 use MediaWiki\Extension\AchievementBadges\Constants;
 use MediaWiki\Extension\AchievementBadges\Hooks\HookRunner;
+use MediaWiki\Extension\BetaFeatures\BetaFeatures;
 use MediaWiki\Logger\LoggerFactory;
 use Psr\Log\LoggerInterface;
 use SpecialPage;
