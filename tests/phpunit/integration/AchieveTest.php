@@ -60,7 +60,7 @@ class AchieveTest extends MediaWikiIntegrationTestCase {
 		$user = new User();
 		$user->setName( 'EditPageDummy' );
 		$user->addToDatabase();
-		$this->assertSame( $user->getEditCount(), 0 );
+		$this->assertSame( 0, $user->getEditCount() );
 
 		$this->setMwGlobals( 'wg' . Constants::CONFIG_KEY_ACHIEVEMENTS, [
 			Constants::ACHV_KEY_EDIT_PAGE => [
@@ -76,14 +76,14 @@ class AchieveTest extends MediaWikiIntegrationTestCase {
 		$ct = 1;
 		// Edit a page
 		$this->editPage( 'Edit Test', str_repeat( 'lorem', $ct++ ), '', NS_MAIN, $user );
-		$this->assertSame( $user->getEditCount(), 1 );
+		$this->assertSame( 1, $user->getEditCount() );
 		$this->assertNotificationNumber( 1, $user, Constants::EVENT_KEY_EARN,
 			"edit-page-0 should be achieved (edit count: {$user->getEditCount()})" );
 		$this->assertEarnedAchievement( 1, $user, Constants::ACHV_KEY_EDIT_PAGE );
 
 		// Edit another page
 		$this->editPage( 'Edit Test', str_repeat( 'lorem', $ct++ ), '', NS_MAIN, $user );
-		$this->assertSame( $user->getEditCount(), 2 );
+		$this->assertSame( 2, $user->getEditCount() );
 		$this->assertNotificationNumber( 2, $user, Constants::EVENT_KEY_EARN,
 			"Only edit-page-0 should be achieved (edit count: {$user->getEditCount()})" );
 		$this->assertEarnedAchievement( 2, $user, Constants::ACHV_KEY_EDIT_PAGE );
