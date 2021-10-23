@@ -53,7 +53,8 @@ class AchievementTest extends MediaWikiIntegrationTestCase {
 			'A anonymous user cannot use AB where wiki uses AB as a beta feature' );
 
 		$user = $this->getMutableTestUser()->getUser();
-		$user->setOption( Constants::PREF_KEY_ACHIEVEMENT_ENABLE, '1' );
+		$manager = $this->getServiceContainer()->getUserOptionsManager();
+		$manager->setOption( $user, Constants::PREF_KEY_ACHIEVEMENT_ENABLE, '1' );
 		$user->saveSettings();
 		$this->assertTrue( Achievement::isAchievementBadgesAvailable( $user ),
 			'A user which enables AB can use AB where wiki uses AB as a beta feature' );

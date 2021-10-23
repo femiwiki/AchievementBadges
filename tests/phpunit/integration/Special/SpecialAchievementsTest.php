@@ -22,90 +22,65 @@ class SpecialAchievementsTest extends SpecialPageTestBase {
 	 * @inheritDoc
 	 */
 	protected function newSpecialPage() {
-		return new SpecialAchievements(
-			$this->createMock( HookRunner::class )
-		);
+		return new SpecialAchievements( $this->createMock( HookRunner::class ) );
 	}
 
 	/** @return array */
 	public function provideExecutionVariables() {
-		$anon = null;
-		$loggedInUser = new User();
-		$loggedInUser->setName( 'loggedInUser' );
-		$loggedInUser->addToDatabase();
-		$betaEnabledUser = new User();
-		$betaEnabledUser->setName( 'betaEnabledUser' );
-		$betaEnabledUser->addToDatabase();
-		$betaEnabledUser->setOption( Constants::PREF_KEY_ACHIEVEMENT_ENABLE, '1' );
-		$betaEnabledUser->saveSettings();
-		$duringBeta = true;
-		$notDuringBeta = false;
-		$noSubPage = '';
+		$whenBeta = true;
+		$whenNotBeta = false;
 
-		$otherDisabledUserName = 'otherDisabledUser';
-		$otherDisabledUser = new User();
-		$otherDisabledUser->setName( $otherDisabledUserName );
-		$otherDisabledUser->addToDatabase();
-		$otherEnabledUserName = 'otherEnabledUser';
-		$otherEnabledUser = new User();
-		$otherEnabledUser->setName( $otherEnabledUserName );
-		$otherEnabledUser->setOption( Constants::PREF_KEY_ACHIEVEMENT_ENABLE, '1' );
-		$otherEnabledUser->saveSettings();
-		$otherUserName = $otherDisabledUserName;
-		$ok = 'achievements-summary';
+		$anon = null;
+		$loggedInUser = false;
+		$viewerEnablingTheFeature = true;
+		$viewerNotEnablingTheFeature = $loggedInUser;
+
+		$queriesThemselves = null;
+		$queriesOtherUser = true;
+		$queriesOtherDisablingUser = false;
+		$queriesOtherEnablingUser = $queriesOtherUser;
+
+		$isOk = 'achievements-summary';
 		return [
-			[
-				$notDuringBeta, $anon, $noSubPage, $ok,
-				'An anonymous user cannot see Special:Achievements',
+			'An anonymous user should not see Special:Achievements' => [
+				$whenNotBeta, $anon, $queriesThemselves, $isOk,
 			],
-			[
-				$notDuringBeta, $anon, $otherUserName, $ok,
-				'An anonymous user cannot see Special:Achievements for other',
+			'An anonymous user should not see Special:Achievements for other' => [
+				$whenNotBeta, $anon, $queriesOtherUser, $isOk,
 			],
-			[
-				$notDuringBeta, $loggedInUser, $noSubPage, $ok,
-				'A registered user can see Special:Achievements',
+			'A registered user should see Special:Achievements' => [
+				$whenNotBeta, $loggedInUser, $queriesThemselves, $isOk,
 			],
-			[
-				$notDuringBeta, $loggedInUser, $otherUserName, $ok,
-				'A registered user can see Special:Achievements for other',
+			'A registered user should see Special:Achievements for other' => [
+				$whenNotBeta, $loggedInUser, $queriesOtherUser, $isOk,
 			],
-			// During beta period
-			[
-				$duringBeta, $anon, $noSubPage, UserNotLoggedIn::class,
-				'An anonymous user cannot see Special:Achievements during beta period',
+			// Below tests are worth on the beta period of AchievementBadges extension itself.
+			'An anonymous user should not see Special:Achievements during beta period' => [
+				$whenBeta, $anon, $queriesThemselves, UserNotLoggedIn::class,
 			],
-			[
-				$duringBeta, $anon, $otherDisabledUserName, 'achievementbadges-target-not-disabled-ab',
-				'If the target user does not enable AB, no one can see the list',
+			'If the target user does not enable AB, no one should see the list' => [
+				$whenBeta, $anon, $queriesOtherDisablingUser, 'achievementbadges-target-not-disabled-ab',
 			],
-			[
-				$duringBeta, $anon, $otherEnabledUserName, $ok,
-				'If the target user enables AB, everyone can see the list',
+			'If the target user enables AB, everyone should see the list' => [
+				$whenBeta, $anon, $queriesOtherEnablingUser, $isOk,
 			],
-			[
-				$duringBeta, $loggedInUser, $noSubPage, 'achievementbadges-disabled',
-				'A registered user cannot see Special:Achievements during beta period if not enabled it',
+			'A registered user should not see Special:Achievements during beta period if not enabled it' => [
+				$whenBeta, $viewerNotEnablingTheFeature, $queriesThemselves, 'achievementbadges-disabled',
 			],
-			[
-				$duringBeta, $loggedInUser, $otherDisabledUserName, 'achievementbadges-target-not-disabled-ab',
-				'If the target user does not enable AB, no one can see the list',
+			'If the target user does not enable AB, no one should see the list' => [
+				$whenBeta, $viewerNotEnablingTheFeature, $queriesOtherUser, 'achievementbadges-target-not-disabled-ab',
 			],
-			[
-				$duringBeta, $loggedInUser, $otherEnabledUserName, $ok,
-				'If the target user enables AB, everyone can see the list',
+			'If the target user enables AB, everyone should see the list' => [
+				$whenBeta, $viewerNotEnablingTheFeature, $queriesOtherUser, $isOk,
 			],
-			[
-				$duringBeta, $betaEnabledUser, $noSubPage, $ok,
-				'A user who enables AB can see achievements on Special:Achievements during beta period',
+			'A user who enables AB should see achievements on Special:Achievements during beta period' => [
+				$whenBeta, $viewerEnablingTheFeature, $queriesThemselves, $isOk,
 			],
-			[
-				$duringBeta, $betaEnabledUser, $otherDisabledUserName, 'achievementbadges-target-not-disabled-ab',
-				'If the target user does not enable AB, no one can see the list',
+			'If the target user does not enable AB, no one should see the list' => [
+				$whenBeta, $viewerEnablingTheFeature, $queriesOtherUser, 'achievementbadges-target-not-disabled-ab',
 			],
-			[
-				$duringBeta, $betaEnabledUser, $otherEnabledUserName, $ok,
-				'If the target user enables AB, everyone can see the list',
+			'If the target user enables AB, everyone should see the list' => [
+				$whenBeta, $viewerEnablingTheFeature, $queriesOtherUser, $isOk,
 			],
 		];
 	}
@@ -114,45 +89,76 @@ class SpecialAchievementsTest extends SpecialPageTestBase {
 	 * @dataProvider provideExecutionVariables
 	 *
 	 * @param bool $isBetaEnabled
-	 * @param User|null $user
-	 * @param string $subPage
+	 * @param bool|null $viewerIsEnabledBeta
+	 * @param bool|null $queriesAbout
 	 * @param string|MWException $expected
-	 * @param string $msg
 	 */
 	public function testDisabledMsg(
 		$isBetaEnabled,
-		$user,
-		$subPage,
-		$expected,
-		$msg
+		$viewerIsEnabledBeta,
+		$queriesAbout,
+		$expected
 	) {
-		$this->setMwGlobals( 'wg' . Constants::CONFIG_KEY_ACHIEVEMENTS, [] );
-		$this->setMwGlobals( 'wg' . Constants::CONFIG_KEY_ENABLE_BETA_FEATURE, $isBetaEnabled );
+		$this->setMwGlobals( [
+			'wg' . Constants::CONFIG_KEY_ACHIEVEMENTS => [],
+			'wg' . Constants::CONFIG_KEY_ENABLE_BETA_FEATURE => $isBetaEnabled
+		] );
+		$optionManager = $this->getServiceContainer()->getUserOptionsManager();
+
+		if ( $viewerIsEnabledBeta === null ) {
+			$viewer = null;
+		} else {
+			$viewer = new User();
+			$viewer->setName( 'viewer' );
+			$viewer->addToDatabase();
+			$optionManager->setOption( $viewer, Constants::PREF_KEY_ACHIEVEMENT_ENABLE,
+				$viewerIsEnabledBeta ? '1' : '0' );
+			$viewer->saveSettings();
+		}
+
+		if ( $queriesAbout === null ) {
+			$subpage = '';
+		} else {
+			$otherUser = new User();
+			$otherUser->setName( 'otherUser' );
+			$otherUser->addToDatabase();
+			$optionManager->setOption( $otherUser, Constants::PREF_KEY_ACHIEVEMENT_ENABLE, $queriesAbout ? '1' : '0' );
+			$otherUser->saveSettings();
+			$subpage = $otherUser->getName();
+		}
+
 		if ( $expected == UserNotLoggedIn::class ) {
 			$this->expectException( $expected );
-			list( $html, ) = $this->executeSpecialPage( $subPage, null, 'qqx', $user );
+			list( $html, ) = $this->executeSpecialPage( $subpage, null, 'qqx', $viewer );
 		} else {
-			list( $html, ) = $this->executeSpecialPage( $subPage, null, 'qqx', $user );
-			$this->assertStringContainsString( $expected, $html, $msg );
+			list( $html, ) = $this->executeSpecialPage( $subpage, null, 'qqx', $viewer );
+			$this->assertStringContainsString( $expected, $html );
 		}
 	}
 
 	public function testDisplayHint() {
+		$this->setMwGlobals( 'wg' . Constants::CONFIG_KEY_ENABLE_BETA_FEATURE, false );
 		$user = new User();
-		$user->setName( __METHOD__ );
+		$user->setId( 1 );
+		$user->setName( 'DisplayHintUser' );
+		$optionManager = $this->getServiceContainer()->getUserOptionsManager();
+		$optionManager->setOption( $user, Constants::PREF_KEY_ACHIEVEMENT_ENABLE, '1' );
 		$user->addToDatabase();
 
-		list( $html, ) = $this->executeSpecialPage( '', null, 'qqx', null );
+		list( $html, ) = $this->executeSpecialPage( '', null, 'qqx', $user );
 		$this->assertStringContainsString( 'achievementbadges-achievement-hint-long-user-page', $html,
 			'A user can see a hint for not earning achievement' );
 	}
 
 	public function testStatsAchievement() {
 		$key = 'special-test';
-		$this->setMwGlobals( 'wg' . Constants::CONFIG_KEY_ACHIEVEMENTS, [
-			$key => [
-				'type' => 'stats',
-				'thresholds' => [ 1, 10, 100 ],
+		$this->setMwGlobals( [
+			'wg' . Constants::CONFIG_KEY_ENABLE_BETA_FEATURE => false,
+			'wg' . Constants::CONFIG_KEY_ACHIEVEMENTS => [
+				$key => [
+					'type' => 'stats',
+					'thresholds' => [ 1, 10, 100 ],
+				],
 			],
 		] );
 		$user = $this->getTestUser()->getUser();
