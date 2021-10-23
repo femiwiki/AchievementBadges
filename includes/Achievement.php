@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Extension\AchievementBadges;
 
-use BetaFeatures;
 use EchoEvent;
 use ExtensionRegistry;
 use FatalError;
@@ -10,6 +9,7 @@ use Language;
 use LogPage;
 use ManualLogEntry;
 use MediaWiki\Extension\AchievementBadges\Special\SpecialAchievements;
+use MediaWiki\Extension\BetaFeatures\BetaFeatures;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MWException;

@@ -2,11 +2,11 @@
 
 namespace MediaWiki\Extension\AchievementBadges\Special;
 
-use BetaFeatures;
 use Language;
 use Linker;
 use MediaWiki\Extension\AchievementBadges\Achievement;
 use MediaWiki\Extension\AchievementBadges\Constants;
+use MediaWiki\Extension\BetaFeatures\BetaFeatures;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use NamespaceInfo;
