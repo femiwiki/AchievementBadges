@@ -36,7 +36,7 @@ class SpecialShareAchievementTest extends SpecialPageTestBase {
 		$name = 'ShareAchievementTester';
 		$user->setName( $name );
 		$user->addToDatabase();
-		$user->setOption( 'language', 'qqx' );
+		$this->getServiceContainer()->getUserOptionsManager()->setOption( $user, 'language', 'qqx' );
 		$user->saveSettings();
 		Achievement::achieve( [ 'user' => $user, 'key' => $key ] );
 		return $user->getId();
