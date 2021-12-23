@@ -11,7 +11,7 @@
     "minify-svg": "svgo --config=.svgo.config.js -q -r -f images/"
   },
   "devDependencies": {
-    "@prettier/plugin-xml": "^1.1.0",
+    "@prettier/plugin-xml": "^1.2.0",
     "@wdio/cli": "^7.16.12",
     "@wdio/dot-reporter": "^7.12.5",
     "@wdio/junit-reporter": "^7.12.5",
