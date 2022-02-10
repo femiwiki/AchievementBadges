@@ -62,7 +62,7 @@
 	"achievementbadges-achievement-hint-edit-page-4": "Düzenlemeye devam edin. Bu başarıyı elde etmek çok zor.",
 	"achievementbadges-achievement-description-edit-page-4": "10000 kez {{SITENAME}} düzenlemeyi başardınız! Kimsenin takip edemeyeceği {{SITENAME}} sitesinin baş {{GENDER:$1|editörüsünüz}}.",
 	"achievementbadges-achievement-name-visual-edit": "Görsel Düzenleyici",
-	"achievementbadges-achievement-hint-visual-edit": "Görsel düzenleyiciyi {{GENDER$1|deneyin}}",
+	"achievementbadges-achievement-hint-visual-edit": "Görsel düzenleyiciyi {{GENDER:$1|}}deneyin",
 	"achievementbadges-achievement-description-visual-edit": "Görsel düzenleyiciyi kullanarak {{GENDER:$1|düzenlediniz}}",
 	"achievementbadges-achievement-name-edit-size-0": "Bir Yaprak Yaprağı",
 	"achievementbadges-achievement-hint-edit-size-0": "Düzenleme yaparken aynı anda iki veya üçten fazla cümle yazın!",
