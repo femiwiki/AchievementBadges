@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Sou0012"
+			"Sou0012",
+			"Yamagata Yusuke"
 		]
 	},
 	"achievementbadges-desc": "[[Special:Achievements|実績(アチーブメント)]]システムを提供する。",
@@ -25,7 +26,7 @@
 	"achievementbadges-achievement-name-sign-up": "登録",
 	"achievementbadges-achievement-name-edit-page-0": "最初の編集",
 	"achievementbadges-achievement-hint-edit-page-0": "任意のページを編集する。",
-	"achievementbadges-achievement-description-edit-page-0": "{GENDER:1|あなた}}は{{SITENAME}}の編集を1回達成しました！",
+	"achievementbadges-achievement-description-edit-page-0": "{{GENDER:$1|あなた}}は{{SITENAME}}の編集を1回達成しました！",
 	"achievementbadges-achievement-description-edit-page-1": "{{GENDER:$1|あなた}}は{{SITENAME}}の編集を10回達成しました！\n{{GENDER:$1|あなた}}は{{SITENAME}}の希望です。",
 	"achievementbadges-achievement-description-edit-page-2": "{{GENDER:$1|あなた}}は{{SITENAME}}の編集を100回達成しました！\n{{GENDER:$1|あなた}}の編集スピードが速くなっていますね。",
 	"achievementbadges-achievement-description-edit-page-3": "{{GENDER:$1|あなた}}は{{SITENAME}}の編集を1000回達成しました！\n{{GENDER:$1|あなた}}の趣味は今、{{SITENAME}}ですね。",
@@ -52,5 +53,5 @@
 	"achievementbadges-achievement-description-contribs-saturday": "{{GENDER:$1|あなた}}は土曜日に投稿しました！",
 	"achievementbadges-achievement-name-thanks": "ありがとう！",
 	"achievementbadges-achievement-name-be-thanked": "感謝デー",
-	"achievementbadges-achievement-hint-be-thanked": "続けて{{GENDER:1|編集}}"
+	"achievementbadges-achievement-hint-be-thanked": "続けて{{GENDER:$1|編集}}"
 }
