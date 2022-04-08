@@ -117,7 +117,7 @@ class AchieveTest extends MediaWikiIntegrationTestCase {
 		// Create another page
 		$this->editPage( 'Creation test' . $ct++, 'ipsum', '', NS_MAIN, $user );
 		$this->assertNotificationForAchievement( true, $user, Constants::ACHV_KEY_CREATE_PAGE . '-1',
-			"Only create-page-0 should be achieved" );
+			"create-page-0 should be achieved" );
 		$this->assertEarnedAchievement( 2, $user, Constants::ACHV_KEY_CREATE_PAGE );
 	}
 
@@ -140,7 +140,7 @@ class AchieveTest extends MediaWikiIntegrationTestCase {
 
 		$this->editPage( 'Size test', str_repeat( 'ipsum', 30 ), '', NS_MAIN, $user );
 		$this->assertNotificationForAchievement( true, $user, Constants::ACHV_KEY_EDIT_SIZE . '-1',
-			"Only edit-size-0 should be achieved" );
+			"edit-size-0 should be achieved" );
 		$this->assertEarnedAchievement( 2, $user, Constants::ACHV_KEY_EDIT_SIZE );
 	}
 
