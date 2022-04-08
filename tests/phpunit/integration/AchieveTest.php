@@ -13,7 +13,6 @@ use User;
  * @group Database
  *
  * @covers \MediaWiki\Extension\AchievementBadges\Achievement
- * @covers \MediaWiki\Extension\AchievementBadges\Achievement
  */
 class AchieveTest extends MediaWikiIntegrationTestCase {
 
@@ -23,22 +22,25 @@ class AchieveTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @param int $num
+	 * @param bool $earned
 	 * @param User $user
-	 * @param string $type
+	 * @param string $key
 	 * @param string $msg
-	 * @return int
+	 * @return void
 	 */
-	private function assertNotificationNumber( $num, $user, $type, $msg ) {
+	private function assertNotificationForAchievement( $earned, $user, $key, $msg ) {
 		$notifMapper = new EchoNotificationMapper();
 		$limit = 50;
-		$notifs = $notifMapper->fetchUnreadByUser( $user, $limit, '', [ $type ] );
-		$texts = [];
-		foreach ( $notifs as $noti ) {
-			$event = $noti->getEvent();
-			$texts[] = $event . '(' . implode( ', ', array_values( $event->getExtra() ) ) . ')';
+		$notifs = $notifMapper->fetchUnreadByUser( $user, $limit, null, [ Constants::EVENT_KEY_EARN ] );
+		$eventKeys = array_map( static function ( $notif ) {
+			return $notif->getEvent()->getExtra()['key'];
+		}, $notifs );
+		if ( $earned ) {
+			$this->assertContains( $key, $eventKeys,
+				"$msg: $key not found in " . implode( ', ', $eventKeys ) );
+		} else {
+			$this->assertNotContains( $key, $eventKeys, $msg );
 		}
-		$this->assertCount( $num, $notifs, "$msg (" . implode( ', ', $texts ) . ')' );
 	}
 
 	private function assertEarnedAchievement( $num, $user, $key ) {
@@ -77,15 +79,15 @@ class AchieveTest extends MediaWikiIntegrationTestCase {
 		// Edit a page
 		$this->editPage( 'Edit Test', str_repeat( 'lorem', $ct++ ), '', NS_MAIN, $user );
 		$this->assertSame( 1, $user->getEditCount() );
-		$this->assertNotificationNumber( 1, $user, Constants::EVENT_KEY_EARN,
+		$this->assertNotificationForAchievement( true, $user, Constants::ACHV_KEY_EDIT_PAGE . '-0',
 			"edit-page-0 should be achieved (edit count: {$user->getEditCount()})" );
 		$this->assertEarnedAchievement( 1, $user, Constants::ACHV_KEY_EDIT_PAGE );
 
 		// Edit another page
 		$this->editPage( 'Edit Test', str_repeat( 'lorem', $ct++ ), '', NS_MAIN, $user );
 		$this->assertSame( 2, $user->getEditCount() );
-		$this->assertNotificationNumber( 2, $user, Constants::EVENT_KEY_EARN,
-			"Only edit-page-0 should be achieved (edit count: {$user->getEditCount()})" );
+		$this->assertNotificationForAchievement( true, $user, Constants::ACHV_KEY_EDIT_PAGE . '-1',
+			"edit-page-0 should be achieved (edit count: {$user->getEditCount()})" );
 		$this->assertEarnedAchievement( 2, $user, Constants::ACHV_KEY_EDIT_PAGE );
 	}
 
@@ -108,14 +110,14 @@ class AchieveTest extends MediaWikiIntegrationTestCase {
 		$ct = 1;
 		// Create a page
 		$this->editPage( 'Creation test' . $ct++, 'ipsum', '', NS_MAIN, $user );
-		$this->assertNotificationNumber( 1, $user, Constants::EVENT_KEY_EARN,
+		$this->assertNotificationForAchievement( true, $user, Constants::ACHV_KEY_CREATE_PAGE . '-0',
 			"create-page-0 should be achieved" );
 		$this->assertEarnedAchievement( 1, $user, Constants::ACHV_KEY_CREATE_PAGE );
 
 		// Create another page
 		$this->editPage( 'Creation test' . $ct++, 'ipsum', '', NS_MAIN, $user );
-		$this->assertNotificationNumber( 2, $user, Constants::EVENT_KEY_EARN,
-			"Only create-page-0 should be achieved" );
+		$this->assertNotificationForAchievement( true, $user, Constants::ACHV_KEY_CREATE_PAGE . '-1',
+			"create-page-0 should be achieved" );
 		$this->assertEarnedAchievement( 2, $user, Constants::ACHV_KEY_CREATE_PAGE );
 	}
 
@@ -132,13 +134,13 @@ class AchieveTest extends MediaWikiIntegrationTestCase {
 		] );
 
 		$this->editPage( 'Size test', str_repeat( 'ipsum', 10 ), '', NS_MAIN, $user );
-		$this->assertNotificationNumber( 1, $user, Constants::EVENT_KEY_EARN,
+		$this->assertNotificationForAchievement( true, $user, Constants::ACHV_KEY_EDIT_SIZE . '-0',
 			"edit-size-0 should be achieved" );
 		$this->assertEarnedAchievement( 1, $user, Constants::ACHV_KEY_EDIT_SIZE );
 
 		$this->editPage( 'Size test', str_repeat( 'ipsum', 30 ), '', NS_MAIN, $user );
-		$this->assertNotificationNumber( 2, $user, Constants::EVENT_KEY_EARN,
-			"Only edit-size-0 should be achieved" );
+		$this->assertNotificationForAchievement( true, $user, Constants::ACHV_KEY_EDIT_SIZE . '-1',
+			"edit-size-0 should be achieved" );
 		$this->assertEarnedAchievement( 2, $user, Constants::ACHV_KEY_EDIT_SIZE );
 	}
 
@@ -160,7 +162,7 @@ class AchieveTest extends MediaWikiIntegrationTestCase {
 		$user->addToDatabase();
 
 		$this->editPage( $titleText, $content . 'dolor', '', NS_MAIN, $user );
-		$this->assertNotificationNumber( 0, $user, Constants::EVENT_KEY_EARN,
+		$this->assertNotificationForAchievement( false, $user, Constants::ACHV_KEY_EDIT_SIZE . '-0',
 			"edit-size-0 should not be achieved" );
 		$this->assertEarnedAchievement( 0, $user, Constants::ACHV_KEY_EDIT_SIZE );
 	}
@@ -182,8 +184,11 @@ class AchieveTest extends MediaWikiIntegrationTestCase {
 			] );
 
 		$this->editPage( __METHOD__, str_repeat( 'ipsum', 30 ), '', NS_MAIN, $user );
-		$this->assertNotificationNumber( 5, $user, Constants::EVENT_KEY_EARN,
-			"All edit-size should be achieved" );
+
+		$this->assertNotificationForAchievement( true, $user, Constants::ACHV_KEY_EDIT_SIZE . '-0',
+			"All edit-size-0 should be achieved" );
+		$this->assertNotificationForAchievement( true, $user, Constants::ACHV_KEY_EDIT_SIZE . '-4',
+			"All edit-size-4 should be achieved" );
 		$this->assertEarnedAchievement( 5, $user, Constants::ACHV_KEY_EDIT_SIZE );
 	}
 
@@ -198,7 +203,7 @@ class AchieveTest extends MediaWikiIntegrationTestCase {
 		$longText = str_repeat( 'lorem ipsum dolor amat', 40 );
 
 		$this->editPage( $user->getName(), $longText, '', NS_USER, $user );
-		$this->assertNotificationNumber( 1, $user, Constants::EVENT_KEY_EARN,
+		$this->assertNotificationForAchievement( true, $user, Constants::ACHV_KEY_LONG_USER_PAGE,
 			'Should be achieved long-user-page' );
 		$this->assertEarnedAchievement( 1, $user, Constants::ACHV_KEY_LONG_USER_PAGE );
 	}
