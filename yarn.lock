@@ -420,17 +420,17 @@
     webdriver "7.19.5"
     webdriverio "7.19.5"
 
-"@wdio/sync@^7.19.5":
-  version "7.19.5"
-  resolved "https://registry.yarnpkg.com/@wdio/sync/-/sync-7.19.5.tgz#c1b750a350158dfcbe6e5d5aefef77eaed6e1d96"
-  integrity sha512-lawVJupeXmQGKT4MAAYF6vMw8Fr7e9BVRdoE9DiQMVY25ghmQqAO+gyE8LH7xJW5qBSJqXyWdoSiOdKWbS/2tg==
+"@wdio/sync@^7.19.7":
+  version "7.19.7"
+  resolved "https://registry.yarnpkg.com/@wdio/sync/-/sync-7.19.7.tgz#19f685f1b052a154e7121fe6c19e2f227dde3457"
+  integrity sha512-iKQSeO3qWJKBB5Lt7Ir+AE1uZJgG0JVXnGfzTcvQAfn0i3ZdcMe4kQJrHIu8q8GxW8LeZh5MmSq2XP/VXjd1DQ==
   dependencies:
     "@types/fibers" "^3.1.0"
     "@types/puppeteer" "^5.4.0"
     "@wdio/logger" "7.19.0"
     "@wdio/types" "7.19.5"
     fibers "^5.0.0"
-    webdriverio "7.19.5"
+    webdriverio "7.19.7"
 
 "@wdio/types@7.19.5":
   version "7.19.5"
