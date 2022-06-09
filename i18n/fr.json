@@ -36,7 +36,7 @@
 	"achievementbadges-beta-feature-achievement-enable-description": "Gagnez des réussites accordées pour obtenir des badges.",
 	"echo-category-title-achievement-badges": "Obtenir une réussite",
 	"achievementbadges-pref-tooltip-achievement-badges": "Me notifier lorsque j’obtiens une réussite.",
-	"log-name-achievementbadges": "Journal de réussite",
+	"log-name-achievementbadges": "Journal des réussites",
 	"log-description-achievementbadges": "Voici un journal qui montre une liste de réussites gagnées par un utilisateur.",
 	"logentry-achievementbadges": "{{GENDER:$2|}}$1 a gagné la réussite « $4 »",
 	"notification-header-achievementbadges-earn": "{{GENDER:$2|}}Vous avez gagné la réussite « $3 ».",
