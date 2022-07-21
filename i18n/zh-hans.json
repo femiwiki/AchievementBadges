@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Crowley666",
+			"Tr jason",
 			"Yfdyh000",
 			"列维劳德"
 		]
@@ -95,8 +96,10 @@
 	"achievementbadges-achievement-description-create-page-3": "{{GENDER:$1|您}}已在{{SITENAME}}上创建了100个新页面。{{SITENAME}}留下了你的印记。",
 	"achievementbadges-achievement-name-create-page-4": "树林",
 	"achievementbadges-achievement-hint-create-page-4": "继续创建新页面。这个成就稍微有点难。",
+	"achievementbadges-achievement-description-create-page-4": "{{GENDER:$1|您}} 已经在 {{SITENAME}} 站点创建了300个新页面。多亏了您，{{SITENAME}} 才会茁壮成长。",
 	"achievementbadges-achievement-name-create-page-5": "树海",
 	"achievementbadges-achievement-hint-create-page-5": "继续制作新页面。这是一项非常具有挑战性的成就，需要很长时间才能实现。",
+	"achievementbadges-achievement-description-create-page-5": "{{GENDER:$1|您}} 已经在 {{SITENAME}} 站点创建了1000个新页面。在 {{SITENAME}} 您已经站稳了脚跟。",
 	"achievementbadges-achievement-name-long-user-page": "个人资料",
 	"achievementbadges-achievement-hint-long-user-page": "装扮你的[[User:$1|用户页]]。",
 	"achievementbadges-achievement-description-long-user-page": "{{GENDER:$1|你}}创建了介绍自己的用户页！",
