@@ -10,7 +10,7 @@
 	"achievementbadges-desc": "Fournit un système de mesure des [[Special:Achievements|réussites]]",
 	"special-achievements": "Toutes les réussites",
 	"special-achievements-other-user": "Réussites de $1",
-	"achievements-summary": "Voici une liste de réussites.\n* Vous pouvez les utiliser en les [[Special:Preferences#mw-prefsection-betafeatures|activant]].\n* Les réussites peuvent être supprimées sans avertissement.\n* Les réussites gagnées durant la période bêta peuvent être réinitialisées.\nCette fonctionnalité est encore en phase bêta.",
+	"achievements-summary": "Voici une liste de vos réussites.\n* Vous pouvez les utiliser en les [[Special:Preferences#mw-prefsection-betafeatures|activant]].\n* Les réussites peuvent être supprimées sans avertissement.\n* Les réussites obtenues durant la période bêta peuvent être réinitialisées.\nCette fonctionnalité est encore en phase bêta.",
 	"achievementbadges-anon-text": "Veuillez vous connecter pour voir les réussites.",
 	"achievementbadges-disabled": "Les badges de réussite sont désactivés pour {{GENDER:$1|vous}}.",
 	"achievementbadges-target-not-disabled-ab": "$a {{GENDER:$1|n’a}} pas activé la fonctionnalité bêta Badges de réussite.",
