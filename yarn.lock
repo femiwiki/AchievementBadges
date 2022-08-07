@@ -351,16 +351,16 @@
     junit-report-builder "^3.0.0"
     validator "^13.0.0"
 
-"@wdio/local-runner@^7.19.7":
-  version "7.19.7"
-  resolved "https://registry.yarnpkg.com/@wdio/local-runner/-/local-runner-7.19.7.tgz#519d28d7f5f0204a996c6d441bfc1dd0aac02829"
-  integrity sha512-DZPaAzUwYZKO1OpBIeGppbY1vP9LJ1N/YT2/FkBy0mvSJ4NbJHj0jbKNUrGpEzOMIklbYPV/htxy3l29pjOkDg==
+"@wdio/local-runner@^7.20.9":
+  version "7.20.9"
+  resolved "https://registry.yarnpkg.com/@wdio/local-runner/-/local-runner-7.20.9.tgz#436675fe2cf68266321807a55169aedd87a7b21e"
+  integrity sha512-gU672xjVS+yNXfle75dvuZ0pMbylV+Nifacc2b1kz+S6TzjnKXNbzCbMgytcXKio0HvMEu31HbfinChwkTf3tA==
   dependencies:
     "@types/stream-buffers" "^3.0.3"
     "@wdio/logger" "7.19.0"
-    "@wdio/repl" "7.19.7"
-    "@wdio/runner" "7.19.7"
-    "@wdio/types" "7.19.5"
+    "@wdio/repl" "7.20.7"
+    "@wdio/runner" "7.20.9"
+    "@wdio/types" "7.20.7"
     async-exit-hook "^2.0.1"
     split2 "^4.0.0"
     stream-buffers "^3.0.2"
@@ -427,19 +427,19 @@
     object-inspect "^1.10.3"
     supports-color "8.1.1"
 
-"@wdio/runner@7.19.7":
-  version "7.19.7"
-  resolved "https://registry.yarnpkg.com/@wdio/runner/-/runner-7.19.7.tgz#d0115c52a02c2e4878e5450c3dbd9f214dff1ebc"
-  integrity sha512-PH4vOMwPnAU+cOTPrkJrU20CDDFGccBf4VV80GAQK9b71pfD+T7MIvUCnL0x/kMgIQV/0rFtM+6y5CDZI0R27g==
+"@wdio/runner@7.20.9":
+  version "7.20.9"
+  resolved "https://registry.yarnpkg.com/@wdio/runner/-/runner-7.20.9.tgz#0d84e4983101d3ba4acee35f65027f9141173b4f"
+  integrity sha512-cVb3ZPgRedjuOcIvPoDS6AXlsapExWarKkEIQpeRwTFq+DSocAHyw3nbdButNwrSmhAH7bYgm736UZ3knYDRsQ==
   dependencies:
-    "@wdio/config" "7.19.5"
+    "@wdio/config" "7.20.8"
     "@wdio/logger" "7.19.0"
-    "@wdio/types" "7.19.5"
-    "@wdio/utils" "7.19.7"
+    "@wdio/types" "7.20.7"
+    "@wdio/utils" "7.20.7"
     deepmerge "^4.0.0"
     gaze "^1.1.2"
-    webdriver "7.19.7"
-    webdriverio "7.19.7"
+    webdriver "7.20.8"
+    webdriverio "7.20.9"
 
 "@wdio/sync@^7.20.9":
   version "7.20.9"
