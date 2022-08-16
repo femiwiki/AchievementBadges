@@ -338,15 +338,15 @@
     "@wdio/types" "7.19.5"
     chalk "^4.0.0"
 
-"@wdio/junit-reporter@^7.19.7":
-  version "7.19.7"
-  resolved "https://registry.yarnpkg.com/@wdio/junit-reporter/-/junit-reporter-7.19.7.tgz#1d983928ad9f3aa07c7ebfa448315052dce440ed"
-  integrity sha512-x3sjHybj+WpRJt7HIvW9ae3F6kaeV+/KUTUMYVMkl/USI623unuFEqEtv5gpL77g+k763nE+XUZCq2mXMMWLyw==
+"@wdio/junit-reporter@^7.21.0":
+  version "7.21.0"
+  resolved "https://registry.yarnpkg.com/@wdio/junit-reporter/-/junit-reporter-7.21.0.tgz#b54a06d0ae84f4360f8fb4db76c067f80d0ef23d"
+  integrity sha512-9S/rgQpK84d2DrxHAlocI/cO8qxT//auPsL0kUM46WFbDQIlrbRaY2g5q5MTHgvtcRohov06hfkrNowOG1DDrA==
   dependencies:
     "@types/json-stringify-safe" "^5.0.0"
     "@types/validator" "^13.1.3"
-    "@wdio/reporter" "7.19.7"
-    "@wdio/types" "7.19.5"
+    "@wdio/reporter" "7.21.0"
+    "@wdio/types" "7.21.0"
     json-stringify-safe "^5.0.1"
     junit-report-builder "^3.0.0"
     validator "^13.0.0"
@@ -427,6 +427,22 @@
     object-inspect "^1.10.3"
     supports-color "8.1.1"
 
+"@wdio/reporter@7.21.0":
+  version "7.21.0"
+  resolved "https://registry.yarnpkg.com/@wdio/reporter/-/reporter-7.21.0.tgz#fc25545b96a0e22ccfe13638e75a1795f76b915c"
+  integrity sha512-O18fllf68Lhx0avfb/EwAsDUOkNiMIoDo+rLkWKkNknJ8h7xhmzimUz+37iLZaS/nLfa/ZjnP8adG6/zj3NXrQ==
+  dependencies:
+    "@types/diff" "^5.0.0"
+    "@types/node" "^18.0.0"
+    "@types/object-inspect" "^1.8.0"
+    "@types/supports-color" "^8.1.0"
+    "@types/tmp" "^0.2.0"
+    "@wdio/types" "7.21.0"
+    diff "^5.0.0"
+    fs-extra "^10.0.0"
+    object-inspect "^1.10.3"
+    supports-color "8.1.1"
+
 "@wdio/runner@7.19.7":
   version "7.19.7"
   resolved "https://registry.yarnpkg.com/@wdio/runner/-/runner-7.19.7.tgz#d0115c52a02c2e4878e5450c3dbd9f214dff1ebc"
@@ -465,6 +481,14 @@
   version "7.20.7"
   resolved "https://registry.yarnpkg.com/@wdio/types/-/types-7.20.7.tgz#77ec8d4060f0eb4eb9455586c10ca8347f85986e"
   integrity sha512-MXz/J5GYswCaa+pyWEVpJoafnbqZr0eJf4p/Z9KsSB5xPWh5Co/1Y8gNLlR1msjV8jKhoWCh55uoBZFU//7G1A==
+  dependencies:
+    "@types/node" "^18.0.0"
+    got "^11.8.1"
+
+"@wdio/types@7.21.0":
+  version "7.21.0"
+  resolved "https://registry.yarnpkg.com/@wdio/types/-/types-7.21.0.tgz#8a71e6fd7d74aa72935975a58ee5abca558672b3"
+  integrity sha512-mKVMNRhUN4Idhz5u3PwblmkyhxQxAw03fOO8q0P0trxncqAFauqn7SJPgObBUui2zvtLUZvXwSHJR3dyns5CBA==
   dependencies:
     "@types/node" "^18.0.0"
     got "^11.8.1"
