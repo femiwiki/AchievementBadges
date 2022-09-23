@@ -385,15 +385,15 @@
     loglevel-plugin-prefix "^0.8.4"
     strip-ansi "^6.0.0"
 
-"@wdio/mocha-framework@^7.19.7":
-  version "7.19.7"
-  resolved "https://registry.yarnpkg.com/@wdio/mocha-framework/-/mocha-framework-7.19.7.tgz#58b0f397108ffc966242a45603c659b993f78c70"
-  integrity sha512-8QLIiveyfkHk4qulytNPNvSQ8YqANgrDjrKOryFF1EzdrjwdX0jLdfb23lKqDvFfBCWLWQ8DdY090gD6/tJOQg==
+"@wdio/mocha-framework@^7.25.0":
+  version "7.25.0"
+  resolved "https://registry.yarnpkg.com/@wdio/mocha-framework/-/mocha-framework-7.25.0.tgz#e8e54f634d5f9de00d62631451c7651ed0ed514a"
+  integrity sha512-tL8Ry5crm9Yg4nSmWSo9Dpk5928zZ9rd5jBvWwAOnz83J/EzITQ/zWWTVS8aA4yD40nvlwzirs0KYNwOOjqgZw==
   dependencies:
     "@types/mocha" "^9.0.0"
     "@wdio/logger" "7.19.0"
-    "@wdio/types" "7.19.5"
-    "@wdio/utils" "7.19.7"
+    "@wdio/types" "7.25.0"
+    "@wdio/utils" "7.25.0"
     expect-webdriverio "^3.0.0"
     mocha "^10.0.0"
 
@@ -495,10 +495,10 @@
     "@types/node" "^18.0.0"
     got "^11.8.1"
 
-"@wdio/types@7.23.0":
-  version "7.23.0"
-  resolved "https://registry.yarnpkg.com/@wdio/types/-/types-7.23.0.tgz#4d2a1099f9d0c6f68372d6ea06a40cb50ee2dc6d"
-  integrity sha512-9I00r/AkitiDbOX0swYo6r3t1jzEHd6DD3opH5Zz/pMGQbwMenqvmACH+HwnRA7QKbcRVb1bY66yogMxvfQYAQ==
+"@wdio/types@7.25.0":
+  version "7.25.0"
+  resolved "https://registry.yarnpkg.com/@wdio/types/-/types-7.25.0.tgz#c5cc952a47e578aacba76b30399cd534df17968c"
+  integrity sha512-BET/5UZSobAiBSbpWlUzcdjU1WszuUhaGBY7Pj4aAZjlvEeU5ZW5q2/655kxAvFhqHZ4AFEgd6NXg8krOEkXaA==
   dependencies:
     "@types/node" "^18.0.0"
     got "^11.8.1"
@@ -519,6 +519,15 @@
   dependencies:
     "@wdio/logger" "7.19.0"
     "@wdio/types" "7.23.0"
+    p-iteration "^1.1.8"
+
+"@wdio/utils@7.25.0":
+  version "7.25.0"
+  resolved "https://registry.yarnpkg.com/@wdio/utils/-/utils-7.25.0.tgz#9b6442ffd9a864d98baa7c54a7237b140dc5fbc4"
+  integrity sha512-dRPJoVb2wsMv/GFwAVcVbp0+8CE+vVeW/+lpre6ocn36WAnDQJD6X5UGYde5oQeXGyjzj1/nMHBSsr+ifvuJRQ==
+  dependencies:
+    "@wdio/logger" "7.19.0"
+    "@wdio/types" "7.25.0"
     p-iteration "^1.1.8"
 
 "@xml-tools/parser@^1.0.11":
