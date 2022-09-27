@@ -10,9 +10,9 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
+use MediaWiki\User\UserOptionsLookup;
 use MWTimestamp;
 use User;
-use MediaWiki\User\UserOptionsLookup;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\MaintainableDBConnRef;
 
