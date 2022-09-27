@@ -12,6 +12,7 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MWTimestamp;
 use User;
+use MediaWiki\User\UserOptionsLookup;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\MaintainableDBConnRef;
 
@@ -40,19 +41,27 @@ class AchievementRegister implements
 		 */
 		private $revisionStore;
 
+		/**
+		 * @var UserOptionsLookup
+		 */
+		private $userOptionsLookup;
+
 	/**
 	 * @param Config $config
 	 * @param ILoadBalancer $DBLoadBalancer
 	 * @param RevisionStore $revisionStore
+	 * @param UserOptionsLookup $userOptionsLookup
 	 */
 	public function __construct(
 		Config $config,
 		ILoadBalancer $DBLoadBalancer,
-		RevisionStore $revisionStore
+		RevisionStore $revisionStore,
+		UserOptionsLookup $userOptionsLookup
 	) {
 		$this->config = $config;
 		$this->mDb = $DBLoadBalancer->getMaintenanceConnectionRef( DB_REPLICA );
 		$this->revisionStore = $revisionStore;
+		$this->userOptionsLookup = $userOptionsLookup;
 	}
 
 	private const WEEKDAYS = [
@@ -177,7 +186,7 @@ class AchievementRegister implements
 		if ( !$this->config->get( Constants::CONFIG_KEY_ENABLE_BETA_FEATURE ) ) {
 			return;
 		}
-		if ( $user->getOption( Constants::PREF_KEY_ACHIEVEMENT_ENABLE ) ) {
+		if ( $this->userOptionsLookup->getOption( $user, Constants::PREF_KEY_ACHIEVEMENT_ENABLE ) ) {
 			Achievement::achieve( [
 				'key' => Constants::ACHV_KEY_ENABLE_ACHIEVEMENT_BADGES,
 				'user' => $user,

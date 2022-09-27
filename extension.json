@@ -41,7 +41,12 @@
     },
     "AchievementRegister": {
       "class": "MediaWiki\\Extension\\AchievementBadges\\HookHandler\\AchievementRegister",
-      "services": ["MainConfig", "DBLoadBalancer", "RevisionStore"]
+      "services": [
+        "MainConfig",
+        "DBLoadBalancer",
+        "RevisionStore",
+        "UserOptionsLookup"
+      ]
     }
   },
   "SpecialPages": {
