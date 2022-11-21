@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Eleassar",
 			"Robby",
 			"Verdy p",
 			"렌즈"
@@ -12,7 +13,7 @@
 	"achievements-summary": "Explanatory text shown at the top of [[Special:Achievements]].",
 	"achievementbadges-anon-text": "Shown in [[Special:Achievements]] when user tries to access their achievements before logging in",
 	"achievementbadges-disabled": "Used as error message in [[Special:Achievements]] when the feature is disabled by the viewing user.\n\nParameters:\n* $1 - the name of the user",
-	"achievementbadges-target-not-disabled-ab": "Used as error message in [[Special:Achievements]] when the feature is disabled by the target user.\n\nParameters:\n* $1 - the name of the user",
+	"achievementbadges-target-not-disabled-ab": "Used as error message in [[Special:Achievements]] when the feature is disabled by the target user.\n\nParameters:\n* $a - the name of the user",
 	"special-achievements-header-not-earning-achievements": "Label for the achieved achievements sub-section.\n\nParameters:\n* $1 - the name of the user views the page",
 	"achievement-earned-at": "This message is shown with each earned achievements\n\nParameters:\n* $1 - the name of the user who earn the achievement\n$2 - time",
 	"achievement-earned-at-tooltip": "This message is shown as a tooltip for each earned achievements\n\nParameters:\n* $1 - date\n* $2 - time",
