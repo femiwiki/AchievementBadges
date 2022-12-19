@@ -32,7 +32,7 @@
 	"achievementbadges-beta-feature-achievement-enable-message": "Značke za dosežke",
 	"achievementbadges-beta-feature-achievement-enable-description": "Prislužite si določene dosežke, da prejmete značke.",
 	"echo-category-title-achievement-badges": "Pridobi dosežek",
-	"achievementbadges-pref-tooltip-achievement-badges": "Obvesti me, ko dobim dosežek.",
+	"achievementbadges-pref-tooltip-achievement-badges": "Obvesti me, ko osvojim dosežek.",
 	"log-name-achievementbadges": "Dnevnik dosežkov",
 	"log-description-achievementbadges": "To je dnevnik, ki prikazuje seznam dosežkov, ki si jih je prislužil uporabnik.",
 	"logentry-achievementbadges": "$1 si je {{GENDER:$2|prislužil|prislužila|prislužil_a}} dosežek $4",
