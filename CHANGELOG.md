@@ -2,6 +2,10 @@
 
 Versions and bullets are arranged chronologically from latest to oldest.
 
+## v0.3.1
+
+- (internal) Replaced the use of the deprecated `User::getOption()`. (https://github.com/femiwiki/AchievementBadges/pull/346)
+
 ## Previous Releases
 
 - [REL1_38](https://github.com/femiwiki/AchievementBadges/blob/REL1_38/CHANGELOG.md)
