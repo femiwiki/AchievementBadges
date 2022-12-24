@@ -2,14 +2,13 @@
 
 Versions and bullets are arranged chronologically from latest to oldest.
 
-## v0.3.0
+## v0.3.1
 
-Breaking changes:
-
-- The default value of `$wgAchievementBadgesReplaceEchoThankYouEdit` is `false` now.
-- The sign-in achievement is now disabled by default. Set `$wgAchievementBadgesReplaceEchoWelcome` to `true` to enable it.
+- (internal) Replaced the use of the deprecated `User::getOption()`. (https://github.com/femiwiki/AchievementBadges/pull/346)
 
 ## Previous Releases
 
+- [REL1_38](https://github.com/femiwiki/AchievementBadges/blob/REL1_38/CHANGELOG.md)
+- [REL1_37](https://github.com/femiwiki/AchievementBadges/blob/REL1_37/CHANGELOG.md)
 - [REL1_36](https://github.com/femiwiki/AchievementBadges/blob/REL1_36/CHANGELOG.md)
 - [REL1_35](https://github.com/femiwiki/AchievementBadges/blob/REL1_35/CHANGELOG.md)
