@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"MuratTheTurkish"
+			"MuratTheTurkish",
+			"Rapsar"
 		]
 	},
 	"achievementbadges-desc": "Bir [[Special:Achievements|başarı]] sistemi sağlayın",
@@ -54,8 +55,8 @@
 	"achievementbadges-achievement-description-edit-page-1": "{{SITENAME}} sitesinde 10 kez düzenlemeyi başardınız! Siz bir {{SITENAME}} sitesinin {{GENDER:$1|umudusunuz}}.",
 	"achievementbadges-achievement-name-edit-page-2": "Düzenonuru",
 	"achievementbadges-achievement-hint-edit-page-2": "Düzenlemeye devam edin.",
-	"achievementbadges-achievement-description-edit-page-2": "100 kez {{SITENAME}} düzenlemeyi başardınız! Düzenleme hızınız {{GENDER:$1|artıyor}}.",
-	"achievementbadges-achievement-name-edit-page-3": "Sprinter'ı Düzenleme",
+	"achievementbadges-achievement-description-edit-page-2": "100 {{SITENAME}} değişikliği yapmayı başardınız! Değişiklik yapma hızınız {{GENDER:$1|artıyor}}.",
+	"achievementbadges-achievement-name-edit-page-3": "Sprinter'ı değiştirme",
 	"achievementbadges-achievement-hint-edit-page-3": "Düzenlemeye devam edin. Bu başarıyı elde etmek biraz zor.",
 	"achievementbadges-achievement-description-edit-page-3": "{{SITENAME}} sitesinde 10000 kez düzenlemeyi başardınız! {{GENDER:$1|Hobiniz}} artık {{SITENAME}} sitesidir.",
 	"achievementbadges-achievement-name-edit-page-4": "Şef düzenleyicisi",
