@@ -1,0 +1,41 @@
+{
+	"@metadata": {
+		"authors": [
+			"Afalau",
+			"JonesT143"
+		]
+	},
+	"achievement-earned-at-tooltip": "$2, ar $1",
+	"special-shareachievement-item-facebook": "Facebook",
+	"special-shareachievement-item-twitter": "Twitter",
+	"achievementbadges-achievement-name-sign-up": "Cofrestru",
+	"achievementbadges-achievement-hint-sign-up": "[[Special:Createaccount|Cofrestru ar {{SITENAME}}]]",
+	"achievementbadges-achievement-name-edit-page-0": "Cam Cyntaf",
+	"achievementbadges-achievement-name-visual-edit": "Golygydd Gweledol",
+	"achievementbadges-achievement-name-long-user-page": "Proffil",
+	"achievementbadges-achievement-name-contribs-sunday": "Mae'n ddydd Sul!",
+	"achievementbadges-achievement-hint-contribs-sunday": "Cyfrannu ar ddydd Sul",
+	"achievementbadges-achievement-description-contribs-sunday": "{{GENDER:$1|Cyfrannoch chi}} ar ddydd Sul!",
+	"achievementbadges-achievement-name-contribs-monday": "Mae'n ddydd Llun!",
+	"achievementbadges-achievement-hint-contribs-monday": "Cyfrannu ar ddydd Llun",
+	"achievementbadges-achievement-description-contribs-monday": "{{GENDER:$1|Cyfrannoch chi}} ar ddydd Llun!",
+	"achievementbadges-achievement-name-contribs-tuesday": "Mae'n ddydd Mawrth!",
+	"achievementbadges-achievement-hint-contribs-tuesday": "Cyfrannu ar ddydd Mawrth",
+	"achievementbadges-achievement-description-contribs-tuesday": "{{GENDER:$1|Cyfrannoch chi}} ar ddydd Mawrth!",
+	"achievementbadges-achievement-name-contribs-wednesday": "Mae'n ddydd Mercher!",
+	"achievementbadges-achievement-hint-contribs-wednesday": "Cyfrannu ar ddydd Mercher",
+	"achievementbadges-achievement-description-contribs-wednesday": "{{GENDER:$1|Cyfrannoch chi}} ar ddydd Mercher!",
+	"achievementbadges-achievement-name-contribs-thursday": "Mae'n ddydd Iau!",
+	"achievementbadges-achievement-hint-contribs-thursday": "Cyfrannu ar ddydd Iau",
+	"achievementbadges-achievement-description-contribs-thursday": "{{GENDER:$1|Cyfrannoch chi}} ar ddydd Iau!",
+	"achievementbadges-achievement-name-contribs-friday": "Mae'n ddydd Gwener!",
+	"achievementbadges-achievement-hint-contribs-friday": "Cyfrannu ar ddydd Gwener",
+	"achievementbadges-achievement-description-contribs-friday": "{{GENDER:$1|Cyfrannoch chi}} ar ddydd Gwener!",
+	"achievementbadges-achievement-name-contribs-saturday": "Mae'n ddydd Sadwrn!",
+	"achievementbadges-achievement-hint-contribs-saturday": "Cyfrannu ar ddydd Sadwrn",
+	"achievementbadges-achievement-description-contribs-saturday": "{{GENDER:$1|Cyfrannoch chi}} ar ddydd Sadwrn!",
+	"achievementbadges-achievement-name-thanks": "Diolch!",
+	"achievementbadges-achievement-description-thanks": "Danfonasoch chi diolch i rywun am y golygiad.",
+	"achievementbadges-achievement-hint-be-thanked": "Parhau i {{GENDER:$1|olygu}}.",
+	"achievementbadges-achievement-description-be-thanked": "Danfonodd rhywun diolch i {{GENDER:$1|chi}} am eich golygiad."
+}
