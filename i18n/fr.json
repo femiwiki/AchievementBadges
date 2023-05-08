@@ -4,6 +4,7 @@
 			"Gomoko",
 			"Seudo",
 			"Thibaut120094",
+			"Urhixidur",
 			"Verdy p"
 		]
 	},
@@ -28,8 +29,8 @@
 	"special-shareachievement-header-share": "Partager",
 	"special-shareachievement-item-facebook": "Facebook",
 	"special-shareachievement-item-twitter": "Twitter",
-	"special-shareachievement-tweet": "{{GENDER:$1|}}Je viens juste de gagner la réussite « $2 » sur {{SITENAME}} ! $3",
-	"special-shareachievement-tweet-viewer": "{{GENDER:$1|}}$1 vient juste de gagner la réussite « $2 » sur {{SITENAME}} ! $3",
+	"special-shareachievement-tweet": "{{GENDER:$1|}}Je viens juste d’obtenir la réussite « $2 » sur {{SITENAME}} ! $3",
+	"special-shareachievement-tweet-viewer": "{{GENDER:$1|}}$1 vient juste d’obtenir la réussite « $2 » sur {{SITENAME}} ! $3",
 	"special-shareachievement-suggestion-sign-up": "[[Special:Createaccount|{{GENDER:$1|}}Inscrivez-vous]] maintenant pour commencer à obtenir des réussites.\n\nVous avez un compte ? [[Special:Login|Connectez-vous]].",
 	"special-shareachievement-suggestion-beta": "[[Special:Preferences#mw-prefsection-betafeatures|{{GENDER:$1|}}Commencer à obtenir des réussites maintenant !]]",
 	"achievementbadges-beta-feature-achievement-enable-message": "Badges de réussite",
