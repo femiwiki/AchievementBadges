@@ -25,7 +25,7 @@
   "special-shareachievement-item-twitter": "Twitter",
   "special-shareachievement-tweet": "I just {{GENDER:$1|earned}} the $2 achievement at {{SITENAME}}! $3",
   "special-shareachievement-tweet-viewer": "$1 just {{GENDER:$1|earned}} the $2 achievement at {{SITENAME}}! $3",
-  "special-shareachievement-suggestion-sign-up": "[[Special:Createaccount|{{GENDER:$1|Sign}} up]] now to start getting achievements.\n\nHave an account? [[Special:Login|Sign in]]",
+  "special-shareachievement-suggestion-sign-up": "[[Special:Createaccount|Sign up]] now to start getting achievements.\n\nHave an account? [[Special:Login|Sign in]]",
   "special-shareachievement-suggestion-beta": "[[Special:Preferences#mw-prefsection-betafeatures|{{GENDER:$1|Start}} getting achievements now!]]",
   "achievementbadges-beta-feature-achievement-enable-message": "Achievement Badges",
   "achievementbadges-beta-feature-achievement-enable-description": "Earn given achievements to get badges.",

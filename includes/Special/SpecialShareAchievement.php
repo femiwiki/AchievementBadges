@@ -131,8 +131,7 @@ class SpecialShareAchievement extends SpecialPage {
 		$userBetaEnabled = $betaConfigEnabled && BetaFeatures::isFeatureEnabled( $viewer,
 				Constants::PREF_KEY_ACHIEVEMENT_ENABLE );
 		if ( $viewer->isAnon() ) {
-			$data['text-suggestion'] = $this->msg( 'special-shareachievement-suggestion-sign-up',
-				$viewer->getName() )->parse();
+			$data['text-suggestion'] = $this->msg( 'special-shareachievement-suggestion-sign-up' )->parse();
 		} elseif ( $betaConfigEnabled && !$userBetaEnabled ) {
 			$data['text-suggestion'] = $this->msg( 'special-shareachievement-suggestion-beta',
 				$viewer->getName() )->parse();
