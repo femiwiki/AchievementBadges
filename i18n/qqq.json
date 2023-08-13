@@ -30,7 +30,7 @@
 	"special-shareachievement-item-twitter": "This is a label for a link for sharing.",
 	"special-shareachievement-tweet": "This is used to send a new tweet.\n* $1 - user's name\n* $2 - the name of the obtained achievement\n* $3 - URL to the achievement page",
 	"special-shareachievement-tweet-viewer": "This is used to send a new tweet that is obtained by other than the user who tweets.\n* $1 - user's name\n* $2 - the name of the obtained achievement\n* $3 - URL to the achievement page",
-	"special-shareachievement-suggestion-sign-up": "\n* $1 - user's name",
+	"special-shareachievement-suggestion-sign-up": "Shown to anonymous users.",
 	"special-shareachievement-suggestion-beta": "\n* $1 - user's name",
 	"achievementbadges-beta-feature-achievement-enable-message": "Used in [[Special:Preferences]].\n\nUsed as label for checkbox to enable the achievement system.\n\nThe description for this checkbox is {{msg-mw|achievementbadges-beta-feature-achievement-enable-description}}",
 	"achievementbadges-beta-feature-achievement-enable-description": "Used in [[Special:Preferences]].\n\nUsed as description for the checkbox to enable the achievement system.\n\nThe label for this checkbox is {{msg-mw|achievementbadges-beta-feature-achievement-enable-message}}.",
