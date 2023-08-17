@@ -40,7 +40,7 @@
 	"log-name-achievementbadges": "{{doc-logpage}}\n\nThe name of the achievement log. Used as heading on [[Special:Log/create]] and in the drop down menu for selecting logs on [[Special:Log]].",
 	"log-description-achievementbadges": "Text in [[Special:Log/achievementbadges]].",
 	"logentry-achievementbadges": "{{Logentry|[[Special:Log/achievementbadges]]}}",
-	"notification-header-achievementbadges-earn": "Header text for a notification when you are earned an achievement.\n* $1 - user's name (not suitable for GENDER).\n* $2 - user's name for use in GENDER.\n* $3 - the name of the obtained achievement",
+	"notification-header-achievementbadges-earn": "Header text for a notification when you are earned an achievement.\n* $2 - user's name for use in GENDER.\n* $3 - the name of the obtained achievement",
 	"notification-bundle-header-achievementbadges-earn": "Notification header text for when there is a multiple achievements a user earn. Parameters:\n* $1 - user's name (not suitable for GENDER).\n* $2 - user's name for use in GENDER.\n* $3 - the number of the obtained achievement",
 	"notification-link-text-all-achievements": "Label for button that links to [[Special:Achievements]]",
 	"achievementbadges-link-on-user-contributes": "Used as a display name for a link to the list of achievements on for example [[Special:Contributions/MediaWiki default]]",
