@@ -1,10 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amire80",
 			"Hamilton Abreu"
 		]
 	},
-	"achievementbadges-desc": "Fornecer um sistema de acompanhamento de  [[Special:Achievements|objetivos]]",
+	"achievementbadges-desc": "Fornecer um sistema de acompanhamento de [[Special:Achievements|objetivos]]",
 	"special-achievements": "Todos os objetivos",
 	"special-achievements-other-user": "Objetivos de $1",
 	"achievements-summary": "Esta é uma lista de objetivos.\n* Pode usar os objetivos se [[Special:Preferences#mw-prefsection-betafeatures|ativar a funcionalidade]].\n* Os objetivos podem ser apagados sem aviso prévio.\n* Os objetivos atingidos durante a fase beta podem vir a ser reiniciados.\nEsta funcionalidade ainda está em fase beta.",

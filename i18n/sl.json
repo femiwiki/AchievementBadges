@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amire80",
 			"Eleassar"
 		]
 	},
@@ -48,7 +49,7 @@
 	"achievementbadges-achievement-description-sign-up": "Zdaj ste {{GENDER:$1|sodelavec|sodelavka|sodelavec_ka}} projekta {{SITENAME}}!",
 	"achievementbadges-achievement-name-edit-page-0": "Prvo urejanje",
 	"achievementbadges-achievement-hint-edit-page-0": "Uredite katero koli stran.",
-	"achievementbadges-achievement-description-edit-page-0": "V projektu {{SITENAME}} ste urejali  {{GENDER:$1|}}enkrat!",
+	"achievementbadges-achievement-description-edit-page-0": "V projektu {{SITENAME}} ste urejali {{GENDER:$1|}}enkrat!",
 	"achievementbadges-achievement-name-edit-page-1": "Urejevalec začetnik",
 	"achievementbadges-achievement-hint-edit-page-1": "Nadaljujte urejanje.",
 	"achievementbadges-achievement-description-edit-page-1": "V projektu {{SITENAME}} ste dosegli {{GENDER:$1|}}10 urejanj! {{GENDER:$1|Ste}} upanje za projekt {{SITENAME}}.",
