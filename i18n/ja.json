@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"LaMagiaaa",
 			"Sou0012",
 			"Yamagata Yusuke"
 		]
@@ -8,16 +9,26 @@
 	"achievementbadges-desc": "[[Special:Achievements|実績(アチーブメント)]]システムを提供する。",
 	"special-achievements": "すべての実績",
 	"special-achievements-other-user": "$1の実績",
-	"achievementbadges-anon-text": "アチーブメントを見るにはログインが必要です。",
+	"achievements-summary": "これは実績のリストです。\n* [[Special:Preferences#mw-prefsection-betafeatures|有効]]にすると利用できます。\n* 実績は予告なく削除される場合があります。\n* ベータ期間中に獲得した実績を初期化する可能性があります。\nこの機能はまだベータ版です。",
+	"achievementbadges-anon-text": "実績を見るにはログインが必要です。",
+	"achievementbadges-disabled": "実績バッジベータ機能は{{GENDER:$1|}}無効にしました。",
+	"achievementbadges-target-not-disabled-ab": "$aは実績バッジベータ機能を有効にしていません{{GENDER:$1|でした}}。",
+	"special-achievements-header-not-earning-achievements": "実績を{{GENDER:$1|獲得}}していません",
+	"achievement-earned-at": "$2で{{GENDER:$1|獲得}}しました",
+	"achievement-earned-at-tooltip": "$1 $2",
 	"special-shareachievement": "アチーブメントバッジを共有する",
 	"special-shareachievement-invalid": "無効なアクセスです。",
 	"special-shareachievement-invalid-username": "利用者名が無効です",
 	"special-shareachievement-invalid-achievement-name": "アチーブメントの名前が無効です",
 	"special-shareachievement-message": "おめでとうございます！あなたは達成しました",
 	"special-shareachievement-message-other": "$1達成",
+	"special-shareachievement-title": "実績$2を{{GENDER:$1|獲得}}しました！",
+	"special-shareachievement-external-description": "$1はつい先{{SITENAME}}で実績$2を{{GENDER:$1|獲得}}しました！",
 	"special-shareachievement-header-share": "共有",
 	"special-shareachievement-item-facebook": "Facebook",
 	"special-shareachievement-item-twitter": "Twitter",
+	"special-shareachievement-tweet": "{{SITENAME}}で実績$2をつい先{{GENDER:$1|獲得}}しました！ $3",
+	"special-shareachievement-tweet-viewer": "$1は{{SITENAME}}で実績$2をつい先{{GENDER:$1|獲得}}しました！ $3",
 	"achievementbadges-beta-feature-achievement-enable-message": "アチーブメントバッジ",
 	"achievementbadges-beta-feature-achievement-enable-description": "与えられたアチーブメントを獲得して、バッジを手に入れる。",
 	"notification-link-text-all-achievements": "すべてのアチーブメント",
