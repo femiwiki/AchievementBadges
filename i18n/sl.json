@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Amire80",
-			"Eleassar"
+			"Eleassar",
+			"Upwinxp"
 		]
 	},
 	"achievementbadges-desc": "Zagotavlja sistem [[Special:Achievements|dosežkov]].",
@@ -11,7 +12,7 @@
 	"achievements-summary": "To je seznam dosežkov.\n* Uporabljate ga lahko, če ga [[Special:Preferences#mw-prefsection-betafeatures|omogočite]].\n* Dosežki se lahko izbrišejo brez obvestila.\n* Dosežek(ke), pridobljen(e) v obdobju beta, je mogoče inicializirati\nTa funkcija je še vedno v beta različici.",
 	"achievementbadges-anon-text": "Za ogled dosežkov se prijavite.",
 	"achievementbadges-disabled": "Funkcija beta značk dosežkov je za {{GENDER:$1|vas}} onemogočena.",
-	"achievementbadges-target-not-disabled-ab": "$a {{GENDER:$1|ni omogočil|ni omogočila|ni omogočil_a}} beta možnosti značk dosežkov.",
+	"achievementbadges-target-not-disabled-ab": "$a {{GENDER:$1|ni omogočil|ni omogočila|ni omogočil/a}} beta možnosti značk dosežkov.",
 	"special-achievements-header-not-earning-achievements": "Ni {{GENDER:$1|prisluženih}} dosežkov",
 	"achievement-earned-at": "{{GENDER:$1|Prisluženo}} ob $2",
 	"achievement-earned-at-tooltip": "$2, dne $1",
@@ -61,7 +62,7 @@
 	"achievementbadges-achievement-description-edit-page-3": "V projektu {{SITENAME}} {{GENDER:$1|ste}} dosegli 1000 urejanj! {{SITENAME}} je zdaj {{GENDER:$1|vaš}} konjiček.",
 	"achievementbadges-achievement-name-edit-page-4": "Urednik",
 	"achievementbadges-achievement-hint-edit-page-4": "Nadaljujte urejanje. Ta dosežek je zelo težko doseči.",
-	"achievementbadges-achievement-description-edit-page-4": "V projektu {{SITENAME}} {{GENDER:$1|ste}} dosegli 10.000 urejanj! Zdaj ste {{GENDER:$1|urednik|urednica|urednik_ca}} projekta {{SITENAME}}.",
+	"achievementbadges-achievement-description-edit-page-4": "V projektu {{SITENAME}} {{GENDER:$1|ste}} dosegli 10.000 urejanj! Zdaj ste {{GENDER:$1|urednik|urednica|urednik/ca}} projekta {{SITENAME}}.",
 	"achievementbadges-achievement-name-visual-edit": "Vizualni urejevalnik",
 	"achievementbadges-achievement-hint-visual-edit": "{{GENDER:$1|Preizkusite}} vizualni urejevalnik",
 	"achievementbadges-achievement-description-visual-edit": "{{GENDER:$1|Urejali ste}} z vizualnim urejevalnikom",
