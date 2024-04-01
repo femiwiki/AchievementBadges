@@ -2294,15 +2294,15 @@ mute-stream@0.0.8:
   resolved "https://registry.yarnpkg.com/mute-stream/-/mute-stream-0.0.8.tgz#1630c42b2251ff81e2a283de96a5497ea92e5e0d"
   integrity sha512-nnbWWOkoWyUsTjKrhgD0dcz22mdkSnpYqbEjIm2nhwhuxlSkpywJmBo8h0ZqJdkp73mb90SssHkN4rsRaBAfAA==
 
-mwbot@2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/mwbot/-/mwbot-2.0.0.tgz#bbfa74b344dc515868a8849ae0894209b7fad3ea"
-  integrity sha512-9iTx8oFMntC60yyaPJjN4GEgiQlal7i03jATu7kq5b9BGW5aNz7YbrpjaciLNr0Z33PTdQe0hRTJ0JdUJi2WQg==
+mwbot@2.1.3:
+  version "2.1.3"
+  resolved "https://registry.yarnpkg.com/mwbot/-/mwbot-2.1.3.tgz#a9de7bc47a8774d6184084e8b65ccf51e7b37fce"
+  integrity sha512-ULQWIfRWfh0WJKmqcapshk/5VNU1KEfrI7+hLeO3WoyuTGBVlhr3eE9TEyc4Q46vmztR6YHlaA6TmDGQr7/akg==
   dependencies:
     bluebird "^3.7.2"
     request "^2.88.2"
     semlog "^0.6.10"
-    semver "7.3.4"
+    semver "^7.3.8"
 
 nanoid@3.3.3:
   version "3.3.3"
@@ -2823,10 +2823,10 @@ semlog@^0.6.10:
   resolved "https://registry.yarnpkg.com/semver/-/semver-5.7.1.tgz#a954f931aeba508d307bbf069eff0c01c96116f7"
   integrity sha512-sauaDf/PZdVgrLTNYHRtpXa1iRiKcaebiKQ1BJdpQlWH2lCvexQdX55snPFyK7QzpudqbCI0qXFfOasHdyNDGQ==
 
-semver@7.3.4:
-  version "7.3.4"
-  resolved "https://registry.yarnpkg.com/semver/-/semver-7.3.4.tgz#27aaa7d2e4ca76452f98d3add093a72c943edc97"
-  integrity sha512-tCfb2WLjqFAtXn4KEdxIhalnRtoKFN7nAwj0B3ZXCbQloV2tq5eDbcTmT68JJD3nRJq24/XgxtQKFIpQdtvmVw==
+semver@^7.3.8:
+  version "7.6.0"
+  resolved "https://registry.yarnpkg.com/semver/-/semver-7.6.0.tgz#1a46a4db4bffcccd97b743b5005c8325f23d4e2d"
+  integrity sha512-EnwXhrlwXMk9gKu5/flx5sv/an57AkRplG3hTK68W7FRDN+k+OWBj65M7719OkA82XLBxrcX0KSHj+X5COhOVg==
   dependencies:
     lru-cache "^6.0.0"
 
@@ -3178,12 +3178,12 @@ wcwidth@^1.0.1:
   dependencies:
     defaults "^1.0.3"
 
-wdio-mediawiki@^2.2.0:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/wdio-mediawiki/-/wdio-mediawiki-2.2.0.tgz#1b0d2293627e17d361ca578f4375b09a58a19dd1"
-  integrity sha512-TvuEMWXd8/E4WzQSRXfmBeuPvXIXixNTAdUPcC3h+fjRYS8u0X6rAO2AfeOqT+yHs7+6LdQTfnz5oDW0jDH+Nw==
+wdio-mediawiki@^2.5.0:
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/wdio-mediawiki/-/wdio-mediawiki-2.5.0.tgz#774797d7ef62b32353294e46f4fe16ae6c9cfa88"
+  integrity sha512-cuBotMJyga/49r5rQzO4Op1brj0yj7Kw/FTe3k6TrNJeK5iwIDsbmruEoYwr5Z2cl3TKPuK6Y4YbV/gdSFfqtg==
   dependencies:
-    mwbot "2.0.0"
+    mwbot "2.1.3"
 
 webdriver@7.19.7:
   version "7.19.7"
