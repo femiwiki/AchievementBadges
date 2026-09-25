@@ -1,3 +1,7 @@
+# AchievementBadges is now hosted on Wikimedia Gerrit.
+
+https://gerrit.wikimedia.org/g/mediawiki/extensions/AchievementBadges
+
 # AchievementBadges [![Github checks status]][github checks link] [![codecov.io status]][codecov.io link]
 
 AchievementBadges is an extension that provides an [achievement system] for [MediaWiki] wikis.
